@@ -660,12 +660,13 @@ SCENES['lobby_free'] = () => {
   if (G.relationships.shen_guyan != null) talked.push('shen');
   if (G.relationships.liu_ruyin != null) talked.push('liu');
   if (G.relationships.zhao_tieniu != null) talked.push('zhao');
+  if (G.relationships.bai_yunsheng != null) talked.push('bai');
   
   const choices = [];
   if (!talked.includes('shen')) choices.push({ text: '走向柜台，和老板交谈', id: 'c1_free_shen', next: SCENES['talk_shen'] });
   if (!talked.includes('liu')) choices.push({ text: '走向黑衣女子', id: 'c1_free_liu', next: SCENES['talk_liu'] });
   if (!talked.includes('zhao')) choices.push({ text: '走向铁匠', id: 'c1_free_zhao', next: SCENES['talk_zhao'] });
-  choices.push({ text: '走向醉倒的书生', id: 'c1_free_bai', next: SCENES['talk_bai'] });
+  if (!talked.includes('bai')) choices.push({ text: '走向醉倒的书生', id: 'c1_free_bai', next: SCENES['talk_bai'] });
   
   if (talked.length >= 2) {
     choices.push({ text: '回房休息，等待夜深', id: 'c1_go_room', next: SCENES['night_falls'] });
