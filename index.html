@@ -7,11 +7,14 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body {
+html, body {
   background: #0a0a0f;
   color: #d4c5a0;
   font-family: 'Noto Serif SC', serif;
-  min-height: 100vh;
+  height: 100%;
+  overflow: hidden;
+}
+body {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,39 +22,42 @@ body {
 #game-container {
   max-width: 800px;
   width: 100%;
-  padding: 16px;
+  height: 100vh;
+  height: 100dvh;
+  padding: 12px;
   display: flex;
   flex-direction: column;
-  min-height: 100vh;
+  overflow: hidden;
 }
 #game-screen {
   display: none;
   flex-direction: column;
   flex: 1;
+  min-height: 0;
   width: 100%;
 }
 @media (max-width: 768px) {
   body { align-items: stretch; }
-  #game-container { max-width: 100%; padding: 6px; }
-  h1 { font-size: 1.5em; margin: 10px 0; }
-  .subtitle { font-size: 0.82em; margin-bottom: 16px; }
-  #story-panel { padding: 10px; font-size: 0.92em; max-height: 45vh; line-height: 1.75; margin-bottom: 8px; }
-  .choice-btn { padding: 11px 12px; font-size: 0.92em; }
-  #status-bar { flex-direction: column; padding: 8px 10px; gap: 4px; font-size: 0.85em; margin-bottom: 8px; }
-  .stat { width: 100%; justify-content: flex-start; }
-  .hp-bar { flex: 1; max-width: 120px; }
+  #game-container { max-width: 100%; padding: 4px; height: 100vh; height: 100dvh; }
+  h1 { font-size: 1.4em; margin: 8px 0; }
+  .subtitle { font-size: 0.8em; margin-bottom: 10px; }
+  #story-panel { padding: 8px; font-size: 0.88em; line-height: 1.65; margin-bottom: 4px; }
+  .choice-btn { padding: 10px 10px; font-size: 0.88em; }
+  #status-bar { flex-direction: row; flex-wrap: wrap; padding: 6px 8px; gap: 4px 10px; font-size: 0.78em; margin-bottom: 4px; }
+  .stat { flex: 0 0 auto; }
+  .hp-bar { width: 50px; }
   #save-load { top: 4px; right: 4px; }
-  .sl-btn { padding: 4px 8px; font-size: 0.75em; }
-  #title-screen { padding-top: 24px; }
-  #title-screen .lore { font-size: 0.85em; padding: 0 8px; }
-  .start-btn { padding: 12px 28px; font-size: 1em; margin-top: 20px; }
-  .chapter-marker { font-size: 0.95em; }
-  .npc-rel { display: block; margin: 2px 0; }
-  #npc-panel { margin-bottom: 8px; padding: 8px; }
-  #inventory-panel { margin-bottom: 8px; padding: 8px; }
-  #ending-screen { padding-top: 20px; padding: 16px; }
-  #ending-screen h2 { font-size: 1.4em; }
-  .ending-text { font-size: 0.9em; }
+  .sl-btn { padding: 3px 6px; font-size: 0.7em; }
+  #title-screen { padding-top: 20vh; }
+  #title-screen .lore { font-size: 0.82em; padding: 0 8px; }
+  .start-btn { padding: 10px 24px; font-size: 0.95em; margin-top: 16px; }
+  .chapter-marker { font-size: 0.9em; }
+  .npc-rel { display: inline-block; margin-right: 8px; }
+  #npc-panel { margin-bottom: 4px; padding: 6px; font-size: 0.82em; }
+  #inventory-panel { margin-bottom: 4px; padding: 6px; font-size: 0.82em; }
+  #ending-screen { padding: 16px; }
+  #ending-screen h2 { font-size: 1.3em; }
+  .ending-text { font-size: 0.85em; }
 }
 h1 {
   text-align: center;
@@ -68,14 +74,14 @@ h1 {
 }
 #story-panel {
   flex: 1;
+  min-height: 0;
   background: rgba(20,18,15,0.8);
   border: 1px solid #2a2520;
   border-radius: 8px;
-  padding: 24px;
-  margin-bottom: 16px;
+  padding: 20px;
+  margin-bottom: 12px;
   line-height: 1.9;
   font-size: 1.05em;
-  max-height: 55vh;
   overflow-y: auto;
   white-space: pre-wrap;
 }
@@ -111,7 +117,10 @@ h1 {
 #choices-panel {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
+  max-height: 35vh;
+  overflow-y: auto;
+  flex-shrink: 0;
 }
 .choice-btn {
   background: rgba(40,35,25,0.8);
