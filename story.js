@@ -191,10 +191,10 @@ SCENES['zhao_military'] = () => {
 SCENES['observe'] = () => {
   G.scene = 'observe';
   narrate(`\n你找了个不引人注目的角落坐下，暗中观察。\n`);
-  narrate(`${highlight('沈孤雁')}——倒酒的动作行云流水，但偶尔会看向窗外，似乎在等什么人。\n`);
-  narrate(`${highlight('柳如烟')}——看似在喝酒，但目光始终扫视着门口。她不是在等人，而是在${highlight('监视')}。\n`);
-  narrate(`${highlight('赵铁牛')}——确实在烤火，但他放在身边的铁锤……那不是普通铁匠的锤。锤头包了布，像是在${highlight('遮掩什么')}。\n`);
-  narrate(`${highlight('书生')}——醉得东倒西歪，但他的手……指尖没有一丝颤抖。他在${danger('装醉')}。`);
+  narrate(`${highlight('柜台后的中年人')}——倒酒的动作行云流水，但偶尔会看向窗外，似乎在等什么人。\n`);
+  narrate(`${highlight('角落的黑衣女子')}——看似在喝酒，但目光始终扫视着门口。她不是在等人，而是在${highlight('监视')}。\n`);
+  narrate(`${highlight('壁炉旁的壮汉')}——确实在烤火，但他放在身边的铁锤……那不是普通铁匠的锤。锤头包了布，像是在${highlight('遮掩什么')}。\n`);
+  narrate(`${highlight('窗边的书生')}——醉得东倒西歪，但他的手……指尖没有一丝颤抖。他在${danger('装醉')}。`);
   setFlag('observed_all');
   showChoices([
     { text: '走向柜台，和老板交谈', id: 'c1_after_obs_shen', next: SCENES['talk_shen'] },
