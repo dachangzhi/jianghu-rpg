@@ -1001,10 +1001,22 @@ SCENES['attack_hei'] = () => {
 
 SCENES['deal_hei'] = () => {
   G.scene = 'deal_hei';
-  narrate(`\n黑无极审视着你。`);
-  dialog('hei_wuji', '……你有？天机卷的线索？有意思。但我不和陌生人做交易。如果你能拿到三块钥匙中的任何一块，再来找我。到时候——我们可以谈。');
-  narrate(`他转身离去，身影融入黑暗。`);
+  narrate(`\n黑无极审视着你。短刀仍然抵着胡青娘的脖子。`);
+  dialog('hei_wuji', '信息？什么信息？');
+  narrate(`你快速思考。你确实还没拿到什么实质线索——但你必须争取时间。`);
+  narrate(`你盯着他的眼睛，尽量让自己看起来胸有成竹。`);
+  divider();
+  narrate(`黑无极看了你三秒。然后——出乎你意料地——他松开了胡青娘。`);
+  dialog('hei_wuji', '你的眼神不像在撒谎。但你手上也没有东西。我给你一个机会。');
+  narrate(`他将短刀收回袖中，声音冰冷。`);
+  dialog('hei_wuji', '天机卷的入口需要三块玉牌才能打开。分别在一个药铺女人、一个书生、和这个客栈老板手里。你如果能拿到任何一块——拿来找我。到时候，我们可以谈。');
+  narrate(`他顿了顿，补充道：`);
+  dialog('hei_wuji', '至于今晚……我的人不会动这个客栈。但你只有到天亮。天亮之后我找不到你——这个镇上的人，一个不留。');
+  narrate(`他转身消失在走廊尽头，身影如墨融入黑暗。`);
+  narrate(`${danger('天亮之前。')}`);
   setFlag('hei_open_to_deal');
+  setFlag('knows_three_keys');
+  G.relationships.hu_qingniang = G.relationships.hu_qingniang ?? 0;
   showChoices([
     { text: '继续行动', id: 'c2_deal_after', next: SCENES['chapter2_hub'] },
   ]);
