@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>江湖夜雨 — 文字RPG</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
@@ -14,35 +14,19 @@ html, body {
   height: 100%;
   overflow: hidden;
 }
-body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
+body { display: flex; flex-direction: column; align-items: center; }
 #game-container {
-  max-width: 800px;
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  overflow: hidden;
+  max-width: 800px; width: 100%; height: 100vh; height: 100dvh;
+  padding: 12px; display: flex; flex-direction: column; overflow: hidden;
 }
-#game-screen {
-  display: none;
-  flex-direction: column;
-  flex: 1;
-  min-height: 0;
-  width: 100%;
-}
+#game-screen { display: none; flex-direction: column; flex: 1; min-height: 0; width: 100%; }
 @media (max-width: 768px) {
   body { align-items: stretch; }
-  #game-container { max-width: 100%; padding: 4px; height: 100vh; height: 100dvh; }
+  #game-container { max-width: 100%; padding: 4px; }
   h1 { font-size: 1.4em; margin: 8px 0; }
   .subtitle { font-size: 0.8em; margin-bottom: 10px; }
   #story-panel { padding: 8px; font-size: 0.88em; line-height: 1.65; margin-bottom: 4px; }
-  .choice-btn { padding: 10px 10px; font-size: 0.88em; }
+  .choice-btn { padding: 10px; font-size: 0.88em; }
   #status-bar { flex-direction: row; flex-wrap: wrap; padding: 6px 8px; gap: 4px 10px; font-size: 0.78em; margin-bottom: 4px; }
   .stat { flex: 0 0 auto; }
   .hp-bar { width: 50px; }
@@ -51,39 +35,16 @@ body {
   #title-screen { padding-top: 20vh; }
   #title-screen .lore { font-size: 0.82em; padding: 0 8px; }
   .start-btn { padding: 10px 24px; font-size: 0.95em; margin-top: 16px; }
-  .chapter-marker { font-size: 0.9em; }
   .npc-rel { display: inline-block; margin-right: 8px; }
-  #npc-panel { margin-bottom: 4px; padding: 6px; font-size: 0.82em; }
-  #inventory-panel { margin-bottom: 4px; padding: 6px; font-size: 0.82em; }
-  #ending-screen { padding: 16px; }
-  #ending-screen h2 { font-size: 1.3em; }
-  .ending-text { font-size: 0.85em; }
+  #npc-panel, #inventory-panel { margin-bottom: 4px; padding: 6px; font-size: 0.82em; }
 }
-h1 {
-  text-align: center;
-  font-size: 2.2em;
-  color: #c9a050;
-  margin: 20px 0;
-  text-shadow: 0 0 20px rgba(201,160,80,0.3);
-}
-.subtitle {
-  text-align: center;
-  color: #8a7a5a;
-  margin-bottom: 30px;
-  font-size: 0.95em;
-}
+h1 { text-align: center; font-size: 2.2em; color: #c9a050; margin: 20px 0; text-shadow: 0 0 20px rgba(201,160,80,0.3); }
+.subtitle { text-align: center; color: #8a7a5a; margin-bottom: 30px; font-size: 0.95em; }
 #story-panel {
-  flex: 1;
-  min-height: 0;
-  background: rgba(20,18,15,0.8);
-  border: 1px solid #2a2520;
-  border-radius: 8px;
-  padding: 20px;
-  margin-bottom: 12px;
-  line-height: 1.9;
-  font-size: 1.05em;
-  overflow-y: auto;
-  white-space: pre-wrap;
+  flex: 1; min-height: 0;
+  background: rgba(20,18,15,0.8); border: 1px solid #2a2520; border-radius: 8px;
+  padding: 20px; margin-bottom: 12px; line-height: 1.9; font-size: 1.05em;
+  overflow-y: auto; white-space: pre-wrap;
 }
 #story-panel::-webkit-scrollbar { width: 6px; }
 #story-panel::-webkit-scrollbar-track { background: transparent; }
@@ -94,64 +55,30 @@ h1 {
 .highlight { color: #c9a050; }
 .danger { color: #c05050; }
 .success { color: #50a050; }
+.warn { color: #c0a050; }
+.location-tag { color: #6a8aaa; font-size: 0.9em; }
+.time-tag { color: #8a6a5a; font-size: 0.9em; }
 #status-bar {
-  display: flex;
-  gap: 16px;
-  flex-wrap: wrap;
-  margin-bottom: 12px;
-  padding: 12px;
-  background: rgba(20,18,15,0.6);
-  border: 1px solid #2a2520;
-  border-radius: 8px;
-  font-size: 0.9em;
+  display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; padding: 12px;
+  background: rgba(20,18,15,0.6); border: 1px solid #2a2520; border-radius: 8px; font-size: 0.9em;
 }
-.stat {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
+.stat { display: flex; align-items: center; gap: 6px; }
 .stat-label { color: #8a7a5a; }
 .stat-value { color: #c9a050; font-weight: bold; }
 .hp-bar { width: 80px; height: 8px; background: #2a2520; border-radius: 4px; overflow: hidden; display: inline-block; }
 .hp-fill { height: 100%; background: linear-gradient(90deg, #c05050, #50a050); border-radius: 4px; transition: width 0.5s; }
-#choices-panel {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  max-height: 35vh;
-  overflow-y: auto;
-  flex-shrink: 0;
-}
+#choices-panel { display: flex; flex-direction: column; gap: 6px; max-height: 35vh; overflow-y: auto; flex-shrink: 0; }
 .choice-btn {
-  background: rgba(40,35,25,0.8);
-  border: 1px solid #3a3520;
-  color: #d4c5a0;
-  padding: 14px 20px;
-  border-radius: 6px;
-  cursor: pointer;
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1em;
-  text-align: left;
-  transition: all 0.2s;
+  background: rgba(40,35,25,0.8); border: 1px solid #3a3520; color: #d4c5a0;
+  padding: 14px 20px; border-radius: 6px; cursor: pointer;
+  font-family: 'Noto Serif SC', serif; font-size: 1em; text-align: left; transition: all 0.2s;
 }
-.choice-btn:hover {
-  background: rgba(60,50,30,0.9);
-  border-color: #c9a050;
-  color: #c9a050;
-}
-.choice-btn:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-  transform: none;
-}
-#npc-panel {
-  display: none;
-  margin-bottom: 12px;
-  padding: 12px;
-  background: rgba(20,18,15,0.6);
-  border: 1px solid #2a2520;
-  border-radius: 8px;
-}
+.choice-btn:hover { background: rgba(60,50,30,0.9); border-color: #c9a050; color: #c9a050; }
+.choice-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.choice-req { color: #6a5a4a; font-size: 0.85em; }
+.choice-req.met { color: #50a050; }
+.choice-req.unmet { color: #c05050; }
+#npc-panel { display: none; margin-bottom: 12px; padding: 12px; background: rgba(20,18,15,0.6); border: 1px solid #2a2520; border-radius: 8px; }
 #npc-panel h3 { color: #c9a050; margin-bottom: 8px; font-size: 1em; }
 .npc-rel { display: inline-block; margin-right: 16px; font-size: 0.9em; }
 .npc-rel .name { color: #d4c5a0; }
@@ -159,76 +86,41 @@ h1 {
 .rel-positive { color: #50a050; }
 .rel-negative { color: #c05050; }
 .rel-neutral { color: #8a7a5a; }
-#inventory-panel {
-  display: none;
-  margin-bottom: 12px;
-  padding: 12px;
-  background: rgba(20,18,15,0.6);
-  border: 1px solid #2a2520;
-  border-radius: 8px;
-  font-size: 0.9em;
-}
+#inventory-panel { display: none; margin-bottom: 12px; padding: 12px; background: rgba(20,18,15,0.6); border: 1px solid #2a2520; border-radius: 8px; font-size: 0.9em; }
 #inventory-panel h3 { color: #c9a050; margin-bottom: 8px; font-size: 1em; }
 .inv-item { display: inline-block; margin: 2px 8px 2px 0; padding: 2px 8px; background: rgba(60,50,30,0.5); border-radius: 4px; }
 #title-screen { text-align: center; padding-top: 60px; }
 #title-screen .lore { color: #8a7a5a; line-height: 2; max-width: 500px; margin: 20px auto; font-size: 0.95em; }
 .start-btn {
-  background: linear-gradient(135deg, #3a3020, #2a2515);
-  border: 2px solid #c9a050;
-  color: #c9a050;
-  padding: 16px 48px;
-  font-size: 1.2em;
-  font-family: 'Noto Serif SC', serif;
-  border-radius: 8px;
-  cursor: pointer;
-  margin-top: 30px;
-  transition: all 0.3s;
+  background: linear-gradient(135deg, #3a3020, #2a2515); border: 2px solid #c9a050; color: #c9a050;
+  padding: 16px 48px; font-size: 1.2em; font-family: 'Noto Serif SC', serif;
+  border-radius: 8px; cursor: pointer; margin-top: 30px; transition: all 0.3s;
 }
-.start-btn:hover {
-  background: linear-gradient(135deg, #5a4a30, #3a3020);
-  box-shadow: 0 0 20px rgba(201,160,80,0.3);
-}
+.start-btn:hover { background: linear-gradient(135deg, #5a4a30, #3a3020); box-shadow: 0 0 20px rgba(201,160,80,0.3); }
 #ending-screen { display: none; text-align: center; padding-top: 40px; }
 #ending-screen h2 { color: #c9a050; font-size: 1.8em; margin-bottom: 20px; }
 #ending-screen .ending-text { line-height: 2; max-width: 600px; margin: 0 auto 30px; }
 .ending-type { color: #8a7a5a; font-size: 0.9em; margin-bottom: 20px; }
 .restart-btn {
-  background: rgba(40,35,25,0.8);
-  border: 1px solid #c9a050;
-  color: #c9a050;
-  padding: 12px 36px;
-  font-family: 'Noto Serif SC', serif;
-  font-size: 1em;
-  border-radius: 6px;
-  cursor: pointer;
-  transition: all 0.2s;
+  background: rgba(40,35,25,0.8); border: 1px solid #c9a050; color: #c9a050;
+  padding: 12px 36px; font-family: 'Noto Serif SC', serif; font-size: 1em;
+  border-radius: 6px; cursor: pointer; transition: all 0.2s;
 }
 .restart-btn:hover { background: rgba(60,50,30,0.9); }
-.chapter-marker { color: #c9a050; text-align: center; font-size: 1.1em; margin: 16px 0 8px; letter-spacing: 4px; }
 .divider { text-align: center; color: #3a3520; margin: 12px 0; letter-spacing: 8px; }
-#save-load {
-  position: relative; display: flex; gap: 6px; margin-bottom: 4px; flex-shrink: 0;
-}
+#save-load { position: relative; display: flex; gap: 6px; margin-bottom: 4px; flex-shrink: 0; }
 .sl-btn {
-  background: rgba(30,28,22,0.9);
-  border: 1px solid #3a3520;
-  color: #8a7a5a;
-  padding: 6px 12px;
-  font-size: 0.8em;
-  font-family: 'Noto Serif SC', serif;
-  border-radius: 4px;
-  cursor: pointer;
+  background: rgba(30,28,22,0.9); border: 1px solid #3a3520; color: #8a7a5a;
+  padding: 6px 12px; font-size: 0.8em; font-family: 'Noto Serif SC', serif; border-radius: 4px; cursor: pointer;
 }
 .sl-btn:hover { border-color: #c9a050; color: #c9a050; }
 </style>
 </head>
 <body>
-
 <div id="save-load">
   <button class="sl-btn" onclick="saveGame()">💾 存档</button>
   <button class="sl-btn" onclick="loadGame()">📂 读档</button>
 </div>
-
 <div id="game-container">
   <div id="title-screen">
     <h1>江 湖 夜 雨</h1>
@@ -251,7 +143,6 @@ h1 {
     </div>
     <button class="start-btn" onclick="startGame()">踏 入 江 湖</button>
   </div>
-
   <div id="game-screen">
     <div id="status-bar"></div>
     <div id="npc-panel"></div>
@@ -259,7 +150,6 @@ h1 {
     <div id="story-panel"></div>
     <div id="choices-panel"></div>
   </div>
-
   <div id="ending-screen">
     <h2 id="ending-title"></h2>
     <div class="ending-type" id="ending-type"></div>
@@ -267,232 +157,10 @@ h1 {
     <button class="restart-btn" onclick="location.reload()">再入江湖（重新开始）</button>
   </div>
 </div>
-
 <script>
-// ==================== GAME ENGINE ====================
-const G = {
-  chapter: 0,
-  scene: '',
-  hp: 100,
-  maxHp: 100,
-  sword: 10,
-  wits: 10,
-  charm: 10,
-  inventory: [],
-  flags: {},
-  relationships: {},
-  choices_made: [],
-  playthrough: 0,
-};
-
-const NPCS = {
-  shen_guyan: {
-    name: '沈孤雁',
-    title: '客栈老板',
-    personality: '表面温和，实则深不可测。前朝遗臣，隐姓埋名经营客栈，暗中保护天机卷。说话滴水不漏，善于观察人心。',
-    defaultRel: 0,
-  },
-  liu_ruyin: {
-    name: '柳如烟',
-    title: '神秘女剑客',
-    personality: '冷傲孤高，言辞犀利。实为朝廷暗卫，奉命追查天机卷。外表冷漠，内心有柔软之处。信奉"弱者不配持剑"。',
-    defaultRel: -5,
-  },
-  zhao_tieniu: {
-    name: '赵铁牛',
-    title: '铁匠',
-    personality: '豪爽直率，力大无穷。看似粗犷，实则忠诚可靠，重情重义。曾为军中百夫长，厌倦杀戮归隐。最恨背信弃义之人。',
-    defaultRel: 5,
-  },
-  hu_qingniang: {
-    name: '胡青娘',
-    title: '药铺掌柜',
-    personality: '八面玲珑，心细如发。表面是和善的药师，实则是江湖情报贩子。凡事讲究等价交换，绝不做亏本买卖。',
-    defaultRel: 0,
-  },
-  bai_yunsheng: {
-    name: '白云生',
-    title: '落魄书生',
-    personality: '才华横溢却自命不凡，科举失意后流落江湖。醉后吐真言，清醒时装疯。知晓许多秘密，但只对信任的人开口。',
-    defaultRel: 0,
-  },
-  hei_wuji: {
-    name: '黑无极',
-    title: '蒙面杀手',
-    personality: '冷酷无情，职业杀手。但有自己的底线——不杀妇孺。言出必行，追杀目标从不失手。与沈孤雁有旧怨。',
-    defaultRel: -20,
-  },
-};
-
-function getRel(npcId) {
-  return G.relationships[npcId] ?? NPCS[npcId].defaultRel;
-}
-function changeRel(npcId, delta) {
-  G.relationships[npcId] = (G.relationships[npcId] ?? NPCS[npcId].defaultRel) + delta;
-}
-function hasItem(item) { return G.inventory.includes(item); }
-function addItem(item) { if (!G.inventory.includes(item)) G.inventory.push(item); }
-function removeItem(item) { G.inventory = G.inventory.filter(i => i !== item); }
-function setFlag(f) { G.flags[f] = true; }
-function hasFlag(f) { return !!G.flags[f]; }
-function addHp(v) { G.hp = Math.min(G.maxHp, Math.max(0, G.hp + v)); }
-
-// ==================== UI ====================
-function renderStatus() {
-  const bar = document.getElementById('status-bar');
-  const hpPct = (G.hp / G.maxHp * 100);
-  bar.innerHTML = `
-    <div class="stat"><span class="stat-label">❤️ 生命</span><div class="hp-bar"><div class="hp-fill" style="width:${hpPct}%"></div></div><span class="stat-value">${G.hp}</span></div>
-    <div class="stat"><span class="stat-label">⚔️ 剑术</span><span class="stat-value">${G.sword}</span></div>
-    <div class="stat"><span class="stat-label">🧠 心机</span><span class="stat-value">${G.wits}</span></div>
-    <div class="stat"><span class="stat-label">✨ 魅力</span><span class="stat-value">${G.charm}</span></div>
-    <div class="stat"><span class="stat-label">📖 章节</span><span class="stat-value">${G.chapter}</span></div>
-  `;
-}
-function renderNPCs() {
-  const panel = document.getElementById('npc-panel');
-  const known = Object.keys(G.relationships);
-  if (known.length === 0) { panel.style.display = 'none'; return; }
-  panel.style.display = 'block';
-  let html = '<h3>👥 人物关系</h3>';
-  for (const id of known) {
-    const npc = NPCS[id];
-    const rel = getRel(id);
-    const cls = rel > 10 ? 'rel-positive' : rel < -10 ? 'rel-negative' : 'rel-neutral';
-    html += `<span class="npc-rel"><span class="name">${npc.name}</span> <span class="rel-val ${cls}">${rel > 0 ? '+' : ''}${rel}</span></span>`;
-  }
-  panel.innerHTML = html;
-}
-function renderInventory() {
-  const panel = document.getElementById('inventory-panel');
-  if (G.inventory.length === 0) { panel.style.display = 'none'; return; }
-  panel.style.display = 'block';
-  let html = '<h3>🎒 物品</h3>';
-  for (const item of G.inventory) {
-    html += `<span class="inv-item">${item}</span>`;
-  }
-  panel.innerHTML = html;
-}
-function renderAll() {
-  renderStatus();
-  renderNPCs();
-  renderInventory();
-}
-
-function typeText(el, html, cb) {
-  el.innerHTML = html;
-  const panel = document.getElementById('story-panel');
-  panel.scrollTop = panel.scrollHeight;
-  if (cb) cb();
-}
-
-function showChoices(choices) {
-  const panel = document.getElementById('choices-panel');
-  panel.innerHTML = '';
-  choices.forEach((c, i) => {
-    const btn = document.createElement('button');
-    btn.className = 'choice-btn';
-    btn.textContent = c.text;
-    if (c.disabled) { btn.disabled = true; btn.textContent += ' (条件不足)'; }
-    btn.onclick = () => {
-      G.choices_made.push(c.id || c.text);
-      if (c.effects) c.effects();
-      renderAll();
-      if (c.next) c.next();
-    };
-    panel.appendChild(btn);
-  });
-}
-
-function clearStory() { document.getElementById('story-panel').innerHTML = ''; }
-
-function narrate(text) {
-  const panel = document.getElementById('story-panel');
-  panel.innerHTML += `<span class="narrator">${text}</span>\n`;
-  panel.scrollTop = panel.scrollHeight;
-}
-
-function chapterTitle(title) {
-  const panel = document.getElementById('story-panel');
-  panel.innerHTML += `<div class="chapter-marker">—— ${title} ——</div>`;
-  panel.scrollTop = panel.scrollHeight;
-}
-
-function divider() {
-  const panel = document.getElementById('story-panel');
-  panel.innerHTML += `<div class="divider">· · · · ·</div>`;
-  panel.scrollTop = panel.scrollHeight;
-}
-
-function dialog(npcId, text) {
-  const npc = NPCS[npcId];
-  const panel = document.getElementById('story-panel');
-  panel.innerHTML += `<div class="npc-dialog"><span class="npc-name" style="color:${getRel(npcId)>10?'#50a050':getRel(npcId)<-10?'#c05050':'#c9a050'}">【${npc.name}】</span>「${text}」</div>\n`;
-  panel.scrollTop = panel.scrollHeight;
-}
-
-function highlight(text) { return `<span class="highlight">${text}</span>`; }
-function danger(text) { return `<span class="danger">${text}</span>`; }
-function success(text) { return `<span class="success">${text}</span>`; }
-// Aliases for use in story files
-const hl = highlight, dg = danger, ok = success;
-function locTag(name) { return `<span class="location-tag">【${name}】</span>`; }
-function timeTag(name) { return `<span class="time-tag">「${name}」</span>`; }
-function req(stat, val) { return G[stat] >= val; }
-function relReq(npc, val) { return getRel(npc) >= val; }
-function keyCount() { return G.inventory.filter(i => i.startsWith('玉牌')).length; }
-
-// ==================== SAVE / LOAD ====================
-function saveGame() {
-  localStorage.setItem('jhyy_save', JSON.stringify(G));
-  alert('存档成功！');
-}
-function loadGame() {
-  const s = localStorage.getItem('jhyy_save');
-  if (!s) { alert('没有存档。'); return; }
-  Object.assign(G, JSON.parse(s));
-  document.getElementById('title-screen').style.display = 'none';
-  document.getElementById('game-screen').style.display = 'flex';
-  document.getElementById('ending-screen').style.display = 'none';
-  renderAll();
-  if (SCENES[G.scene]) SCENES[G.scene]();
-  else { clearStory(); narrate('存档损坏，请重新开始。'); }
-}
-
-// ==================== SCENES ====================
-const SCENES = {};
-// Story loaded from external files
-
-// Story scenes are loaded from story.js, story_part2.js, etc.
-// See external script files for scene definitions.
-
-// ==================== START ====================
-function startGame() {
-  document.getElementById('title-screen').style.display = 'none';
-  document.getElementById('game-screen').style.display = 'flex';
-  
-  // Reset state
-  G.chapter = 0;
-  G.hp = 100;
-  G.maxHp = 100;
-  G.sword = 10;
-  G.wits = 10;
-  G.charm = 10;
-  G.inventory = [];
-  G.flags = {};
-  G.relationships = {};
-  G.choices_made = [];
-  G.scene = 'start';
-  
-  renderAll();
-  SCENES['start']();
-}
+// PLACEHOLDER - story data will be loaded from external script
 </script>
 <script src="story.js"></script>
 <script src="story_part2.js"></script>
-<script src="story_part3.js"></script>
-<script src="story_part4.js"></script>
-<script src="story_part5.js"></script>
-<script src="story_part6.js"></script>
 </body>
 </html>
