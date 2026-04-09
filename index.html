@@ -158,7 +158,164 @@ h1 { text-align: center; font-size: 2.2em; color: #c9a050; margin: 20px 0; text-
   </div>
 </div>
 <script>
-// PLACEHOLDER - story data will be loaded from external script
+// ==================== GAME ENGINE ====================
+const G = {
+  hp: 100, maxHp: 100, sword: 10, wits: 10, charm: 10,
+  inventory: [], flags: {}, relationships: {}, choices_made: [],
+  scene: '', time: 'dusk', location: 'inn_lobby',
+  visited: new Set(), turnCount: 0,
+};
+
+const NPCS = {
+  shen_guyan: { name: '沈孤雁', title: '客栈老板', defaultRel: 0 },
+  liu_ruyin: { name: '柳如烟', title: '神秘女剑客', defaultRel: -5 },
+  zhao_tieniu: { name: '赵铁牛', title: '铁匠', defaultRel: 5 },
+  hu_qingniang: { name: '胡青娘', title: '药铺掌柜', defaultRel: 0 },
+  bai_yunsheng: { name: '白云生', title: '落魄书生', defaultRel: 0 },
+  hei_wuji: { name: '黑无极', title: '蒙面杀手', defaultRel: -20 },
+  xiao_lian: { name: '小莲', title: '客栈帮厨', defaultRel: 10 },
+  old_sun: { name: '老孙头', title: '渔夫', defaultRel: 5 },
+  li_tiejiang2: { name: '李婶', title: '茶馆老板娘', defaultRel: 5 },
+};
+
+// ==================== HELPERS ====================
+function getRel(id) { return G.relationships[id] ?? (NPCS[id] ? NPCS[id].defaultRel : 0); }
+function changeRel(id, d) { G.relationships[id] = (G.relationships[id] ?? (NPCS[id]?.defaultRel ?? 0)) + d; }
+function hasItem(i) { return G.inventory.includes(i); }
+function addItem(i) { if (!G.inventory.includes(i)) G.inventory.push(i); }
+function removeItem(i) { G.inventory = G.inventory.filter(x => x !== i); }
+function setFlag(f) { G.flags[f] = true; }
+function hasFlag(f) { return !!G.flags[f]; }
+function addHp(v) { G.hp = Math.min(G.maxHp, Math.max(0, G.hp + v)); }
+function req(stat, val) { return G[stat] >= val; }
+function relReq(npc, val) { return getRel(npc) >= val; }
+function keyCount() { return G.inventory.filter(i => i.startsWith('玉牌')).length; }
+
+// ==================== UI ====================
+function renderStatus() {
+  const bar = document.getElementById('status-bar');
+  const hpPct = G.hp / G.maxHp * 100;
+  const timeNames = { dusk: '🌆 黄昏', night: '🌙 入夜', deep_night: '🌑 深夜', dawn: '🌅 黎明' };
+  bar.innerHTML = `
+    <div class="stat"><span class="stat-label">❤️</span><div class="hp-bar"><div class="hp-fill" style="width:${hpPct}%"></div></div><span class="stat-value">${G.hp}</span></div>
+    <div class="stat"><span class="stat-label">⚔️</span><span class="stat-value">${G.sword}</span></div>
+    <div class="stat"><span class="stat-label">🧠</span><span class="stat-value">${G.wits}</span></div>
+    <div class="stat"><span class="stat-label">✨</span><span class="stat-value">${G.charm}</span></div>
+    <div class="stat"><span class="stat-label">${timeNames[G.time] || '🌆 黄昏'}</span></div>
+  `;
+}
+function renderNPCs() {
+  const panel = document.getElementById('npc-panel');
+  const known = Object.keys(G.relationships).filter(k => NPCS[k]);
+  if (!known.length) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  let html = '<h3>👥 人物关系</h3>';
+  for (const id of known) {
+    const npc = NPCS[id]; if (!npc) continue;
+    const rel = getRel(id);
+    const cls = rel > 15 ? 'rel-positive' : rel < -10 ? 'rel-negative' : 'rel-neutral';
+    html += `<span class="npc-rel"><span class="name">${npc.name}</span> <span class="rel-val ${cls}">${rel > 0 ? '+' : ''}${rel}</span></span>`;
+  }
+  panel.innerHTML = html;
+}
+function renderInventory() {
+  const panel = document.getElementById('inventory-panel');
+  if (!G.inventory.length) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  panel.innerHTML = '<h3>🎒 物品</h3>' + G.inventory.map(i => `<span class="inv-item">${i}</span>`).join('');
+}
+function renderAll() { renderStatus(); renderNPCs(); renderInventory(); }
+
+const SP = () => document.getElementById('story-panel');
+function narrate(t) { SP().innerHTML += `<span class="narrator">${t}</span>\n`; SP().scrollTop = SP().scrollHeight; }
+function dialog(npcId, t) {
+  const npc = NPCS[npcId];
+  const rel = getRel(npcId);
+  const color = rel > 15 ? '#50a050' : rel < -10 ? '#c05050' : '#c9a050';
+  SP().innerHTML += `<div class="npc-dialog"><span class="npc-name" style="color:${color}">【${npc.name}】</span>「${t}」</div>\n`;
+  SP().scrollTop = SP().scrollHeight;
+}
+function divider() { SP().innerHTML += '<div class="divider">· · · · ·</div>'; SP().scrollTop = SP().scrollHeight; }
+function locTag(name) { SP().innerHTML += `<div class="location-tag">📍 ${name}</div>`; SP().scrollTop = SP().scrollHeight; }
+function clearStory() { SP().innerHTML = ''; }
+function hl(t) { return `<span class="highlight">${t}</span>`; }
+function dg(t) { return `<span class="danger">${t}</span>`; }
+function ok(t) { return `<span class="success">${t}</span>`; }
+
+// Compatibility aliases for old story files
+const highlight = hl;
+const danger = dg;
+const success = ok;
+function chapterTitle(t) { divider(); narrate(`【${t}】`); divider(); }
+
+function showChoices(choices) {
+  const panel = document.getElementById('choices-panel');
+  panel.innerHTML = '';
+  choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    let text = c.text;
+    let disabled = false;
+    if (c.req) {
+      const unmet = [];
+      for (const [check, label] of c.req) {
+        if (!check()) { unmet.push(label); disabled = true; }
+      }
+      if (unmet.length) text += ` <span class="choice-req unmet">（需要：${unmet.join('、')}）</span>`;
+    }
+    if (c.disabled) { disabled = true; text += ' <span class="choice-req unmet">（条件不足）</span>'; }
+    btn.innerHTML = text;
+    btn.disabled = disabled;
+    btn.onclick = () => {
+      G.choices_made.push(c.id || c.text);
+      G.turnCount++;
+      if (c.effects) c.effects();
+      renderAll();
+      if (c.next) c.next();
+    };
+    panel.appendChild(btn);
+  });
+}
+
+function saveGame() { localStorage.setItem('jhyy_save', JSON.stringify({...G, visited: [...G.visited]})); alert('存档成功！'); }
+function loadGame() {
+  const s = localStorage.getItem('jhyy_save');
+  if (!s) { alert('没有存档。'); return; }
+  const data = JSON.parse(s);
+  Object.assign(G, data);
+  G.visited = new Set(data.visited || []);
+  document.getElementById('title-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'flex';
+  document.getElementById('ending-screen').style.display = 'none';
+  renderAll();
+  if (SCENES[G.scene]) SCENES[G.scene]();
+  else { clearStory(); narrate('存档损坏，请重新开始。'); }
+}
+
+function showEnding(title, id, desc) {
+  G.scene = 'ending_' + id;
+  divider();
+  narrate(`\n—— 结局统计 ——`);
+  narrate(`回合数：${G.turnCount}\n剑术：${G.sword} | 心机：${G.wits} | 魅力：${G.charm}`);
+  const rl = Object.entries(G.relationships).filter(([k]) => NPCS[k]).map(([k, v]) => `${NPCS[k].name}：${v > 0 ? '+' : ''}${v}`);
+  if (rl.length) narrate(`人际关系：${rl.join(' | ')}`);
+  setTimeout(() => {
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('ending-screen').style.display = 'block';
+    document.getElementById('ending-title').textContent = `结局：${title}`;
+    document.getElementById('ending-type').textContent = desc;
+    document.getElementById('ending-text').innerHTML = '<p style="margin-top:10px;color:#c9a050;">感谢游玩「江湖夜雨」！</p><p style="color:#8a7a5a;">本游戏有多个不同结局，尝试不同选择发现更多故事。</p>';
+  }, 2000);
+}
+
+const SCENES = {};
+
+function startGame() {
+  document.getElementById('title-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'flex';
+  renderAll();
+  SCENES['start']();
+}
 </script>
 <script src="story.js"></script>
 <script src="story_part2.js"></script>
