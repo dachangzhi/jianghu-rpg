@@ -1110,11 +1110,20 @@ SCENES['chapter2_hub'] = () => {
   chapterTitle('第二章 · 抉择时刻');
   narrate(`夜色深沉。客栈内外一片狼藉，但战斗暂时平息。\n你站在院子中央，月光如水。`);
   divider();
-  narrate(`现在，你必须做出选择。\n天机卷的线索逐渐清晰——它就在落雁峰上。`);
-  
-  if (hasFlag('knows_three_keys')) {
-    narrate(`\n赵铁牛告诉你：三块${highlight('玉牌')}分别在三个人手中。`);
+
+  // Ensure player knows about the keys/tianji juan
+  if (!hasFlag('knows_three_keys') && !hasFlag('hu_key') && !hasFlag('bai_key')) {
+    narrate(`刚才的混战中，你注意到一些不对劲的地方——所有人都在争夺某种${highlight('信物')}。`);
+    narrate(`一个垂死的黑衣人倒在你脚边，嘴里含混不清地念叨着：
+「……三块玉牌……山洞……沈老板……药铺……书生……」`);
+    narrate(`${highlight('三块玉牌')}。看起来，这是打开天机卷藏匿之处的钥匙。\n分别在沈孤雁、胡青娘、和白云生手中。`);
+    setFlag('knows_three_keys');
+  } else if (!hasFlag('knows_three_keys') && (hasFlag('hu_key') || hasFlag('bai_key'))) {
+    narrate(`根据已经获得的线索，你拼凑出了全貌——天机卷藏在落雁峰的山洞里，需要${highlight('三块玉牌')}才能打开。\n分别在沈孤雁、胡青娘、和白云生手中。`);
+    setFlag('knows_three_keys');
   }
+
+  narrate(`\n现在，你必须做出选择。\n天机卷就在落雁峰上——近万人的生死，就在你手中。`);
   
   const keys = [];
   if (hasItem('玉牌·药')) keys.push('胡青娘');
