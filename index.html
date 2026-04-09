@@ -234,17 +234,16 @@ h1 {
     <h1>江 湖 夜 雨</h1>
     <div class="subtitle">一剑一江湖，一夜一宿命</div>
     <div class="lore">
-      大燕永安三年，天下初定，前朝遗臣散落四方。
+      大燕永安三年，天下初定。
 
-      传闻，前朝末帝在亡国前秘密编录了一卷「天机卷」——
-      上面记载着${danger('一千七百名')}隐匿于民间的旧臣姓名、藏身之处与化名。
+      苍龙镇，一个依山而建的小镇，
+      平静得像一潭死水。
+      但最近来了不少外乡人——
+      有佩剑的，有带刀的，有算计的。
 
-      朝廷悬赏万金追索此卷，
-      有了它，便可将前朝余孽斩草除根。
-      有了它，也可保住一千七百条人命。
-
-      落雁峰上，苍龙镇中，
-      所有人都在找它。
+      没人告诉你为什么，
+      但你能感觉到——
+      这水底下，有什么东西在涌动。
 
       你是一个无名剑客，
       雨夜投宿于「听雨客栈」。
@@ -510,7 +509,7 @@ SCENES['shen_probing'] = () => {
   dialog('shen_guyan', '客官也是来找东西的？');
   showChoices([
     { text: '「只是路过。」', id: 'c1_shen_deny', effects: () => { changeRel('shen_guyan', 2); }, next: SCENES['shen_deny'] },
-    { text: '「也许吧。听说落雁峰上有好东西？」', id: 'c1_shen_ask_mountain', effects: () => { setFlag('asked_about_mountain'); changeRel('shen_guyan', -3); }, next: SCENES['shen_askmountain'] },
+    { text: '「也许吧。听说这镇子附近有什么稀罕？」', id: 'c1_shen_ask_mountain', effects: () => { setFlag('asked_about_mountain'); changeRel('shen_guyan', -3); }, next: SCENES['shen_askmountain'] },
   ]);
 };
 
@@ -537,7 +536,7 @@ SCENES['shen_deny'] = () => {
 SCENES['shen_askmountain'] = () => {
   G.scene = 'shen_askmountain';
   narrate(`\n沈孤雁的脸色变了变，随即挤出一丝笑容。`);
-  dialog('shen_guyan', '落雁峰？客官消息倒是灵通。不过那山上荒得很，什么都没有。我这客栈最近就有不少人问这个，烦都烦死了。');
+  dialog('shen_guyan', '稀罕？这镇子能有什么稀罕。不过是前两天来了几个外乡人，都在往山上跑。我一个开客栈的，哪里知道那么多。');
   narrate(`他放下抹布，语气变得生硬。`);
   dialog('shen_guyan', '天字三号房。请吧。');
   addItem('客栈钥匙');
@@ -726,7 +725,7 @@ SCENES['bai_why'] = () => {
   narrate(`\n白云生苦笑了一下。`);
   dialog('bai_yunsheng', '因为……我也不知道自己今晚会不会还站在你这一边。这镇上的局势，比你想的复杂得多。每个人都有自己的目的。');
   narrate(`他顿了顿。`);
-  dialog('bai_yunsheng', '落雁峰上的「天机卷」——你应该听说过吧？那东西……值得人为之疯狂。也值得为之背叛。');
+  dialog('bai_yunsheng', '落雁峰上藏着一个秘密——一个值得人为之疯狂的秘密。也值得为之背叛。');
   setFlag('knows_tianji');
   showChoices([
     { text: '继续在客栈里转转', id: 'c1_bai_after', next: SCENES['lobby_free'] },
