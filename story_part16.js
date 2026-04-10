@@ -10,19 +10,28 @@ SCENES['chapter2_hub'] = () => {
   narrate('所有人陆续来到了大堂——赵铁牛、胡青娘、白云生、柳如烟、小莲。每个人身上都有昨夜的痕迹——伤口、疲惫、警觉。沈孤雁站起来：昨晚只是试探。他们还会来。下一次会更凶。我们必须在他们下一次进攻之前——打开石室。');
   divider();
   setFlag('chapter2_started');
-  showChoices([
-    { text: '去帮胡青娘解毒一个被下毒的人', id: 'c2h_hu', next: SCENES['hu_jade_quest'] },
-    { text: '帮白云生破解暗号', id: 'c2h_bai', next: SCENES['bai_jade_quest'] },
-    { text: '在天亮前找到沈孤雁的密室', id: 'c2h_shen', next: SCENES['shen_jade_quest'] },
-    { text: '去铁匠铺帮赵铁牛修武器', id: 'c2h_zhao', effects: () => { changeRel('zhao_tieniu', 3); }, next: SCENES['zhao_weapon_help'] },
-    { text: '去找老孙头谈谈', id: 'c2h_sun', next: SCENES['sun_confront'] },
-    { text: '去茶馆找李婶买最新情报', id: 'c2h_li', next: SCENES['li_morning_intel'] },
-    { text: '在镇上巡逻确认安全', id: 'c2h_patrol', effects: () => { G.wits += 2; setFlag('patrolled_chapter2'); }, next: SCENES['chapter2_hub'] },
-    { text: '和柳如烟单独谈话', id: 'c2h_liu', next: SCENES['liu_private_talk'] },
-    { text: '检查地下通道入口', id: 'c2h_tunnel', next: SCENES['tunnel_explore'] },
-    { text: '准备出发上山', id: 'c2h_mountain', next: SCENES['mountain_prepare'] },
-    { text: '和所有人谈判结盟', id: 'c2h_alliance', next: SCENES['alliance_full'] },
-  ]);
+  const choices = [];
+  // Jade quests - only show if not completed
+  if (!hasFlag('got_hu_jade')) choices.push({ text: '去帮胡青娘解毒一个被下毒的人', id: 'c2h_hu', next: SCENES['hu_jade_quest'] });
+  else choices.push({ text: '（已完成）胡青娘的玉牌已到手', id: 'c2h_hu_done', disabled: true });
+  if (!hasFlag('got_bai_jade')) choices.push({ text: '帮白云生破解暗号', id: 'c2h_bai', next: SCENES['bai_jade_quest'] });
+  else choices.push({ text: '（已完成）白云生的玉牌已到手', id: 'c2h_bai_done', disabled: true });
+  if (!hasFlag('got_shen_jade')) choices.push({ text: '在天亮前找到沈孤雁的密室', id: 'c2h_shen', next: SCENES['shen_jade_quest'] });
+  else choices.push({ text: '（已完成）沈孤雁的玉牌已到手', id: 'c2h_shen_done', disabled: true });
+  // Other actions - only show if not done
+  if (!hasFlag('got_zhao_sword')) choices.push({ text: '去铁匠铺帮赵铁牛修武器', id: 'c2h_zhao', effects: () => { changeRel('zhao_tieniu', 3); }, next: SCENES['zhao_weapon_help'] });
+  if (!hasFlag('sun_confronted')) choices.push({ text: '去找老孙头谈谈', id: 'c2h_sun', next: SCENES['sun_confront'] });
+  if (!hasFlag('know_final_attack')) choices.push({ text: '去茶馆找李婶买最新情报', id: 'c2h_li', next: SCENES['li_morning_intel'] });
+  if (!hasFlag('patrolled_chapter2')) choices.push({ text: '在镇上巡逻确认安全', id: 'c2h_patrol', effects: () => { G.wits += 2; setFlag('patrolled_chapter2'); }, next: SCENES['chapter2_hub'] });
+  if (!hasFlag('liu_private_talk_done')) choices.push({ text: '和柳如烟单独谈话', id: 'c2h_liu', next: SCENES['liu_private_talk'] });
+  if (!hasFlag('tunnel_explored')) choices.push({ text: '检查地下通道入口', id: 'c2h_tunnel', next: SCENES['tunnel_explore'] });
+  // Always available
+  choices.push({ text: '准备出发上山', id: 'c2h_mountain', next: SCENES['mountain_prepare'] });
+  if (!hasFlag('alliance_done')) choices.push({ text: '和所有人谈判结盟', id: 'c2h_alliance', next: SCENES['alliance_full'] });
+  // Show jade count
+  const kc = keyCount();
+  if (kc > 0) narrate(`\n你目前拥有 ${kc}/3 块玉牌。`);
+  showChoices(choices);
 };
 
 SCENES['hu_jade_quest'] = () => {
@@ -166,6 +175,7 @@ SCENES['liu_private_talk'] = () => {
   divider();
   changeRel('liu_ruyin', 10);
   setFlag('liu_switched_sides');
+  setFlag('liu_private_talk_done');
   showChoices([{ text: '继续', id: 'lpt_c', next: SCENES['chapter2_hub'] }]);
 };
 
@@ -174,6 +184,7 @@ SCENES['tunnel_explore'] = () => {
   narrate('你打开后院锁着的小门——果然是地下通道的入口。通道很窄——只容一人通过。墙壁上刻着路标——指向落雁峰。通道里阴冷潮湿——但走了一段时间后你看到了出口的光。');
   divider();
   setFlag('explored_tunnel');
+  setFlag('tunnel_explored');
   G.wits += 3;
   showChoices([{ text: '返回', id: 'te_b', next: SCENES['chapter2_hub'] }]);
 };
@@ -198,6 +209,7 @@ SCENES['alliance_result_full'] = () => {
   narrate('经过长时间的讨论——所有人达成了一致。不管天机卷最终如何处理——首先必须确保它不落入暗星阁手中。沈孤雁说：明天一早出发。落雁峰。所有人一起去。赵铁牛举起酒碗：同生共死。所有人碰碗。酒是赵铁牛的烧刀子——辣得你眼泪都出来了。但此刻你需要这口辣。');
   divider();
   setFlag('alliance_formed');
+  setFlag('alliance_done');
   G.charm += 3;
   showChoices([{ text: '准备出发', id: 'arf_c', next: SCENES['mountain_prepare'] }]);
 };
