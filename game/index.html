@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>江湖夜雨 — 文字RPG</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html, body {
+  background: #0a0a0f;
+  color: #d4c5a0;
+  font-family: 'Noto Serif SC', serif;
+  height: 100%;
+  overflow: hidden;
+}
+body { display: flex; flex-direction: column; align-items: center; }
+#game-container {
+  max-width: 800px; width: 100%; height: 100vh; height: 100dvh;
+  padding: 12px; display: flex; flex-direction: column; overflow: hidden;
+}
+#game-screen { display: none; flex-direction: column; flex: 1; min-height: 0; width: 100%; }
+@media (max-width: 768px) {
+  body { align-items: stretch; }
+  #game-container { max-width: 100%; padding: 4px; }
+  h1 { font-size: 1.4em; margin: 8px 0; }
+  .subtitle { font-size: 0.8em; margin-bottom: 10px; }
+  #story-panel { padding: 8px; font-size: 0.88em; line-height: 1.65; margin-bottom: 4px; }
+  .choice-btn { padding: 10px; font-size: 0.88em; }
+  #status-bar { flex-direction: row; flex-wrap: wrap; padding: 6px 8px; gap: 4px 10px; font-size: 0.78em; margin-bottom: 4px; }
+  .stat { flex: 0 0 auto; }
+  .hp-bar { width: 50px; }
+  #save-load { top: 4px; right: 4px; }
+  .sl-btn { padding: 3px 6px; font-size: 0.7em; }
+  #title-screen { padding-top: 20vh; }
+  #title-screen .lore { font-size: 0.82em; padding: 0 8px; }
+  .start-btn { padding: 10px 24px; font-size: 0.95em; margin-top: 16px; }
+  .npc-rel { display: inline-block; margin-right: 8px; }
+  #npc-panel, #inventory-panel { margin-bottom: 4px; padding: 6px; font-size: 0.82em; }
+}
+h1 { text-align: center; font-size: 2.2em; color: #c9a050; margin: 20px 0; text-shadow: 0 0 20px rgba(201,160,80,0.3); }
+.subtitle { text-align: center; color: #8a7a5a; margin-bottom: 30px; font-size: 0.95em; }
+#story-panel {
+  flex: 1; min-height: 0;
+  background: rgba(20,18,15,0.8); border: 1px solid #2a2520; border-radius: 8px;
+  padding: 20px; margin-bottom: 12px; line-height: 1.9; font-size: 1.05em;
+  overflow-y: auto; white-space: pre-wrap;
+}
+#story-panel::-webkit-scrollbar { width: 6px; }
+#story-panel::-webkit-scrollbar-track { background: transparent; }
+#story-panel::-webkit-scrollbar-thumb { background: #3a3530; border-radius: 3px; }
+.narrator { color: #a09070; font-style: italic; }
+.npc-name { font-weight: bold; }
+.npc-dialog { color: #d4c5a0; padding-left: 12px; border-left: 2px solid #4a4030; margin: 8px 0; }
+.highlight { color: #c9a050; }
+.danger { color: #c05050; }
+.success { color: #50a050; }
+.warn { color: #c0a050; }
+.location-tag { color: #6a8aaa; font-size: 0.9em; }
+.time-tag { color: #8a6a5a; font-size: 0.9em; }
+#status-bar {
+  display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 12px; padding: 12px;
+  background: rgba(20,18,15,0.6); border: 1px solid #2a2520; border-radius: 8px; font-size: 0.9em;
+}
+.stat { display: flex; align-items: center; gap: 6px; }
+.stat-label { color: #8a7a5a; }
+.stat-value { color: #c9a050; font-weight: bold; }
+.hp-bar { width: 80px; height: 8px; background: #2a2520; border-radius: 4px; overflow: hidden; display: inline-block; }
+.hp-fill { height: 100%; background: linear-gradient(90deg, #c05050, #50a050); border-radius: 4px; transition: width 0.5s; }
+#choices-panel { display: flex; flex-direction: column; gap: 6px; max-height: 35vh; overflow-y: auto; flex-shrink: 0; }
+.choice-btn {
+  background: rgba(40,35,25,0.8); border: 1px solid #3a3520; color: #d4c5a0;
+  padding: 14px 20px; border-radius: 6px; cursor: pointer;
+  font-family: 'Noto Serif SC', serif; font-size: 1em; text-align: left; transition: all 0.2s;
+}
+.choice-btn:hover { background: rgba(60,50,30,0.9); border-color: #c9a050; color: #c9a050; }
+.choice-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+.choice-req { color: #6a5a4a; font-size: 0.85em; }
+.choice-req.met { color: #50a050; }
+.choice-req.unmet { color: #c05050; }
+#npc-panel { display: none; margin-bottom: 12px; padding: 12px; background: rgba(20,18,15,0.6); border: 1px solid #2a2520; border-radius: 8px; }
+#npc-panel h3 { color: #c9a050; margin-bottom: 8px; font-size: 1em; }
+.npc-rel { display: inline-block; margin-right: 16px; font-size: 0.9em; }
+.npc-rel .name { color: #d4c5a0; }
+.npc-rel .rel-val { font-weight: bold; }
+.rel-positive { color: #50a050; }
+.rel-negative { color: #c05050; }
+.rel-neutral { color: #8a7a5a; }
+#inventory-panel { display: none; margin-bottom: 12px; padding: 12px; background: rgba(20,18,15,0.6); border: 1px solid #2a2520; border-radius: 8px; font-size: 0.9em; }
+#inventory-panel h3 { color: #c9a050; margin-bottom: 8px; font-size: 1em; }
+.inv-item { display: inline-block; margin: 2px 8px 2px 0; padding: 2px 8px; background: rgba(60,50,30,0.5); border-radius: 4px; }
+#title-screen { text-align: center; padding-top: 60px; }
+#title-screen .lore { color: #8a7a5a; line-height: 2; max-width: 500px; margin: 20px auto; font-size: 0.95em; }
+.start-btn {
+  background: linear-gradient(135deg, #3a3020, #2a2515); border: 2px solid #c9a050; color: #c9a050;
+  padding: 16px 48px; font-size: 1.2em; font-family: 'Noto Serif SC', serif;
+  border-radius: 8px; cursor: pointer; margin-top: 30px; transition: all 0.3s;
+}
+.start-btn:hover { background: linear-gradient(135deg, #5a4a30, #3a3020); box-shadow: 0 0 20px rgba(201,160,80,0.3); }
+#ending-screen { display: none; text-align: center; padding-top: 40px; }
+#ending-screen h2 { color: #c9a050; font-size: 1.8em; margin-bottom: 20px; }
+#ending-screen .ending-text { line-height: 2; max-width: 600px; margin: 0 auto 30px; }
+.ending-type { color: #8a7a5a; font-size: 0.9em; margin-bottom: 20px; }
+.restart-btn {
+  background: rgba(40,35,25,0.8); border: 1px solid #c9a050; color: #c9a050;
+  padding: 12px 36px; font-family: 'Noto Serif SC', serif; font-size: 1em;
+  border-radius: 6px; cursor: pointer; transition: all 0.2s;
+}
+.restart-btn:hover { background: rgba(60,50,30,0.9); }
+.divider { text-align: center; color: #3a3520; margin: 12px 0; letter-spacing: 8px; }
+#save-load { position: relative; display: flex; gap: 6px; margin-bottom: 4px; flex-shrink: 0; }
+.sl-btn {
+  background: rgba(30,28,22,0.9); border: 1px solid #3a3520; color: #8a7a5a;
+  padding: 6px 12px; font-size: 0.8em; font-family: 'Noto Serif SC', serif; border-radius: 4px; cursor: pointer;
+}
+.sl-btn:hover { border-color: #c9a050; color: #c9a050; }
+</style>
+</head>
+<body>
+<div id="save-load">
+  <button class="sl-btn" onclick="saveGame()">💾 存档</button>
+  <button class="sl-btn" onclick="loadGame()">📂 读档</button>
+</div>
+<div id="game-container">
+  <div id="title-screen">
+    <h1>江 湖 夜 雨</h1>
+    <div class="subtitle">一剑一江湖，一夜一宿命</div>
+    <div class="lore">
+      大燕永安三年，天下初定。
+
+      苍龙镇，一个依山而建的小镇，
+      平静得像一潭死水。
+      但最近来了不少外乡人——
+      有佩剑的，有带刀的，有算计的。
+
+      没人告诉你为什么，
+      但你能感觉到——
+      这水底下，有什么东西在涌动。
+
+      你是一个无名剑客，
+      雨夜投宿于「听雨客栈」。
+      这一夜，将改变你的命运。
+    </div>
+    <button class="start-btn" onclick="startGame()">踏 入 江 湖</button>
+  </div>
+  <div id="game-screen">
+    <div id="status-bar"></div>
+    <div id="npc-panel"></div>
+    <div id="inventory-panel"></div>
+    <div id="story-panel"></div>
+    <div id="choices-panel"></div>
+  </div>
+  <div id="ending-screen">
+    <h2 id="ending-title"></h2>
+    <div class="ending-type" id="ending-type"></div>
+    <div class="ending-text" id="ending-text"></div>
+    <button class="restart-btn" onclick="location.reload()">再入江湖（重新开始）</button>
+  </div>
+</div>
+<script>
+// ==================== GAME ENGINE ====================
+const G = {
+  hp: 100, maxHp: 100, sword: 10, wits: 10, charm: 10,
+  inventory: [], flags: {}, relationships: {}, choices_made: [],
+  scene: '', time: 'dusk', location: 'inn_lobby',
+  visited: new Set(), turnCount: 0,
+};
+
+const NPCS = {
+  shen_guyan: { name: '沈孤雁', title: '客栈老板', defaultRel: 0 },
+  liu_ruyin: { name: '柳如烟', title: '神秘女剑客', defaultRel: -5 },
+  zhao_tieniu: { name: '赵铁牛', title: '铁匠', defaultRel: 5 },
+  hu_qingniang: { name: '胡青娘', title: '药铺掌柜', defaultRel: 0 },
+  bai_yunsheng: { name: '白云生', title: '落魄书生', defaultRel: 0 },
+  hei_wuji: { name: '黑无极', title: '蒙面杀手', defaultRel: -20 },
+  xiao_lian: { name: '小莲', title: '客栈帮厨', defaultRel: 10 },
+  old_sun: { name: '老孙头', title: '渔夫', defaultRel: 5 },
+  li_tiejiang2: { name: '李婶', title: '茶馆老板娘', defaultRel: 5 },
+};
+
+// ==================== HELPERS ====================
+function getRel(id) { return G.relationships[id] ?? (NPCS[id] ? NPCS[id].defaultRel : 0); }
+function changeRel(id, d) { G.relationships[id] = (G.relationships[id] ?? (NPCS[id]?.defaultRel ?? 0)) + d; }
+function hasItem(i) { return G.inventory.includes(i); }
+function addItem(i) { if (!G.inventory.includes(i)) G.inventory.push(i); }
+function removeItem(i) { G.inventory = G.inventory.filter(x => x !== i); }
+function setFlag(f) { G.flags[f] = true; }
+function hasFlag(f) { return !!G.flags[f]; }
+function addHp(v) { G.hp = Math.min(G.maxHp, Math.max(0, G.hp + v)); }
+function req(stat, val) { return G[stat] >= val; }
+function relReq(npc, val) { return getRel(npc) >= val; }
+function keyCount() { return G.inventory.filter(i => i.startsWith('玉牌')).length; }
+
+// ==================== UI ====================
+function renderStatus() {
+  const bar = document.getElementById('status-bar');
+  const hpPct = G.hp / G.maxHp * 100;
+  const timeNames = { dusk: '🌆 黄昏', night: '🌙 入夜', deep_night: '🌑 深夜', dawn: '🌅 黎明' };
+  bar.innerHTML = `
+    <div class="stat"><span class="stat-label">❤️</span><div class="hp-bar"><div class="hp-fill" style="width:${hpPct}%"></div></div><span class="stat-value">${G.hp}</span></div>
+    <div class="stat"><span class="stat-label">⚔️</span><span class="stat-value">${G.sword}</span></div>
+    <div class="stat"><span class="stat-label">🧠</span><span class="stat-value">${G.wits}</span></div>
+    <div class="stat"><span class="stat-label">✨</span><span class="stat-value">${G.charm}</span></div>
+    <div class="stat"><span class="stat-label">${timeNames[G.time] || '🌆 黄昏'}</span></div>
+  `;
+}
+function renderNPCs() {
+  const panel = document.getElementById('npc-panel');
+  const known = Object.keys(G.relationships).filter(k => NPCS[k]);
+  if (!known.length) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  let html = '<h3>👥 人物关系</h3>';
+  for (const id of known) {
+    const npc = NPCS[id]; if (!npc) continue;
+    const rel = getRel(id);
+    const cls = rel > 15 ? 'rel-positive' : rel < -10 ? 'rel-negative' : 'rel-neutral';
+    html += `<span class="npc-rel"><span class="name">${npc.name}</span> <span class="rel-val ${cls}">${rel > 0 ? '+' : ''}${rel}</span></span>`;
+  }
+  panel.innerHTML = html;
+}
+function renderInventory() {
+  const panel = document.getElementById('inventory-panel');
+  if (!G.inventory.length) { panel.style.display = 'none'; return; }
+  panel.style.display = 'block';
+  panel.innerHTML = '<h3>🎒 物品</h3>' + G.inventory.map(i => `<span class="inv-item">${i}</span>`).join('');
+}
+function renderAll() { renderStatus(); renderNPCs(); renderInventory(); }
+
+const SP = () => document.getElementById('story-panel');
+function narrate(t) { SP().innerHTML += `<span class="narrator">${t}</span>\n`; SP().scrollTop = SP().scrollHeight; }
+function dialog(npcId, t) {
+  const npc = NPCS[npcId];
+  const rel = getRel(npcId);
+  const color = rel > 15 ? '#50a050' : rel < -10 ? '#c05050' : '#c9a050';
+  SP().innerHTML += `<div class="npc-dialog"><span class="npc-name" style="color:${color}">【${npc.name}】</span>「${t}」</div>\n`;
+  SP().scrollTop = SP().scrollHeight;
+}
+function divider() { SP().innerHTML += '<div class="divider">· · · · ·</div>'; SP().scrollTop = SP().scrollHeight; }
+function locTag(name) { SP().innerHTML += `<div class="location-tag">📍 ${name}</div>`; SP().scrollTop = SP().scrollHeight; }
+function clearStory() { SP().innerHTML = ''; }
+function hl(t) { return `<span class="highlight">${t}</span>`; }
+function dg(t) { return `<span class="danger">${t}</span>`; }
+function ok(t) { return `<span class="success">${t}</span>`; }
+
+// Compatibility aliases for old story files
+const highlight = hl;
+const danger = dg;
+const success = ok;
+function chapterTitle(t) { divider(); narrate(`【${t}】`); divider(); }
+
+function showChoices(choices) {
+  const panel = document.getElementById('choices-panel');
+  panel.innerHTML = '';
+  choices.forEach(c => {
+    const btn = document.createElement('button');
+    btn.className = 'choice-btn';
+    let text = c.text;
+    let disabled = false;
+    if (c.req) {
+      const unmet = [];
+      for (const [check, label] of c.req) {
+        if (!check()) { unmet.push(label); disabled = true; }
+      }
+      if (unmet.length) text += ` <span class="choice-req unmet">（需要：${unmet.join('、')}）</span>`;
+    }
+    if (c.disabled) { disabled = true; text += ' <span class="choice-req unmet">（条件不足）</span>'; }
+    btn.innerHTML = text;
+    btn.disabled = disabled;
+    btn.onclick = () => {
+      G.choices_made.push(c.id || c.text);
+      G.turnCount++;
+      if (c.effects) c.effects();
+      renderAll();
+      if (c.next) c.next();
+    };
+    panel.appendChild(btn);
+  });
+}
+
+function saveGame() { localStorage.setItem('jhyy_save', JSON.stringify({...G, visited: [...G.visited]})); alert('存档成功！'); }
+function loadGame() {
+  const s = localStorage.getItem('jhyy_save');
+  if (!s) { alert('没有存档。'); return; }
+  const data = JSON.parse(s);
+  Object.assign(G, data);
+  G.visited = new Set(data.visited || []);
+  document.getElementById('title-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'flex';
+  document.getElementById('ending-screen').style.display = 'none';
+  renderAll();
+  if (SCENES[G.scene]) SCENES[G.scene]();
+  else { clearStory(); narrate('存档损坏，请重新开始。'); }
+}
+
+function showEnding(title, id, desc) {
+  G.scene = 'ending_' + id;
+  divider();
+  narrate(`\n—— 结局统计 ——`);
+  narrate(`回合数：${G.turnCount}\n剑术：${G.sword} | 心机：${G.wits} | 魅力：${G.charm}`);
+  const rl = Object.entries(G.relationships).filter(([k]) => NPCS[k]).map(([k, v]) => `${NPCS[k].name}：${v > 0 ? '+' : ''}${v}`);
+  if (rl.length) narrate(`人际关系：${rl.join(' | ')}`);
+  setTimeout(() => {
+    document.getElementById('game-screen').style.display = 'none';
+    document.getElementById('ending-screen').style.display = 'block';
+    document.getElementById('ending-title').textContent = `结局：${title}`;
+    document.getElementById('ending-type').textContent = desc;
+    document.getElementById('ending-text').innerHTML = '<p style="margin-top:10px;color:#c9a050;">感谢游玩「江湖夜雨」！</p><p style="color:#8a7a5a;">本游戏有多个不同结局，尝试不同选择发现更多故事。</p>';
+  }, 2000);
+}
+
+const SCENES = {};
+
+function startGame() {
+  document.getElementById('title-screen').style.display = 'none';
+  document.getElementById('game-screen').style.display = 'flex';
+  renderAll();
+  SCENES['start']();
+</script>
+<!-- Engine -->
+<script src="story/engine/lobby_free.js"></script>
+<!-- Chapter 1: Opening -->
+<script src="story/chapter1/opening.js"></script>
+<script src="story/chapter1/prologue.js"></script>
+<script src="story/chapter1/dinner.js"></script>
+<script src="story/chapter1/evening.js"></script>
+<!-- Chapter 2: Night -->
+<script src="story/chapter2/night_raid.js"></script>
+<script src="story/chapter2/night_explore.js"></script>
+<script src="story/chapter2/night_events.js"></script>
+<script src="story/chapter2/combat.js"></script>
+<!-- Chapter 3: Choice -->
+<script src="story/chapter3/choice.js"></script>
+<script src="story/chapter3/hub.js"></script>
+<!-- Chapter 4: Mountain -->
+<script src="story/chapter4/mountain.js"></script>
+<script src="story/chapter4/mountain_path.js"></script>
+<script src="story/chapter4/chamber.js"></script>
+<!-- NPC Quests -->
+<script src="story/npc/zhao_tieniu.js"></script>
+<script src="story/npc/liu_ruyin.js"></script>
+<script src="story/npc/shen_hu.js"></script>
+<script src="story/npc/bai_hei.js"></script>
+<script src="story/npc/deep_talk1.js"></script>
+<script src="story/npc/deep_talk2.js"></script>
+<!-- Events -->
+<script src="story/events/secondary.js"></script>
+<script src="story/events/omens.js"></script>
+<script src="story/events/transitions.js"></script>
+<script src="story/events/checks.js"></script>
+<!-- Endings -->
+<script src="story/endings/endings.js"></script>
+<script src="story/endings/endings2.js"></script>
+<script src="story/endings/endings3.js"></script>
+</body>
+</html>

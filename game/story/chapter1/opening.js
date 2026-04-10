@@ -1,0 +1,1035 @@
+// ---- CHAPTER 1: 听雨客栈 ----
+SCENES['start'] = () => {
+  G.chapter = 1;
+  G.scene = 'start';
+  clearStory();
+  chapterTitle('第一章 · 听雨客栈');
+  narrate(`大雨倾盆，你策马来到苍龙镇。\n镇口只有一家客栈亮着灯——「听雨客栈」。\n你推门而入，温暖的烛光和饭菜香气扑面而来。`);
+  divider();
+  narrate(`客栈大堂里坐着几个人：\n柜台后站着一位${highlight('中年男子')}，笑容和蔼；\n角落里一位${highlight('黑衣女子')}独自饮酒，佩剑放在手边；\n壁炉旁一个${highlight('壮汉')}正在擦拭铁锤，看起来是镇上的铁匠。\n窗边还有一个${highlight('书生模样的人')}趴在桌上，似乎已经醉了。`);
+  
+  showChoices([
+    { text: '走向柜台，向老板要一间房', id: 'c1_talk_shen', next: SCENES['talk_shen'] },
+    { text: '注意到黑衣女子的剑——那是一把上好宝剑，搭话', id: 'c1_talk_liu', next: SCENES['talk_liu'] },
+    { text: '坐到壁炉旁，和铁匠攀谈', id: 'c1_talk_zhao', next: SCENES['talk_zhao'] },
+    { text: '先观察一会儿，不动声色', id: 'c1_observe', effects: () => { G.wits += 1; }, next: SCENES['observe'] },
+  ]);
+};
+
+SCENES['talk_shen'] = () => {
+  G.scene = 'talk_shen';
+  if (!G.relationships.shen_guyan) { G.relationships.shen_guyan = 5; } else { changeRel('shen_guyan', 3); }
+  narrate(`\n你走到柜台前。中年男子微微一笑。`);
+  dialog('shen_guyan', '客官辛苦了。这大雨天赶路，想必是从远处来？我叫沈孤雁，这间客栈是我开的。上好的女儿红，要不要来一壶暖暖身子？');
+  showChoices([
+    { text: '「多谢老板，来一壶。我叫……不重要，江湖人。」', id: 'c1_shen_friendly', effects: () => { changeRel('shen_guyan', 3); G.charm += 1; }, next: SCENES['shen_friendly'] },
+    { text: '「不必了。这镇子最近可有什么异事？」', id: 'c1_shen_probing', effects: () => { G.wits += 1; }, next: SCENES['shen_probing'] },
+    { text: '注意他手上的老茧——那是常年握刀留下的', id: 'c1_shen_observeskill', effects: () => { setFlag('noticed_shen_skill'); G.wits += 2; }, next: SCENES['shen_observeskill'] },
+  ]);
+};
+
+SCENES['shen_friendly'] = () => {
+  G.scene = 'shen_friendly';
+  narrate(`\n沈孤雁为你倒了一杯温热的酒。`);
+  dialog('shen_guyan', '哈哈，爽快人！我最喜欢爽快人。江湖人多故事多，这客栈里啊，什么人都有。你尽管住着，只要不惹事，一切都好说。');
+  narrate(`他压低声音，眼神闪了一下。`);
+  dialog('shen_guyan', '不过……客官若是无事，天黑之后最好待在房里。这苍龙镇的夜，不太平。');
+  divider();
+  narrate(`他递给你一把铜钥匙。`);
+  dialog('shen_guyan', '天字三号房，上楼左转。有需要随时叫我。');
+  addItem('客栈钥匙');
+  setFlag('shen_friendly');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_after_shen1', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['shen_probing'] = () => {
+  G.scene = 'shen_probing';
+  narrate(`\n沈孤雁的笑容微微一滞，随即恢复如常。`);
+  dialog('shen_guyan', '异事？这小镇能有什么异事。不过是前两天来了几个外乡人，都在打听什么山上的东西。我一个开客栈的，哪里知道那么多。');
+  narrate(`他顿了顿，目光在你的剑上停留了一瞬。`);
+  dialog('shen_guyan', '客官也是来找东西的？');
+  showChoices([
+    { text: '「只是路过。」', id: 'c1_shen_deny', effects: () => { changeRel('shen_guyan', 2); }, next: SCENES['shen_deny'] },
+    { text: '「也许吧。听说这镇子附近有什么稀罕？」', id: 'c1_shen_ask_mountain', effects: () => { setFlag('asked_about_mountain'); changeRel('shen_guyan', -3); }, next: SCENES['shen_askmountain'] },
+  ]);
+};
+
+SCENES['shen_observeskill'] = () => {
+  G.scene = 'shen_observeskill';
+  narrate(`\n你不动声色地看了一眼他的手。${highlight('虎口有厚茧，指节粗大——这是练刀之人的手。')}\n而且，他倒酒时手腕的旋转，分明是一招${highlight('「拨云手」')}——武林中失传已久的擒拿手法。`);
+  narrate(`此人绝不简单。他不是一个普通的客栈老板。`);
+  showChoices([
+    { text: '假装没发现，继续寒暄', id: 'c1_shen_hide', effects: () => { changeRel('shen_guyan', 2); }, next: SCENES['shen_deny'] },
+    { text: '「沈老板……以前是练家子吧？」', id: 'c1_shen_confront', effects: () => { setFlag('confronted_shen'); changeRel('shen_guyan', -5); G.wits += 1; }, next: SCENES['shen_confront'] },
+  ]);
+};
+
+SCENES['shen_deny'] = () => {
+  G.scene = 'shen_deny';
+  narrate(`\n沈孤雁笑了笑，递给你一把铜钥匙。`);
+  dialog('shen_guyan', '路过好啊，路过好。天字三号房，客官请便。');
+  addItem('客栈钥匙');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_after_shen2', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['shen_askmountain'] = () => {
+  G.scene = 'shen_askmountain';
+  narrate(`\n沈孤雁的脸色变了变，随即挤出一丝笑容。`);
+  dialog('shen_guyan', '稀罕？这镇子能有什么稀罕。不过是前两天来了几个外乡人，都在往山上跑。我一个开客栈的，哪里知道那么多。');
+  narrate(`他放下抹布，语气变得生硬。`);
+  dialog('shen_guyan', '天字三号房。请吧。');
+  addItem('客栈钥匙');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_after_shen3', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['shen_confront'] = () => {
+  G.scene = 'shen_confront';
+  narrate(`\n沈孤雁的眼神瞬间变得${danger('锐利')}，但只是一闪而过。`);
+  dialog('shen_guyan', '……客官好眼力。不错，年轻时在江湖上混过几年。后来厌倦了，就开了这间客栈。往事不提也罢。');
+  narrate(`他沉默了一会儿，似乎在权衡什么。`);
+  dialog('shen_guyan', '你是个细心的人。这种人在江湖上，要么活得最久，要么死得最快。');
+  narrate(`他意味深长地看了你一眼，递过钥匙。`);
+  addItem('客栈钥匙');
+  setFlag('shen_respects_you');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_after_shen4', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['talk_liu'] = () => {
+  G.scene = 'talk_liu';
+  if (!G.relationships.liu_ruyin) G.relationships.liu_ruyin = -3;
+  narrate(`\n你走到黑衣女子桌旁。她没有抬头，只是手指在剑鞘上轻敲了一下。`);
+  dialog('liu_ruyin', '……坐。别离我太近。');
+  narrate(`你注意到她的剑——${highlight('青锋冷月剑')}，剑鞘上刻着一个微小的「锦衣」暗记。\n这是朝廷锦衣卫的佩剑。`);
+  showChoices([
+    { text: '「好剑。不知女侠何方人士？」', id: 'c1_liu_polite', effects: () => { G.charm += 1; changeRel('liu_ruyin', 2); }, next: SCENES['liu_polite'] },
+    { text: '假装没看到暗记，聊别的', id: 'c1_liu_hide', effects: () => { setFlag('knows_liu_identity'); G.wits += 1; }, next: SCENES['liu_hide'] },
+    { text: '「锦衣卫的人，怎么会出现在这种小地方？」', id: 'c1_liu_expose', effects: () => { setFlag('exposed_liu'); changeRel('liu_ruyin', -10); }, next: SCENES['liu_expose'] },
+  ]);
+};
+
+SCENES['liu_polite'] = () => {
+  G.scene = 'liu_polite';
+  narrate(`\n她终于抬起眼，打量了你一下。`);
+  dialog('liu_ruyin', '……眼光不错。不过眼光好的人在江湖上往往死得早。你可以叫我柳如烟。其他的，你不需要知道。');
+  narrate(`她重新低头饮酒，似乎不打算多说什么。但你能感觉到，她对你的敌意没那么强。`);
+  showChoices([
+    { text: '不再纠缠，去和其他人交谈', id: 'c1_liu_leave_polite', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['liu_hide'] = () => {
+  G.scene = 'liu_hide';
+  narrate(`\n你把目光从剑上移开，随意聊了几句天气和路况。`);
+  dialog('liu_ruyin', '……你不像一般的江湖混混。你看我的剑看了三次，但什么都没说。');
+  narrate(`她嘴角微微上扬——这是你见她以来第一个接近笑容的表情。`);
+  dialog('liu_ruyin', '聪明人。我记住了。');
+  setFlag('liu_impressed');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_liu_leave_hide', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['liu_expose'] = () => {
+  G.scene = 'liu_expose';
+  narrate(`\n她的手瞬间握住剑柄，${danger('杀气一闪而过')}。`);
+  dialog('liu_ruyin', '……你的眼睛倒是挺尖。可惜，知道太多的人通常活不长。');
+  narrate(`大堂里安静了一瞬。沈孤雁在柜台后微微皱眉。\n她松开了剑，冷冷地转过头去。`);
+  dialog('liu_ruyin', '滚。');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_liu_leave_expose', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['talk_zhao'] = () => {
+  G.scene = 'talk_zhao';
+  if (!G.relationships.zhao_tieniu) G.relationships.zhao_tieniu = 8;
+  else changeRel('zhao_tieniu', 3);
+  narrate(`\n你坐到壁炉旁。壮汉抬头看了你一眼，咧嘴一笑。`);
+  dialog('zhao_tieniu', '嘿！又来一个淋成落汤鸡的！老赵我叫赵铁牛，镇上的铁匠。来来来，烤烤火！');
+  narrate(`他把自己的酒推到你面前。`);
+  dialog('zhao_tieniu', '你是练剑的吧？我一看就知道——手上有剑茧。实话说，这镇上这几天来了不少怪人，都是那种……一看就不简单的。不像我这粗人，打铁为生。哈哈！');
+  narrate(`赵铁牛虽然大大咧咧，但你注意到他的${highlight('前臂有刀伤的旧疤')}，而且他坐姿端正，分明受过军旅训练。`);
+  showChoices([
+    { text: '「赵大哥豪爽！干一杯！」', id: 'c1_zhao_drink', effects: () => { changeRel('zhao_tieniu', 5); G.charm += 1; setFlag('zhao_drink_bond'); }, next: SCENES['zhao_drink'] },
+    { text: '「赵大哥以前当过兵？」', id: 'c1_zhao_military', effects: () => { G.wits += 1; }, next: SCENES['zhao_military'] },
+  ]);
+};
+
+SCENES['zhao_drink'] = () => {
+  G.scene = 'zhao_drink';
+  narrate(`\n赵铁牛哈哈大笑，和你碰杯。烈酒入喉，暖意从胃里升起。`);
+  dialog('zhao_tieniu', '痛快！我就喜欢爽快人！告诉你，这镇子虽然小，但最近不太平。前两天有人在山里看见了不干净的东西，还有人说听到怪声。你小心着点。');
+  narrate(`他凑近了一些，声音低了下来。`);
+  dialog('zhao_tieniu', '那个……黑衣女子，别惹她。我看她走路的样子，手上至少有十条人命。还有那个书生，别看他醉醺醺的，他清醒的时候说的话……让你后背发凉。');
+  setFlag('zhao_warned');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_zhao_leave1', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['zhao_military'] = () => {
+  G.scene = 'zhao_military';
+  narrate(`\n赵铁牛的笑容僵了一瞬，随即叹了口气。`);
+  dialog('zhao_tieniu', '……你眼神不错。是的，以前在边军当过百夫长。打了十年仗，看够了死人。后来……不想再杀人了，就来这里打铁。一锤子下去，好歹打出来的是有用的东西，不是人命。');
+  narrate(`他沉默了一会儿，然后用力拍了一下你的肩膀。`);
+  dialog('zhao_tieniu', '不提了！总之，你要是在镇上遇到麻烦，找老赵我。别的本事没有，力气管够！');
+  setFlag('knows_zhao_past');
+  changeRel('zhao_tieniu', 5);
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_zhao_leave2', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['observe'] = () => {
+  G.scene = 'observe';
+  narrate(`\n你找了个不引人注目的角落坐下，暗中观察。\n`);
+  narrate(`${highlight('柜台后的中年人')}——倒酒的动作行云流水，但偶尔会看向窗外，似乎在等什么人。\n`);
+  narrate(`${highlight('角落的黑衣女子')}——看似在喝酒，但目光始终扫视着门口。她不是在等人，而是在${highlight('监视')}。\n`);
+  narrate(`${highlight('壁炉旁的壮汉')}——确实在烤火，但他放在身边的铁锤……那不是普通铁匠的锤。锤头包了布，像是在${highlight('遮掩什么')}。\n`);
+  narrate(`${highlight('窗边的书生')}——醉得东倒西歪，但他的手……指尖没有一丝颤抖。他在${danger('装醉')}。`);
+  setFlag('observed_all');
+  showChoices([
+    { text: '走向柜台，和老板交谈', id: 'c1_after_obs_shen', next: SCENES['talk_shen'] },
+    { text: '走向黑衣女子', id: 'c1_after_obs_liu', next: SCENES['talk_liu'] },
+    { text: '走向铁匠', id: 'c1_after_obs_zhao', next: SCENES['talk_zhao'] },
+    { text: '走向书生', id: 'c1_after_obs_bai', next: SCENES['talk_bai'] },
+  ]);
+};
+
+// lobby_free moved to story/engine/lobby_free.js (dynamic version)
+
+SCENES['talk_bai'] = () => {
+  G.scene = 'talk_bai';
+  if (!G.relationships.bai_yunsheng) G.relationships.bai_yunsheng = 0;
+  narrate(`\n你走到书生桌旁。他趴在桌上，酒坛倒了，酒水淌了一桌。\n但当你靠近时，他的手指微微动了一下。`);
+  showChoices([
+    { text: '轻轻推他一下：「兄台，醒醒。」', id: 'c1_bai_wake', effects: () => { changeRel('bai_yunsheng', 2); }, next: SCENES['bai_wake'] },
+    { text: '在他耳边低声说：「别装了。」', id: 'c1_bai_callout', effects: () => { G.wits += 2; changeRel('bai_yunsheng', 5); setFlag('bai_respects'); }, next: SCENES['bai_callout'] },
+  ]);
+};
+
+SCENES['bai_wake'] = () => {
+  G.scene = 'bai_wake';
+  narrate(`\n书生慢慢抬起头，醉眼朦胧地看着你。`);
+  dialog('bai_yunsheng', '嗯？……啊，又喝多了。敢问兄台尊姓大名？我……嗝……我叫白云生，一介落第秀才，不足挂齿……');
+  narrate(`他打了个酒嗝，眼神浑浊。但你不经意间看到，他的瞳孔${highlight('完全没有涣散')}——他根本没醉。`);
+  dialog('bai_yunsheng', '兄台若是无事……嗝……不如共饮一杯？这年头，能喝到好酒也是一种……嗝……福气……');
+  showChoices([
+    { text: '陪他喝一杯，慢慢试探', id: 'c1_bai_drink', effects: () => { changeRel('bai_yunsheng', 3); G.charm += 1; }, next: SCENES['bai_drink'] },
+    { text: '既然他装醉，也不点破，告辞', id: 'c1_bai_leave', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['bai_callout'] = () => {
+  G.scene = 'bai_callout';
+  narrate(`\n书生的身体僵了一瞬。然后，他${highlight('慢慢坐直')}，眼神变得清明锐利。\n醉态全消。`);
+  dialog('bai_yunsheng', '……有意思。你是第一个看穿我的人。这镇上来来往往几十号人，都被我骗过去了。');
+  narrate(`他推开放在面前的酒坛，正色看着你。`);
+  dialog('bai_yunsheng', '白云生，字子虚。三年前殿试落第，从此流落江湖。装醉是为了——活着。你知道这镇上有多少人想杀我吗？');
+  divider();
+  narrate(`他的眼神突然变得认真。`);
+  dialog('bai_yunsheng', '我看你是个聪明人。听我一句劝——天黑之后，不要相信任何人。包括我。');
+  setFlag('bai_secret');
+  showChoices([
+    { text: '「为什么不能相信你？」', id: 'c1_bai_why', next: SCENES['bai_why'] },
+    { text: '回房休息', id: 'c1_bai_room', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['bai_why'] = () => {
+  G.scene = 'bai_why';
+  narrate(`\n白云生苦笑了一下。`);
+  dialog('bai_yunsheng', '因为……我也不知道自己今晚会不会还站在你这一边。这镇上的局势，比你想的复杂得多。每个人都有自己的目的。');
+  narrate(`他顿了顿。`);
+  dialog('bai_yunsheng', '落雁峰上藏着一个秘密——一个值得人为之疯狂的秘密。也值得为之背叛。');
+  setFlag('knows_tianji');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_bai_after', next: SCENES['lobby_free'] },
+  ]);
+};
+
+SCENES['bai_drink'] = () => {
+  G.scene = 'bai_drink';
+  narrate(`\n你坐下来，和他推杯换盏。白云生继续装醉，你也继续装不知道。\n酒过三巡，他忽然低声说了一句：`);
+  dialog('bai_yunsheng', '……你身边那个铁匠，不简单。他铁锤里藏着一把刀。军中制式。');
+  narrate(`说完，他又恢复了醉态。你不确定他是有意透露还是酒后失言。`);
+  setFlag('bai_told_zhao_secret');
+  showChoices([
+    { text: '继续在客栈里转转', id: 'c1_bai_after2', next: SCENES['lobby_free'] },
+  ]);
+};
+
+// ---- NIGHT FALLS ----
+SCENES['night_falls'] = () => {
+  G.chapter = 2;
+  G.scene = 'night_falls';
+  clearStory();
+  chapterTitle('第二章 · 暗夜惊变');
+  narrate(`你回到房间，和衣而卧。\n窗外雨声渐小，远处传来几声夜鸟的啼叫。\n\n不知过了多久——\n\n${danger('「砰！」')}\n\n一声巨响从楼下传来，紧接着是${danger('兵刃交击之声')}，和一个女人的尖叫。`);
+  divider();
+  narrate(`然后你听到了一个声音——来自隔壁房间。\n\n有人在${danger('求饶')}。\n\n「我什么都不知道……求你……不要杀——」\n\n${danger('「噗。」')}\n\n声音戛然而止。然后是重物倒地的闷响。\n\n有人死了。就在你隔壁。`);
+  narrate(`你翻身坐起，握住枕边的剑——手心全是汗。\n又一声闷响，这次更近了——有人在走廊上跑动。\n门板震动了一下，似乎有人靠在了你的门上。`);
+  
+  showChoices([
+    { text: '拔剑开门，冲出去', id: 'c2_rush_out', effects: () => { G.sword += 1; }, next: SCENES['night_rush'] },
+    { text: '悄悄从窗户翻出去', id: 'c2_window', effects: () => { G.wits += 1; }, next: SCENES['night_window'] },
+    { text: '屏息静听，等待时机', id: 'c2_wait', effects: () => { G.wits += 2; }, next: SCENES['night_wait'] },
+  ]);
+};
+
+SCENES['night_rush'] = () => {
+  G.scene = 'night_rush';
+  narrate(`\n你推开门——走廊里，一个${danger('黑衣蒙面人')}正手持短刀，抵着${highlight('胡青娘')}的脖子。\n她是你白天没见过的女人——约莫三十岁，面色苍白，眼中满是惊恐。`);
+  narrate(`蒙面人看到你，眼神一冷。`);
+  divider();
+  narrate(`楼下传来更多的打斗声。整个客栈都乱了起来。`);
+  showChoices([
+    { text: '举剑直刺蒙面人（剑术检定）', id: 'c2_fight_assassin', disabled: G.sword < 12, next: SCENES['fight_assassin'] },
+    { text: '「住手！你要什么？」', id: 'c2_negotiate', next: SCENES['negotiate_assassin'] },
+    { text: '扔出暗器（需要物品）', id: 'c2_throw_item', disabled: !hasItem('酒坛'), next: SCENES['throw_item'] },
+  ]);
+};
+
+SCENES['night_window'] = () => {
+  G.scene = 'night_window';
+  narrate(`\n你无声地翻出窗户，落在客栈后院的湿地上。\n雨已经停了，月光照亮了院子。\n\n你看到了：\n——三个${danger('黑衣人')}正在翻胡青娘的药铺\n——赵铁牛正挥着铁锤和两个黑衣人缠斗\n——沈孤雁站在客栈门口，手中不知何时多了一把${highlight('弯刀')}，刀上滴着血`);
+  narrate(`沈孤雁看到你，喊道：`);
+  dialog('shen_guyan', '他们来了六个！黑无极的人在找天机卷的线索！快——药铺里有胡青娘，她知道些什么！');
+  setFlag('saw_shen_fight');
+  showChoices([
+    { text: '去帮赵铁牛', id: 'c2_help_zhao', next: SCENES['help_zhao'] },
+    { text: '去药铺救胡青娘', id: 'c2_help_hu', next: SCENES['help_hu'] },
+    { text: '去找柳如烟——她一定知道内情', id: 'c2_find_liu', next: SCENES['find_liu'] },
+  ]);
+};
+
+SCENES['night_wait'] = () => {
+  G.scene = 'night_wait';
+  narrate(`\n你贴着门板，屏住呼吸。\n\n门外传来低语：\n「……天机卷的线索在药铺那个女人手里……黑无极大人说了，拿不到线索，就杀光……」\n\n脚步声渐渐远去。`);
+  divider();
+  narrate(`你悄悄打开一条门缝——走廊尽头，一个蒙面人正在撬胡青娘的房门。\n楼下传来打斗声。`);
+  setFlag('overheard_assassins');
+  showChoices([
+    { text: '跟踪蒙面人', id: 'c2_follow', next: SCENES['follow_assassin'] },
+    { text: '从窗户翻到后院', id: 'c2_wait_window', next: SCENES['night_window'] },
+  ]);
+};
+
+SCENES['fight_assassin'] = () => {
+  G.scene = 'fight_assassin';
+  narrate(`\n你的剑快如闪电——${success('一剑刺中蒙面人的手腕！')}\n短刀落地，胡青娘趁机挣脱。\n蒙面人退后几步，冷声道：`);
+  dialog('hei_wuji', '……好剑法。你是谁？');
+  narrate(`他似乎在评估你的实力。`);
+  setFlag('saved_hu_combat');
+  changeRel('hei_wuji', 5);
+  G.sword += 2;
+  G.relationships.hu_qingniang = 15;
+  addItem('蒙面短刀');
+  showChoices([
+    { text: '「你又是谁？为什么袭击这个女人？」', id: 'c2_confront_hei', next: SCENES['confront_hei'] },
+    { text: '继续攻击，不容他喘息', id: 'c2_attack_hei', next: SCENES['attack_hei'] },
+  ]);
+};
+
+SCENES['negotiate_assassin'] = () => {
+  G.scene = 'negotiate_assassin';
+  narrate(`\n蒙面人冷笑。`);
+  dialog('hei_wuji', '我要什么，与你无关。识相的话，回房去。这条命……我不一定非要取。');
+  narrate(`胡青娘趁机低声对你说：`);
+  dialog('hu_qingniang', '他叫黑无极……是江湖上有名的杀手。他要逼我说出……不行，我不能说。');
+  setFlag('met_hei_wuji');
+  showChoices([
+    { text: '「黑无极，放了她，我给你你想要的信息。」', id: 'c2_deal_hei', effects: () => { G.charm += 1; }, next: SCENES['deal_hei'] },
+    { text: '趁他分神，突袭！', id: 'c2_sneak_attack', effects: () => { G.sword += 1; addHp(-20); }, next: SCENES['sneak_attack'] },
+  ]);
+};
+
+SCENES['help_zhao'] = () => {
+  G.scene = 'help_zhao';
+  narrate(`\n你冲向赵铁牛！他正以一敌二，但身上已多了几道伤口。\n你的加入让他精神一振。`);
+  dialog('zhao_tieniu', '兄弟！来了！左边那个交给你！');
+  narrate(`${success('你们合力击退了两个黑衣人！')}\n赵铁牛的铁锤果然不是普通铁锤——锤头脱落后，露出里面一把${highlight('精钢短刀')}。`);
+  changeRel('zhao_tieniu', 10);
+  setFlag('fought_with_zhao');
+  G.sword += 1;
+  showChoices([
+    { text: '「赵大哥，你到底什么来头？」', id: 'c2_zhao_truth', next: SCENES['zhao_truth'] },
+    { text: '「先去药铺救胡青娘！」', id: 'c2_zhao_to_hu', next: SCENES['help_hu'] },
+  ]);
+};
+
+SCENES['zhao_truth'] = () => {
+  G.scene = 'zhao_truth';
+  narrate(`\n赵铁牛看了看手中的短刀，长叹一声。`);
+  dialog('zhao_tieniu', '……瞒不住了。我以前不只是一个百夫长。我是……前朝禁卫军的人。天机卷，我知道它在哪里。');
+  narrate(`他压低声音，眼神沉重。`);
+  dialog('zhao_tieniu', `你知道为什么所有人都想找到天机卷吗？上面记着${highlight('一千七百个名字')}。每个人都在某个地方用假名活着——开铺子的、种地的、教书的。他们以为自己安全了。`);
+  divider();
+  narrate(`${danger('他的拳头握紧了。')}`);
+  dialog('zhao_tieniu', '三年前，朝廷从一条漏出的线索里抓到了十七个人。其中有一个……是我兄弟。他带着老婆孩子逃了三年，最终还是被找到。一家三口，满门抄斩。');
+  narrate(`他深吸一口气。`);
+  dialog('zhao_tieniu', '如果天机卷完整地落入朝廷手里——一千七百家，就是一千七百个满门抄斩。');
+  narrate(`他看着你的眼睛，神色复杂。`);
+  dialog('zhao_tieniu', '落雁峰的后山，有一个山洞。入口被巨石封住了，需要特定的机关才能打开。而机关的钥匙……分成三份，分别在沈老板、胡青娘、和那个书生手里。');
+  setFlag('zhao_knows_location');
+  setFlag('knows_three_keys');
+  showChoices([
+    { text: '「你为什么告诉我？」', id: 'c2_zhao_why', next: SCENES['zhao_why'] },
+    { text: '「那我们现在就去找他们。」', id: 'c2_zhao_go', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['zhao_why'] = () => {
+  G.scene = 'zhao_why';
+  narrate(`\n赵铁牛擦了擦脸上的血。`);
+  dialog('zhao_tieniu', '因为……今晚之后，不管天机卷落在谁手里，这镇上都留不住了。黑无极不会善罢甘休。朝廷的人——那个柳如烟——也不会。\n\n我不想让天机卷落在坏人手里。你……是我在这镇上信得过的人。');
+  changeRel('zhao_tieniu', 5);
+  showChoices([
+    { text: '继续行动', id: 'c2_zhao_continue', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['help_hu'] = () => {
+  G.scene = 'help_hu';
+  if (!G.relationships.hu_qingniang) G.relationships.hu_qingniang = 0;
+  narrate(`\n你冲进药铺。三个黑衣人正在逼问胡青娘。\n她被按在柜台上，嘴角有血，但眼神倔强。`);
+  dialog('hu_qingniang', '……要杀便杀。想从我嘴里套话？做梦。');
+  narrate(`黑衣人看到你，两人转身迎战。`);
+  showChoices([
+    { text: '正面对决！（剑术检定）', id: 'c2_fight_hu', disabled: G.sword < 11, effects: () => { G.sword += 1; addHp(-15); }, next: SCENES['hu_rescued'] },
+    { text: '利用药铺的环境——踢翻药柜制造混乱', id: 'c2_trick_hu', effects: () => { G.wits += 1; }, next: SCENES['hu_rescued'] },
+  ]);
+};
+
+SCENES['hu_rescued'] = () => {
+  G.scene = 'hu_rescued';
+  narrate(`
+${success('黑衣人被你击退！')}
+胡青娘靠着柜台，喘息着看着你。她的左臂被划了一刀，血滴在地上。`);
+  dialog('hu_qingniang', '……你救了我。行，江湖规矩，我欠你一条命。我叫胡青娘，这药铺是我开的，但我真正做的是——情报买卖。');
+  changeRel('hu_qingniang', 15);
+  setFlag('saved_hu');
+  narrate(`她从柜台暗格里取出一块${highlight('玉牌')}，手微微发抖。`);
+  dialog('hu_qingniang', '刚才那些人是来逼问天机卷下落的。他们已经杀了三个人了——镇东的李裁缝、河边打渔的老孙头，还有客栈帮厨的小莲。');
+  narrate(`她停顿了一下，声音变得嘶哑。`);
+  dialog('hu_qingniang', '李裁缝真实身份是前朝翰林院编修，老孙头以前是御前侍卫，小莲……她才十九岁，是前朝郡主的侍女。他们以为自己藏得够深了。');
+  divider();
+  narrate(`${danger('三条人命。就在今天。就在这个小镇。')}`);
+  narrate(`胡青娘把玉牌递给你。`);
+  dialog('hu_qingniang', '这是天机卷入口的钥匙之一。另外两块在沈老板和白云生手里。如果你能把它们凑齐……我就告诉你山洞在哪里。');
+  addItem('玉牌·药');
+  setFlag('hu_key');
+  showChoices([
+    { text: '「为什么要我凑齐？你自己不行吗？」', id: 'c2_hu_why', next: SCENES['hu_why'] },
+    { text: '继续行动', id: 'c2_hu_continue', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['hu_why'] = () => {
+  G.scene = 'hu_why';
+  narrate(`\n胡青娘苦笑。`);
+  dialog('hu_qingniang', '因为沈老板不信任我，白云生……他更不信任任何人。但你不一样。你今晚救了我的命，在他们眼里，你至少不是敌人。');
+  narrate(`她走到柜台后面，掀开一块暗板——下面是一叠文书。`);
+  dialog('hu_qingniang', '我做了十年情报买卖。这十年里，我帮三十七个前朝遗臣改了身份，藏到新的地方。每个人的新名字、新住处，都在我的脑子里。');
+  divider();
+  narrate(`她看着你的眼睛，表情无比认真。`);
+  dialog('hu_qingniang', '天机卷上有一千七百个名字。每一个名字背后都是一个家庭，三到五口人。你算算——这份卷轴握着近万人的生死。');
+  narrate(`${danger('近万人的生死。')}`);
+  dialog('hu_qingniang', '如果落入朝廷手里——大燕皇帝会连夜发兵，按图索骥，一个不留。这不是假设，十年前他们在北方已经这么干过一次。一夜之间，四百余家，血流成河。');
+  setFlag('knows_tianji_truth');
+  showChoices([
+    { text: '继续行动', id: 'c2_hu_continue2', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['find_liu'] = () => {
+  G.scene = 'find_liu';
+  narrate(`\n你在混乱中寻找柳如烟。她在客栈屋顶上，冷冷地俯瞰着下方的战斗。\n月光下，她的身影如一尊冰雕。`);
+  dialog('liu_ruyin', '你倒是沉得住气。其他人都像没头苍蝇一样乱跑，只有你——你往屋顶上看。');
+  narrate(`她跳了下来，落在你面前。`);
+  dialog('liu_ruyin', '黑无极是朝廷通缉的杀手。他也在找天机卷。如果他先找到……你不会想知道后果。');
+  showChoices([
+    { text: '「你呢？你不也在找天机卷？」', id: 'c2_liu_truth', next: SCENES['liu_truth'] },
+    { text: '「和你合作，有什么好处？」', id: 'c2_liu_deal', next: SCENES['liu_deal'] },
+  ]);
+};
+
+SCENES['liu_truth'] = () => {
+  G.scene = 'liu_truth';
+  narrate(`\n柳如烟沉默了片刻。`);
+  dialog('liu_ruyin', '……我是锦衣卫的人。没错。我奉命来取天机卷。但你以为我想来吗？\n\n那个名单上……有我父亲的名字。');
+  narrate(`她的声音第一次有了波动。`);
+  dialog('liu_ruyin', '如果我完不成任务，朝廷会派别人来。那个人……不会手软。但如果你帮我拿到天机卷，我可以——\n我可以毁掉它。然后告诉朝廷，天机卷已经不存在了。');
+  setFlag('liu_father_on_list');
+  changeRel('liu_ruyin', 10);
+  showChoices([
+    { text: '「好，我信你。」', id: 'c2_liu_trust', effects: () => { setFlag('liu_alliance'); changeRel('liu_ruyin', 5); }, next: SCENES['chapter2_hub'] },
+    { text: '「我需要想想。」', id: 'c2_liu_think', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['liu_deal'] = () => {
+  G.scene = 'liu_deal';
+  narrate(`\n柳如烟嘴角微扬。`);
+  dialog('liu_ruyin', '直接谈利益，我喜欢。好——如果你帮我拿到天机卷，我可以保证：第一，朝廷不会追究你的任何麻烦。第二，我给你五百两白银。第三……我可以告诉你，谁在你的酒里下了药。');
+  narrate(`你心头一惊——${danger('下药？')}\n回想今晚的疲惫感……确实不太正常。`);
+  setFlag('knows_poisoned');
+  showChoices([
+    { text: '「谁下的药？」', id: 'c2_liu_who_poison', next: SCENES['liu_who_poison'] },
+    { text: '先不追究，继续行动', id: 'c2_liu_continue', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['liu_who_poison'] = () => {
+  G.scene = 'liu_who_poison';
+  narrate(`\n柳如烟看着客栈的方向。`);
+  dialog('liu_ruyin', '沈孤雁。他在每个人的酒里都加了一点「迷魂散」。不多，只是让人反应变慢。他想让所有人都昏昏欲睡，这样……今晚发生什么事，没人能及时反应。');
+  narrate(`她冷笑。`);
+  dialog('liu_ruyin', '他在保护天机卷——用自己的方式。但他的方法，差点害死所有人。');
+  setFlag('knows_shen_poison');
+  showChoices([
+    { text: '继续行动', id: 'c2_liu_continue2', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['confront_hei'] = () => {
+  G.scene = 'confront_hei';
+  narrate(`\n黑无极摘下面罩，露出一张满是伤疤的脸。`);
+  dialog('hei_wuji', '我是黑无极。受人之托来找天机卷。我不杀无辜——但挡我路的人，不算无辜。');
+  narrate(`他看了看你的剑，若有所思。`);
+  dialog('hei_wuji', '你的剑法不错。考虑一下——天机卷的委托人出的价很高。如果你帮我，我能分你一半。三千两黄金。');
+  showChoices([
+    { text: '「我不为钱卖命。」', id: 'c2_hei_refuse', effects: () => { changeRel('hei_wuji', -5); }, next: SCENES['hei_refuse'] },
+    { text: '「……三千两？说来听听。」', id: 'c2_hei_listen', effects: () => { setFlag('heard_hei_deal'); changeRel('hei_wuji', 5); }, next: SCENES['hei_listen'] },
+  ]);
+};
+
+SCENES['attack_hei'] = () => {
+  G.scene = 'attack_hei';
+  narrate(`\n你趁他说话时出手！\n${success('剑光一闪，划破他的袖子！')}\n但黑无极反应极快，一个翻身退出三丈。\n他看着袖口的裂痕，冷笑。`);
+  dialog('hei_wuji', '偷袭？呵……果然是江湖人。不过——下一次，我不会给你第二次出手的机会。');
+  narrate(`他消失在黑暗中。`);
+  setFlag('attacked_hei');
+  showChoices([
+    { text: '继续行动', id: 'c2_hei_after', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['deal_hei'] = () => {
+  G.scene = 'deal_hei';
+  narrate(`\n黑无极审视着你。短刀仍然抵着胡青娘的脖子。`);
+  dialog('hei_wuji', '信息？什么信息？');
+  narrate(`你快速思考。你确实还没拿到什么实质线索——但你必须争取时间。`);
+  narrate(`你盯着他的眼睛，尽量让自己看起来胸有成竹。`);
+  divider();
+  narrate(`黑无极看了你三秒。然后——出乎你意料地——他松开了胡青娘。`);
+  dialog('hei_wuji', '你的眼神不像在撒谎。但你手上也没有东西。我给你一个机会。');
+  narrate(`他将短刀收回袖中，声音冰冷。`);
+  dialog('hei_wuji', '天机卷的入口需要三块玉牌才能打开。分别在一个药铺女人、一个书生、和这个客栈老板手里。你如果能拿到任何一块——拿来找我。到时候，我们可以谈。');
+  narrate(`他顿了顿，补充道：`);
+  dialog('hei_wuji', '至于今晚……我的人不会动这个客栈。但你只有到天亮。天亮之后我找不到你——这个镇上的人，一个不留。');
+  narrate(`他转身消失在走廊尽头，身影如墨融入黑暗。`);
+  narrate(`${danger('天亮之前。')}`);
+  setFlag('hei_open_to_deal');
+  setFlag('knows_three_keys');
+  G.relationships.hu_qingniang = G.relationships.hu_qingniang ?? 0;
+  showChoices([
+    { text: '继续行动', id: 'c2_deal_after', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['sneak_attack'] = () => {
+  G.scene = 'sneak_attack';
+  narrate(`\n你突然出手！黑无极闪避不及，被你划伤了肩膀。\n但他反手一掌拍在你胸口——${danger('你被震退，撞在墙上！-20HP')}`);
+  narrate(`胡青娘趁乱跑进了药铺。\n黑无极看了你一眼，没有追击，而是转身消失在走廊尽头。`);
+  dialog('hei_wuji', '……有两下子。我们还会再见的。');
+  showChoices([
+    { text: '继续行动', id: 'c2_sneak_after', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['throw_item'] = () => {
+  G.scene = 'throw_item';
+  narrate(`\n你抄起桌上的酒坛，用力砸向蒙面人！\n${success('酒坛正中他的后脑！')}\n他踉跄了一下，胡青娘趁机挣脱。`);
+  narrate(`蒙面人——黑无极——捂着头，怒目圆睁。`);
+  dialog('hei_wuji', '……你！好，很好。你激怒我了。不过今天不是算账的时候。记住——我会回来找你的。');
+  narrate(`他转身消失在黑暗中。`);
+  changeRel('hei_wuji', -10);
+  removeItem('酒坛');
+  showChoices([
+    { text: '继续行动', id: 'c2_throw_after', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['follow_assassin'] = () => {
+  G.scene = 'follow_assassin';
+  narrate(`\n你悄悄跟上蒙面人。他走到后院，和另外两人在低声交谈。\n\n「钥匙分成了三块，分别在药铺女人、老板、和那个书生手里。」\n「黑无极大人说，天亮之前必须拿到。否则朝廷的人会先动手。」`);
+  narrate(`你记住了这些信息。当你准备离开时——\n\n${danger('一只手搭上了你的肩膀。')}\n\n白云生站在你身后，表情前所未有的清醒。`);
+  dialog('bai_yunsheng', '嘘。别出声。你都听到了？');
+  setFlag('followed_assassins');
+  setFlag('bai_night_encounter');
+  showChoices([
+    { text: '「你都听到了？」', id: 'c2_bai_night', next: SCENES['bai_night'] },
+    { text: '回到大堂', id: 'c2_bai_back', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['bai_night'] = () => {
+  G.scene = 'bai_night';
+  narrate(`\n白云生点点头。`);
+  dialog('bai_yunsheng', '三块钥匙。我手里有一块。另外两块在沈老板和胡青娘那里。我不会轻易交出我的那一块——除非你告诉我，你想用天机卷做什么。');
+  narrate(`他看着你的眼睛，等待回答。`);
+  showChoices([
+    { text: '「保护那些前朝遗臣。」', id: 'c2_bai_protect', effects: () => { setFlag('bai_trust'); changeRel('bai_yunsheng', 10); }, next: SCENES['bai_give_key'] },
+    { text: '「销毁它。这种东西不该存在。」', id: 'c2_bai_destroy', effects: () => { changeRel('bai_yunsheng', 5); setFlag('wants_destroy'); }, next: SCENES['bai_give_key'] },
+    { text: '「还没想好。」', id: 'c2_bai_honest', effects: () => { changeRel('bai_yunsheng', 3); }, next: SCENES['bai_hesitate'] },
+  ]);
+};
+
+SCENES['bai_give_key'] = () => {
+  G.scene = 'bai_give_key';
+  narrate(`\n白云生从怀里掏出一块${highlight('玉牌')}。`);
+  dialog('bai_yunsheng', '这是我三年前在落雁峰上找到的。我一直在等一个值得托付的人。希望我没有看错你。');
+  addItem('玉牌·书');
+  setFlag('bai_key');
+  showChoices([
+    { text: '继续行动', id: 'c2_bai_after_key', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['bai_hesitate'] = () => {
+  G.scene = 'bai_hesitate';
+  narrate(`\n白云生点了点头。`);
+  dialog('bai_yunsheng', '坦诚。至少你没有骗我。好吧——钥匙我暂时不给。但我会跟着你。如果你做对了决定，钥匙就是你的。');
+  setFlag('bai_following');
+  showChoices([
+    { text: '继续行动', id: 'c2_bai_after_hesitate', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['hei_refuse'] = () => {
+  G.scene = 'hei_refuse';
+  narrate(`\n黑无极冷哼一声。`);
+  dialog('hei_wuji', '不为钱？那你是为什么？正义？正义在江湖上，值不了一文钱。你会后悔的。');
+  narrate(`他转身离去。你注意到他左肩上有一个纹身——${highlight('一个倒悬的七星图案')}。这是……暗星阁的标志。暗星阁是前朝的地下刺客组织，据说早已覆灭。`);
+  setFlag('knows_hei_org');
+  showChoices([
+    { text: '继续行动', id: 'c2_hei_refuse_after', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['hei_listen'] = () => {
+  G.scene = 'hei_listen';
+  narrate(`\n黑无极露出一丝笑意。`);
+  dialog('hei_wuji', '聪明人。我的委托人是——暗星阁。天机卷上记录着我们所有成员的身份。如果泄露出去，三百多条人命。我来拿天机卷，是为了保护自己人。');
+  narrate(`他的眼神变得认真。`);
+  dialog('hei_wuji', '所以——你愿意帮我吗？不为了钱，为了……救人。');
+  setFlag('knows_hei_truth');
+  showChoices([
+    { text: '「救人……好，我帮你。」', id: 'c2_hei_agree', effects: () => { setFlag('hei_alliance'); changeRel('hei_wuji', 15); }, next: SCENES['chapter2_hub'] },
+    { text: '「我需要更多时间考虑。」', id: 'c2_hei_wait', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+// ---- CHAPTER 2 HUB ----
+SCENES['chapter2_hub'] = () => {
+  G.scene = 'chapter2_hub';
+  clearStory();
+  chapterTitle('第二章 · 抉择时刻');
+  narrate(`夜色深沉。客栈内外一片狼藉，但战斗暂时平息。\n你站在院子中央，月光如水。`);
+  divider();
+
+  // Ensure player knows about the keys/tianji juan
+  if (!hasFlag('knows_three_keys') && !hasFlag('hu_key') && !hasFlag('bai_key')) {
+    narrate(`刚才的混战中，你注意到一些不对劲的地方——所有人都在争夺某种${highlight('信物')}。`);
+    narrate(`一个垂死的黑衣人倒在你脚边，嘴里含混不清地念叨着：
+「……三块玉牌……山洞……沈老板……药铺……书生……」`);
+    narrate(`${highlight('三块玉牌')}。看起来，这是打开天机卷藏匿之处的钥匙。\n分别在沈孤雁、胡青娘、和白云生手中。`);
+    setFlag('knows_three_keys');
+  } else if (!hasFlag('knows_three_keys') && (hasFlag('hu_key') || hasFlag('bai_key'))) {
+    narrate(`根据已经获得的线索，你拼凑出了全貌——天机卷藏在落雁峰的山洞里，需要${highlight('三块玉牌')}才能打开。\n分别在沈孤雁、胡青娘、和白云生手中。`);
+    setFlag('knows_three_keys');
+  }
+
+  narrate(`\n现在，你必须做出选择。\n天机卷就在落雁峰上——近万人的生死，就在你手中。`);
+  
+  const keys = [];
+  if (hasItem('玉牌·药')) keys.push('胡青娘');
+  if (hasItem('玉牌·书')) keys.push('白云生');
+  if (keys.length > 0) narrate(`\n你目前拥有：${keys.join('、')}的玉牌。`);
+  
+  const choices = [];
+  
+  // Get remaining keys
+  if (!hasItem('玉牌·药')) {
+    choices.push({ text: '去找胡青娘获取玉牌', id: 'c2_hub_hu', next: SCENES['get_hu_key'] });
+  }
+  if (!hasItem('玉牌·书') && !hasFlag('bai_following')) {
+    choices.push({ text: '去找白云生获取玉牌', id: 'c2_hub_bai', next: SCENES['get_bai_key'] });
+  }
+  if (!hasItem('玉牌·沈') && !hasFlag('shen_key')) {
+    choices.push({ text: '去找沈孤雁获取玉牌', id: 'c2_hub_shen', next: SCENES['get_shen_key'] });
+  }
+  
+  // Alliance options
+  if (!hasFlag('liu_alliance') && G.relationships.liu_ruyin != null) {
+    choices.push({ text: '和柳如烟结盟', id: 'c2_hub_liu', next: SCENES['ally_liu'] });
+  }
+  if (hasFlag('hei_open_to_deal') || hasFlag('hei_alliance')) {
+    choices.push({ text: '和黑无极合作', id: 'c2_hub_hei', next: SCENES['ally_hei'] });
+  }
+  
+  // Proceed to mountain
+  const keyCount = G.inventory.filter(i => i.startsWith('玉牌')).length;
+  if (keyCount >= 2) {
+    choices.push({ text: `🗡️ 前往落雁峰！（已有${keyCount}/3块玉牌）`, id: 'c2_hub_mountain', next: SCENES['mountain_approach'] });
+  }
+  if (keyCount >= 1 && keyCount < 2) {
+    choices.push({ text: `前往落雁峰（只有${keyCount}块玉牌，可能不够）`, id: 'c2_hub_mountain_risk', next: SCENES['mountain_approach'] });
+  }
+  
+  showChoices(choices);
+};
+
+SCENES['get_hu_key'] = () => {
+  G.scene = 'get_hu_key';
+  narrate(`\n你来到药铺。胡青娘正在整理被打翻的药材。`);
+  if (hasFlag('saved_hu')) {
+    dialog('hu_qingniang', '你又来了。好吧——我欠你一条命，这是玉牌。但我有个条件。');
+    dialog('hu_qingniang', '天机卷上……有我哥哥的名字。他是前朝的探子，现在隐姓埋名在南方。如果你拿到天机卷，答应我——不要让任何人知道我哥哥的下落。');
+    showChoices([
+      { text: '「我答应你。」', id: 'c2_hu_promise', effects: () => { setFlag('promised_hu'); addItem('玉牌·药'); changeRel('hu_qingniang', 10); setFlag('hu_key'); }, next: SCENES['chapter2_hub'] },
+      { text: '「我不能做这种承诺。」', id: 'c2_hu_refuse', effects: () => { changeRel('hu_qingniang', -5); }, next: SCENES['chapter2_hub'] },
+    ]);
+  } else {
+    dialog('hu_qingniang', '你要钥匙？行。这世道，什么都得拿东西换。你帮我做一件事——赵铁牛手里有一把旧刀，那是我亡夫的遗物。帮我取回来，玉牌就是你的。');
+    showChoices([
+      { text: '去找赵铁牛要刀', id: 'c2_hu_zhao_trade', next: SCENES['hu_zhao_trade'] },
+      { text: '「算了，我自己想办法。」', id: 'c2_hu_no', next: SCENES['chapter2_hub'] },
+    ]);
+  }
+};
+
+SCENES['hu_zhao_trade'] = () => {
+  G.scene = 'hu_zhao_trade';
+  narrate(`\n你找到赵铁牛，转达了胡青娘的请求。`);
+  if (getRel('zhao_tieniu') > 10) {
+    dialog('zhao_tieniu', '那把刀……确实不是我的。是胡青娘丈夫的。他死在战场上了。我帮他收了遗物，一直想找机会还给她。你拿去吧。');
+    narrate(`${success('获得旧刀！')}`);
+    addItem('旧刀');
+    showChoices([
+      { text: '把刀还给胡青娘', id: 'c2_hu_return', effects: () => { removeItem('旧刀'); addItem('玉牌·药'); changeRel('hu_qingniang', 15); setFlag('hu_key'); }, next: SCENES['chapter2_hub'] },
+    ]);
+  } else {
+    dialog('zhao_tieniu', '那把刀？我不认识什么胡青娘的丈夫。你到底要干嘛？');
+    narrate(`他看起来不太想配合。也许你需要先和他建立更好的关系。`);
+    showChoices([
+      { text: '返回', id: 'c2_hu_zhao_no', next: SCENES['chapter2_hub'] },
+    ]);
+  }
+};
+
+SCENES['get_bai_key'] = () => {
+  G.scene = 'get_bai_key';
+  narrate(`\n你找到白云生。他坐在窗边，清醒得可怕。`);
+  dialog('bai_yunsheng', '你来要钥匙？行。但先回答我——你想用天机卷做什么？');
+  showChoices([
+    { text: '「保护名单上的人。」', id: 'c2_bai_key_protect', effects: () => { addItem('玉牌·书'); setFlag('bai_key'); changeRel('bai_yunsheng', 8); }, next: () => { dialog('bai_yunsheng', '……好。拿去吧。别让我失望。'); showChoices([{ text: '返回', next: SCENES['chapter2_hub'] }]); } },
+    { text: '「交给最值得信任的人。」', id: 'c2_bai_key_trust', effects: () => { G.charm += 1; }, next: () => { narrate(`\n白云生凝视你良久。`); dialog('bai_yunsheng', '……最值得信任的人？这世上没有这种人。但你的回答……至少不虚伪。拿去吧。'); addItem('玉牌·书'); setFlag('bai_key'); showChoices([{ text: '返回', next: SCENES['chapter2_hub'] }]); } },
+    { text: '「利用它，掌控局势。」', id: 'c2_bai_key_power', effects: () => { changeRel('bai_yunsheng', -10); }, next: () => { narrate(`\n白云生冷笑。`); dialog('bai_yunsheng', '至少你诚实。但我不帮你做这种事。钥匙——自己想办法吧。'); showChoices([{ text: '返回', next: SCENES['chapter2_hub'] }]); } },
+  ]);
+};
+
+SCENES['get_shen_key'] = () => {
+  G.scene = 'get_shen_key';
+  narrate(`\n你找到沈孤雁。他正在擦拭那把弯刀。`);
+  if (hasFlag('shen_respects_you') || getRel('shen_guyan') > 15) {
+    dialog('shen_guyan', '你来了。我一直在等你。你是个聪明人，也够正直。');
+    narrate(`他放下刀，从怀中取出一块${highlight('玉牌')}。`);
+    dialog('shen_guyan', '这是我守了十五年的东西。天机卷……我比你更清楚它的分量。名单上有我父亲、我师父、还有……很多我认识的人的名字。');
+    divider();
+    dialog('shen_guyan', '拿去。但你必须答应我——天机卷不能落入朝廷手中。否则，我认识的那些人……全都会死。');
+    addItem('玉牌·沈');
+    setFlag('shen_key');
+    changeRel('shen_guyan', 10);
+    showChoices([{ text: '继续', next: SCENES['chapter2_hub'] }]);
+  } else {
+    dialog('shen_guyan', '玉牌？什么玉牌？我不知道你在说什么。');
+    narrate(`他看起来不打算配合。也许你需要先赢得他的信任。`);
+    showChoices([
+      { text: '「沈老板，我知道你不简单。那把弯刀，是前朝禁卫军的制式佩刀。」', id: 'c2_shen_push', effects: () => { G.wits += 1; }, next: SCENES['shen_push'] },
+      { text: '返回', id: 'c2_shen_back', next: SCENES['chapter2_hub'] },
+    ]);
+  }
+};
+
+SCENES['shen_push'] = () => {
+  G.scene = 'shen_push';
+  narrate(`\n沈孤雁的脸色变了。他盯着你看了很久。`);
+  dialog('shen_guyan', '……你到底知道多少？');
+  narrate(`沉默。然后，他长叹一声。`);
+  dialog('shen_guyan', '好吧。你是第二个看穿我的人。第一个是赵铁牛。');
+  narrate(`他从怀中取出玉牌。`);
+  dialog('shen_guyan', '拿去。但我告诉你——如果你让天机卷落入朝廷手中，我会亲手杀了你。这不是威胁，是承诺。');
+  addItem('玉牌·沈');
+  setFlag('shen_key');
+  showChoices([{ text: '继续', next: SCENES['chapter2_hub'] }]);
+};
+
+SCENES['ally_liu'] = () => {
+  G.scene = 'ally_liu';
+  narrate(`\n你找到柳如烟。她依然在屋顶上，冷风吹动她的衣袂。`);
+  dialog('liu_ruyin', '想通了？');
+  showChoices([
+    { text: '「我帮你拿到天机卷，你销毁它。」', id: 'c2_liu_ally', effects: () => { setFlag('liu_alliance'); changeRel('liu_ruyin', 10); }, next: () => { narrate(`\n她点了点头。`); dialog('liu_ruyin', '成交。从现在起，你的背后交给我。'); showChoices([{ text: '继续', next: SCENES['chapter2_hub'] }]); } },
+    { text: '「我只是想了解你的立场。」', id: 'c2_liu_noly', next: SCENES['chapter2_hub'] },
+  ]);
+};
+
+SCENES['ally_hei'] = () => {
+  G.scene = 'ally_hei';
+  narrate(`\n你在后院找到了黑无极。他正站在暗处，像一尊雕塑。`);
+  if (hasFlag('hei_alliance') || hasFlag('knows_hei_truth')) {
+    dialog('hei_wuji', '你来了。天亮之前，我们必须拿到天机卷。你找到几块钥匙了？');
+    setFlag('hei_alliance');
+  } else {
+    dialog('hei_wuji', '……又见面了。改主意了？');
+  }
+  showChoices([{ text: '继续', next: SCENES['chapter2_hub'] }]);
+};
+
+// ---- CHAPTER 3: MOUNTAIN ----
+SCENES['mountain_approach'] = () => {
+  G.chapter = 3;
+  G.scene = 'mountain_approach';
+  clearStory();
+  chapterTitle('第三章 · 落雁峰');
+  narrate(`你趁着夜色，向落雁峰出发。\n山路崎岖，月光在云层间时隐时现。\n\n半个时辰后，你来到了山腰的一处平台。\n面前是一面巨大的石壁，上面刻满了古老的符文。`);
+  divider();
+  narrate(`石壁中央有三个${highlight('凹槽')}——形状正好对应三块玉牌。`);
+  
+  const keyCount = G.inventory.filter(i => i.startsWith('玉牌')).length;
+  narrate(`\n你有 ${keyCount}/3 块玉牌。`);
+  
+  if (keyCount === 3) {
+    narrate(`\n${success('三块玉牌齐聚！你可以打开石门了。')}`);
+  } else if (keyCount === 2) {
+    narrate(`\n你差一块。也许可以尝试强行打开……但可能会损坏机关。`);
+  } else {
+    narrate(`\n${danger('玉牌不够。强行打开可能会导致山洞崩塌。')}`);
+  }
+
+  // Who follows you?
+  const followers = [];
+  if (hasFlag('liu_alliance')) followers.push('柳如烟');
+  if (hasFlag('hei_alliance')) followers.push('黑无极');
+  if (hasFlag('bai_following') || hasFlag('bai_key')) followers.push('白云生');
+  if (getRel('zhao_tieniu') > 15) followers.push('赵铁牛');
+  
+  if (followers.length > 0) {
+    narrate(`\n和你同行的有：${followers.join('、')}。`);
+  }
+
+  divider();
+  narrate(`你正准备上前，身后传来脚步声——\n不止一组。`);
+  
+  showChoices([
+    { text: '立刻嵌入玉牌，打开石门', id: 'c3_open_door', next: SCENES['open_door'] },
+    { text: '先藏起来，看看是谁来了', id: 'c3_hide', effects: () => { G.wits += 1; }, next: SCENES['mountain_hide'] },
+  ]);
+};
+
+SCENES['open_door'] = () => {
+  G.scene = 'open_door';
+  const keyCount = G.inventory.filter(i => i.startsWith('玉牌')).length;
+  
+  if (keyCount === 3) {
+    narrate(`\n你将三块玉牌嵌入凹槽。${success('完美契合！')}\n石壁发出低沉的轰鸣，缓缓向两侧分开，露出一条通往深处的甬道。`);
+  } else if (keyCount === 2) {
+    narrate(`\n你将两块玉牌嵌入，第三个凹槽空着。\n石壁震动了一下，但没有打开。你试着用剑柄撬动机关——\n${danger('「咔嚓！」')}一个凹槽裂开了！\n但石壁还是缓缓打开了，只是甬道里传来碎石掉落的声音。不够稳定。`);
+    setFlag('unstable_entrance');
+  } else {
+    narrate(`\n你嵌入了仅有的一块玉牌。石壁纹丝不动。\n你试着用力推——${danger('石壁突然崩落一块巨石！')}\n你勉强躲开，但手臂被擦伤。-15HP`);
+    addHp(-15);
+    narrate(`\n不行，必须找到更多玉牌。`);
+    showChoices([{ text: '返回镇上', id: 'c3_back', next: SCENES['chapter2_hub'] }]);
+    return;
+  }
+  
+  setFlag('door_opened');
+  narrate(`\n甬道深处传来一股古老的气息——混着泥土、铜锈、和某种不知名的香味。`);
+  divider();
+  narrate(`就在这时，身后的人到了——\n\n是${danger('黑无极')}和他的手下！\n——还有${danger('沈孤雁')}，手持弯刀！\n——以及${highlight('柳如烟')}，剑已出鞘！`);
+  narrate(`\n所有人都来了。所有人都在这一刻到达。`);
+  divider();
+  narrate(`月光照亮了每个人的脸。\n空气中弥漫着一触即发的紧张。\n\n天机卷就在石壁后面。\n而你，站在所有人之间。`);
+  
+  showChoices([
+    { text: '第一个走进去', id: 'c3_enter_first', next: SCENES['final_chamber'] },
+    { text: '「大家都在，那就一起进去。不许动手。」', id: 'c3_enter_together', effects: () => { G.charm += 2; setFlag('entered_together'); }, next: SCENES['final_chamber'] },
+  ]);
+};
+
+SCENES['mountain_hide'] = () => {
+  G.scene = 'mountain_hide';
+  narrate(`\n你闪身躲在一块巨石后面。\n\n月光下，几拨人先后到达——\n\n第一组：${danger('黑无极')}带着三个蒙面人。\n第二组：${highlight('沈孤雁')}独自前来，面色凝重。\n第三组：${highlight('柳如烟')}无声无息地出现。\n\n还有……${danger('赵铁牛')}？他提着铁锤，一脸决然。`);
+  divider();
+  narrate(`所有人都在盯着石壁。\n而你，手里握着玉牌，藏在暗处。`);
+  dialog('hei_wuji', '玉牌呢？刚才明明有人来过。');
+  dialog('shen_guyan', '……是那个年轻人。他拿走了钥匙。');
+  dialog('liu_ruyin', '别浪费时间找了。他一定还在附近。');
+  
+  setFlag('all_gathered');
+  showChoices([
+    { text: '走出来，以玉牌为筹码谈判', id: 'c3_negotiate', effects: () => { G.charm += 2; }, next: SCENES['open_door'] },
+    { text: '趁他们争吵，偷偷嵌入玉牌打开石门', id: 'c3_sneak_open', effects: () => { G.wits += 2; setFlag('sneak_opened'); }, next: SCENES['open_door'] },
+  ]);
+};
+
+SCENES['final_chamber'] = () => {
+  G.chapter = 4;
+  G.scene = 'final_chamber';
+  clearStory();
+  chapterTitle('终章 · 天机');
+  narrate(`甬道尽头，是一个巨大的石室。\n\n石室正中央，一座石台上放着${highlight('一卷泛黄的卷轴')}——天机卷。\n\n你走近一步。借着火把的光，你能看到卷轴的封蜡已经被拆开过无数次，\n每一次都用不同的印章重新封好。封蜡的颜色层层叠叠，像历史的年轮。`);
+  narrate(`卷轴旁边，是一面铜镜。镜面光滑如新，映照着每个人的脸。\n\n铜镜下方的石台上刻着一行字：\n\n${highlight('「此卷存，千人生。此卷失，万人亡。三思。」')}\n\n一千七百个名字。近万条人命。\n就在这薄薄的一卷纸上。`);
+  divider();
+  narrate(`所有人都进入了石室。空气凝重得像铅。`);
+  narrate(`\n${highlight('沈孤雁')}站在左侧，手握弯刀，看着卷轴。\n${highlight('柳如烟')}站在右侧，剑尖微垂，眼神复杂。\n${danger('黑无极')}挡在门口，手按刀柄，虎视眈眈。\n${highlight('白云生')}靠在墙上，安静地观察。\n${highlight('赵铁牛')}握着铁锤，站在你身旁。`);
+  divider();
+  narrate(`所有人都在等你的决定。`);
+  
+  showChoices([
+    { text: '拿起天机卷，当众销毁', id: 'ending_destroy', next: SCENES['ending_destroy'] },
+    { text: '拿起天机卷，交给沈孤雁', id: 'ending_shen', next: SCENES['ending_shen'] },
+    { text: '拿起天机卷，交给柳如烟', id: 'ending_liu', next: SCENES['ending_liu'] },
+    { text: '拿起天机卷，交给黑无极', id: 'ending_hei', next: SCENES['ending_hei'] },
+    { text: '拿起天机卷，据为己有', id: 'ending_self', next: SCENES['ending_self'] },
+    { text: '不碰卷轴——看向铜镜', id: 'ending_mirror', next: SCENES['ending_mirror'] },
+  ]);
+};
+
+// ==================== ENDINGS ====================
+SCENES['ending_destroy'] = () => {
+  G.scene = 'ending';
+  clearStory();
+  narrate(`你拿起天机卷，撕成两半。\n\n${danger('「住手！」')}黑无极暴怒，拔刀冲向你！\n但赵铁牛挡在你面前，铁锤横扫。\n沈孤雁也动了——他截住了黑无极的手下。\n\n混战中，你将卷轴一页页撕碎，投入石台上的铜炉。火焰吞噬了泛黄的纸张。`);
+  divider();
+  if (hasFlag('liu_alliance')) {
+    dialog('liu_ruyin', '……很好。回去我会告诉朝廷——天机卷在混战中损毁。谁都别想找到了。');
+  }
+  dialog('shen_guyan', '……你做了最正确的选择。这些名字……不该成为任何人的武器。');
+  if (hasFlag('hei_alliance')) {
+    narrate(`\n黑无极看着化为灰烬的卷轴，沉默良久。`);
+    dialog('hei_wuji', '……暗星阁的人……会继续隐藏下去。也许这样也好。');
+  } else {
+    narrate(`\n黑无极怒极反笑。`);
+    dialog('hei_wuji', '你会为此付出代价的。暗星阁不会放过你。');
+  }
+  divider();
+  narrate(`\n你走出山洞。天边泛起了鱼肚白。\n雨停了，苍龙镇在晨曦中苏醒。\n\n没有天机卷，没有遗宝，没有可以操控天下的力量。\n但三百多个人的名字，将永远安全。\n\n你翻身上马，向远方驶去。\n身后，是新的一天。`);
+  showEnding('烈火焚卷', 'ending_destroy', '天机已焚，江湖依旧。你选择了让秘密随风消散。');
+};
+
+SCENES['ending_shen'] = () => {
+  G.scene = 'ending';
+  clearStory();
+  narrate(`你拿起天机卷，走向沈孤雁。\n\n他的双手微微颤抖，接过卷轴。`);
+  dialog('shen_guyan', '……十五年了。我终于可以……保护他们了。');
+  narrate(`他将卷轴小心收入怀中，然后向所有人鞠了一躬。`);
+  dialog('shen_guyan', '各位，天机卷我会妥善保管。从今天起，苍龙镇就是这些人的庇护所。任何人想找他们——先过我这关。');
+  divider();
+  if (hasFlag('liu_alliance')) {
+    narrate(`柳如烟走上前。`);
+    dialog('liu_ruyin', '沈孤雁……我父亲的名字也在上面。我不回朝廷了。从今以后——我替你守门。');
+    narrate(`沈孤雁怔了一下，然后点了点头。`);
+  }
+  if (getRel('zhao_tieniu') > 15) {
+    dialog('zhao_tieniu', '沈老板，我也留下。打铁的手，也能拿刀。');
+  }
+  narrate(`\n黑无极冷哼一声，带着手下转身离去。\n但他在门口停了一下。`);
+  dialog('hei_wuji', '……我不会再来找天机卷了。暗星阁的人……不需要这份名单也能活下去。你替我转告沈孤雁——当年的事，我放下了。');
+  divider();
+  narrate(`\n苍龙镇「听雨客栈」从此多了一个传说。\n说那里住着一群守护者，保护着一段永远不能公开的秘密。\n而你——成为他们中的一员。\n\n江湖路远，但有伙伴同行，便不觉孤独。`);
+  showEnding('听雨守夜', 'ending_shen', '你将天机卷托付给了最值得信赖的人。苍龙镇成为新的庇护所。');
+};
+
+SCENES['ending_liu'] = () => {
+  G.scene = 'ending';
+  clearStory();
+  narrate(`你拿起天机卷，递给柳如烟。\n\n她的手指触碰到卷轴的一瞬，身体僵住了。`);
+  dialog('liu_ruyin', '……你信任我？');
+  narrate(`你点了点头。`);
+  divider();
+  narrate(`她打开卷轴，快速浏览了一遍。\n然后——\n\n${danger('她将卷轴投入铜炉。')}`);
+  dialog('liu_ruyin', '包括我父亲在内……所有人的名字，都不该成为要挟。朝廷想要的是控制——而我不配合了。');
+  narrate(`沈孤雁愣住了。黑无极愣住了。\n所有人都愣住了。`);
+  divider();
+  narrate(`柳如烟转过身，面对所有人。`);
+  dialog('liu_ruyin', '从今天起，柳如烟已死。我会告诉朝廷，天机卷在争夺中毁于一旦。你们——忘掉今夜的一切。');
+  divider();
+  narrate(`她走向洞口，晨光照在她身上。\n\n在跨出门的一瞬间，她回头看了一眼——\n不是看你，而是看向空荡荡的铜炉。\n\n然后，她消失了。\n\n你再也没有见过柳如烟。\n但江湖上开始流传一个新名字——「无名剑姬」，一个专门帮助被追杀之人的神秘女侠。`);
+  showEnding('无名剑姬', 'ending_liu', '天机化灰，旧人消逝。但一个新的传说正在开始。');
+};
+
+SCENES['ending_hei'] = () => {
+  G.scene = 'ending';
+  clearStory();
+  narrate(`你拿起天机卷，走向黑无极。\n\n所有人的目光都钉在你身上。`);
+  dialog('shen_guyan', '你……！');
+  dialog('liu_ruyin', '……为什么？');
+  narrate(`黑无极接过卷轴，仔细查看了一遍。\n然后他做了一件出乎所有人意料的事——\n\n${success('他将卷轴递给了沈孤雁。')}`);
+  dialog('hei_wuji', '暗星阁不需要这份名单了。我们已经隐藏了二十年——不差再隐藏二十年。\n\n沈孤雁，我恨你，恨了二十年。你当年毁了我的家，害死了我的师父。\n但……这卷东西不该成为任何人复仇的工具。');
+  divider();
+  narrate(`沈孤雁接过卷轴，老泪纵横。`);
+  dialog('shen_guyan', '黑无极……不，应无极。二十年……我一直在找你，想当面道歉。当年那件事……是我的错。');
+  narrate(`两个宿敌在晨光中对视。\n二十年的仇恨，在天机卷面前，终于有了一个了断。`);
+  divider();
+  narrate(`黑无极转身离去。\n在洞口，他停下脚步，没有回头。`);
+  dialog('hei_wuji', '下次见面，我不会手下留情。但今天——就今天——我们之间的事，了了。');
+  narrate(`\n你看着他的背影消失在晨曦中。\n\n有时候，最正确的选择不是最好的选择，而是最必要的选择。`);
+  showEnding('旧怨了结', 'ending_hei', '你用信任弥合了二十年的裂痕。江湖恩怨，终有一了。');
+};
+
+SCENES['ending_self'] = () => {
+  G.scene = 'ending';
+  clearStory();
+  narrate(`你拿起天机卷，收入怀中。\n\n所有人的表情都变了。`);
+  dialog('shen_guyan', '年轻人……你确定要这样做？');
+  dialog('liu_ruyin', '天机卷上的名字……你知道那意味着什么吗？');
+  narrate(`${danger('黑无极的手已经按在了刀柄上。')}`);
+  divider();
+  narrate(`你感受到了前所未有的权力——三百多人的命运、朝廷的秘密、江湖的格局……全部在你手中。\n\n但你也感受到了前所未有的${danger('孤独')}。\n\n从这一刻起，你将不再是无名剑客。\n你是天机卷的持有者——掌握着足以颠覆天下的秘密。\n\n有人会来投靠你，有人会来追杀你。\n你的生活将永远改变。`);
+  divider();
+  if (getRel('zhao_tieniu') > 15) {
+    dialog('zhao_tieniu', '……我跟你。但你要记住——权力这东西，用得好是利器，用不好是毒药。');
+  }
+  narrate(`\n你走出山洞，阳光刺目。\n\n远处的苍龙镇在晨雾中若隐若现。\n你摸了摸怀中的卷轴——它沉甸甸的，像一个承诺，也像一道枷锁。\n\n江湖路远。\n而你，已经无法回头。`);
+  showEnding('持卷者', 'ending_self', '你选择了权力——和随之而来的一切代价。');
+};
+
+SCENES['ending_mirror'] = () => {
+  G.scene = 'ending';
+  clearStory();
+  narrate(`你没有碰卷轴。\n你的目光被铜镜吸引——镜面上映出的不是你的脸。\n\n而是一行字：\n\n${highlight('「天机不可泄，知者自当知。\n 卷中无秘密，秘密在人心。」')}`);
+  narrate(`你猛然抬头，看向在场的每一个人。\n\n沈孤雁——十五年守护，不为名利，只为故人。\n柳如烟——锦衣卫的身份下，藏着对父亲的爱。\n赵铁牛——一身蛮力下，包裹着最质朴的忠诚。\n白云生——装疯卖傻，只为活下去说真话。\n胡青娘——精于算计，却为亡夫的刀流泪。\n黑无极——冷血杀手，却有不杀妇孺的底线。`);
+  divider();
+  narrate(`天机卷上写了什么名字，已经不重要了。\n重要的是——在场的每个人，都已经做出了选择。\n\n${highlight('每个人都是别人的秘密，每个人都在守护着什么。')}\n\n你转身走向洞口，没有拿走卷轴。`);
+  divider();
+  narrate(`身后，沈孤雁第一个动了。他将卷轴收入怀中，对着所有人说：`);
+  dialog('shen_guyan', '天机卷……就留在这里。石门会在日落后自动关闭。谁也不许带走它。\n这些名字……就让他们永远留在这里吧。');
+  narrate(`没有人反对。\n\n黑无极默默转身离去。\n柳如烟看了你一眼——那目光中有敬佩，也有释然。\n赵铁牛拍了拍你的肩膀，什么也没说。\n白云生对你举了举空酒杯。`);
+  divider();
+  narrate(`你走出山洞。\n\n日出东方，苍龙镇沐浴在金色的阳光中。\n\n这江湖上，有些秘密注定永远不被揭开。\n而那些活在秘密之下的人——\n他们值得一个安宁的清晨。\n\n你翻身上马，朝着朝阳的方向驶去。\n\n${highlight('江湖路远，后会有期。')}`);
+  showEnding('天机在心', 'ending_mirror', '真正的天机，不在卷轴上，而在人心之中。');
+};
+
+// showEnding is defined in the engine (index.html)
