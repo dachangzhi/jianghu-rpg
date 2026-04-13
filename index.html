@@ -328,55 +328,74 @@ body {
 }
 
 /* Scrollbar styling */</style>
-	<tw-passagedata pid="1" name="alliance_negotiation" tags="" >&lt;&lt;set $flags.alliance_proposed = true&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;你站在客栈院子里，月光如洗。今晚所有活着的人都在这里。
+	<tw-passagedata pid="1" name="-webkit-scrollbar {" tags="" >width: 4px;
+}</tw-passagedata>
+	<tw-passagedata pid="2" name="-webkit-scrollbar-track {" tags="" >background: var(--bg-dark);
+}</tw-passagedata>
+	<tw-passagedata pid="3" name="-webkit-scrollbar-thumb {" tags="" >background: var(--gold-dim);
+	border-radius: 2px;
+}
 
-你深吸一口气：&lt;/div&gt;
-&lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;「各位，今晚我们只有一个选择——合作，或者各自为战。天机卷的钥匙分散在不同人手里。任何一个人单独行动，都不会成功。所以我提议——我们结盟。」&lt;/span&gt;&lt;/div&gt;
+/* UI bar - hide default */
+#ui-bar {
+	display: none;
+}
 
-&lt;&lt;link &quot;「我来分配任务。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;set $flags.alliance_leader = true&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「你们自己选。我确保每个人都信守承诺。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;set $flags.alliance_broker = true&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「谁跟我去落雁峰，谁留下——自愿。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;set $flags.alliance_voluntary = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="2" name="alliance_result" tags="" >&lt;&lt;set _allies = []&gt;&gt;
-&lt;&lt;if $rel_shen &gt; 10 or $flags.shen_alliance&gt;&gt;&lt;&lt;set _allies.push(&apos;沈孤雁&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $rel_liu &gt; 5 or $flags.liu_alliance&gt;&gt;&lt;&lt;set _allies.push(&apos;柳如烟&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $rel_zhao &gt; 5&gt;&gt;&lt;&lt;set _allies.push(&apos;赵铁牛&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $flags.bai_key or $rel_bai &gt; 5&gt;&gt;&lt;&lt;set _allies.push(&apos;白云生&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $flags.hei_alliance or $flags.hei_redemption&gt;&gt;&lt;&lt;set _allies.push(&apos;黑无极&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
+/* Mobile optimization */
+@media (max-width: 480px) {
+	body {
+		font-size: 15px;
+	}
+	#story {
+		padding: 10px;
+	}
+}
+#status-bar {
+	font-size: 0.85em;
+	color: #8a7a5a;
+	border-bottom: 1px solid #3a3020;
+	padding: 4px 0;
+	margin-bottom: 8px;
+	text-align: center;
+}</tw-passagedata>
+	<tw-passagedata pid="4" name="StoryInit" tags="" >/* Initialize all game variables */
+&lt;&lt;set $sword = 10&gt;&gt;
+&lt;&lt;set $wits = 10&gt;&gt;
+&lt;&lt;set $charm = 10&gt;&gt;
+&lt;&lt;set $hp = 100&gt;&gt;
+&lt;&lt;set $maxHp = 100&gt;&gt;
+&lt;&lt;set $chapter = 1&gt;&gt;
+&lt;&lt;set $inventory = []&gt;&gt;
+&lt;&lt;set $flags = {}&gt;&gt;
+&lt;&lt;set $rel_shen = 0&gt;&gt;
+&lt;&lt;set $rel_liu = 0&gt;&gt;
+&lt;&lt;set $rel_zhao = 0&gt;&gt;
+&lt;&lt;set $rel_bai = 0&gt;&gt;
+&lt;&lt;set $rel_hu = 0&gt;&gt;
+&lt;&lt;set $rel_hei = 0&gt;&gt;
+&lt;&lt;set $rel_xiaolian = 0&gt;&gt;
+&lt;&lt;set $rel_oldsun = 0&gt;&gt;
+&lt;&lt;set $rel_lishen = 0&gt;&gt;
+&lt;&lt;set $met_shen = false&gt;&gt;
+&lt;&lt;set $met_liu = false&gt;&gt;
+&lt;&lt;set $met_zhao = false&gt;&gt;
+&lt;&lt;set $met_bai = false&gt;&gt;
+&lt;&lt;set $met_hu = false&gt;&gt;
+&lt;&lt;set $met_hei = false&gt;&gt;
+&lt;&lt;set $met_xiaolian = false&gt;&gt;
+&lt;&lt;set $met_oldsun = false&gt;&gt;
+&lt;&lt;set $met_lishen = false&gt;&gt;
+&lt;&lt;set $endingReached = &quot;&quot;&gt;&gt;
 
-&lt;div class=&quot;narrate&quot;&gt;经过一番讨论，最终达成了一个勉强但有效的共识。愿意跟你上落雁峰的人：&lt;/div&gt;
-&lt;&lt;for _i = 0; _i &lt; _allies.length; _i++&gt;&gt;
-· &lt;&lt;print _allies[_i]&gt;&gt;&lt;br&gt;
-&lt;&lt;/for&gt;&gt;
-
-&lt;&lt;divider&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;天快亮了。&lt;/span&gt;必须——现在——出发。&lt;/div&gt;
-
-&lt;&lt;link &quot;出发前往落雁峰&quot; &quot;mountain_approach&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="3" name="ending_perfect" tags="" >&lt;div class=&quot;narrate&quot;&gt;所有人一起走进了石室。这是你见过的最奇怪的组合——一个前朝遗臣、一个锦衣卫暗探、一个老兵铁匠、一个落魄书生、一个情报贩子、一个杀手——和一个无名剑客。&lt;/div&gt;
-&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，展开它。一千七百个名字像活了过来。
-你没有撕碎它，也没有交给任何人。你把它重新卷好，放回石台上。然后——将三块玉牌分别嵌入了隐藏机关里。&lt;/div&gt;
-&lt;&lt;divider&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;success&quot;&gt;「咔嗒。」&lt;/span&gt;机关启动。石壁开始缓缓合拢。你跳出石室，其他人紧随其后。石门轰然关闭。从此以后——天机卷被封在了落雁峰深处。&lt;/div&gt;
-&lt;&lt;dialog &quot;沈孤雁&quot; &quot;十五年了。终于……可以安心了。&quot;&gt;&gt;
-&lt;&lt;dialog &quot;柳如烟&quot; &quot;我会告诉朝廷——天机卷在争夺中被毁。&quot;&gt;&gt;
-&lt;&lt;dialog &quot;白云生&quot; &quot;爷爷，您的遗愿——我完成了。&quot;&gt;&gt;
-&lt;&lt;divider&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;日出东方。没有人说话。但每个人都笑了。
-&lt;span class=&quot;highlight&quot;&gt;「江湖夜雨十年灯，一剑天涯万重山。天机已封人事了，各赴前程莫相忘。」&lt;/span&gt;&lt;/div&gt;
-&lt;&lt;ending &quot;天机封存·众人归途&quot; &quot;最好的结局不是完美无缺，而是每个人都找到了自己的路。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="4" name="ending_lonely" tags="" >&lt;div class=&quot;narrate&quot;&gt;你独自一人来到落雁峰。没有盟友，没有后援。
-你杀了一个，伤了两个，自己也挨了三刀。但你还是打开了石门。&lt;/div&gt;
-&lt;div class=&quot;narrate&quot;&gt;你拿起卷轴。没有人帮你分担这个重量。没有可以商量的人。
-&lt;span class=&quot;danger&quot;&gt;没有人陪伴的路上，每一个选择都格外沉重。&lt;/span&gt;&lt;/div&gt;
-&lt;&lt;ending &quot;独行者&quot; &quot;没有人陪伴的路上，每一个选择都格外沉重。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="5" name="ending_tragedy" tags="" >&lt;div class=&quot;narrate&quot;&gt;你的选择激怒了黑无极。他没有说话。只是一刀。
-一刀——赵铁牛的铁锤碎裂。一刀——沈孤雁的弯刀折断。一刀——白云生倒在了血泊中。
-他的刀法快到你根本看不清。&lt;/div&gt;
-&lt;&lt;divider&gt;&gt;
-&lt;&lt;dialog &quot;黑无极&quot; &quot;……我给过你机会。你选了最蠢的那条路。&quot;&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;苍龙镇的那一夜，后来被称为——&lt;span class=&quot;danger&quot;&gt;「血雨夜」&lt;/span&gt;。天机卷——从此再也没有人见过。&lt;/div&gt;
-&lt;&lt;ending &quot;血雨夜&quot; &quot;有些选择一旦做错，就没有回头路。&quot;&gt;&gt;</tw-passagedata>
+&lt;&lt;run setup.hasItem = function(item) { return State.variables.inventory.includes(item); }&gt;&gt;
+&lt;&lt;run setup.hasFlag = function(flag) { return State.variables.flags[flag] === true; }&gt;&gt;
+&lt;&lt;run setup.setFlag = function(flag) { State.variables.flags[flag] = true; }&gt;&gt;
+&lt;&lt;run setup.addItem = function(item) { var inv = State.variables.inventory; if (!inv.includes(item)) { inv.push(item); } }&gt;&gt;
+&lt;&lt;run setup.removeItem = function(item) { State.variables.inventory = State.variables.inventory.filter(function(i) { return i !== item; }); }&gt;&gt;
+&lt;&lt;run setup.changeRel = function(npc, amt) { var key = &apos;rel_&apos; + npc; State.variables[key] = (State.variables[key] || 0) + amt; }&gt;&gt;
+&lt;&lt;run setup.addHp = function(amt) { State.variables.hp = Math.min(State.variables.maxHp, Math.max(0, State.variables.hp + amt)); }&gt;&gt;
+&lt;&lt;run setup.keyCount = function() { return State.variables.inventory.filter(function(i) { return i.startsWith(&apos;玉牌&apos;); }).length; }&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="5" name="PassageHeader" tags="" >@@#status-bar;§ 第&lt;&lt;print $chapter&gt;&gt;章 @@| @@♥ &lt;&lt;print $hp&gt;&gt;/&lt;&lt;print $maxHp&gt;&gt;@@ | @@⚔&lt;&lt;print $sword&gt;&gt; 心&lt;&lt;print $wits&gt;&gt; 魅&lt;&lt;print $charm&gt;&gt;@@</tw-passagedata>
 	<tw-passagedata pid="6" name="start" tags="" >&lt;&lt;set $chapter = 1&gt;&gt;
 &lt;&lt;chapter_title &quot;第一章 · 听雨客栈&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;大雨倾盆，你策马来到苍龙镇。
@@ -3054,8 +3073,100 @@ body {
 &lt;&lt;link &quot;上前跟他打招呼&quot; &quot;night_town_hub&quot;&gt;&gt;&lt;&lt;set $rel_old_sun += -5&gt;&gt;&lt;&lt;set $flags.confronted_sun = true&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;悄悄离开&quot; &quot;night_town_hub&quot;&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;躲在暗处继续观察&quot; &quot;night_town_hub&quot;&gt;&gt;&lt;&lt;set $flags.watched_sun_longer = true&gt;&gt;&lt;&lt;set $wits += 3&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="165" name="events_tow" tags="" ></tw-passagedata>
-	<tw-passagedata pid="166" name="sword_check_1" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛递给你一把木剑。&quot;来——跟我过两招。&quot;他举起木锤朝你肩膀横扫过来。&lt;/div&gt;
+	<tw-passagedata pid="165" name="shen_personal_quest" tags="" >&lt;&lt;set $flags.shen_daughter_quest = true&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;沈孤雁把你叫到柜台后面。他的表情前所未有的凝重。&lt;/div&gt;
+&lt;&lt;dialog &quot;沈孤雁&quot; &quot;我有一件事需要你帮忙。我的女儿……她被朝廷掳走了。五年前，她才十三岁。他们把她带走了，作为要挟我的筹码。&quot;&gt;&gt;
+&lt;&lt;divider&gt;&gt;
+&lt;&lt;dialog &quot;沈孤雁&quot; &quot;这是她去年托人带出来的唯一一封信。她的字迹变了。以前活泼灵动，现在……规规矩矩，像是有人站在旁边监督她写的。&quot;&gt;&gt;
+&lt;&lt;dialog &quot;沈孤雁&quot; &quot;你——能不能帮我？&quot;&gt;&gt;
+
+&lt;&lt;link &quot;「我帮你救女儿。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_shen_daughter = true&gt;&gt;&lt;&lt;set $rel_shen += 15&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;run setup.addItem(&apos;织造坊地图&apos;)&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「天机卷的事了结之后——我一定帮你。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.shen_daughter_later = true&gt;&gt;&lt;&lt;set $rel_shen += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「这超出了我的能力范围。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $rel_shen -= 5&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="166" name="liu_personal_quest" tags="" >&lt;&lt;set $flags.liu_father_quest = true&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;柳如烟在屋顶上等你。&lt;/div&gt;
+&lt;&lt;dialog &quot;柳如烟&quot; &quot;我父亲……在岭南一个叫青竹村的地方，化名周三，以打鱼为生。我已经三年没见过他了。&quot;&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;她从袖中取出一块小小的玉佩——平安扣，上面刻着一个「周」字。&lt;/div&gt;
+&lt;&lt;dialog &quot;柳如烟&quot; &quot;这是我母亲的遗物。如果天机卷的事了结了……帮我把这块玉佩带给我父亲。告诉他——女儿不孝，但不能回来。&quot;&gt;&gt;
+
+&lt;&lt;link &quot;「我帮你送玉佩。不需要交换。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_liu_father = true&gt;&gt;&lt;&lt;set $rel_liu += 15&gt;&gt;&lt;&lt;run setup.addItem(&apos;柳如烟的平安扣&apos;)&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「信息我也要，玉佩我也帮你送。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_liu_father = true&gt;&gt;&lt;&lt;set $rel_liu += 10&gt;&gt;&lt;&lt;run setup.addItem(&apos;柳如烟的平安扣&apos;)&gt;&gt;&lt;&lt;set $flags.knows_jinyi_deploy = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「我得先忙天机卷的事。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="167" name="zhao_personal_quest" tags="" >&lt;&lt;set $flags.zhao_traitor_quest = true&gt;&gt;
+&lt;&lt;dialog &quot;赵铁牛&quot; &quot;我需要你帮我找一个人。刘半仙，真名刘永年。他是我们小队的军师。三年前有一场伏击——我们的位置被人泄露了。我花了三年调查——&lt;span class=&quot;danger&quot;&gt;我们中间有叛徒&lt;/span&gt;。很可能就是他。&quot;&gt;&gt;
+
+&lt;&lt;link &quot;「我帮你查。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_zhao_traitor = true&gt;&gt;&lt;&lt;set $rel_zhao += 12&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「你确定他是叛徒？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="168" name="hu_personal_quest" tags="" >&lt;&lt;set $flags.hu_mole_quest = true&gt;&gt;&lt;&lt;set $rel_hu += 5&gt;&gt;
+&lt;&lt;dialog &quot;胡青娘&quot; &quot;我的情报网被渗透了。渗透我的人，很可能是我最信任的线人——「青鸢」。她是我十年前救回来的孤儿，我教她一切，把她当亲妹妹。&quot;&gt;&gt;
+&lt;&lt;dialog &quot;胡青娘&quot; &quot;帮我找到证据。如果是青鸢——我会亲手处理。如果不是——我欠她一个天大的道歉。&quot;&gt;&gt;
+
+&lt;&lt;link &quot;「我会找到真相的。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_hu_mole = true&gt;&gt;&lt;&lt;set $rel_hu += 10&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「如果真是青鸢呢？你下得了手吗？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hu_resolute = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="169" name="bai_personal_quest" tags="" >&lt;&lt;set $flags.bai_family_quest = true&gt;&gt;&lt;&lt;set $rel_bai += 8&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;白云生从衣襟内侧取出一块旧丝帕：&lt;/div&gt;
+&lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;「吾孙承渊：白家满门忠烈，不悔不怨。唯愿你替白家做最后一件事——找到天机卷，让天下人知道真相。」——白太傅 绝笔&lt;/span&gt;&lt;/div&gt;
+&lt;&lt;dialog &quot;白云生&quot; &quot;我爷爷在朝代更替那天自焚了。他的遗愿是让我找到天机卷——不是为了宝藏——是为了让天下人知道，前朝有那么多人，他们只是&lt;span class=&quot;highlight&quot;&gt;不想忘记自己是谁的人&lt;/span&gt;。&quot;&gt;&gt;
+
+&lt;&lt;link &quot;「我帮你完成白太傅的遗愿。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_bai_family = true&gt;&gt;&lt;&lt;set $rel_bai += 12&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「天机卷不只是遗愿——它关乎上万人的命。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="170" name="hei_personal_quest" tags="" >&lt;&lt;set $flags.hei_revenge_conflict = true&gt;&gt;&lt;&lt;set $rel_hei += 8&gt;&gt;
+&lt;&lt;dialog &quot;黑无极&quot; &quot;二十年前，沈孤雁奉命清剿暗星阁。那一夜，他杀了我师父。我那年十五岁，亲眼看着。&quot;&gt;&gt;
+&lt;&lt;dialog &quot;黑无极&quot; &quot;但是三年前，我查到了真相——清剿暗星阁的命令不是他下的。而且他在执行命令的时候，&lt;span class=&quot;highlight&quot;&gt;偷偷放走了七个孩子&lt;/span&gt;。我是那七个之一。他放走了我。&quot;&gt;&gt;
+
+&lt;&lt;link &quot;「所以你来找他——是为了报仇，还是为了道谢？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hei_conflicted = true&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「放下仇恨吧。你有更重要的事。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hei_let_go = true&gt;&gt;&lt;&lt;set $rel_hei += 10&gt;&gt;&lt;&lt;set $flags.hei_redemption = true&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="171" name="alliance_negotiation" tags="" >&lt;&lt;set $flags.alliance_proposed = true&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;你站在客栈院子里，月光如洗。今晚所有活着的人都在这里。
+
+你深吸一口气：&lt;/div&gt;
+&lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;「各位，今晚我们只有一个选择——合作，或者各自为战。天机卷的钥匙分散在不同人手里。任何一个人单独行动，都不会成功。所以我提议——我们结盟。」&lt;/span&gt;&lt;/div&gt;
+
+&lt;&lt;link &quot;「我来分配任务。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;set $flags.alliance_leader = true&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「你们自己选。我确保每个人都信守承诺。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;set $flags.alliance_broker = true&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「谁跟我去落雁峰，谁留下——自愿。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;set $flags.alliance_voluntary = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="172" name="alliance_result" tags="" >&lt;&lt;set _allies = []&gt;&gt;
+&lt;&lt;if $rel_shen &gt; 10 or $flags.shen_alliance&gt;&gt;&lt;&lt;set _allies.push(&apos;沈孤雁&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $rel_liu &gt; 5 or $flags.liu_alliance&gt;&gt;&lt;&lt;set _allies.push(&apos;柳如烟&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $rel_zhao &gt; 5&gt;&gt;&lt;&lt;set _allies.push(&apos;赵铁牛&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $flags.bai_key or $rel_bai &gt; 5&gt;&gt;&lt;&lt;set _allies.push(&apos;白云生&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if $flags.hei_alliance or $flags.hei_redemption&gt;&gt;&lt;&lt;set _allies.push(&apos;黑无极&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
+
+&lt;div class=&quot;narrate&quot;&gt;经过一番讨论，最终达成了一个勉强但有效的共识。愿意跟你上落雁峰的人：&lt;/div&gt;
+&lt;&lt;for _i = 0; _i &lt; _allies.length; _i++&gt;&gt;
+· &lt;&lt;print _allies[_i]&gt;&gt;&lt;br&gt;
+&lt;&lt;/for&gt;&gt;
+
+&lt;&lt;divider&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;天快亮了。&lt;/span&gt;必须——现在——出发。&lt;/div&gt;
+
+&lt;&lt;link &quot;出发前往落雁峰&quot; &quot;mountain_approach&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="173" name="ending_perfect" tags="" >&lt;div class=&quot;narrate&quot;&gt;所有人一起走进了石室。这是你见过的最奇怪的组合——一个前朝遗臣、一个锦衣卫暗探、一个老兵铁匠、一个落魄书生、一个情报贩子、一个杀手——和一个无名剑客。&lt;/div&gt;
+&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，展开它。一千七百个名字像活了过来。
+你没有撕碎它，也没有交给任何人。你把它重新卷好，放回石台上。然后——将三块玉牌分别嵌入了隐藏机关里。&lt;/div&gt;
+&lt;&lt;divider&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;success&quot;&gt;「咔嗒。」&lt;/span&gt;机关启动。石壁开始缓缓合拢。你跳出石室，其他人紧随其后。石门轰然关闭。从此以后——天机卷被封在了落雁峰深处。&lt;/div&gt;
+&lt;&lt;dialog &quot;沈孤雁&quot; &quot;十五年了。终于……可以安心了。&quot;&gt;&gt;
+&lt;&lt;dialog &quot;柳如烟&quot; &quot;我会告诉朝廷——天机卷在争夺中被毁。&quot;&gt;&gt;
+&lt;&lt;dialog &quot;白云生&quot; &quot;爷爷，您的遗愿——我完成了。&quot;&gt;&gt;
+&lt;&lt;divider&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;日出东方。没有人说话。但每个人都笑了。
+&lt;span class=&quot;highlight&quot;&gt;「江湖夜雨十年灯，一剑天涯万重山。天机已封人事了，各赴前程莫相忘。」&lt;/span&gt;&lt;/div&gt;
+&lt;&lt;ending &quot;天机封存·众人归途&quot; &quot;最好的结局不是完美无缺，而是每个人都找到了自己的路。&quot;&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="174" name="ending_lonely" tags="" >&lt;div class=&quot;narrate&quot;&gt;你独自一人来到落雁峰。没有盟友，没有后援。
+你杀了一个，伤了两个，自己也挨了三刀。但你还是打开了石门。&lt;/div&gt;
+&lt;div class=&quot;narrate&quot;&gt;你拿起卷轴。没有人帮你分担这个重量。没有可以商量的人。
+&lt;span class=&quot;danger&quot;&gt;没有人陪伴的路上，每一个选择都格外沉重。&lt;/span&gt;&lt;/div&gt;
+&lt;&lt;ending &quot;独行者&quot; &quot;没有人陪伴的路上，每一个选择都格外沉重。&quot;&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="175" name="ending_tragedy" tags="" >&lt;div class=&quot;narrate&quot;&gt;你的选择激怒了黑无极。他没有说话。只是一刀。
+一刀——赵铁牛的铁锤碎裂。一刀——沈孤雁的弯刀折断。一刀——白云生倒在了血泊中。
+他的刀法快到你根本看不清。&lt;/div&gt;
+&lt;&lt;divider&gt;&gt;
+&lt;&lt;dialog &quot;黑无极&quot; &quot;……我给过你机会。你选了最蠢的那条路。&quot;&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;苍龙镇的那一夜，后来被称为——&lt;span class=&quot;danger&quot;&gt;「血雨夜」&lt;/span&gt;。天机卷——从此再也没有人见过。&lt;/div&gt;
+&lt;&lt;ending &quot;血雨夜&quot; &quot;有些选择一旦做错，就没有回头路。&quot;&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="176" name="events_tow" tags="" ></tw-passagedata>
+	<tw-passagedata pid="177" name="sword_check_1" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛递给你一把木剑。&quot;来——跟我过两招。&quot;他举起木锤朝你肩膀横扫过来。&lt;/div&gt;
 
 &lt;&lt;if $sword &gt;= 10&gt;&gt;
 &lt;&lt;link &quot;格挡！&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $sword += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
@@ -3066,7 +3177,7 @@ body {
 &lt;&lt;link &quot;闪避！&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;link &quot;被砸中了&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $hp -= 10&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="167" name="wits_check_1" tags="" >&lt;div class=&quot;narrate&quot;&gt;你仔细整理目前的所有线索，试图拼凑出完整的图景。&lt;/div&gt;
+	<tw-passagedata pid="178" name="wits_check_1" tags="" >&lt;div class=&quot;narrate&quot;&gt;你仔细整理目前的所有线索，试图拼凑出完整的图景。&lt;/div&gt;
 
 &lt;&lt;if $wits &gt;= 13&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;success&quot;&gt;你的心机足够敏锐。&lt;/span&gt;
@@ -3077,7 +3188,7 @@ body {
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;link &quot;继续&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="168" name="night_street_east" tags="" >&lt;&lt;loc &quot;苍龙镇 · 东街&quot;&gt;&gt;
+	<tw-passagedata pid="179" name="night_street_east" tags="" >&lt;&lt;loc &quot;苍龙镇 · 东街&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你趁着夜色来到镇东。街上空无一人，只有远处传来几声犬吠。
 你经过一间紧闭的裁缝铺——这就是李裁缝的店。门上贴着一张白纸，写着「暂停营业」。&lt;/div&gt;
 
@@ -3088,18 +3199,18 @@ body {
 
 &lt;&lt;link &quot;继续调查&quot; &quot;night_street_west&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;返回客栈&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="169" name="night_street_west" tags="" >&lt;&lt;loc &quot;苍龙镇 · 西街&quot;&gt;&gt;
+	<tw-passagedata pid="180" name="night_street_west" tags="" >&lt;&lt;loc &quot;苍龙镇 · 西街&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你来到镇西。铁匠铺的炉火已经熄灭了。
 你注意到铺子旁边的小巷里，有一串&lt;span class=&quot;highlight&quot;&gt;新鲜脚印&lt;/span&gt;——不止一个人的。脚印方向——朝后山。&lt;/div&gt;
 
 &lt;&lt;link &quot;跟踪脚印&quot; &quot;night_follow_tracks&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;返回客栈&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="170" name="night_follow_tracks" tags="" >&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="181" name="night_follow_tracks" tags="" >&lt;&lt;set $wits += 1&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你沿着脚印走了约半里路。脚印在一处岔路口消失了——不，是分散了。一组往山上，一组往河边。
 你决定不继续深入——独自一人在夜色中追踪太危险了。&lt;/div&gt;
 
 &lt;&lt;link &quot;返回客栈&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="171" name="night_eavesdrop_1" tags="" >&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="182" name="night_eavesdrop_1" tags="" >&lt;&lt;set $wits += 1&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你悄悄靠近客栈一楼的后窗。里面传来低沉的对话：
 
 「……三块玉牌已经确认了位置。」「药铺那个女人嘴硬。」「没关系，黑无极大人有办法。」
@@ -3107,50 +3218,7 @@ body {
 然后是沉默。&lt;/div&gt;
 
 &lt;&lt;link &quot;继续&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="172" name="shen_personal_quest" tags="" >&lt;&lt;set $flags.shen_daughter_quest = true&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;沈孤雁把你叫到柜台后面。他的表情前所未有的凝重。&lt;/div&gt;
-&lt;&lt;dialog &quot;沈孤雁&quot; &quot;我有一件事需要你帮忙。我的女儿……她被朝廷掳走了。五年前，她才十三岁。他们把她带走了，作为要挟我的筹码。&quot;&gt;&gt;
-&lt;&lt;divider&gt;&gt;
-&lt;&lt;dialog &quot;沈孤雁&quot; &quot;这是她去年托人带出来的唯一一封信。她的字迹变了。以前活泼灵动，现在……规规矩矩，像是有人站在旁边监督她写的。&quot;&gt;&gt;
-&lt;&lt;dialog &quot;沈孤雁&quot; &quot;你——能不能帮我？&quot;&gt;&gt;
-
-&lt;&lt;link &quot;「我帮你救女儿。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_shen_daughter = true&gt;&gt;&lt;&lt;set $rel_shen += 15&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;run setup.addItem(&apos;织造坊地图&apos;)&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「天机卷的事了结之后——我一定帮你。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.shen_daughter_later = true&gt;&gt;&lt;&lt;set $rel_shen += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「这超出了我的能力范围。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $rel_shen -= 5&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="173" name="liu_personal_quest" tags="" >&lt;&lt;set $flags.liu_father_quest = true&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;柳如烟在屋顶上等你。&lt;/div&gt;
-&lt;&lt;dialog &quot;柳如烟&quot; &quot;我父亲……在岭南一个叫青竹村的地方，化名周三，以打鱼为生。我已经三年没见过他了。&quot;&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;她从袖中取出一块小小的玉佩——平安扣，上面刻着一个「周」字。&lt;/div&gt;
-&lt;&lt;dialog &quot;柳如烟&quot; &quot;这是我母亲的遗物。如果天机卷的事了结了……帮我把这块玉佩带给我父亲。告诉他——女儿不孝，但不能回来。&quot;&gt;&gt;
-
-&lt;&lt;link &quot;「我帮你送玉佩。不需要交换。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_liu_father = true&gt;&gt;&lt;&lt;set $rel_liu += 15&gt;&gt;&lt;&lt;run setup.addItem(&apos;柳如烟的平安扣&apos;)&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「信息我也要，玉佩我也帮你送。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_liu_father = true&gt;&gt;&lt;&lt;set $rel_liu += 10&gt;&gt;&lt;&lt;run setup.addItem(&apos;柳如烟的平安扣&apos;)&gt;&gt;&lt;&lt;set $flags.knows_jinyi_deploy = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「我得先忙天机卷的事。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="174" name="zhao_personal_quest" tags="" >&lt;&lt;set $flags.zhao_traitor_quest = true&gt;&gt;
-&lt;&lt;dialog &quot;赵铁牛&quot; &quot;我需要你帮我找一个人。刘半仙，真名刘永年。他是我们小队的军师。三年前有一场伏击——我们的位置被人泄露了。我花了三年调查——&lt;span class=&quot;danger&quot;&gt;我们中间有叛徒&lt;/span&gt;。很可能就是他。&quot;&gt;&gt;
-
-&lt;&lt;link &quot;「我帮你查。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_zhao_traitor = true&gt;&gt;&lt;&lt;set $rel_zhao += 12&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「你确定他是叛徒？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="175" name="hu_personal_quest" tags="" >&lt;&lt;set $flags.hu_mole_quest = true&gt;&gt;&lt;&lt;set $rel_hu += 5&gt;&gt;
-&lt;&lt;dialog &quot;胡青娘&quot; &quot;我的情报网被渗透了。渗透我的人，很可能是我最信任的线人——「青鸢」。她是我十年前救回来的孤儿，我教她一切，把她当亲妹妹。&quot;&gt;&gt;
-&lt;&lt;dialog &quot;胡青娘&quot; &quot;帮我找到证据。如果是青鸢——我会亲手处理。如果不是——我欠她一个天大的道歉。&quot;&gt;&gt;
-
-&lt;&lt;link &quot;「我会找到真相的。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_hu_mole = true&gt;&gt;&lt;&lt;set $rel_hu += 10&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「如果真是青鸢呢？你下得了手吗？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hu_resolute = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="176" name="bai_personal_quest" tags="" >&lt;&lt;set $flags.bai_family_quest = true&gt;&gt;&lt;&lt;set $rel_bai += 8&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;白云生从衣襟内侧取出一块旧丝帕：&lt;/div&gt;
-&lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;「吾孙承渊：白家满门忠烈，不悔不怨。唯愿你替白家做最后一件事——找到天机卷，让天下人知道真相。」——白太傅 绝笔&lt;/span&gt;&lt;/div&gt;
-&lt;&lt;dialog &quot;白云生&quot; &quot;我爷爷在朝代更替那天自焚了。他的遗愿是让我找到天机卷——不是为了宝藏——是为了让天下人知道，前朝有那么多人，他们只是&lt;span class=&quot;highlight&quot;&gt;不想忘记自己是谁的人&lt;/span&gt;。&quot;&gt;&gt;
-
-&lt;&lt;link &quot;「我帮你完成白太傅的遗愿。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_bai_family = true&gt;&gt;&lt;&lt;set $rel_bai += 12&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「天机卷不只是遗愿——它关乎上万人的命。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="177" name="hei_personal_quest" tags="" >&lt;&lt;set $flags.hei_revenge_conflict = true&gt;&gt;&lt;&lt;set $rel_hei += 8&gt;&gt;
-&lt;&lt;dialog &quot;黑无极&quot; &quot;二十年前，沈孤雁奉命清剿暗星阁。那一夜，他杀了我师父。我那年十五岁，亲眼看着。&quot;&gt;&gt;
-&lt;&lt;dialog &quot;黑无极&quot; &quot;但是三年前，我查到了真相——清剿暗星阁的命令不是他下的。而且他在执行命令的时候，&lt;span class=&quot;highlight&quot;&gt;偷偷放走了七个孩子&lt;/span&gt;。我是那七个之一。他放走了我。&quot;&gt;&gt;
-
-&lt;&lt;link &quot;「所以你来找他——是为了报仇，还是为了道谢？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hei_conflicted = true&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;「放下仇恨吧。你有更重要的事。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hei_let_go = true&gt;&gt;&lt;&lt;set $rel_hei += 10&gt;&gt;&lt;&lt;set $flags.hei_redemption = true&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="178" name="widgets" tags="widget" >&lt;&lt;widget &quot;chapter_title&quot;&gt;&gt;&lt;span class=&quot;chapter-title&quot;&gt;$args[0]&lt;/span&gt;&lt;&lt;/widget&gt;&gt;
+	<tw-passagedata pid="183" name="widgets" tags="widget" >&lt;&lt;widget &quot;chapter_title&quot;&gt;&gt;&lt;span class=&quot;chapter-title&quot;&gt;$args[0]&lt;/span&gt;&lt;&lt;/widget&gt;&gt;
 
 &lt;&lt;widget &quot;divider&quot;&gt;&gt;&lt;div class=&quot;divider&quot;&gt;· · · ✦ · · ·&lt;/div&gt;&lt;&lt;/widget&gt;&gt;
 
@@ -3159,74 +3227,6 @@ body {
 &lt;&lt;widget &quot;dialog&quot;&gt;&gt;&lt;div class=&quot;dialog&quot;&gt;&lt;span class=&quot;speaker&quot; style=&quot;color:#c9a050&quot;&gt;【$args[0]】&lt;/span&gt;「$args[1]」&lt;/div&gt;&lt;&lt;/widget&gt;&gt;
 
 &lt;&lt;widget &quot;ending&quot;&gt;&gt;&lt;&lt;set _end to $args[0]&gt;&gt;&lt;div class=&quot;ending-screen&quot;&gt;&lt;div class=&quot;ending-title&quot;&gt;「_end」&lt;/div&gt;&lt;&lt;if $args.length &gt; 1&gt;&gt;&lt;div class=&quot;ending-desc&quot;&gt;$args[1]&lt;/div&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;link &quot;重新开始&quot; &quot;Start&quot;&gt;&gt;&lt;&lt;run State.reset()&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/div&gt;&lt;&lt;/widget&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="179" name="-webkit-scrollbar {" tags="" >width: 4px;
-}</tw-passagedata>
-	<tw-passagedata pid="180" name="-webkit-scrollbar-track {" tags="" >background: var(--bg-dark);
-}</tw-passagedata>
-	<tw-passagedata pid="181" name="-webkit-scrollbar-thumb {" tags="" >background: var(--gold-dim);
-	border-radius: 2px;
-}
-
-/* UI bar - hide default */
-#ui-bar {
-	display: none;
-}
-
-/* Mobile optimization */
-@media (max-width: 480px) {
-	body {
-		font-size: 15px;
-	}
-	#story {
-		padding: 10px;
-	}
-}
-#status-bar {
-	font-size: 0.85em;
-	color: #8a7a5a;
-	border-bottom: 1px solid #3a3020;
-	padding: 4px 0;
-	margin-bottom: 8px;
-	text-align: center;
-}</tw-passagedata>
-	<tw-passagedata pid="182" name="StoryInit" tags="" >/* Initialize all game variables */
-&lt;&lt;set $sword = 10&gt;&gt;
-&lt;&lt;set $wits = 10&gt;&gt;
-&lt;&lt;set $charm = 10&gt;&gt;
-&lt;&lt;set $hp = 100&gt;&gt;
-&lt;&lt;set $maxHp = 100&gt;&gt;
-&lt;&lt;set $chapter = 1&gt;&gt;
-&lt;&lt;set $inventory = []&gt;&gt;
-&lt;&lt;set $flags = {}&gt;&gt;
-&lt;&lt;set $rel_shen = 0&gt;&gt;
-&lt;&lt;set $rel_liu = 0&gt;&gt;
-&lt;&lt;set $rel_zhao = 0&gt;&gt;
-&lt;&lt;set $rel_bai = 0&gt;&gt;
-&lt;&lt;set $rel_hu = 0&gt;&gt;
-&lt;&lt;set $rel_hei = 0&gt;&gt;
-&lt;&lt;set $rel_xiaolian = 0&gt;&gt;
-&lt;&lt;set $rel_oldsun = 0&gt;&gt;
-&lt;&lt;set $rel_lishen = 0&gt;&gt;
-&lt;&lt;set $met_shen = false&gt;&gt;
-&lt;&lt;set $met_liu = false&gt;&gt;
-&lt;&lt;set $met_zhao = false&gt;&gt;
-&lt;&lt;set $met_bai = false&gt;&gt;
-&lt;&lt;set $met_hu = false&gt;&gt;
-&lt;&lt;set $met_hei = false&gt;&gt;
-&lt;&lt;set $met_xiaolian = false&gt;&gt;
-&lt;&lt;set $met_oldsun = false&gt;&gt;
-&lt;&lt;set $met_lishen = false&gt;&gt;
-&lt;&lt;set $endingReached = &quot;&quot;&gt;&gt;
-
-&lt;&lt;run setup.hasItem = function(item) { return State.variables.inventory.includes(item); }&gt;&gt;
-&lt;&lt;run setup.hasFlag = function(flag) { return State.variables.flags[flag] === true; }&gt;&gt;
-&lt;&lt;run setup.setFlag = function(flag) { State.variables.flags[flag] = true; }&gt;&gt;
-&lt;&lt;run setup.addItem = function(item) { var inv = State.variables.inventory; if (!inv.includes(item)) { inv.push(item); } }&gt;&gt;
-&lt;&lt;run setup.removeItem = function(item) { State.variables.inventory = State.variables.inventory.filter(function(i) { return i !== item; }); }&gt;&gt;
-&lt;&lt;run setup.changeRel = function(npc, amt) { var key = &apos;rel_&apos; + npc; State.variables[key] = (State.variables[key] || 0) + amt; }&gt;&gt;
-&lt;&lt;run setup.addHp = function(amt) { State.variables.hp = Math.min(State.variables.maxHp, Math.max(0, State.variables.hp + amt)); }&gt;&gt;
-&lt;&lt;run setup.keyCount = function() { return State.variables.inventory.filter(function(i) { return i.startsWith(&apos;玉牌&apos;); }).length; }&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="183" name="PassageHeader" tags="" >@@#status-bar;§ 第&lt;&lt;print $chapter&gt;&gt;章 @@| @@♥ &lt;&lt;print $hp&gt;&gt;/&lt;&lt;print $maxHp&gt;&gt;@@ | @@⚔&lt;&lt;print $sword&gt;&gt; 心&lt;&lt;print $wits&gt;&gt; 魅&lt;&lt;print $charm&gt;&gt;@@</tw-passagedata>
 </tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
