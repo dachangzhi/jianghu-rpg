@@ -315,33 +315,41 @@ function startGame() {
   document.getElementById('game-screen').style.display = 'flex';
   renderAll();
   SCENES['start']();
-}
 </script>
-<script src="story.js"></script>
-<script src="story_part2.js"></script>
-<script src="story_part3.js"></script>
-<script src="story_part4.js"></script>
-<script src="story_part5.js"></script>
-<script src="story_part6.js"></script>
-<script src="story_part7.js"></script>
-<script src="story_part8.js"></script>
-<script src="story_part9.js"></script>
-<script src="story_part10.js"></script>
-<script src="story_part11.js"></script>
-<script src="story_part12.js"></script>
-<script src="story_part13.js"></script>
-<script src="story_part14.js"></script>
-<script src="story_part15.js"></script>
-<script src="story_part16.js"></script>
-<script src="story_part17.js"></script>
-<script src="story_part18.js"></script>
-<script src="story_part26.js"></script>
-<script src="story_part25.js"></script>
-<script src="story_part24.js"></script>
-<script src="story_part23.js"></script>
-<script src="story_part22.js"></script>
-<script src="story_part21.js"></script>
-<script src="story_part20.js"></script>
-<script src="story_part19.js"></script>
+<!-- Engine -->
+<script src="story/engine/lobby_free.js"></script>
+<!-- Chapter 1: Opening -->
+<script src="story/chapter1/opening.js"></script>
+<script src="story/chapter1/prologue.js"></script>
+<script src="story/chapter1/dinner.js"></script>
+<script src="story/chapter1/evening.js"></script>
+<!-- Chapter 2: Night -->
+<script src="story/chapter2/night_raid.js"></script>
+<script src="story/chapter2/night_explore.js"></script>
+<script src="story/chapter2/night_events.js"></script>
+<script src="story/chapter2/combat.js"></script>
+<!-- Chapter 3: Choice -->
+<script src="story/chapter3/choice.js"></script>
+<script src="story/chapter3/hub.js"></script>
+<!-- Chapter 4: Mountain -->
+<script src="story/chapter4/mountain.js"></script>
+<script src="story/chapter4/mountain_path.js"></script>
+<script src="story/chapter4/chamber.js"></script>
+<!-- NPC Quests -->
+<script src="story/npc/zhao_tieniu.js"></script>
+<script src="story/npc/liu_ruyin.js"></script>
+<script src="story/npc/shen_hu.js"></script>
+<script src="story/npc/bai_hei.js"></script>
+<script src="story/npc/deep_talk1.js"></script>
+<script src="story/npc/deep_talk2.js"></script>
+<!-- Events -->
+<script src="story/events/secondary.js"></script>
+<script src="story/events/omens.js"></script>
+<script src="story/events/transitions.js"></script>
+<script src="story/events/checks.js"></script>
+<!-- Endings -->
+<script src="story/endings/endings.js"></script>
+<script src="story/endings/endings2.js"></script>
+<script src="story/endings/endings3.js"></script>
 </body>
 </html>
