@@ -259,7 +259,7 @@ body {
 	}
 }
 
-:: StoryInit [script]
+:: StoryInit
 /* Initialize all game variables */
 <<set $sword = 10>>
 <<set $wits = 10>>

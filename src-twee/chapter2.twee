@@ -1,7 +1,7 @@
 :: night_falls
 <<set $chapter = 2>>
-<<include "widget_status">>
-<<include "widget_chapter_title" "第二章 · 暗夜惊变">>
+<<status>>
+<<chapter_title "第二章 · 暗夜惊变">>
 
 <div class="narrate">你回到房间，和衣而卧。窗外雨声渐小。</div>
 
@@ -11,7 +11,7 @@
 
 一声巨响从楼下传来，紧接着是<span class="danger">兵刃交击之声</span>，和一个女人的尖叫。</div>
 
-<<include "widget_divider">>
+<<divider>>
 
 <div class="narrate">你听到了隔壁有人在<span class="danger">求饶</span>。
 
@@ -30,7 +30,7 @@
 <<link "屏息静听，等待时机" "night_wait">><<set $wits += 2>><</link>>
 
 :: night_rush
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你推开门——走廊里，一个<span class="danger">黑衣蒙面人</span>正手持短刀，抵着<span class="highlight">胡青娘</span>的脖子。</div>
 <div class="narrate">楼下传来更多的打斗声。整个客栈都乱了起来。</div>
 
@@ -48,13 +48,13 @@
 
 :: night_window
 <<set $flags.saw_shen_fight = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你无声地翻出窗户。雨已经停了，月光照亮了院子。
 
 ——三个<span class="danger">黑衣人</span>正在翻胡青娘的药铺
 ——赵铁牛正挥着铁锤和两个黑衣人缠斗
 ——沈孤雁站在客栈门口，手中不知何时多了一把<span class="highlight">弯刀</span>，刀上滴着血</div>
-<<include "widget_dialog" "沈孤雁" "他们来了六个！黑无极的人在找天机卷的线索！快——药铺里有胡青娘！">>
+<<dialog "沈孤雁" "他们来了六个！黑无极的人在找天机卷的线索！快——药铺里有胡青娘！">>
 
 <<link "去帮赵铁牛" "help_zhao">><</link>>
 <<link "去药铺救胡青娘" "help_hu">><</link>>
@@ -62,7 +62,7 @@
 
 :: night_wait
 <<set $flags.overheard_assassins = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你贴着门板，屏住呼吸。
 
 门外传来低语：
@@ -73,20 +73,20 @@
 
 :: fight_assassin
 <<set $flags.saved_hu_combat = true>><<set $rel_hei += 5>><<set $sword += 2>><<set $rel_hu = 15>><<run $addItem('蒙面短刀')>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你的剑快如闪电——<span class="success">一剑刺中蒙面人的手腕！</span>
 短刀落地，胡青娘趁机挣脱。</div>
-<<include "widget_dialog" "黑无极" "……好剑法。你是谁？">>
+<<dialog "黑无极" "……好剑法。你是谁？">>
 
 <<link "「你又是谁？」" "confront_hei">><</link>>
 <<link "继续攻击" "attack_hei">><</link>>
 
 :: negotiate_assassin
 <<set $flags.met_hei_wuji = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "黑无极" "我要什么，与你无关。识相的话，回房去。">>
+<<status>>
+<<dialog "黑无极" "我要什么，与你无关。识相的话，回房去。">>
 <div class="narrate">胡青娘趁机低声对你说：</div>
-<<include "widget_dialog" "胡青娘" "他叫黑无极……是江湖上有名的杀手。">>
+<<dialog "胡青娘" "他叫黑无极……是江湖上有名的杀手。">>
 
 <<link "「放了她，我给你你想要的信息。」" "deal_hei">><<set $charm += 1>><</link>>
 <<link "趁他分神，突袭！" "sneak_attack">><<set $sword += 1>><<set $hp -= 20>><</link>>
@@ -94,17 +94,17 @@
 :: throw_item
 <<set $rel_hei -= 10>>
 <<run $removeItem('酒坛')>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你抄起酒坛砸向蒙面人！<span class="success">正中后脑！</span></div>
-<<include "widget_dialog" "黑无极" "……你！好，很好。记住——我会回来找你的。">>
+<<dialog "黑无极" "……你！好，很好。记住——我会回来找你的。">>
 
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: help_zhao
 <<set $rel_zhao += 10>><<set $flags.fought_with_zhao = true>><<set $sword += 1>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你冲向赵铁牛！他正以一敌二，身上已多了几道伤口。</div>
-<<include "widget_dialog" "赵铁牛" "兄弟！来了！左边那个交给你！">>
+<<dialog "赵铁牛" "兄弟！来了！左边那个交给你！">>
 <div class="narrate"><span class="success">你们合力击退了两个黑衣人！</span>赵铁牛的铁锤锤头脱落，露出里面一把<span class="highlight">精钢短刀</span>。</div>
 
 <<link "「赵大哥，你到底什么来头？」" "zhao_truth">><</link>>
@@ -112,27 +112,27 @@
 
 :: zhao_truth
 <<set $flags.zhao_knows_location = true>><<set $flags.knows_three_keys = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "赵铁牛" "……瞒不住了。我以前不只是一个百夫长。我是前朝禁卫军的人。天机卷，我知道它在哪里。">>
-<<include "widget_dialog" "赵铁牛" "天机卷上记着一千七百个名字。三年前，朝廷从一条漏出的线索里抓到了十七个人。其中有一个是我兄弟。一家三口，满门抄斩。">>
-<<include "widget_divider">>
-<<include "widget_dialog" "赵铁牛" "落雁峰的后山山洞，需要三块玉牌打开。机关钥匙分别在沈老板、胡青娘、和那个书生手里。">>
+<<status>>
+<<dialog "赵铁牛" "……瞒不住了。我以前不只是一个百夫长。我是前朝禁卫军的人。天机卷，我知道它在哪里。">>
+<<dialog "赵铁牛" "天机卷上记着一千七百个名字。三年前，朝廷从一条漏出的线索里抓到了十七个人。其中有一个是我兄弟。一家三口，满门抄斩。">>
+<<divider>>
+<<dialog "赵铁牛" "落雁峰的后山山洞，需要三块玉牌打开。机关钥匙分别在沈老板、胡青娘、和那个书生手里。">>
 
 <<link "「你为什么告诉我？」" "zhao_why">><<set $rel_zhao += 5>><</link>>
 <<link "「那我们现在就去找他们。」" "chapter2_hub">><</link>>
 
 :: zhao_why
 <<set $rel_zhao += 5>>
-<<include "widget_status">>
-<<include "widget_dialog" "赵铁牛" "因为今晚之后，不管天机卷落在谁手里，这镇上都留不住了。你是我在这镇上信得过的人。">>
+<<status>>
+<<dialog "赵铁牛" "因为今晚之后，不管天机卷落在谁手里，这镇上都留不住了。你是我在这镇上信得过的人。">>
 
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: help_hu
 <<if not $rel_hu>><<set $rel_hu = 0>><</if>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你冲进药铺。三个黑衣人正在逼问胡青娘。</div>
-<<include "widget_dialog" "胡青娘" "……要杀便杀。想从我嘴里套话？做梦。">>
+<<dialog "胡青娘" "……要杀便杀。想从我嘴里套话？做梦。">>
 
 <<if $sword >= 11>>
 <<link "正面对决！" "hu_rescued">><<set $sword += 1>><<set $hp -= 15>><</link>>
@@ -143,13 +143,13 @@
 
 :: hu_rescued
 <<set $rel_hu += 15>><<set $flags.saved_hu = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate"><span class="success">黑衣人被你击退！</span></div>
-<<include "widget_dialog" "胡青娘" "……你救了我。我叫胡青娘，药铺是我开的，但我真正做的是——情报买卖。">>
+<<dialog "胡青娘" "……你救了我。我叫胡青娘，药铺是我开的，但我真正做的是——情报买卖。">>
 <div class="narrate">她从柜台暗格里取出一块<span class="highlight">玉牌</span>。</div>
-<<include "widget_dialog" "胡青娘" "刚才那些人是来逼问天机卷下落的。他们已经杀了三个人了——镇东的李裁缝、老孙头、还有小莲。">>
-<<include "widget_divider">>
-<<include "widget_dialog" "胡青娘" "这是天机卷入口的钥匙之一。另外两块在沈老板和白云生手里。如果你能把它们凑齐……我就告诉你山洞在哪里。">>
+<<dialog "胡青娘" "刚才那些人是来逼问天机卷下落的。他们已经杀了三个人了——镇东的李裁缝、老孙头、还有小莲。">>
+<<divider>>
+<<dialog "胡青娘" "这是天机卷入口的钥匙之一。另外两块在沈老板和白云生手里。如果你能把它们凑齐……我就告诉你山洞在哪里。">>
 <<run $addItem('玉牌·药')>>
 <<set $flags.hu_key = true>>
 
@@ -158,31 +158,31 @@
 
 :: hu_why
 <<set $flags.knows_tianji_truth = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "胡青娘" "天机卷上有一千七百个名字。每一个名字背后都是一个家庭。这份卷轴握着近万人的生死。如果落入朝廷手里——一夜之间，四百余家，血流成河。">>
+<<status>>
+<<dialog "胡青娘" "天机卷上有一千七百个名字。每一个名字背后都是一个家庭。这份卷轴握着近万人的生死。如果落入朝廷手里——一夜之间，四百余家，血流成河。">>
 
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: find_liu
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你在客栈屋顶上找到了柳如烟。月光下，她的身影如一尊冰雕。</div>
-<<include "widget_dialog" "柳如烟" "你倒是沉得住气。黑无极是朝廷通缉的杀手。他也在找天机卷。如果他先找到……你不会想知道后果。">>
+<<dialog "柳如烟" "你倒是沉得住气。黑无极是朝廷通缉的杀手。他也在找天机卷。如果他先找到……你不会想知道后果。">>
 
 <<link "「你呢？你不也在找天机卷？」" "liu_truth">><</link>>
 <<link "「和你合作，有什么好处？」" "liu_deal">><</link>>
 
 :: liu_truth
 <<set $flags.liu_father_on_list = true>><<set $rel_liu += 10>>
-<<include "widget_status">>
-<<include "widget_dialog" "柳如烟" "……我是锦衣卫的人。我奉命来取天机卷。但名单上有我父亲的名字。如果你帮我拿到天机卷，我可以毁掉它。然后告诉朝廷，天机卷已经不存在了。">>
+<<status>>
+<<dialog "柳如烟" "……我是锦衣卫的人。我奉命来取天机卷。但名单上有我父亲的名字。如果你帮我拿到天机卷，我可以毁掉它。然后告诉朝廷，天机卷已经不存在了。">>
 
 <<link "「好，我信你。」" "chapter2_hub">><<set $flags.liu_alliance = true>><<set $rel_liu += 5>><</link>>
 <<link "「我需要想想。」" "chapter2_hub">><</link>>
 
 :: liu_deal
 <<set $flags.knows_poisoned = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "柳如烟" "直接谈利益，我喜欢。帮你拿到天机卷，你给我——五百两白银。还有……我可以告诉你，谁在你的酒里下了药。">>
+<<status>>
+<<dialog "柳如烟" "直接谈利益，我喜欢。帮你拿到天机卷，你给我——五百两白银。还有……我可以告诉你，谁在你的酒里下了药。">>
 <div class="narrate">你心头一惊——<span class="danger">下药？</span></div>
 
 <<link "「谁下的药？」" "liu_who_poison">><</link>>
@@ -190,60 +190,60 @@
 
 :: liu_who_poison
 <<set $flags.knows_shen_poison = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "柳如烟" "沈孤雁。他在每个人的酒里都加了「迷魂散」。不多，只是让人反应变慢。他以为这样今晚发生什么事，没人能及时反应。">>
+<<status>>
+<<dialog "柳如烟" "沈孤雁。他在每个人的酒里都加了「迷魂散」。不多，只是让人反应变慢。他以为这样今晚发生什么事，没人能及时反应。">>
 
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: confront_hei
 <<set $flags.met_hei_wuji = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">黑无极摘下面罩，露出一张满是伤疤的脸。</div>
-<<include "widget_dialog" "黑无极" "我是黑无极。受人之托来找天机卷。你的剑法不错。考虑一下——三千两黄金。">>
+<<dialog "黑无极" "我是黑无极。受人之托来找天机卷。你的剑法不错。考虑一下——三千两黄金。">>
 
 <<link "「我不为钱卖命。」" "hei_refuse">><<set $rel_hei -= 5>><</link>>
 <<link "「三千两？说来听听。」" "hei_listen">><<set $flags.heard_hei_deal = true>><<set $rel_hei += 5>><</link>>
 
 :: attack_hei
 <<set $flags.attacked_hei = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你趁他说话时出手！<span class="success">剑光一闪，划破他的袖子！</span>
 但黑无极反应极快，退后三丈。</div>
-<<include "widget_dialog" "黑无极" "偷袭？下次不会给你第二次机会。">>
+<<dialog "黑无极" "偷袭？下次不会给你第二次机会。">>
 <div class="narrate">他消失在黑暗中。</div>
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: deal_hei
 <<set $flags.hei_open_to_deal = true>><<set $flags.knows_three_keys = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">黑无极出乎意料地松开了胡青娘。</div>
-<<include "widget_dialog" "黑无极" "天机卷的入口需要三块玉牌。分别在一个药铺女人、一个书生、和这个客栈老板手里。你如果能拿到任何一块——拿来找我。">>
-<<include "widget_dialog" "黑无极" "天亮之后我找不到你——这个镇上的人，一个不留。">>
+<<dialog "黑无极" "天机卷的入口需要三块玉牌。分别在一个药铺女人、一个书生、和这个客栈老板手里。你如果能拿到任何一块——拿来找我。">>
+<<dialog "黑无极" "天亮之后我找不到你——这个镇上的人，一个不留。">>
 <div class="narrate"><span class="danger">天亮之前。</span></div>
 
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: sneak_attack
 <<set $hp -= 20>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你突然出手！划伤了黑无极肩膀。但他反手一掌拍在你胸口——<span class="danger">你被震退！-20HP</span></div>
-<<include "widget_dialog" "黑无极" "……有两下子。我们还会再见的。">>
+<<dialog "黑无极" "……有两下子。我们还会再见的。">>
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: follow_assassin
 <<set $flags.followed_assassins = true>><<set $flags.bai_night_encounter = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你悄悄跟上蒙面人。他走到后院和另外两人交谈：「钥匙分成了三块，分别在药铺女人、老板、和那个书生手里。」</div>
 <div class="narrate"><span class="danger">一只手搭上了你的肩膀。</span>
 白云生站在你身后。</div>
-<<include "widget_dialog" "白云生" "嘘。别出声。你都听到了？">>
+<<dialog "白云生" "嘘。别出声。你都听到了？">>
 
 <<link "「你都听到了？」" "bai_night">><</link>>
 <<link "回到大堂" "chapter2_hub">><</link>>
 
 :: bai_night
-<<include "widget_status">>
-<<include "widget_dialog" "白云生" "三块钥匙。我手里有一块。我不会轻易交出——除非你告诉我，你想用天机卷做什么。">>
+<<status>>
+<<dialog "白云生" "三块钥匙。我手里有一块。我不会轻易交出——除非你告诉我，你想用天机卷做什么。">>
 
 <<link "「保护名单上的人。」" "bai_give_key">><<set $flags.bai_trust = true>><<set $rel_bai += 10>><</link>>
 <<link "「销毁它。这种东西不该存在。」" "bai_give_key">><<set $rel_bai += 5>><<set $flags.wants_destroy = true>><</link>>
@@ -252,38 +252,38 @@
 :: bai_give_key
 <<run $addItem('玉牌·书')>>
 <<set $flags.bai_key = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">白云生从怀里掏出一块<span class="highlight">玉牌</span>。</div>
-<<include "widget_dialog" "白云生" "这是我三年前在落雁峰上找到的。我一直在等一个值得托付的人。">>
+<<dialog "白云生" "这是我三年前在落雁峰上找到的。我一直在等一个值得托付的人。">>
 <span class="ok">获得：玉牌·书</span>
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: bai_hesitate
 <<set $flags.bai_following = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "白云生" "坦诚。至少你没有骗我。钥匙我暂时不给。但我会跟着你。">>
+<<status>>
+<<dialog "白云生" "坦诚。至少你没有骗我。钥匙我暂时不给。但我会跟着你。">>
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: hei_refuse
 <<set $flags.knows_hei_org = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "黑无极" "不为钱？正义在江湖上，值不了一文钱。">>
+<<status>>
+<<dialog "黑无极" "不为钱？正义在江湖上，值不了一文钱。">>
 <div class="narrate">他转身离去。你注意到他左肩上有一个纹身——<span class="highlight">倒悬的七星图案</span>。暗星阁的标志。</div>
 <<link "继续行动" "chapter2_hub">><</link>>
 
 :: hei_listen
 <<set $flags.knows_hei_truth = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "黑无极" "我的委托人是暗星阁。天机卷上记录着我们所有成员的身份。如果泄露——三百多条人命。">>
-<<include "widget_dialog" "黑无极" "所以——你愿意帮我吗？不为了钱，为了……救人。">>
+<<status>>
+<<dialog "黑无极" "我的委托人是暗星阁。天机卷上记录着我们所有成员的身份。如果泄露——三百多条人命。">>
+<<dialog "黑无极" "所以——你愿意帮我吗？不为了钱，为了……救人。">>
 
 <<link "「救人……好，我帮你。」" "chapter2_hub">><<set $flags.hei_alliance = true>><<set $rel_hei += 15>><</link>>
 <<link "「我需要更多时间考虑。」" "chapter2_hub">><</link>>
 
 :: chapter2_hub
 <<set $chapter = 2>>
-<<include "widget_status">>
-<<include "widget_chapter_title" "第二章 · 抉择时刻">>
+<<status>>
+<<chapter_title "第二章 · 抉择时刻">>
 
 <div class="narrate">夜色深沉。客栈内外一片狼藉，但战斗暂时平息。
 你站在院子中央，月光如水。</div>
@@ -294,7 +294,7 @@
 <span class="highlight">三块玉牌</span>。分别在沈孤雁、胡青娘、和白云生手中。</div>
 <</if>>
 
-<<include "widget_divider">>
+<<divider>>
 
 <div class="narrate">天机卷就在落雁峰上——近万人的生死，就在你手中。</div>
 
@@ -327,14 +327,14 @@
 <</if>>
 
 :: get_hu_key
-<<include "widget_status">>
+<<status>>
 <<if $flags.saved_hu>>
-<<include "widget_dialog" "胡青娘" "好吧——我欠你一条命，这是玉牌。但我有个条件。天机卷上……有我哥哥的名字。答应我——不要让任何人知道他的下落。">>
+<<dialog "胡青娘" "好吧——我欠你一条命，这是玉牌。但我有个条件。天机卷上……有我哥哥的名字。答应我——不要让任何人知道他的下落。">>
 
 <<link "「我答应你。」" "chapter2_hub">><<set $flags.promised_hu = true>><<run $addItem('玉牌·药')>><<set $rel_hu += 10>><<set $flags.hu_key = true>><</link>>
 <<link "「我不能做这种承诺。」" "chapter2_hub">><<set $rel_hu -= 5>><</link>>
 <<else>>
-<<include "widget_dialog" "胡青娘" "你要钥匙？赵铁牛手里有一把旧刀，是我亡夫的遗物。帮我取回来，玉牌就是你的。">>
+<<dialog "胡青娘" "你要钥匙？赵铁牛手里有一把旧刀，是我亡夫的遗物。帮我取回来，玉牌就是你的。">>
 <<if $rel_zhao > 10>>
 <<link "去找赵铁牛要刀" "hu_zhao_trade">><</link>>
 <<else>>
@@ -345,52 +345,52 @@
 
 :: hu_zhao_trade
 <<run $addItem('旧刀')>>
-<<include "widget_status">>
-<<include "widget_dialog" "赵铁牛" "那把刀……确实不是我的。是胡青娘丈夫的。你拿去吧。">>
+<<status>>
+<<dialog "赵铁牛" "那把刀……确实不是我的。是胡青娘丈夫的。你拿去吧。">>
 <span class="ok">获得：旧刀</span>
 <<link "把刀还给胡青娘" "chapter2_hub">><<run $removeItem('旧刀')>><<run $addItem('玉牌·药')>><<set $rel_hu += 15>><<set $flags.hu_key = true>><</link>>
 
 :: get_bai_key
-<<include "widget_status">>
-<<include "widget_dialog" "白云生" "你来要钥匙？先回答我——你想用天机卷做什么？">>
+<<status>>
+<<dialog "白云生" "你来要钥匙？先回答我——你想用天机卷做什么？">>
 
 <<link "「保护名单上的人。」" "chapter2_hub">><<run $addItem('玉牌·书')>><<set $flags.bai_key = true>><<set $rel_bai += 8>><</link>>
 <<link "「交给最值得信任的人。」" "chapter2_hub">><<set $charm += 1>><<run $addItem('玉牌·书')>><<set $flags.bai_key = true>><<set $rel_bai += 5>><</link>>
 <<link "「利用它，掌控局势。」" "chapter2_hub">><<set $rel_bai -= 10>><</link>>
 
 :: get_shen_key
-<<include "widget_status">>
+<<status>>
 <<if $flags.shen_respects_you or $rel_shen > 15>>
 <<run $addItem('玉牌·沈')>><<set $flags.shen_key = true>><<set $rel_shen += 10>>
-<<include "widget_dialog" "沈孤雁" "你来了。我一直在等你。这是我守了十五年的东西。拿去。但你必须答应我——天机卷不能落入朝廷手中。">>
+<<dialog "沈孤雁" "你来了。我一直在等你。这是我守了十五年的东西。拿去。但你必须答应我——天机卷不能落入朝廷手中。">>
 <span class="ok">获得：玉牌·沈</span>
 <<link "继续" "chapter2_hub">><</link>>
 <<else>>
-<<include "widget_dialog" "沈孤雁" "玉牌？什么玉牌？">>
+<<dialog "沈孤雁" "玉牌？什么玉牌？">>
 <<link "「沈老板，我知道你不简单。那把弯刀，是前朝禁卫军的制式佩刀。」" "shen_push">><<set $wits += 1>><</link>>
 <<link "返回" "chapter2_hub">><</link>>
 <</if>>
 
 :: shen_push
 <<run $addItem('玉牌·沈')>><<set $flags.shen_key = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "沈孤雁" "……好吧。你是第二个看穿我的人。拿去。但如果你让天机卷落入朝廷手中，我会亲手杀了你。">>
+<<status>>
+<<dialog "沈孤雁" "……好吧。你是第二个看穿我的人。拿去。但如果你让天机卷落入朝廷手中，我会亲手杀了你。">>
 <span class="ok">获得：玉牌·沈</span>
 <<link "继续" "chapter2_hub">><</link>>
 
 :: ally_liu
-<<include "widget_status">>
-<<include "widget_dialog" "柳如烟" "想通了？">>
+<<status>>
+<<dialog "柳如烟" "想通了？">>
 
 <<link "「我帮你拿到天机卷，你销毁它。」" "chapter2_hub">><<set $flags.liu_alliance = true>><<set $rel_liu += 10>><</link>>
 <<link "「我只是想了解你的立场。」" "chapter2_hub">><</link>>
 
 :: ally_hei
 <<set $flags.hei_alliance = true>>
-<<include "widget_status">>
+<<status>>
 <<if $flags.knows_hei_truth>>
-<<include "widget_dialog" "黑无极" "你来了。你找到几块钥匙了？">>
+<<dialog "黑无极" "你来了。你找到几块钥匙了？">>
 <<else>>
-<<include "widget_dialog" "黑无极" "……又见面了。改主意了？">>
+<<dialog "黑无极" "……又见面了。改主意了？">>
 <</if>>
 <<link "继续" "chapter2_hub">><</link>>

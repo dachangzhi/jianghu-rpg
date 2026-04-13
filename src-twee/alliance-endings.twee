@@ -1,6 +1,6 @@
 :: alliance_negotiation
 <<set $flags.alliance_proposed = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你站在客栈院子里，月光如洗。今晚所有活着的人都在这里。
 
 你深吸一口气：</div>
@@ -11,7 +11,7 @@
 <<link "「谁跟我去落雁峰，谁留下——自愿。」" "alliance_result">><<set $charm += 1>><<set $flags.alliance_voluntary = true>><</link>>
 
 :: alliance_result
-<<include "widget_status">>
+<<status>>
 <<set _allies = []>>
 <<if $rel_shen > 10 or $flags.shen_alliance>><<set _allies.push('沈孤雁')>><</if>>
 <<if $rel_liu > 5 or $flags.liu_alliance>><<set _allies.push('柳如烟')>><</if>>
@@ -24,40 +24,40 @@
 · <<print _allies[_i]>><br>
 <</for>>
 
-<<include "widget_divider">>
+<<divider>>
 <div class="narrate"><span class="highlight">天快亮了。</span>必须——现在——出发。</div>
 
 <<link "出发前往落雁峰" "mountain_approach">><</link>>
 
 :: ending_perfect
-<<include "widget_status">>
+<<status>>
 <div class="narrate">所有人一起走进了石室。这是你见过的最奇怪的组合——一个前朝遗臣、一个锦衣卫暗探、一个老兵铁匠、一个落魄书生、一个情报贩子、一个杀手——和一个无名剑客。</div>
 <div class="narrate">你拿起天机卷，展开它。一千七百个名字像活了过来。
 你没有撕碎它，也没有交给任何人。你把它重新卷好，放回石台上。然后——将三块玉牌分别嵌入了隐藏机关里。</div>
-<<include "widget_divider">>
+<<divider>>
 <div class="narrate"><span class="success">「咔嗒。」</span>机关启动。石壁开始缓缓合拢。你跳出石室，其他人紧随其后。石门轰然关闭。从此以后——天机卷被封在了落雁峰深处。</div>
-<<include "widget_dialog" "沈孤雁" "十五年了。终于……可以安心了。">>
-<<include "widget_dialog" "柳如烟" "我会告诉朝廷——天机卷在争夺中被毁。">>
-<<include "widget_dialog" "白云生" "爷爷，您的遗愿——我完成了。">>
-<<include "widget_divider">>
+<<dialog "沈孤雁" "十五年了。终于……可以安心了。">>
+<<dialog "柳如烟" "我会告诉朝廷——天机卷在争夺中被毁。">>
+<<dialog "白云生" "爷爷，您的遗愿——我完成了。">>
+<<divider>>
 <div class="narrate">日出东方。没有人说话。但每个人都笑了。
 <span class="highlight">「江湖夜雨十年灯，一剑天涯万重山。天机已封人事了，各赴前程莫相忘。」</span></div>
-<<include "widget_ending" "天机封存·众人归途" "最好的结局不是完美无缺，而是每个人都找到了自己的路。">>
+<<ending "天机封存·众人归途" "最好的结局不是完美无缺，而是每个人都找到了自己的路。">>
 
 :: ending_lonely
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你独自一人来到落雁峰。没有盟友，没有后援。
 你杀了一个，伤了两个，自己也挨了三刀。但你还是打开了石门。</div>
 <div class="narrate">你拿起卷轴。没有人帮你分担这个重量。没有可以商量的人。
 <span class="danger">没有人陪伴的路上，每一个选择都格外沉重。</span></div>
-<<include "widget_ending" "独行者" "没有人陪伴的路上，每一个选择都格外沉重。">>
+<<ending "独行者" "没有人陪伴的路上，每一个选择都格外沉重。">>
 
 :: ending_tragedy
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你的选择激怒了黑无极。他没有说话。只是一刀。
 一刀——赵铁牛的铁锤碎裂。一刀——沈孤雁的弯刀折断。一刀——白云生倒在了血泊中。
 他的刀法快到你根本看不清。</div>
-<<include "widget_divider">>
-<<include "widget_dialog" "黑无极" "……我给过你机会。你选了最蠢的那条路。">>
+<<divider>>
+<<dialog "黑无极" "……我给过你机会。你选了最蠢的那条路。">>
 <div class="narrate">苍龙镇的那一夜，后来被称为——<span class="danger">「血雨夜」</span>。天机卷——从此再也没有人见过。</div>
-<<include "widget_ending" "血雨夜" "有些选择一旦做错，就没有回头路。">>
+<<ending "血雨夜" "有些选择一旦做错，就没有回头路。">>

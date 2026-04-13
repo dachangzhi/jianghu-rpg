@@ -1,11 +1,11 @@
 :: shen_personal_quest
 <<set $flags.shen_daughter_quest = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">沈孤雁把你叫到柜台后面。他的表情前所未有的凝重。</div>
-<<include "widget_dialog" "沈孤雁" "我有一件事需要你帮忙。我的女儿……她被朝廷掳走了。五年前，她才十三岁。他们把她带走了，作为要挟我的筹码。">>
-<<include "widget_divider">>
-<<include "widget_dialog" "沈孤雁" "这是她去年托人带出来的唯一一封信。她的字迹变了。以前活泼灵动，现在……规规矩矩，像是有人站在旁边监督她写的。">>
-<<include "widget_dialog" "沈孤雁" "你——能不能帮我？">>
+<<dialog "沈孤雁" "我有一件事需要你帮忙。我的女儿……她被朝廷掳走了。五年前，她才十三岁。他们把她带走了，作为要挟我的筹码。">>
+<<divider>>
+<<dialog "沈孤雁" "这是她去年托人带出来的唯一一封信。她的字迹变了。以前活泼灵动，现在……规规矩矩，像是有人站在旁边监督她写的。">>
+<<dialog "沈孤雁" "你——能不能帮我？">>
 
 <<link "「我帮你救女儿。」" "chapter2_hub">><<set $flags.promised_shen_daughter = true>><<set $rel_shen += 15>><<set $charm += 2>><<run $addItem('织造坊地图')>><</link>>
 <<link "「天机卷的事了结之后——我一定帮你。」" "chapter2_hub">><<set $flags.shen_daughter_later = true>><<set $rel_shen += 5>><</link>>
@@ -13,11 +13,11 @@
 
 :: liu_personal_quest
 <<set $flags.liu_father_quest = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">柳如烟在屋顶上等你。</div>
-<<include "widget_dialog" "柳如烟" "我父亲……在岭南一个叫青竹村的地方，化名周三，以打鱼为生。我已经三年没见过他了。">>
+<<dialog "柳如烟" "我父亲……在岭南一个叫青竹村的地方，化名周三，以打鱼为生。我已经三年没见过他了。">>
 <div class="narrate">她从袖中取出一块小小的玉佩——平安扣，上面刻着一个「周」字。</div>
-<<include "widget_dialog" "柳如烟" "这是我母亲的遗物。如果天机卷的事了结了……帮我把这块玉佩带给我父亲。告诉他——女儿不孝，但不能回来。">>
+<<dialog "柳如烟" "这是我母亲的遗物。如果天机卷的事了结了……帮我把这块玉佩带给我父亲。告诉他——女儿不孝，但不能回来。">>
 
 <<link "「我帮你送玉佩。不需要交换。」" "chapter2_hub">><<set $flags.promised_liu_father = true>><<set $rel_liu += 15>><<run $addItem('柳如烟的平安扣')>><<set $charm += 2>><</link>>
 <<link "「信息我也要，玉佩我也帮你送。」" "chapter2_hub">><<set $flags.promised_liu_father = true>><<set $rel_liu += 10>><<run $addItem('柳如烟的平安扣')>><<set $flags.knows_jinyi_deploy = true>><<set $wits += 2>><</link>>
@@ -25,36 +25,36 @@
 
 :: zhao_personal_quest
 <<set $flags.zhao_traitor_quest = true>>
-<<include "widget_status">>
-<<include "widget_dialog" "赵铁牛" "我需要你帮我找一个人。刘半仙，真名刘永年。他是我们小队的军师。三年前有一场伏击——我们的位置被人泄露了。我花了三年调查——<span class="danger">我们中间有叛徒</span>。很可能就是他。">>
+<<status>>
+<<dialog "赵铁牛" "我需要你帮我找一个人。刘半仙，真名刘永年。他是我们小队的军师。三年前有一场伏击——我们的位置被人泄露了。我花了三年调查——<span class="danger">我们中间有叛徒</span>。很可能就是他。">>
 
 <<link "「我帮你查。」" "chapter2_hub">><<set $flags.promised_zhao_traitor = true>><<set $rel_zhao += 12>><</link>>
 <<link "「你确定他是叛徒？」" "chapter2_hub">><</link>>
 
 :: hu_personal_quest
 <<set $flags.hu_mole_quest = true>><<set $rel_hu += 5>>
-<<include "widget_status">>
-<<include "widget_dialog" "胡青娘" "我的情报网被渗透了。渗透我的人，很可能是我最信任的线人——「青鸢」。她是我十年前救回来的孤儿，我教她一切，把她当亲妹妹。">>
-<<include "widget_dialog" "胡青娘" "帮我找到证据。如果是青鸢——我会亲手处理。如果不是——我欠她一个天大的道歉。">>
+<<status>>
+<<dialog "胡青娘" "我的情报网被渗透了。渗透我的人，很可能是我最信任的线人——「青鸢」。她是我十年前救回来的孤儿，我教她一切，把她当亲妹妹。">>
+<<dialog "胡青娘" "帮我找到证据。如果是青鸢——我会亲手处理。如果不是——我欠她一个天大的道歉。">>
 
 <<link "「我会找到真相的。」" "chapter2_hub">><<set $flags.promised_hu_mole = true>><<set $rel_hu += 10>><</link>>
 <<link "「如果真是青鸢呢？你下得了手吗？」" "chapter2_hub">><<set $flags.hu_resolute = true>><</link>>
 
 :: bai_personal_quest
 <<set $flags.bai_family_quest = true>><<set $rel_bai += 8>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">白云生从衣襟内侧取出一块旧丝帕：</div>
 <div class="narrate"><span class="highlight">「吾孙承渊：白家满门忠烈，不悔不怨。唯愿你替白家做最后一件事——找到天机卷，让天下人知道真相。」——白太傅 绝笔</span></div>
-<<include "widget_dialog" "白云生" "我爷爷在朝代更替那天自焚了。他的遗愿是让我找到天机卷——不是为了宝藏——是为了让天下人知道，前朝有那么多人，他们只是<span class="highlight">不想忘记自己是谁的人</span>。">>
+<<dialog "白云生" "我爷爷在朝代更替那天自焚了。他的遗愿是让我找到天机卷——不是为了宝藏——是为了让天下人知道，前朝有那么多人，他们只是<span class="highlight">不想忘记自己是谁的人</span>。">>
 
 <<link "「我帮你完成白太傅的遗愿。」" "chapter2_hub">><<set $flags.promised_bai_family = true>><<set $rel_bai += 12>><<set $charm += 1>><</link>>
 <<link "「天机卷不只是遗愿——它关乎上万人的命。」" "chapter2_hub">><</link>>
 
 :: hei_personal_quest
 <<set $flags.hei_revenge_conflict = true>><<set $rel_hei += 8>>
-<<include "widget_status">>
-<<include "widget_dialog" "黑无极" "二十年前，沈孤雁奉命清剿暗星阁。那一夜，他杀了我师父。我那年十五岁，亲眼看着。">>
-<<include "widget_dialog" "黑无极" "但是三年前，我查到了真相——清剿暗星阁的命令不是他下的。而且他在执行命令的时候，<span class="highlight">偷偷放走了七个孩子</span>。我是那七个之一。他放走了我。">>
+<<status>>
+<<dialog "黑无极" "二十年前，沈孤雁奉命清剿暗星阁。那一夜，他杀了我师父。我那年十五岁，亲眼看着。">>
+<<dialog "黑无极" "但是三年前，我查到了真相——清剿暗星阁的命令不是他下的。而且他在执行命令的时候，<span class="highlight">偷偷放走了七个孩子</span>。我是那七个之一。他放走了我。">>
 
 <<link "「所以你来找他——是为了报仇，还是为了道谢？」" "chapter2_hub">><<set $flags.hei_conflicted = true>><</link>>
 <<link "「放下仇恨吧。你有更重要的事。」" "chapter2_hub">><<set $flags.hei_let_go = true>><<set $rel_hei += 10>><<set $flags.hei_redemption = true>><<set $charm += 1>><</link>>

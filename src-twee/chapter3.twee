@@ -1,11 +1,11 @@
 :: mountain_approach
 <<set $chapter = 3>>
-<<include "widget_status">>
-<<include "widget_chapter_title" "第三章 · 落雁峰">>
+<<status>>
+<<chapter_title "第三章 · 落雁峰">>
 
 <div class="narrate">你趁着夜色，向落雁峰出发。半个时辰后，你来到了山腰的一处平台。
 面前是一面巨大的石壁，上面刻满了古老的符文。</div>
-<<include "widget_divider">>
+<<divider>>
 <div class="narrate">石壁中央有三个<span class="highlight">凹槽</span>——形状正好对应三块玉牌。</div>
 
 <<set _keys = $inventory.filter(function(i){return i.startsWith('玉牌')}).length>>
@@ -28,7 +28,7 @@
 <div class="narrate">和你同行的有：<<print _followers.join('、')>>。</div>
 <</if>>
 
-<<include "widget_divider">>
+<<divider>>
 <div class="narrate">你正准备上前，身后传来脚步声——不止一组。</div>
 
 <<link "立刻嵌入玉牌，打开石门" "open_door">><</link>>
@@ -38,7 +38,7 @@
 <<set _keys = $inventory.filter(function(i){return i.startsWith('玉牌')}).length>>
 <<if _keys >= 2>>
 <<set $flags.door_opened = true>>
-<<include "widget_status">>
+<<status>>
 <<if _keys === 3>>
 <div class="narrate">你将三块玉牌嵌入凹槽。<span class="success">完美契合！</span>石壁缓缓向两侧分开。</div>
 <<else>>
@@ -47,7 +47,7 @@
 <</if>>
 
 <div class="narrate">甬道深处传来一股古老的气息。</div>
-<<include "widget_divider">>
+<<divider>>
 <div class="narrate">身后的人到了——
 是<span class="danger">黑无极</span>和他的手下！
 ——还有<span class="danger">沈孤雁</span>，手持弯刀！
@@ -60,7 +60,7 @@
 
 <<else>>
 <<set $hp -= 15>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你嵌入了仅有的一块玉牌。石壁纹丝不动。你试着用力推——<span class="danger">石壁突然崩落一块巨石！</span>-15HP
 不行，必须找到更多玉牌。</div>
 <<link "返回镇上" "chapter2_hub">><</link>>
@@ -68,7 +68,7 @@
 
 :: mountain_hide
 <<set $flags.all_gathered = true>>
-<<include "widget_status">>
+<<status>>
 <div class="narrate">你闪身躲在一块巨石后面。
 
 月光下，几拨人先后到达——
@@ -82,8 +82,8 @@
 
 :: final_chamber
 <<set $chapter = 4>>
-<<include "widget_status">>
-<<include "widget_chapter_title" "终章 · 天机">>
+<<status>>
+<<chapter_title "终章 · 天机">>
 
 <div class="narrate">甬道尽头，是一个巨大的石室。
 石室正中央，一座石台上放着<span class="highlight">一卷泛黄的卷轴</span>——天机卷。</div>
@@ -94,7 +94,7 @@
 
 一千七百个名字。近万条人命。就在这薄薄的一卷纸上。</div>
 
-<<include "widget_divider">>
+<<divider>>
 
 <div class="narrate"><span class="highlight">沈孤雁</span>站在左侧，手握弯刀。
 <span class="highlight">柳如烟</span>站在右侧，剑尖微垂。
@@ -102,7 +102,7 @@
 <span class="highlight">白云生</span>靠在墙上。
 <span class="highlight">赵铁牛</span>握着铁锤，站在你身旁。</div>
 
-<<include "widget_divider">>
+<<divider>>
 <div class="narrate">所有人都在等你的决定。</div>
 
 <<link "拿起天机卷，当众销毁" "ending_destroy">><</link>>
