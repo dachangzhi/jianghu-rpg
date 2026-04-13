@@ -24,7 +24,7 @@ SCENES['shen_talk_town2'] = () => {
 SCENES['shen_talk_past2'] = () => {
   G.scene = 'inn_lobby';
   narrate(`他看向壁炉上方。`);
-  dialog('shen_guyan', '这客栈之前三任老板。第三任周大勇，北方汉子。五年后一个雨夜来了不速之客。第二天周大勇人间蒸发——无血迹尸体，只有翻倒桌子和墙上剑痕。');
+  dialog('shen_guyan', '这客栈之前有三任老板。第三任叫周大勇，北方汉子，接手客栈五年，一直太平。直到一个雨夜来了不速之客。第二天周大勇人间蒸发——无血迹无尸体，只有翻倒的桌子和墙上的剑痕。');
   setFlag('heard_zhou_story');
   changeRel('shen_guyan', 3);
   divider();
