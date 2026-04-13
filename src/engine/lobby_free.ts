@@ -30,16 +30,16 @@ SCENES['lobby_free'] = () => {
     if (talked.length >= 2) {
       choices.push({ text: '四处转转，探索客栈', id: 'c1_explore', next: SCENES['explore_inn'] });
       // NPC deep talks if already met
-      if (talked.includes('shen') && getRel('shen_guyan') >= 5) {
+      if (talked.includes('shen') && getRel('shen_guyan') >= 5 && !hasFlag('shen_deep_done')) {
         choices.push({ text: '再找沈老板聊聊', id: 'c1_shen_deep', next: SCENES['shen_deep_talk'] });
       }
-      if (talked.includes('liu') && getRel('liu_ruyin') >= -5) {
+      if (talked.includes('liu') && getRel('liu_ruyin') >= -5 && !hasFlag('liu_deep_done')) {
         choices.push({ text: '再找柳如烟聊聊', id: 'c1_liu_deep', next: SCENES['liu_deep_talk'] });
       }
-      if (talked.includes('zhao') && getRel('zhao_tieniu') >= 5) {
+      if (talked.includes('zhao') && getRel('zhao_tieniu') >= 5 && !hasFlag('zhao_deep_done')) {
         choices.push({ text: '再找赵铁牛聊聊', id: 'c1_zhao_deep', next: SCENES['zhao_deep_talk'] });
       }
-      if (talked.includes('bai') && hasFlag('bai_awake')) {
+      if (talked.includes('bai') && hasFlag('bai_awake') && !hasFlag('bai_deep_done')) {
         choices.push({ text: '再找白云生聊聊', id: 'c1_bai_deep', next: SCENES['bai_deep_talk'] });
       }
     }

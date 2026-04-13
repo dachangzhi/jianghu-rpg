@@ -1,6 +1,7 @@
 /// <reference path="../types.ts" />
 // story_part20.js - NPC深度对话第一轮
 SCENES['shen_deep_talk'] = () => {
+  setFlag('shen_deep_done');
   G.scene = 'inn_lobby';
   narrate(`你走向柜台。沈孤雁放下账簿。`);
   dialog('shen_guyan', '客官想聊什么？');
@@ -48,6 +49,7 @@ SCENES['shen_talk_swords2'] = () => {
   showChoices([{ text: '继续', id: 'shen_deep_talk', next: SCENES['shen_deep_talk'] }]);
 };
 SCENES['liu_deep_talk'] = () => {
+  setFlag('liu_deep_done');
   G.scene = 'inn_lobby';
   const rel = getRel('liu_ruyin') || 0;
   if (rel < 0) {
@@ -122,6 +124,7 @@ SCENES['liu_talk_real2'] = () => {
   showChoices([{ text: '继续', id: 'liu_deep_talk', next: SCENES['liu_deep_talk'] }]);
 };
 SCENES['zhao_deep_talk'] = () => {
+  setFlag('zhao_deep_done');
   G.scene = 'inn_lobby';
   narrate(`赵铁牛咧嘴笑。`);
   dialog('zhao_tieniu', '嘿兄弟！坐！赵铁牛请客！');
@@ -161,6 +164,7 @@ SCENES['zhao_talk_inn2'] = () => {
   showChoices([{ text: '继续', id: 'zhao_deep_talk', next: SCENES['zhao_deep_talk'] }]);
 };
 SCENES['bai_deep_talk'] = () => {
+  setFlag('bai_deep_done');
   G.scene = 'inn_lobby';
   narrate(`白云生不再装醉坐姿端正。`);
   dialog('bai_yunsheng', '聊什么？');

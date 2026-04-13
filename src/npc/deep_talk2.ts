@@ -1,6 +1,7 @@
 /// <reference path="../types.ts" />
 // story_part21.js - NPC深度对话第二轮+特殊触发
 SCENES['shen_secret_basement'] = () => {
+  setFlag('shen_basement_done');
   G.scene = 'inn_lobby';
   narrate(`深夜沈孤雁确认无人，拿出暗绿色旧钥匙。`);
   dialog('shen_guyan', '你是我十五年来最信任的人。这客栈下面有间密室。');
@@ -15,6 +16,7 @@ SCENES['shen_secret_basement'] = () => {
   showChoices([{ text: '继续', id: 'lobby_free', next: SCENES['lobby_free'] }]);
 };
 SCENES['liu_true_reason'] = () => {
+  setFlag('liu_truth_done');
   G.scene = 'inn_lobby';
   narrate(`柳如烟看着窗外。月光洒在她脸上，她的表情第一次完全卸下了防备。`);
   dialog('liu_ruyin', '我来苍龙镇真正的原因……是因为天机卷上有我父亲的名字。他是锦衣卫前指挥使，三年前被暗星阁陷害，以谋反罪被处死。我知道他是清白的。天机卷里有他被害的真相。我来这里不是为了任务——是为了复仇。');
@@ -26,6 +28,7 @@ SCENES['liu_true_reason'] = () => {
   showChoices([{ text: '继续', id: 'lobby_free', next: SCENES['lobby_free'] }]);
 };
 SCENES['zhao_river_secret'] = () => {
+  setFlag('zhao_river_done');
   G.scene = 'outside';
   narrate(`赵铁牛带你到镇外的河边。月光下河水泛着银光。他在一棵老柳树旁蹲下，拨开杂草——露出一个被石板盖住的地洞。`);
   dialog('zhao_tieniu', '我到苍龙镇第一天就发现了这个。不敢告诉别人。你看看。');
@@ -37,6 +40,7 @@ SCENES['zhao_river_secret'] = () => {
   showChoices([{ text: '回去', id: 'lobby_free', next: SCENES['lobby_free'] }]);
 };
 SCENES['bai_investigation'] = () => {
+  setFlag('bai_invest_done');
   G.scene = 'inn_lobby';
   narrate(`白云生从怀里掏出一本薄册子——封面写着"暗星阁·苍龙分部调查记录"。`);
   dialog('bai_yunsheng', '这是我三年来收集的所有情报。暗星阁在苍龙镇设了一个秘密据点——就在这间客栈的地下。沈孤雁不是普通的客栈老板。他曾经是暗星阁的高级成员，后来叛逃了。天机卷就在他手里。');
@@ -48,6 +52,7 @@ SCENES['bai_investigation'] = () => {
   showChoices([{ text: '继续', id: 'lobby_free', next: SCENES['lobby_free'] }]);
 };
 SCENES['npc_interaction_shen_liu'] = () => {
+  setFlag('shen_liu_interact_done');
   G.scene = 'inn_lobby';
   narrate(`你注意到一个有趣的场景——沈孤雁和柳如烟在大堂角落低声交谈。两人的距离很近，但姿态都很克制。沈孤雁的手放在柜台上，手指微微弯曲——随时可以拿到下面的东西。柳如烟的右手始终靠近折扇。两个人在暗中较量，表面上却在说天气。`);
   dialog('shen_guyan', '柳姑娘今天气色不错。这雨停了之后，山上的路应该好走了吧？');
@@ -59,6 +64,7 @@ SCENES['npc_interaction_shen_liu'] = () => {
   showChoices([{ text: '继续', id: 'lobby_free', next: SCENES['lobby_free'] }]);
 };
 SCENES['npc_interaction_zhao_bai'] = () => {
+  setFlag('zhao_bai_interact_done');
   G.scene = 'inn_lobby';
   narrate(`深夜，赵铁牛和白云生坐在壁炉旁。赵铁牛难得清醒——也许是因为酒喝完了。白云生也不再装醉。两个"假装"的人在一起，反而露出了真实的一面。`);
   dialog('zhao_tieniu', '白云生，你说你来赶考。你骗谁呢。你的手不是握笔的手。');
