@@ -1,6 +1,5 @@
 :: start
 <<set $chapter = 1>>
-<<status>>
 <<chapter_title "第一章 · 听雨客栈">>
 
 <div class="narrate">大雨倾盆，你策马来到苍龙镇。
@@ -23,7 +22,6 @@
 :: talk_shen
 <<if not $met_shen>><<set $rel_shen = 5>><<else>><<set $rel_shen += 3>><</if>>
 <<set $met_shen = true>>
-<<status>>
 <div class="narrate">你走到柜台前。中年男子微微一笑。</div>
 <<dialog "沈孤雁" "客官辛苦了。这大雨天赶路，想必是从远处来？我叫沈孤雁，这间客栈是我开的。上好的女儿红，要不要来一壶暖暖身子？">>
 
@@ -32,7 +30,6 @@
 <<link "注意他手上的老茧——那是常年握刀留下的" "shen_observeskill">><<set $flags.noticed_shen_skill = true>><<set $wits += 2>><</link>>
 
 :: shen_friendly
-<<status>>
 <div class="narrate">沈孤雁为你倒了一杯温热的酒。</div>
 <<dialog "沈孤雁" "哈哈，爽快人！我最喜欢爽快人。江湖人多故事多，这客栈里啊，什么人都有。你尽管住着，只要不惹事，一切都好说。">>
 <div class="narrate">他压低声音，眼神闪了一下。</div>
@@ -40,12 +37,11 @@
 <<divider>>
 <div class="narrate">他递给你一把铜钥匙。</div>
 <<dialog "沈孤雁" "天字三号房，上楼左转。有需要随时叫我。">>
-<<run $addItem('客栈钥匙')>>
+<<run setup.addItem('客栈钥匙')>>
 <<set $flags.shen_friendly = true>>
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: shen_probing
-<<status>>
 <div class="narrate">沈孤雁的笑容微微一滞，随即恢复如常。</div>
 <<dialog "沈孤雁" "异事？这小镇能有什么异事。不过是前两天来了几个外乡人，都在打听什么山上的东西。我一个开客栈的，哪里知道那么多。">>
 <div class="narrate">他顿了顿，目光在你的剑上停留了一瞬。</div>
@@ -55,7 +51,6 @@
 <<link "「也许吧。听说这镇子附近有什么稀罕？」" "shen_askmountain">><<set $flags.asked_about_mountain = true>><<set $rel_shen -= 3>><</link>>
 
 :: shen_observeskill
-<<status>>
 <div class="narrate">你不动声色地看了一眼他的手。<span class="highlight">虎口有厚茧，指节粗大——这是练刀之人的手。</span>
 而且，他倒酒时手腕的旋转，分明是一招<span class="highlight">「拨云手」</span>——武林中失传已久的擒拿手法。</div>
 <div class="narrate">此人绝不简单。他不是一个普通的客栈老板。</div>
@@ -64,36 +59,32 @@
 <<link "「沈老板……以前是练家子吧？」" "shen_confront">><<set $flags.confronted_shen = true>><<set $rel_shen -= 5>><<set $wits += 1>><</link>>
 
 :: shen_deny
-<<status>>
 <div class="narrate">沈孤雁笑了笑，递给你一把铜钥匙。</div>
 <<dialog "沈孤雁" "路过好啊，路过好。天字三号房，客官请便。">>
-<<run $addItem('客栈钥匙')>>
+<<run setup.addItem('客栈钥匙')>>
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: shen_askmountain
-<<status>>
 <div class="narrate">沈孤雁的脸色变了变，随即挤出一丝笑容。</div>
 <<dialog "沈孤雁" "稀罕？这镇子能有什么稀罕。不过是前两天来了几个外乡人，都在往山上跑。我一个开客栈的，哪里知道那么多。">>
 <div class="narrate">他放下抹布，语气变得生硬。</div>
 <<dialog "沈孤雁" "天字三号房。请吧。">>
-<<run $addItem('客栈钥匙')>>
+<<run setup.addItem('客栈钥匙')>>
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: shen_confront
-<<status>>
 <div class="narrate">沈孤雁的眼神瞬间变得<span class="danger">锐利</span>，但只是一闪而过。</div>
 <<dialog "沈孤雁" "……客官好眼力。不错，年轻时在江湖上混过几年。后来厌倦了，就开了这间客栈。往事不提也罢。">>
 <div class="narrate">他沉默了一会儿，似乎在权衡什么。</div>
 <<dialog "沈孤雁" "你是个细心的人。这种人在江湖上，要么活得最久，要么死得最快。">>
 <div class="narrate">他意味深长地看了你一眼，递过钥匙。</div>
-<<run $addItem('客栈钥匙')>>
+<<run setup.addItem('客栈钥匙')>>
 <<set $flags.shen_respects_you = true>>
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: talk_liu
 <<if not $met_liu>><<set $rel_liu = -3>><</if>>
 <<set $met_liu = true>>
-<<status>>
 <div class="narrate">你走到黑衣女子桌旁。她没有抬头，只是手指在剑鞘上轻敲了一下。</div>
 <<dialog "柳如烟" "……坐。别离我太近。">>
 <div class="narrate">你注意到她的剑——<span class="highlight">青锋冷月剑</span>，剑鞘上刻着一个微小的「锦衣」暗记。
@@ -104,14 +95,12 @@
 <<link "「锦衣卫的人，怎么会出现在这种小地方？」" "liu_expose">><<set $flags.exposed_liu = true>><<set $rel_liu -= 10>><</link>>
 
 :: liu_polite
-<<status>>
 <div class="narrate">她终于抬起眼，打量了你一下。</div>
 <<dialog "柳如烟" "……眼光不错。不过眼光好的人在江湖上往往死得早。你可以叫我柳如烟。其他的，你不需要知道。">>
 <div class="narrate">她重新低头饮酒，似乎不打算多说什么。但你能感觉到，她对你的敌意没那么强。</div>
 <<link "不再纠缠，去和其他人交谈" "chapter1_lobby">><</link>>
 
 :: liu_hide
-<<status>>
 <div class="narrate">你把目光从剑上移开，随意聊了几句天气和路况。</div>
 <<dialog "柳如烟" "……你不像一般的江湖混混。你看我的剑看了三次，但什么都没说。">>
 <div class="narrate">她嘴角微微上扬——这是你见她以来第一个接近笑容的表情。</div>
@@ -120,7 +109,6 @@
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: liu_expose
-<<status>>
 <div class="narrate">她的手瞬间握住剑柄，<span class="danger">杀气一闪而过</span>。</div>
 <<dialog "柳如烟" "……你的眼睛倒是挺尖。可惜，知道太多的人通常活不长。">>
 <div class="narrate">大堂里安静了一瞬。沈孤雁在柜台后微微皱眉。
@@ -131,7 +119,6 @@
 :: talk_zhao
 <<if not $met_zhao>><<set $rel_zhao = 8>><<else>><<set $rel_zhao += 3>><</if>>
 <<set $met_zhao = true>>
-<<status>>
 <div class="narrate">你坐到壁炉旁。壮汉抬头看了你一眼，咧嘴一笑。</div>
 <<dialog "赵铁牛" "嘿！又来一个淋成落汤鸡的！老赵我叫赵铁牛，镇上的铁匠。来来来，烤烤火！">>
 <div class="narrate">他把自己的酒推到你面前。</div>
@@ -142,7 +129,6 @@
 <<link "「赵大哥以前当过兵？」" "zhao_military">><<set $wits += 1>><</link>>
 
 :: zhao_drink
-<<status>>
 <div class="narrate">赵铁牛哈哈大笑，和你碰杯。烈酒入喉，暖意从胃里升起。</div>
 <<dialog "赵铁牛" "痛快！我就喜欢爽快人！告诉你，这镇子虽然小，但最近不太平。前两天有人在山里看见了不干净的东西，还有人说听到怪声。你小心着点。">>
 <div class="narrate">他凑近了一些，声音低了下来。</div>
@@ -151,7 +137,6 @@
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: zhao_military
-<<status>>
 <div class="narrate">赵铁牛的笑容僵了一瞬，随即叹了口气。</div>
 <<dialog "赵铁牛" "……你眼神不错。是的，以前在边军当过百夫长。打了十年仗，看够了死人。后来……不想再杀人了，就来这里打铁。一锤子下去，好歹打出来的是有用的东西，不是人命。">>
 <div class="narrate">他沉默了一会儿，然后用力拍了一下你的肩膀。</div>
@@ -161,7 +146,6 @@
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: observe
-<<status>>
 <div class="narrate">你找了个不引人注目的角落坐下，暗中观察。</div>
 
 <div class="narrate"><span class="highlight">柜台后的中年人</span>——倒酒的动作行云流水，但偶尔会看向窗外，似乎在等什么人。</div>
@@ -181,7 +165,6 @@
 :: talk_bai
 <<if not $met_bai>><<set $rel_bai = 0>><</if>>
 <<set $met_bai = true>>
-<<status>>
 <div class="narrate">你走到书生桌旁。他趴在桌上，酒坛倒了，酒水淌了一桌。
 但当你靠近时，他的手指微微动了一下。</div>
 
@@ -189,7 +172,6 @@
 <<link "在他耳边低声说：「别装了。」" "bai_callout">><<set $wits += 2>><<set $rel_bai += 5>><<set $flags.bai_respects = true>><</link>>
 
 :: bai_wake
-<<status>>
 <div class="narrate">书生慢慢抬起头，醉眼朦胧地看着你。</div>
 <<dialog "白云生" "嗯？……啊，又喝多了。敢问兄台尊姓大名？我……嗝……我叫白云生，一介落第秀才，不足挂齿……">>
 <div class="narrate">他打了个酒嗝，眼神浑浊。但你不经意间看到，他的瞳孔<span class="highlight">完全没有涣散</span>——他根本没醉。</div>
@@ -199,7 +181,6 @@
 <<link "既然他装醉，也不点破，告辞" "chapter1_lobby">><</link>>
 
 :: bai_callout
-<<status>>
 <div class="narrate">书生的身体僵了一瞬。然后，他<span class="highlight">慢慢坐直</span>，眼神变得清明锐利。
 醉态全消。</div>
 <<dialog "白云生" "……有意思。你是第一个看穿我的人。这镇上来来往往几十号人，都被我骗过去了。">>
@@ -214,7 +195,6 @@
 <<link "回房休息" "chapter1_lobby">><</link>>
 
 :: bai_why
-<<status>>
 <div class="narrate">白云生苦笑了一下。</div>
 <<dialog "白云生" "因为……我也不知道自己今晚会不会还站在你这一边。这镇上的局势，比你想的复杂得多。每个人都有自己的目的。">>
 <div class="narrate">他顿了顿。</div>
@@ -223,7 +203,6 @@
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: bai_drink
-<<status>>
 <div class="narrate">你坐下来，和他推杯换盏。白云生继续装醉，你也继续装不知道。
 酒过三巡，他忽然低声说了一句：</div>
 <<dialog "白云生" "……你身边那个铁匠，不简单。他铁锤里藏着一把刀。军中制式。">>
@@ -232,7 +211,6 @@
 <<link "继续在客栈里转转" "chapter1_lobby">><</link>>
 
 :: chapter1_lobby
-<<status>>
 <<loc "听雨客栈 · 大堂">>
 <div class="narrate">客栈大堂里烛光摇曳，你环顾四周。</div>
 

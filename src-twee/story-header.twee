@@ -289,11 +289,11 @@ body {
 <<set $met_lishen = false>>
 <<set $endingReached = "">>
 
-<<set $hasItem = function(item) { return $inventory.includes(item); }>>
-<<set $hasFlag = function(flag) { return $flags[flag] === true; }>>
-<<set $setFlag = function(flag) { $flags[flag] = true; }>>
-<<set $addItem = function(item) { if (!$inventory.includes(item)) { $inventory.push(item); } }>>
-<<set $removeItem = function(item) { $inventory = $inventory.filter(i => i !== item); }>>
-<<set $changeRel = function(npc, amt) { var key = 'rel_' + npc; $[key] = ($[key] || 0) + amt; }>>
-<<set $addHp = function(amt) { $hp = Math.min($maxHp, Math.max(0, $hp + amt)); }>>
-<<set $keyCount = function() { return $inventory.filter(i => i.startsWith('玉牌')).length; }>>
+<<run setup.hasItem = function(item) { return State.variables.inventory.includes(item); }>>
+<<run setup.hasFlag = function(flag) { return State.variables.flags[flag] === true; }>>
+<<run setup.setFlag = function(flag) { State.variables.flags[flag] = true; }>>
+<<run setup.addItem = function(item) { var inv = State.variables.inventory; if (!inv.includes(item)) { inv.push(item); } }>>
+<<run setup.removeItem = function(item) { State.variables.inventory = State.variables.inventory.filter(function(i) { return i !== item; }); }>>
+<<run setup.changeRel = function(npc, amt) { var key = 'rel_' + npc; State.variables[key] = (State.variables[key] || 0) + amt; }>>
+<<run setup.addHp = function(amt) { State.variables.hp = Math.min(State.variables.maxHp, Math.max(0, State.variables.hp + amt)); }>>
+<<run setup.keyCount = function() { return State.variables.inventory.filter(function(i) { return i.startsWith('玉牌'); }).length; }>>

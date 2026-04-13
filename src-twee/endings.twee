@@ -1,5 +1,4 @@
 :: ending_destroy
-<<status>>
 <div class="narrate">你拿起天机卷，撕成两半。
 
 <span class="danger">「住手！」</span>黑无极暴怒，拔刀冲向你！
@@ -30,7 +29,6 @@
 <<ending "烈火焚卷" "天机已焚，江湖依旧。你选择了让秘密随风消散。">>
 
 :: ending_shen
-<<status>>
 <div class="narrate">你拿起天机卷，走向沈孤雁。他的双手微微颤抖，接过卷轴。</div>
 <<dialog "沈孤雁" "……十五年了。我终于可以……保护他们了。">>
 <<dialog "沈孤雁" "从今天起，苍龙镇就是这些人的庇护所。任何人想找他们——先过我这关。">>
@@ -54,7 +52,6 @@
 <<ending "听雨守夜" "你将天机卷托付给了最值得信赖的人。苍龙镇成为新的庇护所。">>
 
 :: ending_liu
-<<status>>
 <div class="narrate">你拿起天机卷，递给柳如烟。她的手指触碰到卷轴的一瞬，身体僵住了。</div>
 <<dialog "柳如烟" "……你信任我？">>
 <<divider>>
@@ -72,7 +69,6 @@
 <<ending "无名剑姬" "天机化灰，旧人消逝。但一个新的传说正在开始。">>
 
 :: ending_hei
-<<status>>
 <div class="narrate">你拿起天机卷，走向黑无极。所有人的目光都钉在你身上。</div>
 <<dialog "沈孤雁" "你……！">>
 <<dialog "柳如烟" "……为什么？">>
@@ -90,7 +86,6 @@
 <<ending "旧怨了结" "你用信任弥合了二十年的裂痕。江湖恩怨，终有一了。">>
 
 :: ending_self
-<<status>>
 <div class="narrate">你拿起天机卷，收入怀中。所有人的表情都变了。</div>
 <<dialog "沈孤雁" "年轻人……你确定要这样做？">>
 <<dialog "柳如烟" "天机卷上的名字……你知道那意味着什么吗？">>
@@ -109,7 +104,6 @@
 <<ending "持卷者" "你选择了权力——和随之而来的一切代价。">>
 
 :: ending_mirror
-<<status>>
 <div class="narrate">你没有碰卷轴。你的目光被铜镜吸引——镜面上映出的不是你的脸。而是一行字：
 
 <span class="highlight">「天机不可泄，知者自当知。

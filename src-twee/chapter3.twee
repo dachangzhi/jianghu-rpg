@@ -1,6 +1,5 @@
 :: mountain_approach
 <<set $chapter = 3>>
-<<status>>
 <<chapter_title "第三章 · 落雁峰">>
 
 <div class="narrate">你趁着夜色，向落雁峰出发。半个时辰后，你来到了山腰的一处平台。
@@ -38,7 +37,6 @@
 <<set _keys = $inventory.filter(function(i){return i.startsWith('玉牌')}).length>>
 <<if _keys >= 2>>
 <<set $flags.door_opened = true>>
-<<status>>
 <<if _keys === 3>>
 <div class="narrate">你将三块玉牌嵌入凹槽。<span class="success">完美契合！</span>石壁缓缓向两侧分开。</div>
 <<else>>
@@ -60,7 +58,6 @@
 
 <<else>>
 <<set $hp -= 15>>
-<<status>>
 <div class="narrate">你嵌入了仅有的一块玉牌。石壁纹丝不动。你试着用力推——<span class="danger">石壁突然崩落一块巨石！</span>-15HP
 不行，必须找到更多玉牌。</div>
 <<link "返回镇上" "chapter2_hub">><</link>>
@@ -68,7 +65,6 @@
 
 :: mountain_hide
 <<set $flags.all_gathered = true>>
-<<status>>
 <div class="narrate">你闪身躲在一块巨石后面。
 
 月光下，几拨人先后到达——
@@ -82,7 +78,6 @@
 
 :: final_chamber
 <<set $chapter = 4>>
-<<status>>
 <<chapter_title "终章 · 天机">>
 
 <div class="narrate">甬道尽头，是一个巨大的石室。

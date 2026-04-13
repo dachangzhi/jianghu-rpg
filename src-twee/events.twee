@@ -1,6 +1,5 @@
 :: events_town
 :: sword_check_1
-<<status>>
 <div class="narrate">赵铁牛递给你一把木剑。"来——跟我过两招。"他举起木锤朝你肩膀横扫过来。</div>
 
 <<if $sword >= 10>>
@@ -14,7 +13,6 @@
 <<link "被砸中了" "chapter2_hub">><<set $hp -= 10>><</link>>
 
 :: wits_check_1
-<<status>>
 <div class="narrate">你仔细整理目前的所有线索，试图拼凑出完整的图景。</div>
 
 <<if $wits >= 13>>
@@ -28,7 +26,6 @@
 <<link "继续" "chapter2_hub">><</link>>
 
 :: night_street_east
-<<status>>
 <<loc "苍龙镇 · 东街">>
 <div class="narrate">你趁着夜色来到镇东。街上空无一人，只有远处传来几声犬吠。
 你经过一间紧闭的裁缝铺——这就是李裁缝的店。门上贴着一张白纸，写着「暂停营业」。</div>
@@ -51,7 +48,6 @@
 
 :: night_follow_tracks
 <<set $wits += 1>>
-<<status>>
 <div class="narrate">你沿着脚印走了约半里路。脚印在一处岔路口消失了——不，是分散了。一组往山上，一组往河边。
 你决定不继续深入——独自一人在夜色中追踪太危险了。</div>
 
@@ -59,7 +55,6 @@
 
 :: night_eavesdrop_1
 <<set $wits += 1>>
-<<status>>
 <div class="narrate">你悄悄靠近客栈一楼的后窗。里面传来低沉的对话：
 
 「……三块玉牌已经确认了位置。」「药铺那个女人嘴硬。」「没关系，黑无极大人有办法。」
