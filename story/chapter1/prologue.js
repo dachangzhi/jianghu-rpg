@@ -116,9 +116,9 @@ SCENES['prologue_drink_zhao'] = () => {
 SCENES['prologue_liu_intro'] = () => {
   G.scene = 'prologue_inn';
   narrate(`你走向窗边。暗红衣裙女人端凉茶。她脸精致冷冽眼睛深棕带金圈。桌上折扇有暗器机括。`);
-  dialog('liu_ruyan', '……有什么事？');
+  dialog('liu_ruyin', '……有什么事？');
   narrate(`三个字。没有寒暄。`);
-  changeRel('liu_ruyan', 2);
+  changeRel('liu_ruyin', 2);
   divider();
   showChoices([{ text: '去开房', id: 'prologue_shen_intro', next: SCENES['prologue_shen_intro'] }]);
 };

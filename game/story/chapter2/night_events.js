@@ -59,10 +59,10 @@ SCENES['night_knock_shen'] = () => {
 SCENES['night_knock_liu'] = () => {
   G.scene = 'bedroom';
   narrate(`深夜敲门。柳如烟站在门口，表情比平时更冷。`);
-  dialog('liu_ruyan', '……我能进来吗？我需要一个不在走廊里说的对话。');
+  dialog('liu_ruyin', '……我能进来吗？我需要一个不在走廊里说的对话。');
   narrate(`你让她进来。她环顾四周确认没有其他人，然后低声说：「暗星阁的人今晚进了镇。我看到三个黑影从北门进来。你的房间窗户朝南——如果你需要逃跑，从窗户翻出去，沿着屋檐走到东面的楼梯。记住这条路线。」她说完就离开了。`);
   setFlag('liu_escape_route');
-  changeRel('liu_ruyan', 5);
+  changeRel('liu_ruyin', 5);
   divider();
   showChoices([{ text: '睡觉', id: 'lobby_free', next: SCENES['lobby_free'] }]);
 };

@@ -48,15 +48,15 @@ SCENES['shen_talk_swords2'] = () => {
 };
 SCENES['liu_deep_talk'] = () => {
   G.scene = 'inn_lobby';
-  const rel = getRel('liu_ruyan') || 0;
+  const rel = getRel('liu_ruyin') || 0;
   if (rel < 0) {
     narrate(`她头没抬，微微侧身让你看到折扇位置。`);
-    dialog('liu_ruyan', '不想被打扰。找别人去。');
+    dialog('liu_ruyin', '不想被打扰。找别人去。');
     divider();
     showChoices([{ text: '离开', id: 'lobby_free', next: SCENES['lobby_free'] }]);
   } else if (rel >= 10) {
     narrate(`她看到你来，嘴角微扬。把椅子拉开——邀请。`);
-    dialog('liu_ruyan', '坐。新到碧螺春，尝尝？');
+    dialog('liu_ruyin', '坐。新到碧螺春，尝尝？');
     divider();
     showChoices([
       { text: '你在观察什么', id: 'liu_talk_observ2', next: SCENES['liu_talk_observ2'] },
@@ -66,7 +66,7 @@ SCENES['liu_deep_talk'] = () => {
     ]);
   } else {
     narrate(`她微微抬下巴。`);
-    dialog('liu_ruyan', '……什么事？');
+    dialog('liu_ruyin', '……什么事？');
     divider();
     showChoices([
       { text: '聊聊', id: 'liu_talk_chat2', next: SCENES['liu_talk_chat2'] },
@@ -78,34 +78,34 @@ SCENES['liu_deep_talk'] = () => {
 SCENES['liu_talk_chat2'] = () => {
   G.scene = 'inn_lobby';
   narrate(`沉默一会儿后她开口。`);
-  dialog('liu_ruyan', '你注意到了吗？这客栈每个人都在假装。沈老板假装普通，赵铁牛假装酒鬼，白云生假装喝醉。而我在假装不在乎。你呢？');
-  changeRel('liu_ruyan', 2);
+  dialog('liu_ruyin', '你注意到了吗？这客栈每个人都在假装。沈老板假装普通，赵铁牛假装酒鬼，白云生假装喝醉。而我在假装不在乎。你呢？');
+  changeRel('liu_ruyin', 2);
   divider();
   showChoices([{ text: '继续', id: 'liu_deep_talk', next: SCENES['liu_deep_talk'] }]);
 };
 SCENES['liu_talk_wait2'] = () => {
   G.scene = 'inn_lobby';
-  dialog('liu_ruyan', '不如说我在监视某些人。我的目标不在你身上。至少目前不是。');
+  dialog('liu_ruyin', '不如说我在监视某些人。我的目标不在你身上。至少目前不是。');
   setFlag('liu_watching');
-  changeRel('liu_ruyan', 2);
+  changeRel('liu_ruyin', 2);
   divider();
   showChoices([{ text: '继续', id: 'liu_deep_talk', next: SCENES['liu_deep_talk'] }]);
 };
 SCENES['liu_talk_observ2'] = () => {
   G.scene = 'inn_lobby';
-  dialog('liu_ruyan', '沈老板每晚子时消失一刻钟。小莲采药药量与时间不成比例。而你——进客栈三秒就评估了所有人威胁等级。');
+  dialog('liu_ruyin', '沈老板每晚子时消失一刻钟。小莲采药药量与时间不成比例。而你——进客栈三秒就评估了所有人威胁等级。');
   setFlag('liu_shen_night_disappear');
-  changeRel('liu_ruyan', 3);
+  changeRel('liu_ruyin', 3);
   G.wits += 1;
   divider();
   showChoices([{ text: '继续', id: 'liu_deep_talk', next: SCENES['liu_deep_talk'] }]);
 };
 SCENES['liu_talk_town2'] = () => {
   G.scene = 'inn_lobby';
-  dialog('liu_ruyan', '后山古松。镇西废祠堂。还有——沈老板客栈的地下室。');
+  dialog('liu_ruyin', '后山古松。镇西废祠堂。还有——沈老板客栈的地下室。');
   narrate(`地下室？她说深夜地板下传来微弱震动。`);
   setFlag('liu_told_basement');
-  changeRel('liu_ruyan', 3);
+  changeRel('liu_ruyin', 3);
   G.wits += 2;
   divider();
   showChoices([{ text: '继续', id: 'liu_deep_talk', next: SCENES['liu_deep_talk'] }]);
@@ -113,9 +113,9 @@ SCENES['liu_talk_town2'] = () => {
 SCENES['liu_talk_real2'] = () => {
   G.scene = 'inn_lobby';
   narrate(`她沉默很久。`);
-  dialog('liu_ruyan', '追人是幌子。我真正目的是保护一个人不受锦衣卫内部伤害。');
+  dialog('liu_ruyin', '追人是幌子。我真正目的是保护一个人不受锦衣卫内部伤害。');
   setFlag('liu_true_purpose');
-  changeRel('liu_ruyan', 8);
+  changeRel('liu_ruyin', 8);
   G.wits += 2;
   divider();
   showChoices([{ text: '继续', id: 'liu_deep_talk', next: SCENES['liu_deep_talk'] }]);
