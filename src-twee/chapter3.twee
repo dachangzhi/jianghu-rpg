@@ -1,0 +1,113 @@
+:: mountain_approach
+<<set $chapter = 3>>
+<<include "widget_status">>
+<<include "widget_chapter_title" "第三章 · 落雁峰">>
+
+<div class="narrate">你趁着夜色，向落雁峰出发。半个时辰后，你来到了山腰的一处平台。
+面前是一面巨大的石壁，上面刻满了古老的符文。</div>
+<<include "widget_divider">>
+<div class="narrate">石壁中央有三个<span class="highlight">凹槽</span>——形状正好对应三块玉牌。</div>
+
+<<set _keys = $inventory.filter(function(i){return i.startsWith('玉牌')}).length>>
+<div class="narrate">你有 <<print _keys>>/3 块玉牌。</div>
+
+<<if _keys === 3>>
+<div class="narrate"><span class="success">三块玉牌齐聚！你可以打开石门了。</span></div>
+<<elseif _keys === 2>>
+<div class="narrate">你差一块。也许可以尝试强行打开……但可能会损坏机关。</div>
+<<else>>
+<div class="narrate"><span class="danger">玉牌不够。强行打开可能会导致山洞崩塌。</span></div>
+<</if>>
+
+<<set _followers = []>>
+<<if $flags.liu_alliance>><<set _followers.push('柳如烟')>><</if>>
+<<if $flags.hei_alliance>><<set _followers.push('黑无极')>><</if>>
+<<if $flags.bai_following or $flags.bai_key>><<set _followers.push('白云生')>><</if>>
+<<if $rel_zhao > 15>><<set _followers.push('赵铁牛')>><</if>>
+<<if _followers.length > 0>>
+<div class="narrate">和你同行的有：<<print _followers.join('、')>>。</div>
+<</if>>
+
+<<include "widget_divider">>
+<div class="narrate">你正准备上前，身后传来脚步声——不止一组。</div>
+
+<<link "立刻嵌入玉牌，打开石门" "open_door">><</link>>
+<<link "先藏起来，看看是谁来了" "mountain_hide">><<set $wits += 1>><</link>>
+
+:: open_door
+<<set _keys = $inventory.filter(function(i){return i.startsWith('玉牌')}).length>>
+<<if _keys >= 2>>
+<<set $flags.door_opened = true>>
+<<include "widget_status">>
+<<if _keys === 3>>
+<div class="narrate">你将三块玉牌嵌入凹槽。<span class="success">完美契合！</span>石壁缓缓向两侧分开。</div>
+<<else>>
+<div class="narrate">你将两块玉牌嵌入，第三个凹槽空着。石壁震动了一下——<span class="danger">「咔嚓！」</span>一个凹槽裂开了！但石壁还是缓缓打开了。不够稳定。</div>
+<<set $flags.unstable_entrance = true>>
+<</if>>
+
+<div class="narrate">甬道深处传来一股古老的气息。</div>
+<<include "widget_divider">>
+<div class="narrate">身后的人到了——
+是<span class="danger">黑无极</span>和他的手下！
+——还有<span class="danger">沈孤雁</span>，手持弯刀！
+——以及<span class="highlight">柳如烟</span>，剑已出鞘！
+
+所有人都来了。天机卷就在石壁后面。而你，站在所有人之间。</div>
+
+<<link "第一个走进去" "final_chamber">><</link>>
+<<link "「大家都在，那就一起进去。不许动手。」" "final_chamber">><<set $charm += 2>><<set $flags.entered_together = true>><</link>>
+
+<<else>>
+<<set $hp -= 15>>
+<<include "widget_status">>
+<div class="narrate">你嵌入了仅有的一块玉牌。石壁纹丝不动。你试着用力推——<span class="danger">石壁突然崩落一块巨石！</span>-15HP
+不行，必须找到更多玉牌。</div>
+<<link "返回镇上" "chapter2_hub">><</link>>
+<</if>>
+
+:: mountain_hide
+<<set $flags.all_gathered = true>>
+<<include "widget_status">>
+<div class="narrate">你闪身躲在一块巨石后面。
+
+月光下，几拨人先后到达——
+<span class="danger">黑无极</span>带着三个蒙面人。
+<span class="highlight">沈孤雁</span>独自前来。
+<span class="highlight">柳如烟</span>无声无息地出现。
+还有……<span class="danger">赵铁牛</span>？</div>
+
+<<link "走出来，以玉牌为筹码谈判" "open_door">><<set $charm += 2>><</link>>
+<<link "趁他们争吵，偷偷嵌入玉牌打开石门" "open_door">><<set $wits += 2>><<set $flags.sneak_opened = true>><</link>>
+
+:: final_chamber
+<<set $chapter = 4>>
+<<include "widget_status">>
+<<include "widget_chapter_title" "终章 · 天机">>
+
+<div class="narrate">甬道尽头，是一个巨大的石室。
+石室正中央，一座石台上放着<span class="highlight">一卷泛黄的卷轴</span>——天机卷。</div>
+
+<div class="narrate">卷轴旁边，是一面铜镜。铜镜下方的石台上刻着一行字：
+
+<span class="highlight">「此卷存，千人生。此卷失，万人亡。三思。」</span>
+
+一千七百个名字。近万条人命。就在这薄薄的一卷纸上。</div>
+
+<<include "widget_divider">>
+
+<div class="narrate"><span class="highlight">沈孤雁</span>站在左侧，手握弯刀。
+<span class="highlight">柳如烟</span>站在右侧，剑尖微垂。
+<span class="danger">黑无极</span>挡在门口，虎视眈眈。
+<span class="highlight">白云生</span>靠在墙上。
+<span class="highlight">赵铁牛</span>握着铁锤，站在你身旁。</div>
+
+<<include "widget_divider">>
+<div class="narrate">所有人都在等你的决定。</div>
+
+<<link "拿起天机卷，当众销毁" "ending_destroy">><</link>>
+<<link "拿起天机卷，交给沈孤雁" "ending_shen">><</link>>
+<<link "拿起天机卷，交给柳如烟" "ending_liu">><</link>>
+<<link "拿起天机卷，交给黑无极" "ending_hei">><</link>>
+<<link "拿起天机卷，据为己有" "ending_self">><</link>>
+<<link "不碰卷轴——看向铜镜" "ending_mirror">><</link>>

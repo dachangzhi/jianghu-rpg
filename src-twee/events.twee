@@ -1,0 +1,69 @@
+:: events_town
+:: sword_check_1
+<<include "widget_status">>
+<div class="narrate">赵铁牛递给你一把木剑。"来——跟我过两招。"他举起木锤朝你肩膀横扫过来。</div>
+
+<<if $sword >= 10>>
+<<link "格挡！" "chapter2_hub">><<set $sword += 1>><</link>>
+<<else>>
+<div class="choice-disabled">需要剑术≥10</div>
+<</if>>
+<<if $sword >= 8>>
+<<link "闪避！" "chapter2_hub">><<set $wits += 1>><</link>>
+<</if>>
+<<link "被砸中了" "chapter2_hub">><<set $hp -= 10>><</link>>
+
+:: wits_check_1
+<<include "widget_status">>
+<div class="narrate">你仔细整理目前的所有线索，试图拼凑出完整的图景。</div>
+
+<<if $wits >= 13>>
+<div class="narrate"><span class="success">你的心机足够敏锐。</span>
+你发现了一些规律——所有死者都与「天机卷」有关。而且凶手似乎在按某种顺序行动，从外围向核心逼近。下一个目标，很可能是持有玉牌的人。</div>
+<<set $wits += 1>>
+<<else>>
+<div class="narrate">你感觉线索之间有某种联系，但目前还看不太清楚。需要更多信息。</div>
+<</if>>
+
+<<link "继续" "chapter2_hub">><</link>>
+
+:: night_street_east
+<<include "widget_status">>
+<<include "widget_loc" "苍龙镇 · 东街">>
+<div class="narrate">你趁着夜色来到镇东。街上空无一人，只有远处传来几声犬吠。
+你经过一间紧闭的裁缝铺——这就是李裁缝的店。门上贴着一张白纸，写着「暂停营业」。</div>
+
+<<if $wits >= 11>>
+<div class="narrate">你注意到门缝下面有一片<span class="highlight">干涸的血迹</span>——不是从外面弄上去的，是从里面流出来的。官方说是「落井」——但血迹在店里。</div>
+<<set $wits += 1>>
+<</if>>
+
+<<link "继续调查" "night_street_west">><</link>>
+<<link "返回客栈" "chapter2_hub">><</link>>
+
+:: night_street_west
+<<include "widget_loc" "苍龙镇 · 西街">>
+<div class="narrate">你来到镇西。铁匠铺的炉火已经熄灭了。
+你注意到铺子旁边的小巷里，有一串<span class="highlight">新鲜脚印</span>——不止一个人的。脚印方向——朝后山。</div>
+
+<<link "跟踪脚印" "night_follow_tracks">><</link>>
+<<link "返回客栈" "chapter2_hub">><</link>>
+
+:: night_follow_tracks
+<<set $wits += 1>>
+<<include "widget_status">>
+<div class="narrate">你沿着脚印走了约半里路。脚印在一处岔路口消失了——不，是分散了。一组往山上，一组往河边。
+你决定不继续深入——独自一人在夜色中追踪太危险了。</div>
+
+<<link "返回客栈" "chapter2_hub">><</link>>
+
+:: night_eavesdrop_1
+<<set $wits += 1>>
+<<include "widget_status">>
+<div class="narrate">你悄悄靠近客栈一楼的后窗。里面传来低沉的对话：
+
+「……三块玉牌已经确认了位置。」「药铺那个女人嘴硬。」「没关系，黑无极大人有办法。」
+
+然后是沉默。</div>
+
+<<link "继续" "chapter2_hub">><</link>>

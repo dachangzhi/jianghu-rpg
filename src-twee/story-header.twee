@@ -1,0 +1,299 @@
+:: StoryTitle
+江湖夜雨
+
+:: StoryData
+{
+	"ifid": "61F29899-5C57-4CB2-ABFA-626BEB1674B4",
+	"format": "SugarCube",
+	"format-version": "2.37.3",
+	"start": "start"
+}
+
+:: StoryStylesheet [stylesheet]
+/* ===== 江湖夜雨 - 古风主题 CSS ===== */
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
+
+:root {
+	--bg-dark: #1a1a2e;
+	--bg-medium: #16213e;
+	--bg-card: #1f2940;
+	--gold: #c9a050;
+	--gold-light: #e0c68a;
+	--gold-dim: #8a6d2b;
+	--text: #d4c5a0;
+	--text-dim: #8a7e60;
+	--danger: #c0392b;
+	--danger-light: #e74c3c;
+	--success: #27ae60;
+	--success-light: #2ecc71;
+	--highlight: #f0d878;
+}
+
+* {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	background: var(--bg-dark);
+	color: var(--text);
+	font-family: 'Noto Serif SC', 'Songti SC', 'SimSun', serif;
+	font-size: 16px;
+	line-height: 1.8;
+	min-height: 100dvh;
+	-webkit-text-size-adjust: 100%;
+}
+
+#story {
+	max-width: 480px;
+	margin: 0 auto;
+	padding: 16px;
+	min-height: 100dvh;
+	display: flex;
+	flex-direction: column;
+}
+
+#passages {
+	flex: 1;
+}
+
+.passage {
+	max-width: 100%;
+}
+
+/* Chapter titles */
+.chapter-title {
+	text-align: center;
+	color: var(--gold);
+	font-size: 1.4em;
+	font-weight: 700;
+	margin: 20px 0;
+	padding: 10px 0;
+	border-top: 1px solid var(--gold-dim);
+	border-bottom: 1px solid var(--gold-dim);
+	letter-spacing: 4px;
+}
+
+/* Narration text */
+.narrate {
+	margin: 12px 0;
+	text-indent: 0;
+	line-height: 1.9;
+}
+
+/* Highlight */
+.hl, .highlight {
+	color: var(--highlight);
+	font-weight: 700;
+}
+
+/* Danger text */
+.dg, .danger {
+	color: var(--danger-light);
+	font-weight: 700;
+}
+
+/* Success text */
+.ok, .success {
+	color: var(--success-light);
+	font-weight: 700;
+}
+
+/* NPC Dialog */
+.dialog {
+	margin: 10px 0;
+	padding: 8px 12px;
+	border-left: 3px solid var(--gold);
+	color: var(--gold-light);
+	font-style: normal;
+}
+
+.dialog .speaker {
+	color: var(--gold);
+	font-weight: 700;
+}
+
+/* Divider */
+.divider {
+	text-align: center;
+	color: var(--gold-dim);
+	margin: 16px 0;
+	letter-spacing: 8px;
+	user-select: none;
+}
+
+/* Location tag */
+.loc-tag {
+	text-align: center;
+	color: var(--text-dim);
+	font-size: 0.85em;
+	margin: 8px 0;
+	letter-spacing: 2px;
+}
+
+/* Choice links - style as buttons */
+#passages .link-internal,
+#passages a.link-internal {
+	display: block;
+	background: var(--bg-card);
+	color: var(--gold-light);
+	border: 1px solid var(--gold-dim);
+	padding: 10px 14px;
+	margin: 8px 0;
+	text-decoration: none;
+	text-align: center;
+	font-family: 'Noto Serif SC', serif;
+	font-size: 15px;
+	letter-spacing: 1px;
+	cursor: pointer;
+	transition: all 0.2s ease;
+	border-radius: 4px;
+}
+
+#passages .link-internal:hover,
+#passages a.link-internal:hover {
+	background: var(--gold-dim);
+	color: var(--bg-dark);
+	border-color: var(--gold);
+}
+
+/* Disabled choice (shown as dim text) */
+.choice-disabled {
+	display: block;
+	background: rgba(31, 41, 64, 0.5);
+	color: var(--text-dim);
+	border: 1px solid rgba(138, 109, 43, 0.3);
+	padding: 10px 14px;
+	margin: 8px 0;
+	text-align: center;
+	font-size: 15px;
+	letter-spacing: 1px;
+	border-radius: 4px;
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.choice-disabled .req-text {
+	font-size: 0.85em;
+	color: var(--danger);
+}
+
+/* Status bar */
+.status-bar {
+	position: sticky;
+	top: 0;
+	background: var(--bg-medium);
+	border-bottom: 1px solid var(--gold-dim);
+	padding: 6px 12px;
+	display: flex;
+	justify-content: space-between;
+	font-size: 0.85em;
+	color: var(--gold-dim);
+	z-index: 100;
+}
+
+.status-bar .stat {
+	color: var(--text);
+}
+
+/* Ending screen */
+.ending-screen {
+	text-align: center;
+	margin: 30px 0;
+	padding: 20px;
+	border: 2px solid var(--gold);
+	border-radius: 8px;
+	background: rgba(201, 160, 80, 0.1);
+}
+
+.ending-screen .ending-title {
+	color: var(--gold);
+	font-size: 1.5em;
+	font-weight: 700;
+	margin-bottom: 12px;
+	letter-spacing: 4px;
+}
+
+.ending-screen .ending-desc {
+	color: var(--text-dim);
+	font-style: italic;
+	margin-bottom: 16px;
+}
+
+/* Inventory display */
+.inventory {
+	margin: 8px 0;
+	padding: 6px 10px;
+	background: var(--bg-card);
+	border-radius: 4px;
+	font-size: 0.9em;
+	color: var(--gold-light);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+	width: 4px;
+}
+::-webkit-scrollbar-track {
+	background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+	background: var(--gold-dim);
+	border-radius: 2px;
+}
+
+/* UI bar - hide default */
+#ui-bar {
+	display: none;
+}
+
+/* Mobile optimization */
+@media (max-width: 480px) {
+	body {
+		font-size: 15px;
+	}
+	#story {
+		padding: 10px;
+	}
+}
+
+:: StoryInit [script]
+/* Initialize all game variables */
+<<set $sword = 10>>
+<<set $wits = 10>>
+<<set $charm = 10>>
+<<set $hp = 100>>
+<<set $maxHp = 100>>
+<<set $chapter = 1>>
+<<set $inventory = []>>
+<<set $flags = {}>>
+<<set $rel_shen = 0>>
+<<set $rel_liu = 0>>
+<<set $rel_zhao = 0>>
+<<set $rel_bai = 0>>
+<<set $rel_hu = 0>>
+<<set $rel_hei = 0>>
+<<set $rel_xiaolian = 0>>
+<<set $rel_oldsun = 0>>
+<<set $rel_lishen = 0>>
+<<set $met_shen = false>>
+<<set $met_liu = false>>
+<<set $met_zhao = false>>
+<<set $met_bai = false>>
+<<set $met_hu = false>>
+<<set $met_hei = false>>
+<<set $met_xiaolian = false>>
+<<set $met_oldsun = false>>
+<<set $met_lishen = false>>
+<<set $endingReached = "">>
+
+<<set $hasItem = function(item) { return $inventory.includes(item); }>>
+<<set $hasFlag = function(flag) { return $flags[flag] === true; }>>
+<<set $setFlag = function(flag) { $flags[flag] = true; }>>
+<<set $addItem = function(item) { if (!$inventory.includes(item)) { $inventory.push(item); } }>>
+<<set $removeItem = function(item) { $inventory = $inventory.filter(i => i !== item); }>>
+<<set $changeRel = function(npc, amt) { var key = 'rel_' + npc; $[key] = ($[key] || 0) + amt; }>>
+<<set $addHp = function(amt) { $hp = Math.min($maxHp, Math.max(0, $hp + amt)); }>>
+<<set $keyCount = function() { return $inventory.filter(i => i.startsWith('玉牌')).length; }>>

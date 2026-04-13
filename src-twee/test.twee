@@ -1,0 +1,37 @@
+:: StoryTitle
+江湖夜雨
+
+:: StoryData
+{"ifid":"61F29899-5C57-4CB2-ABFA-626BEB1674B4","start":"Start","format":"SugarCube","format-version":"2.37.3"}
+
+:: Start
+<<set $hp to 100>>
+<<set $maxHp to 100>>
+<<set $sword to 10>>
+<<set $wits to 10>>
+<<set $charm to 10>>
+<<set $chapter to 1>>
+<<set $inventory to []>>
+<<set $flags to {}>>
+<<set $relationships to {}>>
+
+<div id="title-screen">
+<h1>江 湖 夜 雨</h1>
+<p>一卷天机，半生恩怨</p>
+<<link "踏 入 江 湖" "chapter1_lobby">><</link>>
+</div>
+
+:: chapter1_lobby
+大雨倾盆，你策马来到苍龙镇。镇口只有一家客栈亮着灯——「听雨客栈」。
+你推门而入，温暖的烛光和饭菜香气扑面而来。
+客栈大堂里坐着几个人：
+<<link "走向柜台，和老板交谈" "talk_shen">><</link>>
+<<link "注意到黑衣女子的剑" "talk_liu">><</link>>
+<<link "坐到壁炉旁" "talk_zhao">><</link>>
+
+:: talk_shen
+沈孤雁笑容和蔼地看着你。
+@@color:#c9a050;【沈孤雁】「客官，一路辛苦了。要间上房？还是先吃点东西？」@@
+<<link "「来一壶好茶。」" "chapter1_lobby">>
+<<set $relationships = $relationships.merge({shen_guyan: 0})>>
+<</link>>
