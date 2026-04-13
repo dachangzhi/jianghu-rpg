@@ -1,0 +1,3356 @@
+:: night_rush_extended
+<div class="narrate">你拔剑冲出房间——走廊里的景象让你心头一紧。
+
+油灯已经被打翻了，走廊陷入半明半暗。墙壁上有几道新鲜的刀痕，深深嵌入木板。地上有血迹，一路延伸到楼梯口。
+
+空气中弥漫着铁锈味和某种辛辣的气味——像是被打破的药瓶。
+
+你的左边是胡青娘的房间，门被踹开了半扇。右边是楼梯，传来金属碰撞的声音。</div>
+<<divider>>
+<div class="narrate"><span class="danger">又一声惨叫。</span>这次是从楼下传来的。
+
+然后——寂静。
+
+一种比吵闹更可怕的寂静。像是有人突然被捂住了嘴。</div>
+<<link "先去胡青娘的房间" "rush_hu_room">><</link>>
+<<link "直接冲下楼梯" "rush_downstairs">><</link>>
+<<link "检查隔壁求饶的房间" "rush_dead_room">>
+<<set $flags.checked_dead_room = true>>
+<<set $wits += 1>>
+<</link>>
+
+
+:: rush_hu_room
+<div class="narrate">你冲进胡青娘的房间。
+
+房间一片狼藉——药柜被翻倒，药瓶碎了一地，空气中混合着十几种草药的味道，呛得人眼睛发酸。
+
+胡青娘不在房间里。
+
+但你在床底下发现了一样东西——一块<span class="highlight">碎布</span>，黑色的，质地精良，上面绣着一个极小的<span class="danger">倒悬七星</span>图案。
+
+<span class="danger">暗星阁。</span>
+
+他们在天黑之前就已经潜入了客栈。</div>
+<<set $flags.found_assassin_cloth = true>>
+<<set $wits += 1>>
+<div class="narrate">
+你注意到窗户是开着的——夜风卷着雨后的湿气灌进来，吹得残烛摇曳。
+窗台上有一个<span class="highlight">脚印</span>——有人从窗户翻了出去。
+
+脚印的方向——朝后院。</div>
+<<link "从窗户追出去" "night_window">><</link>>
+<<link "先下楼看看情况" "rush_downstairs">><</link>>
+
+
+:: rush_downstairs
+<div class="narrate">你快步下楼。
+
+大堂里——一片混乱。
+
+桌椅被推倒了，碗碟碎了一地。壁炉里的火还在烧，将跳跃的光影投射在每个人脸上。
+
+你看到了：
+
+沈孤雁站在柜台前，手中弯刀出鞘，刀身上有新鲜的血迹。他的脸色平静得可怕，但胸口在微微起伏——刚经历过一场激烈的战斗。
+
+赵铁牛站在壁炉旁，铁锤已经「打开」了——锤头脱落在脚边，手里握着那把藏在锤里的<span class="highlight">精钢短刀</span>。他的左臂在流血，但似乎浑然不觉。
+
+小莲躲在柜台后面，双手抱着膝盖，身体在发抖。但她的眼睛是干的——没有哭，只是怕。</div>
+<<divider>>
+<div class="narrate">大堂里还有两具<span class="danger">黑衣人的尸体</span>——都是被一刀毙命，手法干净利落。
+
+赵铁牛看到你，喊了一声：</div>
+<<dialog "赵铁牛" "你没事就好！外面至少还有四个——不，五个黑衣人。他们在找胡青娘。">>
+<div class="narrate">沈孤雁转过头来，目光锐利。</div>
+<<dialog "沈孤雁" "柳如烟不在大堂。白云生也不在。不知道是逃了还是……">>
+<<set $flags.saw_lobby_battle = true>>
+<<divider>>
+<div class="narrate">就在这时——后院传来一声<span class="danger">尖叫</span>。
+
+是女人的声音。但不是胡青娘——这个声音更年轻。
+
+<span class="danger">小莲。</span>
+
+不，小莲在你面前。
+
+那是——谁？</div>
+<<link "冲向后院" "night_window">><</link>>
+<<link "「沈老板，这到底是怎么回事？」" "rush_ask_shen">><</link>>
+<<link "先帮赵铁牛处理伤口" "rush_help_zhao">>
+<<set $rel_zhao += 5>>
+<<set $charm += 1>>
+<</link>>
+
+
+:: rush_dead_room
+<div class="narrate">你推开隔壁房间的门。
+
+月光从破窗照进来，照亮了一幅惨烈的画面——
+
+一个中年男子倒在血泊中。他穿着粗布衣裳，像是个普通旅客。但他的手——指甲被拔掉了两根，手臂上有 <span class="danger">烙铁的烫伤</span>。
+
+他在死前被<span class="danger">刑讯逼供</span>过。
+
+床头柜上放着一个布包，已经被翻了个底朝天。里面是些换洗衣物和几枚铜板——看起来没什么值钱的东西。
+
+但你在枕头下面发现了一张<span class="highlight">皱巴巴的纸条</span>：</div>
+<<divider>>
+<div class="narrate">纸条上写着几行字，墨迹未干：
+
+<span class="highlight">"三块玉牌，三把钥匙。
+药铺有一块，老板有一块，书生有一块。
+落雁峰山洞，子时开。
+——记住，别告诉任何人。"</span>
+
+这个死者……他也是来找天机卷的。
+
+而且他已经知道了三块玉牌的位置。那么——杀他的人，是灭口？还是从他嘴里问出了同样的信息？</div>
+<<set $flags.found_dead_note = true>>
+<<set $flags.knows_three_keys = true>>
+<<run setup.addItem('死者的纸条')>>
+<<set $wits += 2>>
+<<link "下楼" "rush_downstairs">><</link>>
+<<link "从窗户翻到后院" "night_window">><</link>>
+
+
+:: rush_ask_shen
+<div class="narrate">
+沈孤雁看了你一眼，然后看了看门外。</div>
+<<dialog "沈孤雁" "现在不是解释的时候。但既然你问了——
+
+这些人来自暗星阁。他们的头目叫黑无极，是江湖上排名前十的杀手。他们要找的是一样东西——天机卷。
+
+天机卷上有一千七百个前朝遗臣的身份信息。如果落入他们手中——或者朝廷手中——那些人全部得死。">>
+<div class="narrate">他的声音平静，但你能听出压抑的愤怒。</div>
+<<dialog "沈孤雁" "我守护这份名单十五年了。今晚——不会是终点。
+
+你愿意帮我吗？">>
+<<set $flags.shen_explained_night = true>>
+<<set $rel_shen += 5>>
+<<link "「我帮你。」" "night_window">>
+<<set $flags.shen_night_alliance = true>>
+<<set $rel_shen += 8>>
+<</link>>
+<<link "「先救人。」" "night_window">><</link>>
+
+
+:: rush_help_zhao
+<div class="narrate">
+你快步走到赵铁牛身边，撕下一块衣角，帮他绑住伤口。
+
+赵铁牛看着你的动作，嘴角咧了一下——分不清是疼还是笑。</div>
+<<dialog "赵铁牛" "嘿……小伤，不碍事。打十年仗，比这重的伤多了去了。
+
+不过——谢了。不是每个人都会在这种时候先想到帮别人。">>
+<<divider>>
+<div class="narrate">你注意到他伤口的形状——不是刀伤，是<span class="highlight">掌伤</span>。能一掌打伤赵铁牛这种壮汉的人，内力深厚。
+
+黑无极……远比想象中更危险。</div>
+<<set $flags.noticed_hei_power = true>>
+<<run setup.addHp(-5)>>
+<<link "继续行动" "night_window">><</link>>
+
+
+:: confront_hei_extended
+<div class="narrate">黑无极站在走廊尽头。月光从他身后的窗户照进来，将他的剪影拉得很长。
+
+他终于摘下了面罩——露出一张瘦削的脸，颧骨高耸，眼窝深陷。脸上最显眼的是一道从左眉划到右颧骨的<span class="danger">十字伤疤</span>，让他的表情永远带着一种扭曲的笑意。
+
+但他的眼睛不笑。那双眼睛冷得像两口枯井。</div>
+<<divider>>
+<<dialog "黑无极" "你挡了我的路。">>
+<div class="narrate">他的声音很低，像是从胸腔深处挤出来的。</div>
+<<dialog "黑无极" "我不认识你。你也不认识我。你我之间没有恩怨。
+
+但——天机卷的事，与你无关。让开，我可以不杀你。
+
+这是我能给的最大善意。">>
+<<link "「你杀了无辜的人。仅凭这一点，我就不能让开。」" "hei_moral_response">>
+<<set $flags.hei_moral_stand = true>>
+<<set $rel_hei += 3>>
+<<set $charm += 1>>
+<</link>>
+<<link "「我不让开。但我也不想打。告诉我你的理由。」" "hei_reason_response">>
+<<set $wits += 1>>
+<</link>>
+<<link "「如果我让开——你保证不杀其他人？」" "deal_hei">><</link>>
+
+
+:: hei_moral_response
+<div class="narrate">
+黑无极沉默了片刻。你不确定那是嘲讽还是思考。
+
+然后他说了一句让你意想不到的话：</div>
+<<dialog "黑无极" "……无辜？你知道今晚死的那个人是做什么的吗？他是朝廷安插在苍龙镇的密探——专门搜集前朝遗臣情报的暗桩。三年来，他出卖了七个人的藏身之处。七个人，连带家眷，二十三条人命。
+
+你说他无辜？">>
+<div class="narrate">你怔住了。
+
+黑无极继续说，声音依然平静：</div>
+<<dialog "黑无极" "在江湖上，「无辜」这两个字，比你想象的奢侈得多。
+
+我不杀无辜——但我杀的人，从来都不是无辜的。">>
+<<set $flags.hei_justified_killing = true>>
+<<link "「就算他有罪，也轮不到你来审判。」" "hei_refuse">>
+<<set $rel_hei += -3>>
+<</link>>
+<<link "「……你说的有道理。但我不信任你。」" "confront_hei">>
+<<set $wits += 1>>
+<</link>>
+
+
+:: hei_reason_response
+<div class="narrate">
+黑无极审视了你一会儿。
+
+然后——出乎意料的——他收刀入鞘，靠在墙上，双手抱胸。</div>
+<<dialog "黑无极" "……你是今晚第一个不是上来就打的人。行，我给你一个理由。
+
+暗星阁——你听过吗？前朝的地下刺客组织。三年前被朝廷连根拔起，成员被追杀殆尽。
+
+我是最后一批活着的人之一。天机卷上有我们所有成员的真名。如果它落入朝廷手中——暗星阁仅存的七十多人，全都会死。">>
+<<divider>>
+<div class="narrate">他的声音没有波动，但你能感觉到每个字背后的重量。</div>
+<<dialog "黑无极" "七十多条人命。有人已经改行了——有做木匠的，有种地的，有教书的。他们以为自己安全了。
+
+但天机卷上写着他们的真名。只要这份名单还在——他们就永远不会安全。">>
+<div class="narrate">他看着你的眼睛，目光中第一次出现了某种接近恳求的东西——虽然只是一闪而过。</div>
+<<dialog "黑无极" "我不是来抢天机卷的。我是来——<span class="highlight">毁掉</span>它的。
+
+只要天机卷不存在了，所有人就都安全了。
+
+你愿意帮我吗？">>
+<<set $flags.knows_hei_true_goal = true>>
+<<set $rel_hei += 5>>
+<<link "「毁掉天机卷……这个想法不坏。」" "chapter2_hub">>
+<<set $flags.hei_destroy_alliance = true>>
+<<set $rel_hei += 10>>
+<</link>>
+<<link "「我需要考虑。」" "chapter2_hub">><</link>>
+<<link "「毁掉它不一定是最好的办法。」" "confront_hei">><</link>>
+
+
+:: find_liu_extended
+<div class="narrate">你在混乱中寻找柳如烟。
+
+你最终在客栈的屋顶上找到了她。
+
+她盘腿坐在屋脊上，青锋冷月剑横放膝头。月光洒在她身上，整个人像一尊冷玉雕像。
+
+下方的战斗、尖叫、厮杀——似乎都与她无关。但她的眼睛是睁着的，瞳孔中映着下面的火光和人影。</div>
+<<divider>>
+<div class="narrate">她没有回头，但显然感知到了你的存在。</div>
+<<dialog "柳如烟" "……你上来了。">>
+<div class="narrate">你翻上屋顶，在她旁边坐下。瓦片在身下微微倾斜，但很稳固。从这里可以看到整个苍龙镇——黑漆漆的屋顶、零星的灯火、远处山脉的轮廓。</div>
+<<dialog "柳如烟" "你问我为什么不下去帮忙？
+
+因为——我接到的命令是「旁观、等待、在天机卷出现时出手」。
+
+换句话说，我的任务是坐在这里，看着这些人死。然后在天机卷露出水面的时候——把它带回朝廷。">>
+<<divider>>
+<div class="narrate">她的声音平静得可怕。但你注意到她握剑的手指关节发白——她在用力。
+
+不是因为恐惧，而是因为<span class="highlight">愤怒</span>。
+
+对自己的愤怒。</div>
+<<dialog "柳如烟" "我知道你觉得我冷血。也许吧。但你想过没有——如果我下去帮忙，暴露了身份，朝廷会派更多的人来。到时候不只是暗星阁的杀手——是正规的军队。
+
+一个小镇上的暗杀，死几个人，可以掩盖。
+
+军队出动——<span class="danger">满门抄斩，鸡犬不留。</span>">>
+<<if $flags.liu_revealed_truth  or  $flags.overheard_liu_comm>>
+<div class="narrate">
+她转过头来看你，月光在她的虹膜中碎成银色的光点。</div>
+<<dialog "柳如烟" "你知道我父亲在名单上。如果天机卷被带回去——他也得死。
+
+所以你以为我不想毁掉它吗？我做梦都想。
+
+但我毁不掉。因为我一旦动了——锦衣卫会知道是我做的。到时候不只是一个苍龙镇的事——是整个情报网都会被连根拔起。">>
+<</if>>
+<<set $flags.liu_rooftop_confession = true>>
+<<set $rel_liu += 5>>
+<<link "「如果你不行动，更多人会死。」" "chapter2_hub">>
+<<set $wits += 1>>
+<</link>>
+<<link "「我理解你的处境。」" "chapter2_hub">>
+<<set $rel_liu += 5>>
+<<set $charm += 1>>
+<</link>>
+<<link "不再多说，跳下屋顶" "night_window">><</link>>
+
+
+:: hu_rescued_extended
+<div class="narrate">
+胡青娘靠着柜台，左臂上的血已经把半边袖子染红了。但你注意到——她的表情不是恐惧，而是<span class="highlight">愤怒</span>。
+
+一种冷静的、克制的愤怒。</div>
+<<dialog "胡青娘" "……你来得及时。再晚一刻钟，他们就能撬开我的嘴了。迷魂散加刑讯——再硬的嘴也扛不过一个时辰。">>
+<div class="narrate">她从柜台下面摸出一瓶药粉，熟练地洒在伤口上，然后用布条缠紧。动作利落得像做过无数次。</div>
+<<divider>>
+<div class="narrate">她站起身，走到药铺后墙，按下一个隐蔽的机关——墙壁无声地向两侧滑开，露出一个不大的<span class="highlight">密室</span>。
+
+密室里，一面墙上贴满了纸条、地图、和人物画像。每张纸条上都有日期、人名、和一段简短的描述。</div>
+<<dialog "胡青娘" "这是我十年情报工作的全部家当。每一个纸条代表一个人——他们的过去、现在、和可能面临的危险。
+
+你猜怎么着？最近三个月，有人在我的情报网里安插了眼线。有五条消息被泄露了——直接导致三个人暴露。">>
+<<divider>>
+<div class="narrate">她从密室里取出一块<span class="highlight">玉牌</span>——正是三把钥匙之一。
+然后她把密室的灯灭了，机关重新合上。</div>
+<<dialog "胡青娘" "钥匙给你。但你要帮我一件事——<span class="highlight">找出内鬼</span>。
+
+我的直觉告诉我，内鬼就在这个镇上。而且——很可能是今晚还在场的人之一。">>
+<<run setup.addItem('玉牌·药')>>
+<<set $flags.hu_key = true>>
+<<set $flags.hu_show_secret_room = true>>
+<<set $rel_hu += 8>>
+<<link "「我答应你。」" "chapter2_hub">>
+<<set $flags.promised_find_mole = true>>
+<<set $rel_hu += 5>>
+<</link>>
+<<link "「你有怀疑的对象吗？」" "hu_suspect">><</link>>
+
+
+:: hu_suspect
+<div class="narrate">
+胡青娘的表情变得凝重。她左右看了看，压低声音。</div>
+<<dialog "胡青娘" "我有三个怀疑对象。
+
+第一——<span class="highlight">白云生</span>。他来苍龙镇三年了，装醉度日，但你知道太多秘密的人最危险。而且——他怎么可能在落雁峰上找到玉牌？除非有人告诉他位置。
+
+第二——<span class="highlight">小莲</span>。她是秦素琴的徒弟。秦素琴是我的前辈，但她的徒弟为什么会出现在我的药铺附近？巧合吗？
+
+第三——">>
+<div class="narrate">她犹豫了一下。</div>
+<<dialog "胡青娘" "第三——<span class="danger">沈孤雁</span>。我知道他守护天机卷十五年了。但正因为他守了这么久——他最清楚每个人的弱点。
+
+如果他想出卖谁，根本不需要天机卷——他全都知道。">>
+<<set $flags.hu_three_suspects = true>>
+<<link "「你觉得三个人里谁最可疑？」" "chapter2_hub">><</link>>
+<<link "继续行动" "chapter2_hub">><</link>>
+
+
+:: bai_night_extended
+<div class="narrate">
+你在混乱中发现了白云生。
+
+他没有躲，也没有逃。他站在客栈二楼的走廊上，靠在栏杆边，手里拿着那块玉牌，在月光下翻转。
+
+他的表情——你第一次从他脸上看到了<span class="highlight">清醒</span>。不是装醉时的半梦半醒，也不是白天那种掩饰过的警觉。
+
+是一种<span class="highlight">决然</span>。像是终于做了一个等了很久的决定。</div>
+<<divider>>
+<<dialog "白云生" "你来了。我猜你是来找我要这块玉牌的。">>
+<div class="narrate">他举起玉牌，月光穿透了半透明的玉石，在他掌心投下一片青色的光斑。</div>
+<<dialog "白云生" "三年前我找到它的时候，以为它是通往荣华富贵的钥匙。后来才知道——它是通往地狱的钥匙。
+
+你知道天机卷里还藏着什么吗？不只是名字——还有<span class="highlight">前朝宝藏的藏匿地点</span>。价值连城的宝藏。足够买下半个中原。">>
+<<if $flags.knows_tianji_treasure>>
+<div class="narrate">
+你已经从白云生本人那里得知了这个秘密。看来他是想确认你是否值得信任——如果你知道了宝藏的存在还会选择保护名单上的人，那你就通过了他的考验。</div>
+<<set $flags.knows_tianji_treasure = true>>
+<</if>>
+<<divider>>
+<div class="narrate">他将玉牌收入怀中，看着楼下的混乱。</div>
+<<dialog "白云生" "我曾经想过——拿着天机卷去找宝藏，从此飞黄腾达。但每次想到那些在名单上的人——他们只是想活着，只是想安安静静地过日子——我就觉得……
+
+我的贪念，不值得用别人的命来换。">>
+<<link "「那就把玉牌给我。」" "chapter2_hub">>
+<<set $flags.bai_key = true>>
+<<set $rel_bai += 5>>
+<<run setup.addItem('玉牌·书')>>
+<</link>>
+<<link "「你先留着。我们还有更重要的事。」" "chapter2_hub">>
+<<set $rel_bai += 8>>
+<</link>>
+
+
+:: xiao_lian_night
+<div class="narrate">
+你在柜台后面找到了小莲。她蜷缩成一团，双手抱着膝盖，身体在发抖。
+
+但你走近时，她抬起头——眼睛是干的。没有泪水，只有一种……<span class="highlight">难以置信</span>。
+
+像是看到了什么不该看到的东西。</div>
+<<dialog "小莲" "他们……他们杀了人。就在我面前。那个住天字二号的客人——他们把他拖出来，问他「名单在哪里」。他不说，他们就……">>
+<div class="narrate">她的声音在发抖，但越说越稳。</div>
+<<dialog "小莲" "我师父教过我——遇到危险不能慌，要把看到的一切都记住。所以我记住了：三个黑衣人，领头的手臂上有刺青，是一个倒着的七星。他们的刀法很快——一刀一个，不拖泥带水。">>
+<<divider>>
+<div class="narrate">她从怀里掏出一样东西——一个小布包。</div>
+<<dialog "小莲" "沈老板让我把这个给你——如果你活着下来的话。他说这是「保命的东西」。">>
+<div class="narrate">你打开布包——里面是一颗<span class="highlight">丹药</span>，散发着淡淡的药香。
+
+还有一张纸条，上面是沈孤雁的字迹：
+
+<span class="highlight">"如果局势失控，吞下这颗丹药。它会让你在一个时辰内力量倍增，但之后会虚弱三天。——沈"</span></div>
+<<run setup.addItem('沈孤雁的丹药')>>
+<<set $flags.xiao_lian_gave_pill = true>>
+<<set $rel_xiao += 5>>
+<<link "「你躲好，别出来。」" "night_window">>
+<<set $flags.told_lian_hide = true>>
+<</link>>
+<<link "「跟我走，我保护你。」" "night_window">>
+<<set $flags.lian_follows = true>>
+<<set $rel_xiao += 8>>
+<<set $charm += 1>>
+<</link>>
+
+
+:: zhao_shen_night
+<div class="narrate">
+战斗的间隙，你看到赵铁牛和沈孤雁交换了一个眼神。
+
+那是只有并肩作战多年的人才会有的默契——不需要语言，一个眼神就够了。
+
+赵铁牛守住正门，沈孤雁守住后门。两把刀，一左一右，像两道铁闸。
+
+他们是老搭档。不是开客栈认识的那种老——是<span class="highlight">战场上活下来的那种老</span>。</div>
+<<divider>>
+<<dialog "赵铁牛" "老沈——十几年没打了，手还稳吧？">>
+<<dialog "沈孤雁" "比你稳。你的左手一直在抖。">>
+<<dialog "赵铁牛" "那是旧伤。不碍事。">>
+<<dialog "沈孤雁" "……当年守乌兰关，你也是这么说的。">>
+<div class="narrate">两人同时沉默了一瞬。那个名字——乌兰关——像一根刺，扎在空气里。</div>
+<<set $flags.zhao_shen_war_bond = true>>
+<<link "「你们一起打过仗？」" "night_window">><</link>>
+<<link "继续战斗" "night_window">><</link>>
+
+
+:: night_street_east
+<<loc "苍龙镇·东街">>
+<div class="narrate">你沿着东街慢慢走着。
+
+月光下的东街和白天完全不同。白天的喧嚣和热闹消失了——取而代之的是一种古老的寂静。石板路在月光下泛着青白色的光，像一条沉睡的河流。
+
+左边是赵铁牛的铁匠铺——炉火灭了，但你能感受到墙壁里残留的热度。铺子的门板上钉着一块木牌，上面歪歪扭扭地写着「赵记铁器」，字迹很丑——显然是赵铁牛自己刻的。
+
+右边是一排已经关门的店铺：布庄、油坊、粮店。每一家门口都挂着已经熄灭的灯笼，灯笼纸在夜风中轻轻摇曳。
+
+街角有一棵老槐树——树干粗到两个人才能合抱。树下面有一口石井，井盖半掩着。你凑近看了看——井水很深，月光在水面上映出一个银色的圆点。
+
+东街的尽头是一个丁字路口——往北通向镇外的山路，往南通向居民区。路口竖着一块石碑，上面刻着「苍龙镇」三个字。石碑的背面长满了青苔——如果你伸手拨开青苔，会看到下面还有一行小字：<span class="highlight">「大明洪武十七年立」</span>
+
+六百年的老镇。</div>
+<<divider>>
+<<set $flags.explored_east_street = true>>
+<<set $wits += 1>>
+<<link "继续探索" "night_town_hub">><</link>>
+<<link "去铁匠铺" "night_blacksmith_full">><</link>>
+
+
+:: night_street_west
+<<loc "苍龙镇·西街">>
+<div class="narrate">西街比东街更安静——也更阴森。
+
+月光在这里被两侧高耸的屋檐挡住了大半，只在石板路上投下窄窄的一条银线。
+
+左手边是胡青娘的药铺——铺子的门关得严严实实，但你能闻到一股淡淡的药香从门缝里飘出来。不是白天那种温和的草药味，而是一种更浓烈、更刺鼻的气味。
+
+右手边是一座废弃的老宅——门板已经烂了一半，院子里长满了杂草。但奇怪的是——废宅的门口放着一双鞋。一双干净的、整齐摆放的鞋。
+
+<span class="highlight">有人住在这里？还是有人经常来这里？</span>
+
+西街的尽头是一座小小的土地庙——庙不大，只有半人高，但打理得很干净。供桌上摆着三炷香——还在燃着，香灰还没有落完。
+
+<span class="danger">有人在深夜来这里上香。</span>
+
+你看了看香——不是普通的香。闻到了一股淡淡的药材味——和药铺里飘出来的味道一样。</div>
+<<divider>>
+<<set $flags.explored_west_street = true>>
+<<set $wits += 2>>
+<<link "去药铺" "night_pharmacy_full">><</link>>
+<<link "查看废宅" "night_abandoned_house">>
+<<set $flags.explored_abandoned_house = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "回去" "night_town_hub">><</link>>
+
+
+:: night_street_south
+<<loc "苍龙镇·南街">>
+<div class="narrate">南街是苍龙镇最热闹的地方——至少白天是这样。
+
+晚上，南街变成了另一副模样。李婶的茶馆半开着门——里面透出昏黄的灯光。茶馆旁边的戏台子空荡荡的，白天贴着的戏报在夜风中哗哗作响。
+
+一棵歪脖子柳树下有一个棋盘——石制的，固定在地上。棋盘上还有残局——黑子和白子交错，看起来是下到一半就停了。你看了看布局——白子只剩一口气了。
+
+棋盘旁边的石凳上放着一个茶杯——杯里还有半杯茶。茶已经凉了。
+
+继续往南走，是镇上的集市——白天摆满了摊位的地方。现在空荡荡的，只有几根竹竿还插在地上。
+
+集市的尽头是一座小桥——桥下是一条水渠，把苍龙河的水引到了镇上的稻田里。
+
+桥的另一边是居民区——一排排低矮的瓦房，大部分都已经熄灯了。只有几户人家的窗户里还亮着微弱的烛光。
+
+其中一户——门口挂着一盏红灯笼。灯笼上写着一个字：<span class="danger">「奠」</span>
+
+有人在守灵。</div>
+<<divider>>
+<<set $flags.explored_south_street = true>>
+<<set $wits += 2>>
+<<link "去茶馆" "night_teahouse_full">><</link>>
+<<link "去看看守灵的人家" "night_mourning_house">>
+<<set $flags.visited_mourning = true>>
+<<set $wits += 1>>
+<</link>>
+<<link "回去" "night_town_hub">><</link>>
+
+
+:: night_street_north
+<<loc "苍龙镇·北街">>
+<div class="narrate">北街通向河边。
+
+越往北走，空气越湿润——河水的气息越来越浓。街道两旁的房屋渐渐稀疏了，取而代之的是一片片竹林和柳树林。
+
+月光在竹林间投下斑驳的影子——风吹过时，影子像活的一样在地上游动。
+
+路边有一座小小的石桥——桥栏杆上长满了青苔。桥下是一条溪流——不是苍龙河，而是从山上流下来的泉水。
+
+过了石桥，视野豁然开朗——苍龙河就在眼前了。
+
+月光下的苍龙河像一条银色的缎带，从西向东缓缓流淌。河面上偶尔有鱼跳出水面——「啪」的一声，溅起一片水花。
+
+河边的柳树下——有一个人的轮廓。
+
+老孙头。他还在那里。
+
+<span class="danger">但是——他身边还有一个人。</span>
+
+老孙头的态度很恭敬——他在朝那个人低头。</div>
+<<divider>>
+<<set $flags.explored_north_street = true>>
+<<set $flags.spotted_sun_with_stranger = true>>
+<<set $wits += 3>>
+<<link "靠近偷听" "night_sun_stranger">>
+<<set $flags.overheard_sun_stranger = true>>
+<<set $wits += 3>>
+<</link>>
+<<link "躲在竹林里观察" "night_sun_hide">>
+<<set $wits += 2>>
+<</link>>
+<<link "回去" "night_town_hub">><</link>>
+
+
+:: night_abandoned_house
+<div class="narrate">你推开了废宅半掩的门。
+
+门轴发出一声刺耳的吱呀声。你走了进去。
+
+正房里不是废墟——而是一个被精心布置过的房间。地面被打扫得干干净净，墙上挂着几幅字画——笔法非常老练。
+
+房间正中摆着一张方桌——桌上放着一只铜香炉、一叠黄纸、一支毛笔、还有一瓶墨汁。
+
+<span class="highlight">这不是废宅——这是某人的秘密工作室。</span>
+
+黄纸上画着复杂的图案——机关术。还有一张苍龙镇的地下通道图。
+
+<span class="danger">苍龙镇地下有通道。</span>
+
+忽然听到门外传来脚步声——有人来了。
+
+你灭了火折子，躲到桌子下面。
+
+门被推开了——一双黑色布鞋走了进来。
+
+「出来吧。」一个女人的声音。冷静、沉着。
+
+<span class="highlight">是胡青娘。</span>
+
+「黄纸的顺序被调过了——第三张和第四张反了。」</div>
+<<divider>>
+<<set $flags.found_secret_workshop = true>>
+<<set $flags.found_tunnel_map = true>>
+<<set $wits += 5>>
+<<link "站出来" "night_hu_workshop">><</link>>
+<<link "继续躲着" "night_hu_workshop">>
+<<set $wits += 1>>
+<</link>>
+
+
+:: night_hu_workshop
+<div class="narrate">你从桌子下面钻了出来。
+
+胡青娘举着灯笼看着你——然后露出了一种「果然如此」的笑容。
+
+「新来的人——总是最好奇的。」
+
+「这个地方是你的？」
+
+「白天的药铺是我的明面，这个废宅是我的暗面。」
+
+她指了指桌上的黄纸：「我在研究石室的机关。落雁峰的石室——有三道门。每道门的机关都不同。我用了三年时间才破解了第一道门的开法。」
+
+<span class="danger">她知道天机卷。</span>
+
+「我和沈孤雁是同门。」她说，「你以为只有他知道天机卷的事？」
+
+她从怀里取出一样东西——一块碧绿色的玉牌。上面刻着一只展翅的大雁。
+
+「这是打开石室第二道门的钥匙。沈孤雁有第一块，我有第二块。第三块——在一个你意想不到的人手里。」</div>
+<<divider>>
+<<set $flags.hu_revealed_workshop = true>>
+<<set $flags.saw_hu_jade = true>>
+<<set $rel_hu += 5>>
+<<set $wits += 3>>
+<<link "「第三块在谁手里？」" "night_hu_third_jade">>
+<<set $wits += 2>>
+<</link>>
+<<link "「你为什么信任我？」" "night_hu_why_trust">>
+<<set $rel_hu += 3>>
+<<set $charm += 2>>
+<</link>>
+<<link "「机关图……你画了三年？」" "night_hu_mechanism">><</link>>
+
+
+:: night_hu_third_jade
+<div class="narrate">胡青娘微微一笑。
+
+「你觉得会是谁？」
+
+你想了想：「不是赵铁牛——他太直了。也不是柳如烟——她是外来者。小莲年纪太小。老孙头……不像。」
+
+「那你觉得是谁？」
+
+「白云生。」
+
+胡青娘的笑意更深了。
+
+「聪明。白云生手里确实有第三块玉牌。但他自己不知道——他以为那只是老师白太傅留给他的遗物。一块普通的玉佩。」
+
+「你怎么知道？」
+
+「三年前他刚来苍龙镇——喝醉了——玉佩从他怀里掉了出来。我看到了上面的雁纹。」
+
+「你为什么没有直接拿走？」
+
+「三块玉牌必须同时使用才能打开石室。而且——使用玉牌的人必须得到守护者的认可。强行拿走的玉牌是没有用的。」
+
+「所以——我们需要白云生自愿交出那块玉牌。而要让一个醉鬼自愿交出他老师的遗物——」她摇了摇头，「比破解机关还难。」</div>
+<<divider>>
+<<set $flags.know_bai_has_jade = true>>
+<<set $wits += 3>>
+<<link "「也许我可以说服他。」" "night_town_hub">>
+<<set $charm += 2>>
+<</link>>
+<<link "继续探索" "night_town_hub">><</link>>
+
+
+:: night_hu_why_trust
+<div class="narrate">胡青娘看着你，目光深邃。
+
+「信任？在苍龙镇——没有人会真正信任一个刚来一天的外来者。」
+
+「那你为什么告诉我这些？」
+
+「因为你今晚走进了这个房间。这说明两件事：你够大胆，也够细心。这两个品质同时出现在一个人身上——很少见。」
+
+「所以我决定赌一把。把你当朋友——或者当敌人——都是以后的事。但现在——苍龙镇需要一个站对边的人。」
+
+「你站在哪边？」
+
+「哪边是对的，我就站在哪边。」
+
+她沉默了几秒钟——然后第一次露出了真诚的笑容。
+
+「好答案。沈孤雁的眼光果然不差。」</div>
+<<divider>>
+<<set $rel_hu += 8>>
+<<link "告辞" "night_town_hub">><</link>>
+
+
+:: night_hu_mechanism
+<div class="narrate">胡青娘拿起一张黄纸——上面画着石室第一道门的机关图。
+
+「石室的第一道门——是机械锁。门后面有七根铁栓，每根铁栓对应一个齿轮。用声音控制——特定的声音频率会让齿轮转动。你需要在石台上敲出正确的节奏。」
+
+她掏出一张小纸条：「宫商角徵羽变宫变商——对应的音阶是1、2、3、5、6、7、1。」
+
+「这是天机阁历代守护者传下来的暗号。」
+
+「你为什么告诉我？」
+
+「因为我跟沈孤雁不一样。他等到确认了才行动。而我——喜欢先行动，再确认。」
+
+她把那张黄纸递给你。「拿去。也许用得上。」</div>
+<<divider>>
+<<set $flags.got_mechanism_info = true>>
+<<set $wits += 3>>
+<<link "收下黄纸" "night_town_hub">>
+<<set $flags.has_mechanism_map = true>>
+<</link>>
+<<link "「你不怕我拿去给暗星阁？」" "night_town_hub">>
+<<set $rel_hu += 3>>
+<</link>>
+
+
+:: night_blacksmith_full
+<<loc "赵记铁器铺">>
+<div class="narrate">你走到铁匠铺的后门——敲了三下。
+
+「谁？」赵铁牛的声音从里面传来——带着一种警觉。
+
+「是我。」
+
+门开了——赵铁牛看到是你，表情松弛了下来。
+
+「大半夜的——你怎么来了？」
+
+「睡不着。」
+
+他让你进去。后屋比想象的整洁——一张木床、一个柜子、一张桌子。墙上挂着几件兵器——做工粗糙，但古朴有力。
+
+桌上放着一盏油灯和一壶酒。
+
+「坐吧。睡不着的时候就喝酒——军中学的。」
+
+他给你倒了一碗酒。
+
+「你大半夜来找我——不只是睡不着吧？」</div>
+<<divider>>
+<<set $flags.visited_zhao_night = true>>
+<<set $rel_zhao += 3>>
+<<link "「赵大哥，你在北疆待了多少年？」" "zhao_military_story">><</link>>
+<<link "「我能看看你的地窖吗？」" "zhao_cellar">><</link>>
+<<link "「你对沈孤雁了解多少？」" "zhao_about_shen">><</link>>
+<<link "「没什么，就想找人说话。」" "zhao_night_chat">>
+<<set $rel_zhao += 5>>
+<<set $charm += 2>>
+<</link>>
+
+
+:: zhao_military_story
+<div class="narrate">赵铁牛靠在椅背上。
+
+「十二年。从十七岁到二十九岁。最好的年华全给了北疆。」
+
+他拿起桌上的一个旧铁盒——盒盖上刻着一个「赵」字。打开盒盖，里面放着：一枚铜质军牌、一块褪色的红布、一封发黄的信。
+
+「这是我的军牌。」他递给你看。铜牌上刻着：「北疆左营第三哨·赵铁牛·兵字号」。
+
+「这个红布——是我小队十二个人每人一条。谁活着回去，就把所有红布都带回去。」
+
+他的声音低了下去。
+
+「十二个人——只有我活着回来了。」
+
+他拿起那封信。
+
+「这是我娘写给我的最后一封信。她不识字——是求村里教书先生代写的。她说：<span class="highlight">「铁牛啊，家里一切都好，不用惦记。你在军中好好干，争取立个功回来。你爹的腰不好了，但他说不让你回来种地——种地没出息。」</span>」
+
+他把信放回盒子。
+
+「我没立功。我只是活着回来了。连一等地都没分到——因为我的腿。」他拍了拍自己的左腿，「撤退的时候被箭射穿了膝盖。军医说能保住命就不错了。」</div>
+<<divider>>
+<<set $flags.zhao_military_full = true>>
+<<set $wits += 2>>
+<<link "那十七个弟兄是怎么死的" "zhao_17_brothers">>
+<<set $flags.zhao_told_17 = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "你是怎么来苍龙镇的" "zhao_canglong_story">><</link>>
+<<link "沉默喝酒" "night_town_hub">>
+<<set $rel_zhao += 5>>
+<</link>>
+
+
+:: zhao_17_brothers
+<div class="narrate">赵铁牛拿出一张纸——上面写着十七个名字。他们不是战死的——是冻死的。军需官贪污了冬衣银子。他一直在找那个军需官讨公道。</div>
+<<divider>>
+<<set $flags.zhao_17_names = true>>
+<<set $rel_zhao += 8>>
+<<link "我帮你" "zhao_cellar_offer">>
+<<set $flags.promised_zhao_justice = true>>
+<<set $rel_zhao += 10>>
+<<set $charm += 3>>
+<</link>>
+<<link "军需官叫什么" "zhao_cellar_offer">>
+<<set $flags.asked_quartermaster_name = true>>
+<<set $wits += 3>>
+<</link>>
+
+
+:: zhao_canglong_story
+<div class="narrate">赵铁牛说：从北疆回来后遇到沈孤雁，就这样当了铁匠。但他从未忘记那十七个弟兄。</div>
+<<divider>>
+<<set $rel_zhao += 5>>
+<<link "告辞" "zhao_cellar_offer">><</link>>
+
+
+:: zhao_about_shen
+<div class="narrate">赵铁牛说：沈孤雁跟他喝了一百次酒从没醉过。每月十五都消失一整夜，回来衣服上有泥——只有落雁峰能弄一身泥。</div>
+<<divider>>
+<<set $flags.zhao_told_shen_disappears = true>>
+<<set $wits += 2>>
+<<link "继续" "night_town_hub">><</link>>
+
+
+:: zhao_night_chat
+<div class="narrate">赵铁牛说：如果有朝一日需要出力就说话。打铁的手——杀人也够用。你们碰碗痛饮。</div>
+<<divider>>
+<<set $rel_zhao += 8>>
+<<set $flags.zhao_loyalty_pledge = true>>
+<<link "告辞" "night_town_hub">><</link>>
+
+
+:: night_teahouse_full
+<<loc "李婶茶馆">>
+<div class="narrate">你推开茶馆半掩的门。李婶在柜台后面——目光锐利。她给你倒了杯老白茶。</div>
+<<divider>>
+<<set $flags.found_li_spy = true>>
+<<link "你是做什么的" "li_identity_reveal">><</link>>
+<<link "买情报" "li_intel_shop">><</link>>
+
+
+:: li_identity_reveal
+<div class="narrate">李婶说：二十年茶馆老板，听过了所有人的闲话。我是一个情报贩子。情报换情报。</div>
+<<divider>>
+<<set $flags.li_revealed = true>>
+<<link "买情报" "li_intel_shop">><</link>>
+
+
+:: li_intel_shop
+<div class="narrate">李婶拿出小本子。甲等五十两：沈孤雁身份、天机卷藏处、暗星阁动向。乙等二十两：柳如烟任务、白云生调查、胡青娘过往、赵铁牛军旅、老孙头来历。丙等五两：小莲母亲之死、地下通道、月圆异象。</div>
+<<divider>>
+<<link "买甲等" "li_intel_a">>
+<<set $flags.bought_a_intel = true>>
+<<set $wits += 5>>
+<</link>>
+<<link "买乙等" "li_intel_b">>
+<<set $flags.bought_b_intel = true>>
+<<set $wits += 3>>
+<</link>>
+<<link "买丙等" "li_intel_c">>
+<<set $flags.bought_c_intel = true>>
+<<set $wits += 1>>
+<</link>>
+<<link "没钱" "li_intel_trade">><</link>>
+
+
+:: li_intel_a
+<div class="narrate">沈孤雁真名不详，每月十五消失。暗星阁已有三人镇外徘徊三个月。</div>
+<<divider>>
+<<link "继续" "night_town_hub">><</link>>
+
+
+:: li_intel_b
+<div class="narrate">柳如烟来镇第一天就去落雁峰。白云生三年装醉但酒从不咽。胡青娘和沈孤雁明显认识。赵铁牛来镇第一天打了一架。老孙头带了个女人来又消失了。</div>
+<<divider>>
+<<link "继续" "night_town_hub">><</link>>
+
+
+:: li_intel_c
+<div class="narrate">小莲母亲溺亡但手腕有勒痕。苍龙镇地下有通道连通客栈药铺落雁峰。月圆之夜落雁峰有宝石般反光。</div>
+<<divider>>
+<<set $flags.know_xiaolian_mother_murder = true>>
+<<link "继续" "night_town_hub">><</link>>
+
+
+:: li_intel_trade
+<div class="narrate">李婶说：用情报换情报。告诉我你今天的观察——我给你免费情报。</div>
+<<divider>>
+<<link "告诉她" "li_trade_reward">>
+<<set $flags.traded_intel_with_li = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "拒绝" "night_town_hub">><</link>>
+
+
+:: li_trade_reward
+<div class="narrate">李婶给你一张苍龙镇地下通道图。入口在客栈后院锁着的小门后。通到落雁峰石室。</div>
+<<divider>>
+<<set $flags.got_tunnel_map_li = true>>
+<<set $wits += 5>>
+<<link "告辞" "night_town_hub">><</link>>
+
+
+:: night_sun_stranger
+<div class="narrate">你躲在河边大石头后偷听。陌生人说时间不多了，他们已到镇外。老孙头在守着什么。他们知道你来了。</div>
+<<divider>>
+<<set $flags.overheard_sun_secret = true>>
+<<set $wits += 3>>
+<<link "继续偷听" "night_sun_full">>
+<<set $flags.sun_full_overhear = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "撤退" "night_town_hub">><</link>>
+
+
+:: night_sun_full
+<div class="narrate">陌生人问玉牌还在不在。让老孙头守河边入口拦住接近落雁峰的人。然后朝落雁峰方向离去。</div>
+<<divider>>
+<<set $flags.sun_guarding_river = true>>
+<<set $wits += 5>>
+<<link "回去" "night_town_hub">><</link>>
+
+
+:: night_sun_hide
+<div class="narrate">你躲在竹林里。陌生人和老孙头交谈后离去。老孙头掏出玉看了看，又拿起没有鱼线的鱼竿。他不是在钓鱼——在守着什么。</div>
+<<divider>>
+<<set $flags.sun_river_guard = true>>
+<<set $wits += 2>>
+<<link "回去" "night_town_hub">><</link>>
+
+
+:: night_mourning_house
+<div class="narrate">守灵妇人说丈夫张永年是木匠，三天前心疾猝死。苍龙镇唯一的木匠。</div>
+<<divider>>
+<<set $flags.visited_mourning_house = true>>
+<<set $wits += 2>>
+<<link "了解详情" "night_mourning_detail">>
+<<set $flags.carpenter_death_suspicious = true>>
+<<set $wits += 3>>
+<</link>>
+<<link "告辞" "night_town_hub">><</link>>
+
+
+:: night_mourning_detail
+<div class="narrate">妇人说丈夫死前那天回来得晚——去修了客栈的桌子。但工具箱少了一把凿子。</div>
+<<divider>>
+<<set $flags.carpenter_mystery = true>>
+<<set $wits += 3>>
+<<link "告辞" "night_town_hub">><</link>>
+
+
+:: night_pharmacy_full
+<<loc "济世堂药铺">>
+<div class="narrate">药铺关着门但亮着灯。浓烈药香从门缝飘出。</div>
+<<divider>>
+<<link "前门敲门" "pharmacy_enter_door">><</link>>
+<<link "后院侧门" "pharmacy_enter_side">>
+<<set $flags.pharmacy_side_entry = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "屋顶天窗" "pharmacy_enter_roof">>
+<<set $flags.pharmacy_roof_spy = true>>
+<<set $wits += 3>>
+<</link>>
+
+
+:: pharmacy_enter_door
+<div class="narrate">你敲门。胡青娘让你进去。她在铜炉前忙碌——煮着深绿色液体。她说在炼解毒药，三天前有人中了断肠红。</div>
+<<divider>>
+<<set $flags.pharmacy_door_enter = true>>
+<<set $wits += 2>>
+<<link "中毒者是谁" "pharmacy_poison_victim">>
+<<set $flags.asked_poison_victim = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "看看药铺" "pharmacy_poison_victim">><</link>>
+
+
+:: pharmacy_enter_side
+<div class="narrate">你从侧门进入。走廊尽头——胡青娘面前是一整面墙的暗格，全是毒药。她转过身平静地说：看够了吗？</div>
+<<divider>>
+<<set $flags.pharmacy_poison_wall = true>>
+<<set $wits += 5>>
+<<link "继续" "pharmacy_poison_victim">><</link>>
+
+
+:: pharmacy_enter_roof
+<div class="narrate">你从天窗看到胡青娘在用断肠草炼药。柜台暗格里有碧绿玉牌。她说：下来吧，我听到屋顶有人了。</div>
+<<divider>>
+<<set $flags.pharmacy_roof_saw = true>>
+<<set $flags.saw_hu_jade = true>>
+<<set $wits += 3>>
+<<link "下去" "pharmacy_poison_victim">><</link>>
+<<link "离开" "night_town_hub">><</link>>
+
+
+:: pharmacy_poison_victim
+<div class="narrate">胡青娘说：三天前木匠张永年来找她——他在客栈桌腿暗格里发现了暗星阁的联络密码。当天晚上他就死于断肠红。</div>
+<<divider>>
+<<set $flags.know_carpenter_murder = true>>
+<<set $flags.know_desk_cipher = true>>
+<<set $wits += 5>>
+<<link "纸条还在吗" "pharmacy_cipher">>
+<<set $flags.asked_for_cipher = true>>
+<<set $wits += 3>>
+<</link>>
+<<link "谁下的毒" "pharmacy_poison_knowledge">><</link>>
+
+
+:: pharmacy_cipher
+<div class="narrate">纸条上写着：三七一五·落雁东麓·石门三叩·玉雁南飞。三七一五是明天。暗星阁已知道石室位置和开法——只缺玉牌。</div>
+<<divider>>
+<<set $flags.has_cipher_note = true>>
+<<set $wits += 5>>
+<<link "继续" "night_town_hub">><</link>>
+
+
+:: pharmacy_poison_knowledge
+<div class="narrate">胡青娘说她精通毒术但从未杀过人。毒和药只是一线之隔。</div>
+<<divider>>
+<<set $rel_hu += 3>>
+<<link "继续" "night_town_hub">><</link>>
+
+
+:: pharmacy_night_tour
+<div class="narrate">胡青娘带你看了药铺。药柜有三千多个抽屉。但她特别提醒不要碰后墙暗格。</div>
+<<divider>>
+<<link "继续" "pharmacy_poison_victim">><</link>>
+
+
+:: night_eavesdrop_1
+<div class="narrate">深夜。你被一阵轻微的声响惊醒——隔壁房间传来压低声音的对话。你屏住呼吸贴着墙壁听。</div>
+<<dialog "???" "……东西还在原来的位置吗？">>
+<<dialog "???" "在。他每天晚上都会检查。但今晚他出去了——也许是时候了。">>
+<div class="narrate">两个声音你都不认识。男声低沉沙哑，女声清脆但刻意压低。他们在说"东西"——什么东西？明天该留意隔壁住的是谁。</div>
+<<set $flags.eavesdrop_1 = true>>
+<<set $wits += 1>>
+<<divider>>
+<<link "继续听" "night_eavesdrop_2">><</link>>
+<<link "睡觉" "lobby_free">><</link>>
+
+
+:: night_eavesdrop_2
+<div class="narrate">隔壁的声音继续。</div>
+<<dialog "???" "暗星阁的人已经到了镇上。最多还有三天。">>
+<<dialog "???" "三天……够了。我来处理那个客栈老板。你来负责拿东西。">>
+<div class="narrate">暗星阁的人来了。他们对沈孤雁有行动计划。你必须决定——警告他，还是继续观察？</div>
+<<set $flags.eavesdrop_2 = true>>
+<<divider>>
+<<link "明天警告沈孤雁" "lobby_free">>
+<<set $flags.plan_warn_shen = true>>
+<</link>>
+<<link "先不声张" "lobby_free">><</link>>
+
+
+:: night_eavesdrop_3
+<div class="narrate">又是一个深夜。这次你听到的不是隔壁——而是楼下。大堂方向传来石板移动的声音，持续了大约十息，然后归于寂静。</div>
+<div class="narrate">你等了一会儿，然后听到轻微的脚步声从楼下上来。你从门缝往外看——走廊尽头，一个人影正沿着楼梯往上走。那人穿着深色衣服，手里提着一盏极小的油灯，光线只够照亮脚下的三级台阶。是沈孤雁。</div>
+<<set $flags.eavesdrop_shen_night = true>>
+<<set $wits += 1>>
+<<divider>>
+<<link "继续" "lobby_free">><</link>>
+
+
+:: night_eavesdrop_4
+<div class="narrate">这次你听到了后院方向的声响——铁铲挖土的声音。你透过窗户看出去，月光下有一个人影在后院的角落里弯腰挖掘。白云生。</div>
+<div class="narrate">他挖了大约一刻钟，然后从坑里取出了一个拳头大小的东西，用布包好揣进怀里。他回客栈时经过了你的窗户下方——你听到他嘴里嘟囔了一句：「找到了。」</div>
+<<set $flags.saw_bai_night_dig = true>>
+<<set $wits += 2>>
+<<divider>>
+<<link "继续" "lobby_free">><</link>>
+
+
+:: night_eavesdrop_5
+<div class="narrate">最后一次深夜偷听。这次不是人声——是音乐。极其微弱的、像是某种弦乐的声音。从客栈正下方的地板缝隙里传上来。</div>
+<div class="narrate">曲调很古旧，你不认识。但那旋律让你莫名地感到悲伤——像是一个人在黑暗中独自弹奏，弹给已经不在的人听。音乐持续了大约半柱香，然后突然停止了。</div>
+<<set $flags.heard_underground_music = true>>
+<<set $wits += 1>>
+<<divider>>
+<<link "继续" "lobby_free">><</link>>
+
+
+:: night_knock_shen
+<div class="narrate">深夜有人敲门。你打开门——是沈孤雁。他穿着一件灰色单衣，手里端着一碗姜汤。</div>
+<<dialog "沈孤雁" "睡不着？我猜你会醒。给你送碗姜汤。顺便跟你说件事——明天不要去后山。有人在那里布置了陷阱。">>
+<div class="narrate">他没等你回答就转身下楼了。你端着姜汤，闻到了一股淡淡的药味——不只是姜，还有什么别的。喝了一口，温暖从胃里散开。你很快就会睡着的。</div>
+<<set $rel_shen += 3>>
+<<divider>>
+<<link "睡觉" "lobby_free">><</link>>
+
+
+:: night_knock_liu
+<div class="narrate">深夜敲门。柳如烟站在门口，表情比平时更冷。</div>
+<<dialog "柳如烟" "……我能进来吗？我需要一个不在走廊里说的对话。">>
+<div class="narrate">你让她进来。她环顾四周确认没有其他人，然后低声说：「暗星阁的人今晚进了镇。我看到三个黑影从北门进来。你的房间窗户朝南——如果你需要逃跑，从窗户翻出去，沿着屋檐走到东面的楼梯。记住这条路线。」她说完就离开了。</div>
+<<set $flags.liu_escape_route = true>>
+<<set $rel_liu += 5>>
+<<divider>>
+<<link "睡觉" "lobby_free">><</link>>
+
+
+:: night_knock_zhao
+<div class="narrate">赵铁牛堵在门口——他太高大了，门框显得窄了。他手里拿着一只烤鸡腿。</div>
+<<dialog "赵铁牛" "兄弟！睡不着吧？赵铁牛也是。来，吃个鸡腿。我有个事想跟你说——我觉得这客栈不安全。我当过兵，对危险有直觉。今晚把门锁好，短刀放枕边。如果听到什么——别出来。等天亮。">>
+<div class="narrate">他说完把鸡腿塞给你就走了。你看着手里的鸡腿——温热的，刚烤的。这个人粗犷外表下有细腻的关心。</div>
+<<set $rel_zhao += 3>>
+<<divider>>
+<<link "睡觉" "lobby_free">><</link>>
+
+
+:: night_explore_hallway
+<div class="narrate">你悄悄打开房门。走廊一片漆黑，只有楼梯口透上来一点壁炉余烬的微光。地板在脚下轻微作响——但你已经记住了哪些木板会响，避开了它们。</div>
+<div class="narrate">走廊里弥漫着一种夜晚特有的气味——木头、旧毯子、以及淡淡的草药味从某个房间里飘出来。你经过赵铁牛的房间——鼾声如雷。白云生的房间——安静，门缝下没有光。柳如烟的房间——门缝下也没有光，但你注意到她的门没有上锁。</div>
+<div class="narrate">楼梯口旁边有一扇小门——你之前没注意过。门上挂着一把铁锁。你试着推了一下——锁很紧，但门缝处你感觉到了一丝气流。门的另一面不是墙壁——是一条通道。</div>
+<<set $flags.night_explored = true>>
+<<set $wits += 2>>
+<<divider>>
+<<link "回房" "lobby_free">><</link>>
+
+
+:: night_rooftop
+<div class="narrate">你从窗户翻出，沿着屋檐爬到了屋顶。瓦片在脚下凉凉的，被夜露打湿了。苍龙镇在脚下展开——夜色中像一幅水墨画。大部分灯火已灭，只有几处还亮着。</div>
+<div class="narrate">你注意到两个异常：镇西废弃祠堂的方向有一道极微弱的蓝光在闪烁——不像是灯火，更像某种荧光。药铺方向灯火通明——胡青娘的药铺在深夜还亮着，你看到她的身影在窗前移动，似乎在研磨什么。</div>
+<<set $flags.rooftop_observations = true>>
+<<set $wits += 2>>
+<<divider>>
+<<link "回去" "lobby_free">><</link>>
+
+
+:: night_hu_qingniang
+<div class="narrate">你来到药铺门前。门没锁——推开后一股浓烈的草药味扑面而来。胡青娘正背对着你，在药柜前忙碌。她穿着一身灰色布衣，头发挽成一个髻，动作麻利地用小秤称量药材。</div>
+<<dialog "胡青娘" "……你来了。我等你很久了。">>
+<div class="narrate">她转过身——她的脸让你微微吃惊。三十多岁，清秀但疲惫，眼底有深深的阴影。她看着你，嘴角浮现一丝苦笑。</div>
+<<dialog "胡青娘" "别惊讶。沈孤雁跟我说过会有人来。他说那个人会在深夜来找我。坐吧——我给你配一剂安神药。接下来的日子，你会需要它的。">>
+<<set $flags.met_hu_qingniang = true>>
+<<set $rel_hu += 5>>
+<<divider>>
+<<link "继续" "lobby_free">><</link>>
+
+
+:: combat_hei_encounter
+<div class="narrate">月光被乌云吞没的刹那，一道黑影从树梢落下。黑无极。
+
+他的刀横在身前，刀刃上映着你模糊的倒影。雨滴落在刀身上，沿着血槽滑落，像是刀在流血。
+
+「又见面了。」他的声音从面罩后面传出来，低沉而平静，「这一回，我不是来谈判的。」
+
+你握紧了剑柄。剑鞘上的雨水让手掌有些打滑——你调整了握姿，将剑柄微微下压，用拇指抵住护手。
+
+黑无极没有立刻出刀。他在等——等你先动。这是他惯用的试探方式：让对手先暴露意图。
+
+你听到了身后远处赵铁牛的喊声，但被雨声和风声吞没了。此刻只有你和黑无极。
+
+他的刀法——传闻融合了三家之长：天山派的快刀做底子，崆峒派的劈刀做杀招，还有一招不知来历的横斩，曾一刀切断过青城派长老的手腕。
+
+你深吸一口气。雨从领口灌进去，冰凉刺骨。</div>
+<<set $flags.combat_hei_started = true>>
+<<set $sword += 1>>
+<<divider>>
+<<link "主动出击——先发制人（剑术≥14）" "combat_hei_attack">>
+<<set $flags.hei_first_strike = true>>
+<</link>>
+<<link "摆出防御架势——等他先动" "combat_hei_defend">>
+<<set $flags.hei_wait_mode = true>>
+<<set $wits += 1>>
+<</link>>
+<<link "向客栈方向撤退" "combat_hei_retreat">><</link>>
+
+
+:: combat_hei_attack
+<div class="narrate">你踏出第一步——剑尖直指黑无极的咽喉。
+
+他微微侧身，你的剑擦着他的面罩划过，削下了半截黑布。面罩下露出一道从眉角延伸到下颌的旧伤疤——刀疤泛着银白色，在黑暗中像一条蜈蚣趴在他脸上。
+
+他冷哼一声。刀光骤起。
+
+第一刀从右侧横扫而来——你举剑格挡，金铁交鸣声刺入耳膜。力量沿着剑身传到你的手腕，震得虎口发麻。他的臂力比你预想的大得多——这不是技巧型刀法，是力量型杀招。
+
+第二刀紧跟其后，从下往上挑。你来不及收剑回防，只能用剑柄格挡。他的刀尖在你胸前划过——衣襟被割开，皮肤上留下一道浅浅的白痕。
+
+第三刀——他收刀回撤，留出了半步空当。
+
+是破绽？还是陷阱？
+
+你想起胡青娘说过的话：「黑无极最危险的不是他的杀招，而是他故意露出的破绽——等你上钩。」</div>
+<<run setup.addHp(-10)>>
+<<divider>>
+<<link "抓住空当——全力刺出（剑术≥16）" "combat_hei_exploit">>
+<<set $flags.hit_hei_shoulder = true>>
+<</link>>
+<<link "不上当——向左横移，绕到他侧面" "combat_hei_flank">>
+<<set $wits += 1>>
+<</link>>
+<<link "虚晃一剑，实为后退" "combat_hei_feint">><</link>>
+
+
+:: combat_hei_defend
+<div class="narrate">你双脚微微分开，重心下沉，剑斜举至右肩——这是标准的「闭门式」防御架势。不华丽，但稳固。
+
+黑无极看出了你的意图。他绕着你缓缓移动，像一头正在观察猎物的黑豹。脚步无声——他穿的是软底布靴，踩在湿泥上几乎没有声响。
+
+「聪明。」他说，「但聪明的剑客往往死得很慢。」
+
+他突然加速——刀从上方劈下。这一刀带着破风声，你举剑横挡。冲击力让你的膝盖微微弯曲——地上的泥浆被踩出了两个深坑。
+
+你没有退后半步。
+
+他收刀再劈。第二刀、第三刀、第四刀——连续四刀从不同角度落下，像是打铁一般，每一刀都比你上一次格挡的恢复时间更短。
+
+你的手臂开始酸痛。呼吸变得急促。
+
+但他也在消耗。你能看到他的刀路在变窄——他的肩膀肌肉已经不如第一刀时那么舒展了。
+
+他在用蛮力碾压你。等他力气用尽——就是你反击的时候。</div>
+<<run setup.addHp(-8)>>
+<<set $flags.defended_well = true>>
+<<divider>>
+<<link "等他力竭——全力反击！（剑术≥15）" "combat_hei_counter">>
+<<set $flags.counter_success = true>>
+<</link>>
+<<link "找机会喊话——试图动摇他的意志（心机≥12）" "combat_hei_talk">><</link>>
+<<link "向后翻滚拉开距离" "combat_hei_roll">><</link>>
+
+
+:: combat_hei_exploit
+<div class="narrate">你抓住了那个空当。
+
+剑尖刺出——笔直、精准、快速。像一条从草丛中弹出的毒蛇。
+
+黑无极的瞳孔微缩。他确实没料到你会这么果断。但他的反应同样快得惊人——在剑尖距离他肩膀只有三寸的时候，他的身体以一种不合常理的角度扭转，剑刃擦着他的锁骨划过，割开了衣裳和皮肉。
+
+血溅了出来——不多，但足以证明你伤到了他。
+
+黑无极低头看了看肩膀上的伤口，嘴角微微抽动。那不是痛苦的表情——是意外。
+
+「好久没有人伤到我了。」他用手背擦了擦伤口旁的血，「上一次——是十年前。一个用枪的老人。后来我杀了他。」
+
+他重新握紧了刀。但这一次——他的站姿变了。不再是试探性的半蹲，而是重心前倾的冲刺姿势。
+
+他要认真了。</div>
+<<set $rel_hei += 3>>
+<<divider>>
+<<link "迎上去——决一死战（剑术≥18）" "combat_hei_final">><</link>>
+<<link "趁机拉开距离——你已经伤了他，足够了" "combat_hei_retreat">>
+<<set $flags.injured_hei = true>>
+<</link>>
+
+
+:: combat_hei_flank
+<div class="narrate">你向左横移了两步——果然，黑无极的空当是个陷阱。他刀尖一转，正好切向你原来的位置。如果你刚才冲上去，现在已经中刀了。
+
+你绕到了他的侧面。这个角度他的刀很难够到——但他的反应也很快，脚步一转重新面对你。
+
+你们像两只斗鸡一样在雨中对峙、移动、试探。每一方都在寻找对方的死角。
+
+你的靴子踩进了一个浅水坑——脚下一滑。身体失去了平衡。
+
+黑无极不会放过这个机会。
+
+刀来了。
+
+你勉强举剑格挡——但重心不稳让你无法完全卸力。刀锋从你的左臂外侧划过，割开了一道三寸长的口子。
+
+疼痛像火烧一样蔓延开来。雨水浸入伤口，让灼烧感更加剧烈。
+
+你咬牙稳住身形，退了三步。
+
+左臂在流血。但还不算深——没有伤到筋骨。还能握剑。</div>
+<<run setup.addHp(-18)>>
+<<set $flags.injury_left_arm = true>>
+<<divider>>
+<<link "继续战斗！" "combat_hei_hurt_continue">><</link>>
+<<link "撤退——先处理伤口" "combat_hei_retreat">><</link>>
+
+
+:: combat_hei_feint
+<div class="narrate">你假装出剑——手腕一抖，剑尖画了个半圆。黑无极下意识举刀格挡，但你的剑在半途变向，收了回来。
+
+虚晃成功——他的重心被你的假动作带偏了半步。
+
+你趁机后撤了五步，拉开了安全距离。
+
+黑无极稳住身形，看着你，眼中闪过一丝意外。
+
+「不错的虚招。」他说，「但虚招只能用一次。」
+
+他没有追上来。他站在原地，刀横在胸前，像一座黑色的石像。雨从他的肩膀滑落，在脚边汇成了一小滩水洼。
+
+你们之间隔着五步的距离——足以让任何一方重新做出选择。</div>
+<<set $wits += 1>>
+<<divider>>
+<<link "「黑无极，我们不必打。坐下来谈。」" "combat_hei_negotiate">>
+<<set $charm += 1>>
+<</link>>
+<<link "趁他不动——转身就跑" "combat_hei_retreat">><</link>>
+<<link "再次出剑——这一次是真的" "combat_hei_attack">><</link>>
+
+
+:: combat_hei_counter
+<div class="narrate">黑无极的第七刀落下的瞬间——你看到了破绽。
+
+他的右肩微微下沉。这是体力不支的信号——连续七刀全力劈砍，即使是黑无极的体魄也开始透支了。
+
+你没有格挡。你向右侧跨了一步，让他的刀从你左肩旁擦过。刀风割断了你几缕头发。
+
+然后你出剑了。
+
+反击——不是直刺，而是横斩。你的剑从下往上划出一道弧线，目标是他的手腕。
+
+黑无极反应极快——他松开刀柄，让刀在空中转了一圈，然后用另一只手接住。但你的剑还是在他右手背上留下了一道血痕。
+
+他退了三步，看着手背上的伤口。血从指缝间渗出来，滴在地上的泥水里。
+
+「你——」他抬头看你，目光中第一次出现了认真审视的神色，「你不是普通的剑客。」</div>
+<<set $flags.counter_hit_hei = true>>
+<<set $rel_hei += 5>>
+<<divider>>
+<<link "「我只是想保护我想保护的人。」" "combat_hei_respect">>
+<<set $rel_hei += 3>>
+<<set $charm += 2>>
+<</link>>
+<<link "继续进攻——趁他受伤扩大优势" "combat_hei_followup">><</link>>
+
+
+:: combat_hei_talk
+<div class="narrate">你在格挡的间隙开口了。
+
+「黑无极——你真正想要的是什么？杀了我对你有什么好处？天机卷里的名字和你无关。」
+
+他的刀在空中停了一瞬。
+
+「你不懂。」他说。但他的声音没有之前那么坚定了。
+
+「我不懂？你为了三千两黄金去杀一个素未谋面的人——这是你的选择？还是暗星阁替你做的选择？」
+
+黑无极的刀垂下半寸。这半寸——就是犹豫。
+
+你看到了他眼底一闪而过的东西。不是杀意——是疲惫。
+
+「暗星阁已经不存在了。」他说，「但我还在。我需要知道——天机卷上有没有我师父的名字。仅此而已。」
+
+他的声音变了。不再是杀手的冷厉——而是一个徒弟的执念。
+
+原来如此。他不是来杀人的。他是来找人的。</div>
+<<set $flags.knows_hei_motive = true>>
+<<set $rel_hei += 5>>
+<<set $wits += 2>>
+<<divider>>
+<<link "「如果你放下刀——我帮你找。」" "combat_hei_alliance">>
+<<set $flags.hei_alliance_temp = true>>
+<<set $rel_hei += 8>>
+<</link>>
+<<link "「天机卷上的名字——我不能告诉你。」" "combat_hei_refuse_info">><</link>>
+
+
+:: combat_hei_roll
+<div class="narrate">你向后翻滚——泥水溅了满身，但拉开了三步的距离。黑无极没有追击——他似乎并不急于结束战斗。
+
+你站起身来，浑身是泥。左膝在翻滚时撞到了一块石头，隐隐作痛。
+
+黑无极站在原地，刀尖指地。雨越下越大了。
+
+「你跑不掉的。」他说，语气平淡得像在陈述天气，「这个镇子已经被包围了。暗星阁的人——还有其他人。你只有一个选择。」
+
+「什么选择？」
+
+「站到我这边。」</div>
+<<divider>>
+<<link "拒绝——宁死不屈" "combat_hei_refuse_info">>
+<<set $rel_hei += -3>>
+<</link>>
+<<link "假装答应——伺机脱身（心机≥14）" "combat_hei_fake_agree">>
+<<set $flags.fake_agreed_hei = true>>
+<<set $wits += 2>>
+<</link>>
+
+
+:: combat_hei_final
+<div class="narrate">你冲了上去。
+
+剑与刀在雨中交错——金铁交鸣声回荡在空旷的夜色中。你们贴得极近，近到你能看到他面罩下那双冰冷的眼睛里映着你的倒影。
+
+他的刀法变了——不再是试探性的快刀，而是带着杀意的连环斩。每一刀都瞄准你的要害：喉咙、心口、太阳穴。
+
+你格挡了第一刀、第二刀、第三刀——第四刀，你的剑在格挡时发出了不祥的声响。剑身上出现了一道裂纹。
+
+不能再硬接了。
+
+你改变了策略——不再格挡，而是闪避。身体像柳枝一样在刀光中穿梭，每一刀都差之毫厘地从你身侧划过。
+
+然后你找到了他的节奏。
+
+第七刀。他的刀举到最高点的一瞬间——右肋完全暴露。
+
+你出剑了。
+
+剑尖刺入了他的右肋下方。不深——只有两寸。但足以让他停顿。
+
+黑无极低头看着插在自己肋下的剑，缓缓抬起头。
+
+他的眼神变了——从冰冷变成了……尊敬？
+
+「好剑法。」他说。然后一掌拍在你的胸口。
+
+你飞了出去。后背撞在一棵松树上，疼得你几乎喘不上气。眼前一黑。
+
+等你重新看清楚的时候——黑无极已经走了。地上只有一滩血迹和一串渐渐远去的脚印。
+
+你赢了。但代价是胸口的剧痛和满身的泥。</div>
+<<run setup.addHp(-30)>>
+<<set $flags.defeated_hei_combat = true>>
+<<set $rel_hei += 10>>
+<<set $sword += 2>>
+<<divider>>
+<<link "挣扎着站起来，回客栈" "injury_chest_treatment">><</link>>
+<<link "倒在地上休息一会儿……" "injury_chest_treatment">><</link>>
+
+
+:: combat_hei_followup
+<div class="narrate">你没有给他喘息的机会。
+
+剑光如瀑——三连斩，一剑快过一剑。黑无极用受伤的右手勉强格挡了前两剑，第三剑刺中了他的左肩。
+
+他闷哼一声，退了五步。血从两个伤口——右手背和左肩——同时渗出来，将他的黑衣染得更黑。
+
+但他的眼神没有退缩。反而——笑了。
+
+「够了。」他收刀入鞘，「今天的胜负——到此为止。你比我预想的强。」
+
+他转身走入黑暗中。几步之后，他的身影就被雨幕吞没了。
+
+你赢了这场战斗。但你知道——这不会是最后一次。</div>
+<<run setup.addHp(-12)>>
+<<set $rel_hei += 8>>
+<<divider>>
+<<link "回客栈处理伤口" "injury_chest_treatment">><</link>>
+
+
+:: combat_hei_respect
+<div class="narrate">黑无极沉默了很久。
+
+雨打在他的刀刃上，发出细碎的声响。远处传来一声雷鸣——天边闪过一道白光，照亮了他满是伤疤的脸。
+
+「保护……」他重复了这两个字，像是在咀嚼一颗苦涩的果实，「很久没有人跟我说这种话了。上一次说这种话的人——是我师父。」
+
+他缓缓收刀入鞘。动作很慢，像是在做一个艰难的决定。
+
+「我暂时不会杀你。」他说，「但不代表我放弃了天机卷。我们还会再见。」
+
+他转身离去。在消失于黑暗之前，他留下了一句话：
+
+「……小心白云生。他不是你看到的那样。」</div>
+<<set $flags.hei_warning_bai = true>>
+<<set $rel_hei += 5>>
+<<divider>>
+<<link "回客栈——留意白云生" "lobby_free">>
+<<set $flags.suspicious_of_bai = true>>
+<</link>>
+
+
+:: combat_hei_alliance
+<div class="narrate">黑无极收刀入鞘。
+
+「你不怕我反悔？」他问。
+
+「怕。但我更怕错过一个可能的盟友。」
+
+他盯着你看了很久。雨在他脸上留下了水痕——分不清是雨还是别的什么。
+
+「我师父叫应天南。二十年前他带着我离开了暗星阁——因为他不愿再做杀手。后来他被杀了。沈孤雁杀的。」
+
+他的声音平静得可怕。
+
+「但天机卷上可能有我师父的真实身份——他原来不叫应天南。我想知道他是谁。」
+
+你点了点头。
+
+「我帮你。」
+
+黑无极伸出手——那只布满老茧的手。你握住了它。
+
+冰冷的雨夜。两个陌生人握了手。
+
+也许这就是江湖——在刀光剑影之后，偶尔会有这样的时刻。</div>
+<<set $flags.hei_true_alliance = true>>
+<<set $rel_hei += 12>>
+<<divider>>
+<<link "一起回客栈" "lobby_free">><</link>>
+
+
+:: combat_hei_refuse_info
+<div class="narrate">黑无极的刀重新举了起来。
+
+「那我只能自己去找了。」他说。语气没有愤怒——只有决绝。
+
+他没有再攻击。他收刀入鞘，转身走入了黑暗中。
+
+你知道他不会放弃。他会用其他方式找到天机卷。
+
+而你必须比他更快。</div>
+<<set $rel_hei += -5>>
+<<divider>>
+<<link "回客栈" "lobby_free">><</link>>
+
+
+:: combat_hei_negotiate
+<div class="narrate">「坐下来谈？」黑无极重复了一下你的话，像是听到了什么荒唐的事情。
+
+「我知道你不信任我。」你说，「但至少——听我把话说完。」
+
+他没有动。刀依然横在身前。但他没有打断你——这是好兆头。
+
+「天机卷上的名字——不只是纸上的墨迹。每一个名字背后都是一条命。你的师父也许就在上面。你想知道他的真名——我可以理解。但用刀逼出来的答案，不是你想要的答案。」
+
+黑无极的手指在刀柄上轻轻敲了三下——这是他在思考的习惯动作。
+
+「……说下去。」</div>
+<<set $charm += 1>>
+<<set $rel_hei += 4>>
+<<divider>>
+<<link "「如果你放下刀——我帮你找你师父的名字。」" "combat_hei_alliance">><</link>>
+<<link "「天机卷的事太复杂了。我们回客栈慢慢说。」" "combat_hei_alliance">><</link>>
+
+
+:: combat_hei_fake_agree
+<div class="narrate">你挤出了一点笑容——虽然你在雨中浑身是泥，笑起来一定很滑稽。
+
+「好。我站到你这边。」
+
+黑无极打量了你几秒。
+
+「聪明的选择。」他说。但他并没有完全放松警惕——他向你走了两步，但没有收刀。
+
+「先跟我来。暗星阁的临时据点在后山的一个山洞里。那里有你需要的信息。」
+
+他转身带路。你跟在后面——同时默默记下了路线。左手边的歪脖子松树，右边的巨石，前面的小溪岔口。
+
+你在等一个机会——一个他背对你的机会。
+
+但黑无极始终走在你侧前方，保持着既能看到你又不完全背对你的角度。
+
+这个人的警觉性——远超你的想象。</div>
+<<divider>>
+<<link "老老实实跟他走——见机行事" "lobby_free">><</link>>
+<<link "趁他踩石头时推他——然后跑" "combat_hei_retreat">><</link>>
+
+
+:: combat_hei_retreat
+<div class="narrate">你转身就跑。
+
+脚下是湿滑的泥地——你踩着树根和石头，深一脚浅一脚地往客栈方向冲。身后没有追来的脚步声。
+
+黑无极没有追你。
+
+也许是因为他不想在雨中追逐一个逃跑的对手——那不符合他的风格。也许是因为他并不真的想杀你。
+
+不管怎样——你活着回到了客栈。
+
+推开门的时候，赵铁牛正在壁炉旁擦他的铁锤。他看到你浑身是泥的样子，立刻站了起来。
+
+「出什么事了？」
+
+「黑无极。」你喘着气说。
+
+赵铁牛的脸色一变。他放下了铁锤，从炉壁上取下一把短斧。
+
+「在哪里？」</div>
+<<divider>>
+<<link "「在后山。但他暂时不会来了。」" "lobby_free">><</link>>
+<<link "「我们得加强防备——他可能会带人来。」" "tavern_defense_prep">>
+<<set $flags.prepared_defense = true>>
+<</link>>
+
+
+:: ambush_small
+<div class="narrate">你走到镇口的石桥时——三个人从桥下的涵洞里钻了出来。
+
+他们穿着粗布衣服，手持短刀。不是暗星阁的杀手——更像是一般的山匪。但他们堵住了你的去路。
+
+为首的是一个络腮胡子的大汉，左脸有一颗黑痣。
+
+「此路是我开，此树是我栽——」他开始了老套的开场白。
+
+但他话没说完，你注意到他右手虎口的老茧——那不是握锄头磨出来的，是常年握刀的痕迹。
+
+这三个人不是普通山匪。他们是有功夫底子的。</div>
+<<set $flags.ambush_small = true>>
+<<divider>>
+<<link "拔剑迎战（剑术≥10）" "ambush_small_fight">><</link>>
+<<link "扔钱袋买路——不值得拼命" "ambush_small_pay">>
+<<set $flags.paid_bandits = true>>
+<</link>>
+<<link "转身跑——你不想浪费时间" "ambush_small_run">><</link>>
+
+
+:: ambush_small_fight
+<div class="narrate">你拔剑出鞘——剑光在阴沉的天空下闪过一道白弧。
+
+络腮胡子的表情变了。他显然没料到你真的敢动手。
+
+第一个人从左侧扑来——短刀直刺你的腰间。你侧身一闪，反手一剑拍在他的手腕上。短刀脱手飞出，叮当一声落在石桥上。
+
+第二个人从正面砍来——这一刀有点章法，不是乱砍。你举剑格挡，将他的短刀磕开，然后一脚踹在他胸口。他连退四步，撞在桥栏上。
+
+络腮胡子——他们的头目——站在原地没有动。他看着两个手下瞬间被你解决，脸上的表情从嚣张变成了凝重。
+
+「好身手。」他缓缓拔出一把更长的刀——那是一把军用制式腰刀，刀柄上缠着红色布条。
+
+「当过兵？」你问。
+
+他没回答。但他的站姿已经说明了一切——标准的军阵刀法起手式。
+
+你调整了握剑的姿势。对付军阵刀法，不能用手腕——得用手臂。
+
+他冲上来了。刀势凶猛，大开大合——这是战场上练出来的杀招，为了在混战中一击致命。
+
+但混战的刀法不适合单挑。他的刀路太大了——破绽也大。
+
+你等他的刀劈到一半，然后——剑尖点在了他的喉咙前。
+
+他停住了。
+
+刀举在半空，距离你的头顶只有一掌的距离。但你的剑已经抵住了他的喉结。
+
+谁先动，谁死。
+
+「我们可以谈谈吗？」你说。</div>
+<<set $sword += 1>>
+<<set $flags.defeated_bandits = true>>
+<<divider>>
+<<link "「你们是谁派来的？」" "ambush_small_interrogate">>
+<<set $wits += 1>>
+<</link>>
+<<link "「走吧。别再让我看到你们。」" "lobby_free">>
+<<set $charm += 1>>
+<</link>>
+
+
+:: ambush_small_pay
+<div class="narrate">你从怀里掏出几两碎银，扔在桥面上。
+
+「拿着走吧。我不想麻烦。」
+
+络腮胡子弯腰捡起银子，掂了掂分量。他看了你一眼——眼神中有一种奇怪的犹豫。
+
+「你是外地人？」他问。
+
+「与你无关。」
+
+「如果是外地人……劝你一句——苍龙镇最近不太平。天黑之前回客栈去。别在后山晃悠。」
+
+他带着两个手下转身走了。银子和经验——这笔交易不亏。</div>
+<<set $wits += 1>>
+<<divider>>
+<<link "继续前行" "lobby_free">><</link>>
+
+
+:: ambush_small_run
+<div class="narrate">你转身就跑——不是怕他们，是不想浪费时间和三个来路不明的人纠缠。
+
+你的速度比他们快。三步之后你已经拉开了足够的距离。身后传来络腮胡子的喊声：
+
+「喂——！你不想知道为什么我们在这里吗？」
+
+你没有停。
+
+但他们的话像一根刺一样扎在了你的脑中。为什么山匪会出现在镇口？为什么他们不怕官府？为什么他们选在石桥堵路？
+
+也许他们不只是山匪。
+
+但现在不是追究的时候。你加快了脚步。</div>
+<<set $flags.ran_from_bandits = true>>
+<<divider>>
+<<link "继续" "lobby_free">><</link>>
+
+
+:: ambush_small_interrogate
+<div class="narrate">你收回了剑——但只收了半寸。足以让他知道你随时可以刺出去。
+
+「说。」
+
+络腮胡子犹豫了一下。
+
+「有人……雇我们在镇口拦人。」
+
+「谁？」
+
+「不知道。给了我们十两银子，说如果看到一个带着剑的年轻人——就拦住。不用杀，拦住就行。」
+
+「为什么拦我？」
+
+「不知道。但我们不会问雇主为什么——拿了钱办事。」
+
+你皱了皱眉。有人专门雇人在镇口拦你——说明有人在盯着你的动向。
+
+「那个人长什么样？」
+
+「没见过面。银子是放在镇外老槐树下面的。旁边还有一张纸条——上面写着你的特征。」
+
+有人在暗中监视你。而且知道你的外貌。
+
+你放开了他。
+
+「走吧。」
+
+络腮胡子带着两个手下迅速离开了。你看着他们的背影消失在树林中——然后看向了镇外那棵老槐树的方向。</div>
+<<set $flags.someone_watching = true>>
+<<divider>>
+<<link "去老槐树看看" "lobby_free">>
+<<set $flags.checked_tree = true>>
+<<set $wits += 1>>
+<</link>>
+<<link "先回客栈——此事不急" "lobby_free">><</link>>
+
+
+:: tavern_defense_prep
+<div class="narrate">赵铁牛听你说完后沉吟了一下，然后开始行动。
+
+「大堂的桌椅搬到窗前——堵住一楼窗户。二楼的窗户留一扇开着，作为观察点。后门用铁链锁上，钥匙给我。」
+
+他的语气变了——不再是那个豪爽的铁匠，而是一个经历过战事的老兵。
+
+「我当年守过城门。七个人守了三天三夜。经验告诉我——防守最重要的不是人多，而是准备。」
+
+你帮他搬桌椅。沈孤雁也加入了——他从柜台下面抽出一把藏了多年的短刀，刀刃上还保养着一层薄薄的油。
+
+「别用那种眼神看我。」沈孤雁笑了笑，「开了十五年客栈——总会遇到些麻烦的。」
+
+赵铁牛检查了每一扇门窗，然后在正门前的台阶上撒了一把铁钉。
+
+「这些钉子——踩上去就得躺三天。」他嘿嘿笑了。
+
+胡青娘从药铺赶过来，带了一瓶黑色粉末。
+
+「石灰粉掺了辣椒粉。」她说，「撒在脸上——什么高手都得闭眼。」</div>
+<<set $flags.defense_ready = true>>
+<<divider>>
+<<link "在二楼设伏——居高临下" "tavern_defense_night">><</link>>
+<<link "在大堂正面迎敌——以逸待劳" "tavern_defense_night">><</link>>
+<<link "分两组——大堂和二楼各一组" "tavern_defense_night">><</link>>
+
+
+:: tavern_defense_night
+<div class="narrate">入夜。客栈灯火全灭了。
+
+你和赵铁牛、沈孤雁躲在暗处。胡青娘在楼上——她负责在关键时刻从窗口撒石灰粉。
+
+一个时辰过去了。两个小时。三个小时。
+
+就在你以为今夜不会有事的时候——门外传来了脚步声。
+
+不是一个人。至少四五个。脚步声很轻——但赵铁牛在黑暗中数了出来。
+
+「五个。」他在你耳边低声说，「两个在前门，两个绕到后面，一个在屋顶。」
+
+他伸出五根手指——然后握拳。这是暗号：准备好了。
+
+前门的门闩开始微微颤动——有人在撬门。
+
+然后——门闩被暴力撞开了。
+
+两个蒙面人冲了进来。他们踩上了台阶上的铁钉——第一个人闷哼一声，踉跄了一步。但第二个人踩着同伴的背跳了进来。
+
+赵铁牛的铁锤在黑暗中抡了起来。
+
+「嘭！」
+
+闷响。第二个人飞了出去，撞在门框上，滑倒在地。
+
+战斗开始了。</div>
+<<set $flags.tavern_attacked = true>>
+<<divider>>
+<<link "迎上去——拦截第一个闯入者！（剑术≥12）" "defense_fight_1">><</link>>
+<<link "守住楼梯——不让任何人上二楼" "defense_stairs">><</link>>
+
+
+:: defense_fight_1
+<div class="narrate">第一个闯入者虽然脚受了伤，但手上功夫不弱。他拔出一把短刀，在黑暗中朝你挥了过来。
+
+客栈大堂一片漆黑——只有门口透进来的月光。你借着这点光线，看清了他的刀路。
+
+短刀横扫——你后仰闪过。他紧跟着一个突刺——你侧身避开，反手一剑拍在他的肘关节上。
+
+「咔。」一声脆响——不是骨折，但他的手臂显然脱臼了。短刀当啷落地。
+
+他痛苦地捂着手臂退后。你一脚将他踢出门外——正好落在了铁钉堆里。
+
+「啊——！」
+
+他的惨叫声在夜色中回荡。这对于还在外面的同伙来说，是一种心理打击。
+
+沈孤雁在另一侧解决了第二个闯入者。他的动作快而准——你只看到了一道银光闪过，那个人就倒下了。
+
+「十五年的守护不是白当的。」他淡淡地说。
+
+但屋顶上有动静了。瓦片碎裂的声音——有人从天窗要下来。</div>
+<<set $flags.repelled_first_wave = true>>
+<<run setup.addHp(-5)>>
+<<divider>>
+<<link "冲向楼梯——拦截屋顶下来的敌人" "defense_roof_enemy">><</link>>
+<<link "喊胡青娘撒石灰粉！" "defense_lime">><</link>>
+
+
+:: defense_stairs
+<div class="narrate">你守住了通往二楼的楼梯口——剑横在身前，像一道铁闸。
+
+赵铁牛在大堂里和两个闯入者搏斗。他的铁锤在狭窄的空间里施展不开——但他用铁链代替了锤子，抡起来呼呼作响，逼得两人无法靠近。
+
+沈孤雁守在正门口——他像一尊门神，谁来就打谁。
+
+但后门传来了撞门声。
+
+「后面也有！」胡青娘在楼上喊道。
+
+你能听到铁链在颤抖——后门的锁链撑不了太久了。
+
+必须做出选择——守住楼梯，还是去支援后门？</div>
+<<run setup.addHp(-5)>>
+<<divider>>
+<<link "继续守住楼梯——二楼的人更重要" "defense_hold_stairs">><</link>>
+<<link "让沈孤雁守楼梯，你去后门" "defense_back_door">><</link>>
+
+
+:: defense_lime
+<div class="narrate">「青娘——撒！」
+
+二楼的窗口猛地打开——一团黑色的粉末从天而降，精准地罩在了刚从天窗钻进来的那个蒙面人脸上。
+
+「啊——！我的眼睛！」
+
+他双手捂脸，从天窗的位置摔了下来——直接砸在了大堂的桌子上。桌子被砸塌了，他趴在碎木板中挣扎。
+
+石灰粉和辣椒粉的混合物在空气中弥漫——连你自己都被呛到了。眼泪止不住地流。
+
+但效果是惊人的。外面的脚步声明显乱了起来——他们看到了同伴的惨状，开始犹豫了。
+
+「撤！」一个嘶哑的声音从外面传来。
+
+脚步声迅速远去。
+
+赵铁牛冲到门口往外看了一眼——确认所有人都退了。
+
+「走了。」他关上门，用桌子顶住，「但他们还会来。」
+
+你擦了擦眼泪——辛辣的粉末让你的眼睛红肿。
+
+胡青娘从楼上下来，手里拿着湿毛巾。
+
+「用水洗眼睛。别揉。」</div>
+<<set $flags.repelled_with_lime = true>>
+<<divider>>
+<<link "「多谢。」接毛巾洗眼" "tavern_defense_aftermath">>
+<<set $rel_hu += 3>>
+<</link>>
+
+
+:: defense_roof_enemy
+<div class="narrate">你三步并作两步冲上楼梯——天窗的瓦片被掀开了一个洞，一个黑影正从洞口往下滑。
+
+你没有给他落地的机会。
+
+剑尖从下方直刺——穿过天窗的缺口，逼得那个黑影不得不松手。他从屋顶滚了下去，发出一声闷响。
+
+但紧接着——第二个人出现了。这个人更快，在屋顶边缘翻了个跟头，直接从二楼走廊的窗口翻了进来。
+
+他落地的一瞬间就出刀了——目标是你。
+
+刀光在走廊里闪烁。你举剑格挡，两人从楼梯口一路打到走廊尽头。走廊很窄——剑施展不开，刀也一样。这反而对你有利——你的剑比他的刀长。
+
+你用剑柄顶住了他的胸口，将他按在墙上。
+
+「谁派你来的？」
+
+他笑了——露出一口白牙。
+
+「你猜。」
+
+然后他嘴里嘎嘣一声——咬碎了什么。
+
+毒囊。
+
+他的身体在你面前软了下去。瞳孔扩散，嘴角渗出黑血。
+
+死了。
+
+你没有得到任何信息。但至少——他不是暗星阁的杀手。暗星阁的人不用毒囊自尽。</div>
+<<set $flags.enemy_suicide = true>>
+<<run setup.addHp(-10)>>
+<<set $wits += 2>>
+<<divider>>
+<<link "搜他的身——看看有没有线索" "tavern_defense_aftermath">>
+<<set $flags.found_enemy_token = true>>
+<<run setup.addItem('神秘令牌')>>
+<</link>>
+<<link "不管了——先确保所有人安全" "tavern_defense_aftermath">><</link>>
+
+
+:: defense_hold_stairs
+<div class="narrate">你死守楼梯口。
+
+一个人冲上来——你一剑横扫，逼他退了回去。第二个人试图从侧面绕过——赵铁牛的铁链从背后抽了过去，将他打翻在地。
+
+沈孤雁在门口如铜墙铁壁。他甚至没有用刀——只用一双肉掌，将每一个冲进门的人拍飞出去。
+
+「十五年前我以一人之力守过石室的入口。」他说，「这点场面——不算什么。」
+
+后门终于被撞开了——但撞门的人迎面撞上了胡青娘早已准备好的陷阱。一根绷紧的细线绊住了他的脚，整个人面朝下摔在了门槛上。胡青娘从暗处出手，一针扎在他的后颈——他立刻失去了意识。
+
+「麻穴。」她淡淡地说。
+
+战斗持续了不到半柱香——五个闯入者被击退，两个被擒，其余逃走。
+
+客栈保住了。但所有人都知道——这只是前哨战。</div>
+<<set $flags.tavern_defended = true>>
+<<run setup.addHp(-8)>>
+<<divider>>
+<<link "审问被擒的两人" "tavern_defense_aftermath">><</link>>
+
+
+:: defense_back_door
+<div class="narrate">你把楼梯口交给沈孤雁，自己冲向后门。
+
+后门的铁链已经快要断了——每一声撞击都让它多裂开一道缝。你蹲在门后，剑尖朝上，等着门被撞开的那一刻。
+
+「砰！」
+
+铁链断了。门被踹开——一个蒙面人冲了进来。
+
+你的剑从下往上挑——精准地刺中了他的小臂。他惨叫一声，短刀脱手。
+
+但他身后还有一个人——这个人没有冲进来，而是站在门外，从怀里掏出了一个黑色的小球。
+
+火药弹！
+
+你猛地后撤——但爆炸的气浪还是将你掀翻在地。耳朵嗡嗡作响，眼前一片模糊。
+
+赵铁牛不知什么时候出现在你身后——他的铁锤从你头顶飞过，砸中了门外那人的肩膀。那人惨叫着退入了黑暗中。
+
+赵铁牛拉你起来。
+
+「你没事吧？」
+
+你摇了摇头——耳朵还在嗡嗡响，但身体没有大碍。后门已经废了——木门被炸碎，铁链断裂。
+
+「用桌椅堵上。」赵铁牛说。
+
+你们搬来了两张桌子挡在后门口。不完美——但暂时够用了。</div>
+<<set $flags.back_door_bombed = true>>
+<<run setup.addHp(-20)>>
+<<divider>>
+<<link "回大堂——确认其他方向的安全" "tavern_defense_aftermath">><</link>>
+
+
+:: mountain_ambush
+<div class="narrate">你沿着蜿蜒的山路往上走。两旁是密集的竹林，竹叶在风中沙沙作响——遮住了大部分声音。
+
+这使得你直到最后一刻才发现不对劲。
+
+路面上有新鲜的脚印——至少十个人的脚印，重叠在一起。他们不久前刚经过这里，而且人数比你预想的多得多。
+
+你停下了脚步。手按在剑柄上。
+
+然后你听到了——不是脚步声，而是弓弦拉动的声音。</div>
+<<set $flags.mountain_ambush = true>>
+<<divider>>
+<<link "翻滚到路边的岩石后面！" "mtn_dodge_arrow">><</link>>
+<<link "拔剑拨箭！（剑术≥15）" "mtn_deflect_arrow">><</link>>
+<<link "大喊「我投降！」" "mtn_surrender">><</link>>
+
+
+:: mtn_dodge_arrow
+<div class="narrate">你扑向路边——一支箭擦着你的耳朵飞过，钉在了你刚才站的位置旁边的竹子上。箭尾还在嗡嗡震颤。
+
+你蜷缩在一块巨石后面。第二支箭、第三支箭接连射来——都打在石头上，溅出火星。
+
+箭从三个方向射来——左前方竹林、右侧山坡、正前方的岩石堆。至少三个弓手，分布在不同的高度和角度。
+
+这是精心设计的伏击。不是临时起意——他们知道你会走这条路。
+
+箭雨持续了大约十息，然后停了。取而代之的是脚步声——有人在靠近。
+
+五个。不，六个。他们从竹林里走出来，形成了一个半圆形的包围网。每个人都手持武器——刀、枪、铁链、飞爪。
+
+领头的人穿着灰色布衫，脸上涂着黑色油彩。他看着你躲在石头后面的样子，冷冷一笑。
+
+「出来吧。你跑不掉的。」</div>
+<<run setup.addHp(-8)>>
+<<divider>>
+<<link "从石头后面冲出来——拼了！（剑术≥13）" "mtn_charge">><</link>>
+<<link "用石头砸向最近的敌人——制造混乱" "mtn_rock_throw">><</link>>
+<<link "往竹林方向跑——竹林里弓手无法射击" "mtn_run_bamboo">><</link>>
+
+
+:: mtn_deflect_arrow
+<div class="narrate">你拔剑出鞘——第一支箭飞来时，你的剑刃精准地击中了箭杆。箭被弹飞，旋转着扎入泥土。
+
+第二支箭紧随其后——你再次拨挡。这一支被你斩成了两截，落在脚边。
+
+第三支箭来得更快更低——你的剑来不及回位，箭擦过你的左肩，留下了一道血痕。不深，但火辣辣地疼。
+
+箭雨停了。弓手们意识到远程攻击对你效果有限——他们开始从掩体中走出来。
+
+领头的灰衣人看到你拨箭的身法，脸上的表情从冷漠变成了警惕。
+
+「是个练家子。」他对手下说，「不要轻敌。」</div>
+<<run setup.addHp(-5)>>
+<<set $sword += 1>>
+<<set $flags.deflected_arrows = true>>
+<<divider>>
+<<link "主动进攻——趁他们合围之前打乱阵型" "mtn_charge">><</link>>
+<<link "「你们是谁？暗星阁的人？」" "mtn_question">><</link>>
+
+
+:: mtn_surrender
+<div class="narrate">你举起双手。
+
+箭停了。灰衣人走出来，打量着你。
+
+「聪明的选择。」他说。但他没有放松警惕——他让两个手下从两侧接近你，搜了你的身，拿走了你的剑。
+
+「跟我们走。」
+
+你被押着往山上走。一路上你默默记下路线——每一个拐弯、每一块标志性的石头。如果有机会逃跑，你需要知道路。
+
+走了大约半柱香，你们来到了一个隐蔽的山洞入口。洞口挂着一块旧布帘，里面传来微弱的火光。
+
+「进去。」
+
+你走进了山洞。里面有一个人在等你。
+
+你没想到会在这里看到这个人。</div>
+<<set $flags.captured_ambush = true>>
+<<divider>>
+<<link "看看是谁" "lobby_free">><</link>>
+
+
+:: mtn_charge
+<div class="narrate">你从掩体后冲了出来——不是盲目的冲锋，而是有目标的突击。
+
+最近的一个敌人离你只有三步。他手持长枪，正准备突刺。你侧身避开枪尖，剑横扫他的枪杆——"咔嚓"一声，木杆被你砍断。他还没来得及反应，你的剑柄已经撞在了他的太阳穴上。
+
+他倒了。
+
+第二个敌人从右侧扑来——铁链抡圆了砸下来。你用剑格挡，铁链缠住了剑身。他用力一拽——你顺势向前，一脚踹在他肚子上。
+
+第三个——飞爪。爪尖带着铁钩朝你面门飞来。你低头闪过，飞爪擦着头顶划过，割断了几根头发。
+
+但你已经被包围了。六个人虽然被你打倒了两个，但剩下的四个已经形成了合围。
+
+灰衣人没有出手——他一直在观察。
+
+「够了。」他举手，其他人停了下来，「你——一个人打倒了两个我的人。够资格跟我谈谈了。」</div>
+<<run setup.addHp(-15)>>
+<<set $sword += 1>>
+<<divider>>
+<<link "「谈什么？」" "mtn_question">><</link>>
+<<link "不谈——继续打" "lobby_free">><</link>>
+
+
+:: mtn_rock_throw
+<div class="narrate">你抓起身旁一块拳头大的石头，朝最近的敌人扔了过去。
+
+石头砸中了他的肩膀——他吃痛松手，飞爪掉在了地上。你趁机冲了出去。
+
+混乱是短暂的——他们很快重新围了上来。但你已经跑出了包围圈的死角，站在了山路的开阔处。
+
+至少弓手不敢随便放箭了——你和他们的人混在一起，射箭可能误伤同伴。
+
+你向后退了两步，接近了路边的竹林边缘。竹林密集，地面布满了竹根和落叶——适合逃跑，但不适合战斗。</div>
+<<run setup.addHp(-8)>>
+<<divider>>
+<<link "钻入竹林逃跑" "mtn_run_bamboo">><</link>>
+<<link "在开阔处迎战" "mtn_charge">><</link>>
+
+
+:: mtn_run_bamboo
+<div class="narrate">你转身钻入竹林——竹子密得几乎走不动，但你挤了过去。身后的追兵脚步声变得混乱——竹林的密度对他们也一样。
+
+你在竹子之间穿行，脚步尽量轻。竹根绊了你两次，但都没有摔倒。
+
+跑了大约五十步——你听到了身后传来的咒骂声。他们追丢了。
+
+你靠在一棵粗竹上喘气。竹叶在你头顶沙沙作响，遮住了天空。四周一片寂静——只有远处隐约的溪水声。
+
+你不知道自己在哪里。竹林太密了，看不到远处的参照物。但至少——暂时安全了。
+
+你需要找一个方向走出去。溪水声在东边——沿着溪流走，应该能回到山路。</div>
+<<set $flags.escaped_bamboo = true>>
+<<divider>>
+<<link "朝溪水声的方向走" "lobby_free">><</link>>
+<<link "在竹林里等一等——确保没人追来" "lobby_free">><</link>>
+
+
+:: mtn_question
+<div class="narrate">灰衣人走上前来。他打量了你一番，然后开口了。
+
+「我们不是暗星阁的人。」他说，「我们是白太傅的旧部。」
+
+白太傅——那个传说中被守护者杀害的前朝太傅。
+
+「天机卷上有我们主人的名字。我们来——是为了替他洗清冤屈。」
+
+他的语气不像在撒谎。但也不完全像在说真话。
+
+「你怎么证明？」你问。
+
+他从怀里掏出一块玉佩——白色的玉，刻着一只展翅的鹤。
+
+「这是白太傅随身之物。二十年了——我一直带着它。」</div>
+<<set $flags.met_bai_subordinates = true>>
+<<set $wits += 1>>
+<<divider>>
+<<link "收起武器——听听他们要说什么" "lobby_free">>
+<<set $flags.listened_to_bai_men = true>>
+<<set $wits += 1>>
+<</link>>
+<<link "不信任他们——保持警惕" "lobby_free">><</link>>
+
+
+:: injury_left_arm
+<div class="narrate">你坐在床沿上，挽起左臂的袖子。伤口在雨水的浸泡下显得更加狰狞——一道三寸长的刀痕从前臂外侧斜切而下，皮肉外翻，能看到底下暗红色的肌肉组织。
+
+血已经不像刚才那么涌了——刀锋划过时切断了表皮的毛细血管，但没有伤到大血管。用干净的布条勒紧伤口上方，止血效果还算明显。
+
+但伤口很脏。雨水、泥土、衣服的纤维都嵌进了肉里。如果不清理干净，感染只是时间问题。
+
+你的手指在发抖——不是因为疼，而是因为失血后的虚弱。左臂暂时使不上太大的力气，握剑还行，但格挡重击会很吃力。</div>
+<<set $flags.injury_left_arm = true>>
+<<run setup.addHp(-10)>>
+<<divider>>
+<<link "去找胡青娘处理" "treatment_hu_arm">><</link>>
+<<link "自己简单包扎——不必麻烦她" "lobby_free">><</link>>
+
+
+:: injury_chest_treatment
+<div class="narrate">黑无极那一掌打在了你的胸口正中央。当时你只觉得天旋地转——现在你才意识到伤势有多重。
+
+胸口像是被一把无形的锤子砸过。呼吸时肋骨处传来尖锐的刺痛——不是骨折，但至少是严重的软组织挫伤。每一次深呼吸都像在用刀割肺。
+
+你解开衣襟检查——胸口正中央有一块拳头大的淤青，已经从红色变成了暗紫色。触摸时疼痛剧烈。
+
+更麻烦的是内伤。黑无极的掌力透过了你的胸骨，震到了内脏。你能感觉到胃部有一种奇怪的翻涌感——那是内力冲击后的反应。
+
+如果不及时处理，内伤会恶化。轻则吐血，重则伤及经脉。</div>
+<<run setup.addHp(-15)>>
+<<set $flags.injury_chest = true>>
+<<divider>>
+<<link "去找胡青娘——内伤必须专业处理" "treatment_hu_chest">><</link>>
+<<link "先躺下休息——也许会好一些" "injury_chest_rest">><</link>>
+
+
+:: injury_chest_rest
+<div class="narrate">你躺下了。但只躺了一刻钟——胸口的疼痛不仅没有减轻，反而加剧了。
+
+你试着翻身——肋骨传来一阵剧痛，让你冷汗直流。
+
+不行。这不是靠休息能好的伤。你挣扎着坐起来，扶着墙慢慢走向门口。
+
+门外碰到了小莲——她看到你的脸色，吓得手里的茶盘都掉了。
+
+「你——你受伤了！我去叫胡姐姐！」
+
+她飞奔下楼。你靠在门框上等——眼前开始发花。
+
+也许你低估了那一掌的威力。</div>
+<<run setup.addHp(-10)>>
+<<divider>>
+<<link "等胡青娘来" "treatment_hu_chest">><</link>>
+
+
+:: treatment_hu_arm
+<div class="narrate">胡青娘的药铺里弥漫着草药的苦涩气味。她让你坐在一张旧木椅上，自己挽起袖子，用温水仔细清洗你左臂上的伤口。
+
+「刀伤。不深，但很脏。」她皱着眉头说，「雨水泡过的伤口最容易感染——你得庆幸你来得及时。」
+
+她从药柜里取出一小罐褐色药膏——金疮药。她用竹片挑了一点，均匀地涂抹在伤口上。药膏接触伤口的瞬间，一阵刺痛让你咬紧了牙关。
+
+「忍着点。」她头也不抬，「金疮药里有白芷和血竭——刚上药的时候会疼，但止血效果好。」
+
+药膏涂完后，她用干净的白布将你的前臂缠绕了三圈——不松不紧，刚好压住伤口但不阻碍血液循环。
+
+「三天换一次药。七天内不要用左臂格挡重击——伤口会崩开。」
+
+她收拾好药具，又递给你一小包粉末。
+
+「三七粉。温水冲服，每天两次。活血化瘀。」
+
+你看着被包扎好的手臂——虽然隐隐作痛，但至少不用担心感染了。</div>
+<<set $rel_hu += 5>>
+<<set $sword -= 1>>
+<<divider>>
+<<link "「多谢胡姐姐。」" "lobby_free">><</link>>
+
+
+:: treatment_hu_chest
+<div class="narrate">胡青娘看到你的脸色，二话不说把你按在了药铺里间的竹床上。
+
+「解开衣服。」她的语气不容拒绝。
+
+你解开衣襟——她看到胸口那片暗紫色的淤青，眉头拧成了一个结。
+
+「内伤。」她用手掌轻轻按在淤青周围的皮肤上，感受着底下的组织，「掌力透骨——打你的人内力不弱。肋骨没断，但经脉被震伤了。」
+
+她转身从药柜里取出一个木盒——里面是整齐排列的银针。针比头发还细，在烛光下闪着冷光。
+
+「我要用银针疏通你受伤的经脉。会很疼——比伤口疼十倍。但如果不做，内伤会越来越严重。」
+
+你点了点头。
+
+第一根针扎入了你胸口的膻中穴——酸胀感瞬间从胸口扩散到全身，像有一根铁丝在你的经脉里搅动。你忍不住倒吸了一口冷气。
+
+「忍住。」她扎入了第二根针——章门穴。这次不只是酸胀，还有一种灼热感，像是有人在你体内点了一把火。
+
+第三根、第四根、第五根——她沿着你胸腹的经脉一路扎下去，每一针都精准地落在穴位上。你的额头上渗出了密密麻麻的汗珠。
+
+「好了。」她拔出了最后一根针，「经脉暂时通了。但需要三次治疗才能完全恢复。明天同一时辰再来。」
+
+她从药炉里倒了一碗黑色的汤药递给你。
+
+「喝下去。这药很苦——但能帮你恢复内力。」
+
+你一口灌下——苦得你想把舌头拔出来。但药效很快——一股暖流从胃部升起，流遍了全身。胸口的疼痛减轻了至少一半。
+
+「还有——」她犹豫了一下，然后从柜子深处取出一块黑色的药饼，「这是用百年何首乌和天山雪莲做的续命丹的简化版。你如果受了致命伤——把这个敷在伤口上，能多撑一个时辰。只有一块，省着用。」</div>
+<<run setup.addItem('续命药饼')>>
+<<set $rel_hu += 8>>
+<<set $sword += 1>>
+<<divider>>
+<<link "「胡姐姐……谢谢。」" "lobby_free">>
+<<set $rel_hu += 3>>
+<</link>>
+
+
+:: escape_backyard
+<div class="narrate">你冲进后院——院墙大约七尺高，顶上嵌着碎瓷片防贼。但墙角有一棵老槐树，树冠覆盖了半面墙。
+
+你踩着树干爬了上去——枝桠在你的重量下嘎吱作响，但没有断。你抓住一根较粗的树枝，荡到了墙头上。
+
+碎瓷片扎进了你的手掌——疼，但不算严重。你翻身越过院墙，落在了墙外的巷子里。
+
+巷子很窄，两旁是高耸的石墙。你沿着巷子跑——左转、右转、再左转。苍龙镇的巷子像迷宫一样弯弯绕绕，但你还记得大致的方向。
+
+身后没有追兵的声音——他们还没有发现你从后院跑了。
+
+你继续跑了半柱香，确认安全后才放慢了脚步。你不知道自己在哪里——四周都是陌生的墙壁和紧闭的院门。
+
+但至少——你逃出来了。</div>
+<<set $flags.escaped_backyard = true>>
+<<run setup.addHp(-5)>>
+<<divider>>
+<<link "找一个安全的地方躲起来" "lobby_free">><</link>>
+<<link "绕路回客栈正面——从外面查看情况" "lobby_free">><</link>>
+
+
+:: escape_kitchen
+<div class="narrate">你溜进了厨房。灶台后面有一块松动的地砖——你之前注意到过沈孤雁在搬东西时踩过这个位置。
+
+你蹲下来，用力撬开了地砖。下面是一段狭窄的石阶，通向地下。
+
+你顺着石阶走了下去。通道很矮，你不得不弯着腰。墙壁上每隔几步嵌着一盏油灯——但油早已干涸，只有空空的灯座。黑暗中你只能靠手触摸墙壁前行。
+
+通道走了大约五十步，前方出现了一个岔口。左边传来微弱的光——像是有人在那里点了灯。右边完全黑暗，但你能感觉到一股气流——说明那边通向外面。
+
+你选择了右边。
+
+又走了二十步，石阶开始向上。尽头是一扇木门——门闩从你这边可以打开。你推开门——
+
+外面是河边。月光洒在河面上，波光粼粼。你在客栈以南大约两百步的位置。
+
+密道出口被一丛灌木遮住了——从外面很难发现。你记住了这个位置。以后可能会用到。</div>
+<<set $flags.found_secret_tunnel = true>>
+<<set $wits += 2>>
+<<divider>>
+<<link "沿着河边绕回镇子" "lobby_free">><</link>>
+<<link "原路返回——密道可以以后再用" "lobby_free">><</link>>
+
+
+:: escape_rooftop
+<div class="narrate">你从二楼的窗户翻出去，踩着窗台下的横梁攀上了屋顶。瓦片在你的脚下微微滑动——你弯下腰，降低重心，沿着屋脊小心翼翼地移动。
+
+苍龙镇的屋顶连成一片——从这个房顶可以跳到那个房顶，中间只有窄窄的巷子相隔。
+
+你跳过了第一道巷子——落地时踩碎了两片瓦。声音不大，但在寂静的夜里格外清晰。
+
+第二道巷子更宽——你需要助跑。你退后几步，加速，起跳——
+
+你的脚尖堪堪搭上了对面的屋檐。你用手指抓住瓦沿，用力将自己拉了上去。
+
+第三栋房子的屋顶是平的——这是一个歇脚的好地方。你蹲在屋顶上，俯瞰着整个苍龙镇。
+
+月光下，镇子安静得像一幅画。远处客栈方向有微弱的火光——他们还在搜查。
+
+你安全了。至少暂时。</div>
+<<set $flags.escaped_rooftop = true>>
+<<run setup.addHp(-5)>>
+<<set $sword += 1>>
+<<divider>>
+<<link "在屋顶上观察一会儿" "lobby_free">>
+<<set $flags.rooftop_recon = true>>
+<<set $wits += 1>>
+<</link>>
+<<link "从屋顶下到地面——远离客栈" "lobby_free">><</link>>
+
+
+:: injury_leg
+<div class="narrate">你低头看着自己的右腿——小腿外侧被一把短刀划出了一道四寸长的口子。血从伤口中涌出，顺着小腿流进了靴子里。每走一步，靴子里都会发出湿漉漉的声响——那是血和汗水混合的声音。
+
+伤口不深——刀锋只在皮下脂肪层划过，没有伤到肌腱。但持续的出血正在消耗你的体力。你能感觉到自己的步伐在变慢——右腿像被灌了铅一样沉重。
+
+你撕下了一条衣摆，勒紧了小腿做止血带。血立刻减少了——但绑得太紧让脚趾开始发麻。你必须在一柱香内松开止血带，否则小腿组织会因缺血而坏死。</div>
+<<run setup.addHp(-12)>>
+<<set $flags.injury_leg = true>>
+<<divider>>
+<<link "继续战斗——轻伤而已" "lobby_free">><</link>>
+<<link "撤退——先处理伤口" "treatment_hu_arm">><</link>>
+
+
+:: tavern_defense_aftermath
+<div class="narrate">战斗结束了。所有人聚在大堂里——壁炉重新被点着，温暖的火光驱散了血腥气和紧张感。
+
+赵铁牛坐在壁炉旁，正在擦拭铁锤上的血迹。沈孤雁给每个人倒了一碗热酒。胡青娘在检查伤员的伤口——你和赵铁牛都有不同程度的伤。
+
+「五个闯入者。」沈孤雁数了数，「两个被擒，两个跑了，一个……自己服毒了。」
+
+赵铁牛哼了一声：「服毒那个——嘴里有暗囊。这是暗桩的做派——不是一般的山匪。」
+
+「他们不是暗星阁的。」胡青娘说，「暗星阁的人用毒更讲究——不会用这种粗糙的毒囊。这些人是另一拨势力的。」
+
+沈孤雁沉思了一会儿。
+
+「苍龙镇从来没有这么热闹过。」他苦笑了一下，「天机卷果然是个麻烦——谁都想来分一杯羹。」
+
+你端起酒碗喝了一口。热酒从喉咙滑进胃里——像一条火线。但那种温暖让你紧绷的肌肉终于放松了一些。
+
+「天亮之前不能再睡了。」赵铁牛说，「他们可能还会来。我守上半夜——你们轮流休息。」</div>
+<<divider>>
+<<link "「我守下半夜。」" "lobby_free">>
+<<set $flags.volunteer_watch = true>>
+<<set $rel_zhao += 3>>
+<</link>>
+<<link "先休息——你也需要恢复体力" "lobby_free">><</link>>
+
+
+:: group_treatment
+<div class="narrate">胡青娘的药铺变成了临时医馆。
+
+赵铁牛坐在椅子上，让胡青娘处理他手臂上的擦伤——一块碎木片扎进了他的前臂，他直接用手拔了出来，血溅了胡青娘一裙。
+
+「别动！」胡青娘皱眉，「你这人——拔之前能不能先说一声？我好接血。」
+
+赵铁牛嘿嘿一笑：「小伤。当年在军营里比这重的伤我都是自己用烧酒冲的。」
+
+「那是在军营。这里是药铺——听我的。」她涂上金疮药，包扎好伤口，然后转向沈孤雁。
+
+沈孤雁坐在角落里，脸色有些苍白。他一直在揉右肩——刚才的战斗中他用力过猛，旧伤复发了。
+
+「坐下。」胡青娘指了指椅子，「右肩的老伤——当年你怎么受的？」
+
+「十五年前。」沈孤雁坐下，「在石室门口。有四个人来抢天机卷——我挡了一夜。天亮的时候才发现肩膀中了一镖，已经冻住了。」
+
+胡青娘没有说话。她取出银针，在他肩井穴上扎了两针，然后用掌心贴着他的肩膀——你能感觉到一股温热从她的掌心传出。她在用内力帮沈孤雁疏通经脉。
+
+房间里安静了下来。只有药炉里的水在咕嘟咕嘟地冒着热气。</div>
+<<set $rel_hu += 2>>
+<<divider>>
+<<link "安静等待——不打扰他们" "lobby_free">><</link>>
+<<link "让胡青娘也看看你的伤" "treatment_hu_chest">><</link>>
+
+
+:: death_combat
+<div class="narrate"><span class="danger">你的剑断了。</span>
+
+最后一击来得太快——黑无极的刀从上方劈下，你的剑在格挡时从中断裂。半截剑身飞了出去，叮当落地。
+
+你看着手中只剩半截的剑柄——铁质的护手还在，但刃口已经完全消失了。
+
+黑无极没有立刻出手。他站在你面前，看着你手中残破的武器。
+
+「你可以投降。」他说。
+
+你摇了摇头。
+
+他叹了口气——那声叹息在雨夜中显得格外清晰。
+
+「那就——对不起了。」
+
+刀落下了。
+
+你感到胸口一凉——不是疼痛，而是一种奇异的冷。像是有人在你胸口放了一块冰。
+
+你低头看到了刀——它从你的左胸刺入，穿透了身体。刀尖从后背穿了出来。
+
+血从伤口涌出——热的。你能感觉到它的温度。
+
+你的膝盖软了。身体向后倒去。
+
+天空在你眼前旋转——乌云、月光、雨滴。所有的颜色都开始变淡。
+
+你想起了第一天走进听雨客栈时的场景。温暖的灯光。沈孤雁的笑容。壁炉的火光。
+
+你想起了赵铁牛的笑声——那么响亮，像是能把屋顶掀翻。
+
+你想起了柳如烟的眼睛——冷冽如冰，但偶尔会闪过一丝柔软。
+
+你想起了……很多。
+
+但记忆在消散。像沙子从指缝间流过。
+
+最后你看到的——是雨滴。
+
+一滴一滴。落在你脸上。凉的。
+
+像是苍龙镇在为你哭泣。
+
+——你已战死。——</div>
+<<divider>>
+<<link "重新开始" "start">><</link>>
+
+
+:: death_poison
+<div class="narrate"><span class="danger">你感到一阵眩晕。</span>
+
+茶杯从你手中滑落——瓷杯在地上摔成碎片，茶水溅了一地。
+
+你低头看着地上的茶渍——颜色偏深，带着一丝不自然的紫。
+
+中毒了。
+
+什么时候？你想回顾——是刚才在大堂喝的那杯茶？还是胡青娘给你的药？不——胡青娘不会害你。
+
+那就是在你不注意的时候——有人在你的杯子里下了毒。
+
+你的喉咙开始发紧。呼吸变得困难——像是有人在用手掐住你的脖子。你伸手去摸喉咙——皮肤下面有一串硬块在迅速膨胀。
+
+毒气正在封堵你的气管。
+
+你挣扎着站起来——椅子被你碰翻了。你跌跌撞撞地走向门口。每一步都像踩在棉花上——腿脚不听使唤。
+
+门——就在前面。三步。两步。一步——
+
+你的手抓住了门框。但你的力气正在飞速流失。
+
+你看到了门外的月光。银色的光洒在走廊上——很美。
+
+但你的视线开始模糊了。月光变成了一团白色的光斑——越来越大，越来越亮。
+
+然后——
+
+黑暗。
+
+你倒在了门槛上。半截身体在门里，半截在门外。
+
+有人会发现的。也许明天早晨，小莲来打扫时会看到你。她会尖叫。沈孤雁会冲出来。赵铁牛会破口大骂。
+
+但你听不到了。
+
+你的世界——在那一刻，安静了下来。
+
+只有月光。
+
+——你已中毒身亡。——</div>
+<<divider>>
+<<link "重新开始" "start">><</link>>
+
+
+:: death_backstab
+<div class="narrate"><span class="danger">一把刀从你背后刺入。</span>
+
+你甚至没来得及回头。
+
+刀从你的后腰偏左的位置刺入——精准地避开了脊椎，但切断了左肾的动脉。这是专业杀手的手法：不伤脊椎，让你能感觉到痛苦，但无法救治。
+
+你转过头——看到了一张你认识的脸。
+
+是你信任的人。
+
+但你的视线已经模糊了——你分辨不清那是谁。只有一个模糊的轮廓，站在你身后，手里握着一把沾血的刀。
+
+「为什么……」你想问。但声音卡在了喉咙里——血涌上了气管，堵住了你的声音。
+
+你吐出了一口血——暗红色的，带着气泡。
+
+那个人弯下腰，在你耳边轻声说了一句话。
+
+但你已经听不清了。
+
+你的世界在缩小——视野从四周向中心收缩，像是一个正在关闭的光圈。你看到了那个人的轮廓——在光圈的边缘。
+
+然后光圈消失了。
+
+你倒在了地上。脸贴着冰冷的石板。雨水从石缝中渗过来，浸湿了你的头发。
+
+你的手还在动——无意识地摸索着。像是在找什么。也许是一把剑。也许是一个人的手。
+
+但什么也没有摸到。
+
+最后，你的手停了下来。
+
+指尖触碰到了一样东西——一颗落在地上的纽扣。不知道是谁的。
+
+你攥住了它。
+
+然后——什么都没有了。
+
+——你已被暗算身亡。——</div>
+<<divider>>
+<<link "重新开始" "start">><</link>>
+
+
+:: encounter_dark_star
+<div class="narrate">黄昏时分，你在苍龙镇的东巷遇到了三个人。他们穿着普通的粗布衣裳，但走路的姿势出卖了他们——重心始终在前脚掌，随时可以发力。这是杀手的步态。
+
+他们看到你的瞬间，彼此交换了一个眼神。然后为首的那个人微微点头——三把刀同时出鞘。
+
+「暗星阁办事。不相关的——让开。」
+
+他们不是来找你的——他们在执行任务。但你挡在了他们的路上。
+
+他们要去的地方——是药铺。胡青娘。</div>
+<<set $flags.encountered_dark_star = true>>
+<<divider>>
+<<link "拔剑拦住他们——保护胡青娘（剑术≥12）" "enc_ds_fight">><</link>>
+<<link "让开——不关你的事" "lobby_free">>
+<<set $flags.let_dark_star_pass = true>>
+<<set $rel_hu += -10>>
+<</link>>
+<<link "大喊「胡青娘——有人来了！」" "enc_ds_warn">>
+<<set $flags.warned_hu = true>>
+<<set $rel_hu += 5>>
+<</link>>
+
+
+:: enc_ds_fight
+<div class="narrate">你拔剑挡在了巷子中间——三个人面对你，刀尖朝前。
+
+第一个人冲了上来——快刀，直劈你的头顶。你侧身闪过，反手一剑划在他的前臂上。他吃痛退后，但刀没有脱手。
+
+第二个人从左侧包抄——你听到了脚步声，来不及转身，只能用剑柄向后格挡。刀和剑柄撞在一起，震得你手腕发麻。
+
+第三个人趁机从右侧绕了过来——他不出刀，而是掏出了一枚飞针。针很小，在黄昏的光线下几乎看不到。但他出手的瞬间，你感到了一阵风——
+
+你猛地低头——飞针从你头顶飞过，扎在了身后的木门上。针尾的蓝光告诉你——针上有毒。
+
+你后撤了两步。三个人重新围了上来。但此时——巷子尽头传来了脚步声。是赵铁牛。他拎着铁锤冲了过来。
+
+「三个打一个——好啊，加我一个！」
+
+暗星阁的三人互相对视了一眼，然后迅速撤退。他们消失在了巷子的拐角——像三只黑猫一样无声无息。</div>
+<<run setup.addHp(-15)>>
+<<set $flags.fought_dark_star = true>>
+<<set $rel_zhao += 5>>
+<<set $sword += 1>>
+<<divider>>
+<<link "「谢了，赵大哥。」" "lobby_free">><</link>>
+<<link "去药铺确认胡青娘的安全" "lobby_free">><</link>>
+
+
+:: enc_ds_warn
+<div class="narrate">你扯开嗓子大喊——「胡青娘——暗星阁的人来了！」
+
+三个杀手回头看了你一眼——眼神冰冷。他们没有停步，但你的喊声已经起到了效果。
+
+药铺的方向传来了一声金属响——胡青娘在准备迎战。与此同时，赵铁牛从隔壁的铁匠铺冲了出来，铁锤已经握在手中。
+
+暗星阁的三人意识到偷袭已经失败——他们交换了一个眼神，迅速撤退，消失在了巷子的阴影中。
+
+你的警告让胡青娘有了准备时间——这可能救了她的命。</div>
+<<set $rel_hu += 8>>
+<<set $rel_zhao += 3>>
+<<set $wits += 1>>
+<<divider>>
+<<link "继续" "lobby_free">><</link>>
+
+
+:: escape_riverside
+<div class="narrate">你沿着苍龙镇的河边小路一路向南。河水在月光下闪着银光，流速不快但很深——掉进去可不是闹着玩的。
+
+小路两旁是密集的柳树，垂下的枝条像帘子一样遮住了你的身影。你弯着腰在柳枝间穿行——虽然速度不快，但隐蔽性极好。
+
+走了大约百步，你来到了一座废弃的水磨坊。磨坊的木门半掩着，里面空无一人。但你注意到角落里有一堆干燥的稻草——有人在这里住过。
+
+你检查了周围——磨坊有一个后门通向河对岸的简易木桥。桥很窄，只能一人通过。如果追兵追到这里，你可以过桥后砍断桥索。
+
+这是一个不错的临时藏身之所。</div>
+<<set $flags.found_watermill = true>>
+<<set $wits += 1>>
+<<divider>>
+<<link "在磨坊里躲一会儿" "lobby_free">>
+<<set $flags.hid_in_mill = true>>
+<</link>>
+<<link "继续沿河走——不冒险停留" "lobby_free">><</link>>
+
+
+:: recovery_scene
+<div class="narrate">你在房间里躺了两天。赵铁牛每天给你送两顿饭——粥和蒸蛋，简单但好消化。胡青娘每天来换一次药，银针治疗也按时进行。
+
+第二天下午，你终于能坐起来了。胸口的淤青从暗紫色变成了黄绿色——这是好转的迹象。深呼吸时还会疼，但不再是那种让人无法动弹的剧痛。
+
+小莲端着一碗药走进来。她看到你坐起来的样子，露出了笑容。
+
+「你终于醒了！大家都很担心你呢。」
+
+她把药放在床头——然后从袖子里掏出一张纸条递给你。
+
+「这是……沈叔叔让我给你的。他说等你醒了再看。」
+
+你打开纸条。上面只有一行字：
+
+「天机卷的秘密比你想象的更深。能走动的时候——来找我。」</div>
+<<set $flags.recovery_done = true>>
+<<divider>>
+<<link "立刻去找沈孤雁" "lobby_free">><</link>>
+<<link "再休息一天——身体要紧" "lobby_free">><</link>>
+
+
+:: combat_hei_hurt_continue
+<div class="narrate">你握紧了剑——左臂的伤口在流血，但你还能战斗。血沿着剑柄流到了你的手指上，让握持变得有些滑。你调整了握姿，用拇指和食指夹住剑柄的棱角来增加摩擦力。
+
+黑无极注意到了你的伤势。他的目光落在你左臂上——然后嘴角微微上扬。
+
+「左手受伤了？」他说，「那就用不了反手剑了。可惜——你原本的反手剑还不错。」
+
+他知道你会反手剑？这说明他之前一直在暗中观察你——而且观察得很仔细。
+
+他再次出手——这次专攻你的左侧。刀光连续闪烁，每一刀都从你左侧切入，逼你用受伤的左臂格挡。
+
+你咬牙坚持——但失血带来的虚弱感越来越强烈。眼前的黑无极开始出现了重影。
+
+不能再拖了。要么速战速决——要么撤退。</div>
+<<run setup.addHp(-10)>>
+<<divider>>
+<<link "全力一搏——用右手单手持剑突刺！（剑术≥16）" "combat_hei_final">><</link>>
+<<link "撤退——今天不是死的时候" "combat_hei_retreat">><</link>>
+
+
+:: camp_after_battle
+<div class="narrate">你和赵铁牛在后山找了一处避风的山洞暂时落脚。壁炉的火堆发出噼啪的声响，照亮了山洞粗糙的石壁。
+
+赵铁牛在烤一只野兔——那是他用石头砸到的。兔肉在火上滋滋作响，油脂滴入火堆激起一小团火焰。
+
+「赵大哥，」你开口，「你当兵的时候——经常这样吗？」
+
+他翻了一下兔子，沉默了一会儿。
+
+「比这惨多了。」他说，「有一次我们被围困了七天——没吃的，最后把皮带煮了吃。那条皮带我跟了三年——是我娘亲手做的。」
+
+他撕下一块兔腿递给你。肉很烫——你吹了几口才敢咬。
+
+「那个时代过去了。」赵铁牛看着火堆，「现在我只是个打铁的。但我忘不了那些兄弟。十七个人——都冻死在了塞北。」
+
+你没有说话。有些伤痛不需要回应——只需要有人安静地陪着。
+
+火堆在燃烧。兔肉在烤着。山洞外面是呼啸的山风。
+
+但洞里——至少是暖的。</div>
+<<set $rel_zhao += 5>>
+<<divider>>
+<<link "「赵大哥，那些兄弟——你一定会替他们讨回公道的。」" "lobby_free">>
+<<set $flags.support_zhao = true>>
+<<set $rel_zhao += 3>>
+<</link>>
+<<link "默默吃完兔肉——有些话不需要说出口" "lobby_free">><</link>>
+
+
+:: captured_scene
+<div class="narrate">你被绑在一把木椅上。手腕和脚踝都被粗麻绳勒得生疼。面前的桌子上放着你的剑——被他们缴了。
+
+房间里只有一盏油灯。昏黄的光线照亮了四壁——这是一间普通的民房，但窗户被木板封死了。
+
+门开了。一个蒙面人走了进来——不是黑无极，也不是暗星阁的人。他的蒙面布是白色的，上面绣着一只展翅的鹤。
+
+白太傅的旧部。
+
+「醒了？」他坐在你对面，「别紧张——我们不想杀你。我们只想知道一件事。」
+
+「什么？」
+
+「天机卷上……有没有白太傅的名字。」
+
+他的声音平静，但你能感觉到那份平静下压抑着的急切。二十年了——他们在等一个答案。
+
+「如果我们得到答案——不管是什么——你都可以走。」他说。</div>
+<<set $flags.captured_by_bai_men = true>>
+<<divider>>
+<<link "「我不知道天机卷的内容。」" "lobby_free">><</link>>
+<<link "「白太傅的名字……确实在上面。但事情不像你们以为的那样。」" "lobby_free">>
+<<set $flags.revealed_bai_info = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "挣脱绳索——这些绳结绑得不够紧（剑术/心机≥14）" "lobby_free">><</link>>
+
+
+:: brawl_tavern
+<div class="narrate">一场突如其来的混战在大堂爆发。起因很小——一个外来的商人在赵铁牛面前骂了句粗话。赵铁牛二话不说掀了桌子。然后商人的三个护卫拔了刀。
+
+然后整个大堂都乱了。
+
+你坐在角落里看着——柳如烟也坐在另一角，手按在剑柄上但没有动。沈孤雁躲到了柜台后面。胡青娘端着药碗站在楼梯口，一脸嫌弃地看着打架的人。
+
+赵铁牛一个人打三个——铁匠的臂力不是吹的。他一手抓着一个护卫的衣领，另一手挡住另一个的刀。第三个试图从背后偷袭——赵铁牛向后一脚踹在他肚子上。
+
+但桌子在飞、椅子在碎、碗碟哗哗落地。沈孤雁的心在滴血——那是他新买的景德镇瓷碗。
+
+「够了！」沈孤雁从柜台后面站起来，手里多了一把弩——不知道从哪摸出来的。他朝天放了一箭，弩箭钉在天花板上。
+
+所有人停了下来。
+
+「打架的去外面打。毁坏东西的——赔。」
+
+赵铁牛讪讪地松了手。三个护卫灰溜溜地被扔出了门外。
+
+沈孤雁蹲下来捡碎瓷片。你看过去——他的脸上没有愤怒，只有心疼。
+
+「那个碗……」他嘟囔，「我花了五两银子买的……」</div>
+<<set $rel_shen += -2>>
+<<set $flags.tavern_brawl = true>>
+<<divider>>
+<<link "帮沈孤雁捡碎瓷片" "lobby_free">>
+<<set $rel_shen += 3>>
+<</link>>
+<<link "劝赵铁牛消消气" "lobby_free">>
+<<set $rel_zhao += 2>>
+<</link>>
+<<link "不管了——上楼休息" "lobby_free">><</link>>
+
+
+:: injury_nightmare
+<div class="narrate">你做了一个梦。
+
+梦里你站在石室中——但石室没有出口。四面墙壁在不断缩小，天花板在压下来。天机卷摊开在你面前的石台上，上面的名字在蠕动——每一个字都在挣扎，像是要从纸上爬出来。
+
+你看到了黑无极的脸——但他的脸上没有伤疤。是一张年轻的脸，带着笑。他旁边站着一个老人——应该是他的师父。两人站在一棵大树下，师父在教徒弟练刀。
+
+画面一转——你看到了沈孤雁。他穿着年轻的衣服，手里握着一把长刀。他的面前是那棵大树——树下有一具尸体。
+
+沈孤雁的刀在滴血。
+
+画面再转——你看到了白太傅。一个白胡子老人，坐在书房里，面前摊着一卷空白的天机卷。他在写第一个名字。手在颤抖。
+
+然后你看到了自己。
+
+你站在石室中央。所有的画面都围绕着你旋转——像走马灯一样。你看到了每一个人的过去、现在、和可能的未来。
+
+然后你醒了。
+
+满头冷汗。窗外天已经微微亮了。
+
+梦中的画面在迅速消散——但有一个画面你记住了：黑无极年轻时笑着练刀的样子。
+
+那个笑容——和他现在的面容判若两人。</div>
+<<set $flags.had_nightmare = true>>
+<<set $wits += 1>>
+<<divider>>
+<<link "躺下再睡一会儿" "lobby_free">><</link>>
+<<link "起床——不想再睡了" "lobby_free">><</link>>
+
+
+:: hu_healing_monologue
+<div class="narrate">你在药铺等胡青娘配药时，听到了她在后院的自言自语。
+
+「……又一个受伤的。」她的声音从帘子后面传来，「我这辈子——治过的刀伤比病痛多十倍。江湖人啊……」
+
+她停顿了一下。
+
+「亡夫，你说得对——学医救不了这个江湖。但至少……能少死一个是一个。」
+
+帘子被掀开了。胡青娘端着一碗新配的药走了出来——脸上的表情已经恢复了平时的淡定。好像刚才的自言自语从未发生过。
+
+「喝药。」她把碗递给你。
+
+你接过碗——药很烫，但你在想刚才听到的话。她的亡夫——也是一个江湖人吗？
+
+也许有一天你会问。但不是今天。</div>
+<<set $flags.heard_hu_monologue = true>>
+<<set $wits += 1>>
+<<divider>>
+<<link "默默喝药" "lobby_free">><</link>>
+<<link "「胡姐姐——你的亡夫……也是剑客吗？」" "lobby_free">>
+<<set $flags.asked_hu_husband = true>>
+<<set $rel_hu += -3>>
+<</link>>
+
+
+:: learn_counter_skill
+<div class="narrate">赵铁牛在后院教你一招——「铁壁反弹」。这是他从军营里学来的防守反击术。
+
+「别人打你的时候——不要躲。迎上去，用前臂格住他的手腕，然后用另一只手肘撞他的胸口。这样——」他示范了一下，手臂横在你面前，「他的力量会被你自己吸收，然后用他的力量反击。」
+
+你试了几次。前三次都没掌握时机——不是太早就是太晚。第四次，你找到了感觉——赵铁牛的手臂刚发动攻击时，你的前臂恰好迎了上去。碰撞的瞬间你感到了一股力量从他的手臂传到你的手臂——然后你用肘部击中了他护在胸前的木盾。
+
+「嘭！」
+
+赵铁牛咧嘴笑了。
+
+「不错！再练十次！」
+
+你练了三十次。到最后——你的前臂已经红肿了。但那个动作已经刻进了你的肌肉记忆里。
+
+「记住——」赵铁牛收起木盾，「防守不是退缩。防守是等他送上门来。」</div>
+<<set $sword += 2>>
+<<set $flags.learned_counter = true>>
+<<set $rel_zhao += 5>>
+<<divider>>
+<<link "「谢了，赵大哥。这一招很实用。」" "lobby_free">><</link>>
+<<link "继续练习——还不够熟练" "lobby_free">>
+<<set $sword += 1>>
+<<run setup.addHp(-5)>>
+<</link>>
+
+
+:: shen_personal_quest
+<div class="narrate">沈孤雁把你叫到柜台后面。他的表情前所未有的凝重。</div>
+<<dialog "沈孤雁" "我有一件事需要你帮忙。不是天机卷的事——是我私人的事。
+
+我的女儿……她被朝廷掳走了。">>
+<div class="narrate">你的心沉了一下。</div>
+<<dialog "沈孤雁" "五年前，清婉死后不久，朝廷找到了我的女儿沈念。她那时才十三岁。他们没有杀她——而是把她带走了，作为要挟我的筹码。
+
+只要我乖乖的，不乱说话，他们就养着她。如果我不听话……">>
+<<divider>>
+<div class="narrate">他从怀中取出一封信。信纸已经磨得发白，显然被翻看了无数次。</div>
+<<dialog "沈孤雁" "这是她去年托人带出来的唯一一封信。她在京城的织造坊做工——说是做工，其实就是人质。信里说她很好，让我不要担心。
+
+但我看得出来——她的字迹变了。以前她的字活泼灵动，现在……规规矩矩，一笔一画，像是有人站在旁边监督她写的。">>
+<<set $flags.shen_daughter_quest = true>>
+<<divider>>
+<div class="narrate">沈孤雁抬起头，眼中是你从未见过的脆弱。</div>
+<<dialog "沈孤雁" "我一直在等一个机会。如果我能在不惊动朝廷的情况下……把她救出来……
+
+但苍龙镇的事走不开。三百多人的命在我手上。
+
+你——能不能帮我？">>
+<<link "「我帮你救女儿。」" "shen_daughter_plan">>
+<<set $flags.promised_shen_daughter = true>>
+<<set $rel_shen += 15>>
+<<set $charm += 2>>
+<</link>>
+<<link "「我现在走不开。但天机卷的事了结之后——我一定帮你。」" "chapter2_hub">>
+<<set $flags.shen_daughter_later = true>>
+<<set $rel_shen += 5>>
+<</link>>
+<<link "「这超出了我的能力范围。」" "chapter2_hub">>
+<<set $rel_shen += -5>>
+<</link>>
+
+
+:: shen_daughter_plan
+<div class="narrate">
+沈孤雁的眼睛亮了一下——像是看到了一丝希望。</div>
+<<dialog "沈孤雁" "你……真的愿意帮我？">>
+<div class="narrate">他深吸一口气，从柜台下面取出一张手绘的地图。</div>
+<<dialog "沈孤雁" "京城织造坊的布局图。我花了五年时间，通过各种渠道收集的。她被关在坊内西北角的一间小院子里，有两名守卫轮班。
+
+我本来打算自己去——但我不能离开苍龙镇。我一走，这三百多人就没有人保护了。">>
+<<divider>>
+<div class="narrate">他看着地图，手指在一个标记点上停了很久。</div>
+<<dialog "沈孤雁" "如果你能帮我救出念儿——我把沈家的玉牌给你，还有我毕生所学的「拨云手」心法。
+
+更重要的是——从今天起，我沈孤雁这条命，就是你的。不管你要我做什么，赴汤蹈火，在所不辞。">>
+<<run setup.addItem('织造坊地图')>>
+<<set $flags.has_weaving_map = true>>
+<<link "继续行动" "chapter2_hub">><</link>>
+
+
+:: liu_personal_quest
+<div class="narrate">柳如烟在屋顶上等你。月光将她的侧脸照得像一幅水墨画。</div>
+<<dialog "柳如烟" "你来了。我有件事——只想跟你说。">>
+<div class="narrate">她的声音比平时轻了很多。</div>
+<<dialog "柳如烟" "我父亲……他在岭南一个叫青竹村的地方。化名周三，以打鱼为生。但他的身体不好——当年守城时落下的旧伤，每到冬天就发作。
+
+我已经三年没见过他了。">>
+<<divider>>
+<div class="narrate">她从袖中取出一块小小的玉佩——不是玉牌，是一块普通的平安扣，上面刻着一个「周」字。</div>
+<<dialog "柳如烟" "这是我母亲的遗物。我本来想亲自还给他——但如果我离开锦衣卫，朝廷会立刻派人追杀我们两个。
+
+所以我想求你一件事——如果天机卷的事了结了……帮我把这块玉佩带给我父亲。告诉他——女儿不孝，但不能回来。">>
+<<set $flags.liu_father_quest = true>>
+<div class="narrate">
+她的声音到最后几乎听不见了。月光下，你看到她的睫毛上似乎挂着什么——但当你眨眼再看时，她已经恢复了那副冷硬的面孔。</div>
+<<dialog "柳如烟" "……当然，作为交换，如果你需要——我可以告诉你锦衣卫在苍龙镇的所有部署。包括暗哨的位置、联络方式、和换班时间。
+
+这些信息，至少值五百两黄金。">>
+<<link "「我帮你送玉佩。不需要交换。」" "chapter2_hub">>
+<<set $flags.promised_liu_father = true>>
+<<set $rel_liu += 15>>
+<<set $charm += 2>>
+<<run setup.addItem('柳如烟的平安扣')>>
+<</link>>
+<<link "「信息我也要，玉佩我也帮你送。」" "chapter2_hub">>
+<<set $flags.promised_liu_father = true>>
+<<set $flags.knows_jinyi_deploy = true>>
+<<set $rel_liu += 10>>
+<<set $wits += 2>>
+<<run setup.addItem('柳如烟的平安扣')>>
+<</link>>
+<<link "「我得先忙天机卷的事。」" "chapter2_hub">><</link>>
+
+
+:: zhao_personal_quest
+<div class="narrate">赵铁牛把你带到铁匠铺后面的地窖里。
+
+军旗在昏暗的烛光下泛着暗红色的光。四十七个木牌整整齐齐地排在架子上。</div>
+<<dialog "赵铁牛" "我让你看这些，是因为——我需要你帮我找一个人。">>
+<div class="narrate">他指向其中一个木牌：
+
+「<span class="highlight">刘半仙 · 永安二年入</span>」</div>
+<<dialog "赵铁牛" "刘半仙，真名刘永年。他是我们小队的军师——不，是我们的脑子。打仗的时候，所有计谋都是他出的。乌兰关能守三天三夜，全靠他。
+
+但三年前，有一场伏击——我们的位置被人泄露了。五个人出去，只有他一个人活着回来。他说敌人太强，其他人都是战死的。
+
+但我不信。
+
+因为那次伏击之后，又有三个兄弟接连出事。每一次，敌人的情报都精准得不像是巧合。">>
+<<divider>>
+<div class="narrate">赵铁牛的脸色铁青。</div>
+<<dialog "赵铁牛" "我花了三年调查。结论是——<span class="danger">我们中间有叛徒</span>。而且这个叛徒，很可能就是刘半仙。
+
+但他现在不在苍龙镇。他在北边的柳城，开了一间算命铺子，改名换姓叫「半仙」。
+
+我需要你帮我确认——他到底是不是叛徒。
+
+如果是——我要亲手<span class="danger">宰了他</span>。如果不是——我给他道歉，跪着道歉。">>
+<<set $flags.zhao_traitor_quest = true>>
+<<link "「我帮你查。」" "chapter2_hub">>
+<<set $flags.promised_zhao_traitor = true>>
+<<set $rel_zhao += 12>>
+<</link>>
+<<link "「你确定他是叛徒？」" "chapter2_hub">><</link>>
+
+
+:: hu_personal_quest
+<div class="narrate">胡青娘把你带进药铺的密室。
+
+四面墙上的情报在烛光下闪烁——十年的心血，铺满了整个房间。</div>
+<<dialog "胡青娘" "我跟你说过，我的情报网被渗透了。但我没告诉你——渗透我的人，很可能是我最信任的线人之一。">>
+<div class="narrate">她从墙上取下一张纸条。上面写着几个名字和日期。</div>
+<<dialog "胡青娘" "过去三个月，有五条情报被泄露。每一条都对应着一个暴露的前朝遗臣。
+
+这五条情报，都经过了同一个人的手——我的副手，「青鸢」。">>
+<<divider>>
+<div class="narrate">她的声音变得很轻。</div>
+<<dialog "胡青娘" "青鸢是我十年前救回来的孤儿。我教她读书写字，教她收集情报，教她保护自己。我把她当亲妹妹看待。
+
+但如果她真的背叛了我……">>
+<div class="narrate">她没有说下去。但你能看到她的手在微微颤抖。</div>
+<<dialog "胡青娘" "帮我找到证据。如果是青鸢——我会亲手处理。如果不是——我欠她一个天大的道歉。
+
+不管结果如何，我都需要<span class="highlight">真相</span>。">>
+<<set $flags.hu_mole_quest = true>>
+<<set $rel_hu += 5>>
+<<link "「我会找到真相的。」" "chapter2_hub">>
+<<set $flags.promised_hu_mole = true>>
+<<set $rel_hu += 10>>
+<</link>>
+<<link "「如果真是青鸢呢？你下得了手吗？」" "chapter2_hub">><</link>>
+
+
+:: bai_personal_quest
+<div class="narrate">白云生坐在窗边，月光照亮了他脸上的每一道疲惫的纹路。</div>
+<<dialog "白云生" "你知道吗——我来苍龙镇不是为了躲。我是因为一个遗愿。">>
+<div class="narrate">他从衣襟内侧取出一块旧丝帕，上面绣着几行字：
+
+<span class="highlight">"吾孙承渊：白家满门忠烈，不悔不怨。唯愿你替白家做最后一件事——找到天机卷，让天下人知道真相。真相，是最好的墓志铭。"
+
+——白太傅 绝笔</span></div>
+<<divider>>
+<div class="narrate">白云生的手指在丝帕上轻轻抚摸，像是在触摸一个已经离去的人的脸。</div>
+<<dialog "白云生" "我爷爷——白太傅——前朝的三朝元老。他不是武将，不会打打杀杀。他只会写字、做学问、教导学生。但朝代更替那天，他选择了死——不是战死，是在家中自焚，连同他一生的著作一起化为灰烬。
+
+因为他不想让新朝用他的学问来粉饰太平。">>
+<div class="narrate">他的声音哽了一下。</div>
+<<dialog "白云生" "他的遗愿是让我找到天机卷——不是为了宝藏，不是为了权力——是为了让天下人知道，前朝有那么多人，他们不是「叛贼」，不是「乱党」。
+
+他们只是——<span class="highlight">不想忘记自己是谁的人</span>。">>
+<<set $flags.bai_family_quest = true>>
+<<set $rel_bai += 8>>
+<<link "「我帮你完成白太傅的遗愿。」" "chapter2_hub">>
+<<set $flags.promised_bai_family = true>>
+<<set $rel_bai += 12>>
+<<set $charm += 1>>
+<</link>>
+<<link "「天机卷不只是遗愿——它关乎上万人的命。」" "chapter2_hub">><</link>>
+
+
+:: hei_personal_quest
+<div class="narrate">你在后院的暗处找到了黑无极。他像一个影子一样融入了夜色——如果你不是刻意去找，根本不会发现他在那里。</div>
+<<dialog "黑无极" "……你找我？很少有人会主动找我。">>
+<div class="narrate">他的声音意外地平静。没有白天的杀气，只有一种……<span class="highlight">倦怠</span>。
+
+像是一个做了太多年同一件事的人，终于感到了疲惫。</div>
+<<divider>>
+<<dialog "黑无极" "你想知道我为什么来苍龙镇？不只是为了天机卷。
+
+我来——是因为沈孤雁在这里。">>
+<div class="narrate">他的眼神突然变得锐利。</div>
+<<dialog "黑无极" "二十年前，沈孤雁——那时候他还叫沈承风——奉命清剿暗星阁。那一夜，他带着禁卫军冲进了我们的总部。我的师父——暗星阁最后一代阁主——死在了他的刀下。
+
+我那年十五岁。亲眼看着他杀了我师父。">>
+<<divider>>
+<div class="narrate">他的手不自觉地按在了刀柄上，但很快又松开了。</div>
+<<dialog "黑无极" "我恨了他二十年。做梦都想杀他。
+
+但是……">>
+<div class="narrate">他沉默了很久。月光在他脸上投下深重的阴影。</div>
+<<dialog "黑无极" "但是三年前，我查到了那晚的真相。清剿暗星阁的命令，不是沈承风下的——是朝廷下的。他只是执行命令。而且——他在执行命令的时候，<span class="highlight">偷偷放走了七个孩子</span>。
+
+我是那七个孩子之一。
+
+他放走了我。">>
+<<set $flags.hei_revenge_conflict = true>>
+<<set $rel_hei += 8>>
+<<link "「所以你来找他——是为了报仇，还是为了道谢？」" "chapter2_hub">><</link>>
+<<link "「放下仇恨吧。你有更重要的事——保护暗星阁的人。」" "chapter2_hub">>
+<<set $flags.hei_let_go = true>>
+<<set $rel_hei += 10>>
+<<set $charm += 1>>
+<</link>>
+
+
+:: alliance_negotiation
+<div class="narrate">你站在客栈院子里，月光如洗。今晚的所有人——活着的——都在这里。
+
+沈孤雁、柳如烟、赵铁牛、白云生、胡青娘、小莲……还有暗处的黑无极。
+
+六个人（加上暗处那个七个），各怀心事，各有所求。但有一件事将他们联系在一起——<span class="highlight">天机卷</span>。
+
+你深吸一口气，开口了：</div>
+<<divider>>
+<div class="narrate">你的声音在夜风中回荡。每个人都看着你，表情各异。
+
+沈孤雁——审视中带着赞许。
+柳如烟——冷淡中有一丝意外。
+赵铁牛——直接地点了点头。
+白云生——微微笑了笑。
+胡青娘——目光如刀，在算计利弊。
+黑无极——从暗处走出半步，然后又退了回去。</div>
+<<set $flags.alliance_proposed = true>>
+<<link "「我来分配任务——沈老板守山，柳如烟负责情报，赵铁牛负责战斗……」" "alliance_result">>
+<<set $flags.alliance_leader = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "「你们自己选。我不当头——但我会确保每个人都信守承诺。」" "alliance_result">>
+<<set $flags.alliance_broker = true>>
+<<set $charm += 2>>
+<</link>>
+<<link "「谁跟我去落雁峰，谁留下守镇——自愿。」" "alliance_result">>
+<<set $flags.alliance_voluntary = true>>
+<<set $charm += 1>>
+<</link>>
+
+
+:: alliance_result
+<div class="narrate">
+经过一番讨论——有人犹豫，有人争论，有人沉默——最终达成了一个勉强但有效的共识。</div>
+<<if allies.length > 0>>
+<div class="narrate">
+愿意跟你上落雁峰的人：
+</div>
+<</if>>
+<<if $rel_hu > 5>>
+<div class="narrate">
+胡青娘选择留下守药铺——「你们去拿天机卷，我守后方。如果有人来偷袭镇子，我至少能挡一阵。」</div>
+<</if>>
+<<divider>>
+<div class="narrate">天边泛起了一丝鱼肚白。
+
+<span class="highlight">天快亮了。</span>
+
+黑无极给的最后期限就是天亮。
+
+必须——现在——出发。</div>
+<<link "出发前往落雁峰" "mountain_approach">><</link>>
+
+
+:: ending_lonely
+<div class="narrate">你独自一人来到落雁峰。
+
+没有盟友，没有后援。只有你手中的剑和怀里的玉牌。
+
+石壁前的战斗是你一个人的。
+
+黑无极的手下——你杀了一个，伤了两个，自己也挨了三刀。
+但你还是打开了石门。还是走到了天机卷面前。</div>
+<<divider>>
+<div class="narrate">你拿起卷轴。
+
+一千七百个名字。近万条人命。
+
+没有人帮你分担这个重量。
+
+你站在空荡荡的石室里，看着手中的卷轴，突然觉得——好重。
+
+不是卷轴重。是<span class="danger">选择</span>重。
+
+没有人可以商量，没有人可以依靠，没有人会在你做错决定的时候拉你一把。</div>
+<<divider>>
+<div class="narrate">你深吸一口气。
+
+做出了选择。独自承受一切后果。
+
+这就是孤独的代价——也是自由的代价。</div>
+
+
+:: ending_perfect
+<div class="narrate">所有人一起走进了石室。
+
+沈孤雁、柳如烟、赵铁牛、白云生、胡青娘——甚至黑无极。
+
+这是你见过的最奇怪的组合。一个前朝遗臣、一个锦衣卫暗探、一个老兵铁匠、一个落魄书生、一个情报贩子、一个杀手——和一个无名剑客。
+
+七个人，七种过去，七条不同的路——在这一刻交汇。</div>
+<<divider>>
+<div class="narrate">你拿起天机卷，展开它。
+
+在跳动的火把光中，一千七百个名字像是活了过来——每一个名字背后都是一个家庭，一段故事，一份不想被遗忘的过去。
+
+你没有撕碎它，也没有交给任何人。
+
+你把它重新卷好，放回石台上。然后——你将三块玉牌分别嵌入了凹槽旁边的一个隐藏机关里。</div>
+<<divider>>
+<div class="narrate"><span class="ok">「咔嗒。」</span>
+
+机关启动。石壁开始缓缓合拢。
+
+你跳出石室，其他人紧随其后。
+
+石门在身后轰然关闭。从此以后——天机卷被封在了落雁峰深处，没有钥匙，没有机关，没有任何人能再打开它。</div>
+<<divider>>
+<div class="narrate">沈孤雁长长地吐了一口气。</div>
+<<dialog "沈孤雁" "十五年了。终于……可以安心了。">>
+<div class="narrate">柳如烟看着封闭的石壁，眼中闪过一丝释然。</div>
+<<dialog "柳如烟" "我会告诉朝廷——天机卷在争夺中被毁。从此以后，没有人需要再为这份名单死了。">>
+<div class="narrate">赵铁牛拍了拍你的肩膀，什么也没说，只是用力握了握你的手。</div>
+<div class="narrate">白云生对着封闭的石门深深鞠了一躬。</div>
+<<dialog "白云生" "爷爷，您的遗愿——我完成了。天机卷不会害人了，但真相会一直活着。">>
+<div class="narrate">黑无极站在最远处，背着所有人。但你能看到他的肩膀微微放松了下来。</div>
+<<dialog "黑无极" "……了了。二十年了，终于了了。">>
+<<divider>>
+<div class="narrate">你走出山洞。
+
+日出东方，金色的阳光洒在落雁峰上，将每一个人的影子拉得很长很长。
+
+没有人说话。但每个人都笑了。
+
+不是大笑，不是苦笑，是一种经历了漫长黑夜后终于看到黎明的——<span class="highlight">微笑</span>。
+
+苍龙镇在山脚下苏醒。新的一天开始了。
+
+而你——你知道自己还会继续走。江湖路远，但至少——这一夜，你没有走错。</div>
+<<divider>>
+<div class="narrate"><span class="highlight">「江湖夜雨十年灯，一剑天涯万重山。
+ 天机已封人事了，各赴前程莫相忘。」</span></div>
+
+
+:: ending_tragedy
+<div class="narrate">你的选择激怒了黑无极。
+
+他没有说话。只是一刀。
+
+一刀——赵铁牛的铁锤碎裂。
+一刀——沈孤雁的弯刀折断。
+一刀——白云生倒在了血泊中。
+
+他的刀法快到你根本看不清。等你看清的时候——身边的人已经都倒下了。</div>
+<<divider>>
+<div class="narrate"><span class="danger">你跪在地上。胸口的伤口在流血。</span>黑无极站在你面前，手中的刀还在滴血。</div>
+<<dialog "黑无极" "……我给过你机会。你选了最蠢的那条路。">>
+<div class="narrate">他俯身，从你怀中取出天机卷和所有玉牌。然后转身走向石壁。</div>
+<<divider>>
+<div class="narrate">你的视线开始模糊。
+
+最后的画面——黑无极打开了石门，走了进去。
+然后，石壁重新关闭。
+
+一切归于黑暗。
+
+苍龙镇的那一夜，后来被称为——<span class="danger">「血雨夜」</span>。
+
+没有人知道那一夜到底发生了什么。
+只知道第二天早上，客栈里多了几具新的尸体。
+而天机卷——从此再也没有人见过。</div>
+
+
+:: chapter2_hub
+<<loc "听雨客栈·大堂">>
+<div class="narrate">天亮了。苍龙镇在晨光中苏醒——但昨夜的战斗痕迹还历历在目。大堂的桌子歪了，窗户破了，地上还有干涸的血迹。沈孤雁已经把一切收拾好了——或者说，尽可能收拾好了。他在大堂的角落里坐着，黑剑放在膝上。</div>
+<<divider>>
+<div class="narrate">所有人陆续来到了大堂——赵铁牛、胡青娘、白云生、柳如烟、小莲。每个人身上都有昨夜的痕迹——伤口、疲惫、警觉。沈孤雁站起来：昨晚只是试探。他们还会来。下一次会更凶。我们必须在他们下一次进攻之前——打开石室。</div>
+<<divider>>
+<<set $flags.chapter2_started = true>>
+
+
+:: hu_jade_quest
+<div class="narrate">胡青娘带你去了药铺后院。一个男人躺在担架上——脸色发紫，嘴唇乌黑。断肠红中毒。胡青娘说：这个人不是苍龙镇的——他是昨夜袭击时混进来的暗星阁外围成员。但他不是来杀人的——他是来求救的。</div>
+<<divider>>
+<<set $flags.hu_jade_started = true>>
+<div class="narrate">胡青娘说：他在被派来之前就被下了慢性毒——断肠红的弱化版。暗星阁用这种方式控制手下。我需要三味药引才能配解药：银鳞鱼、赤灵芝、七叶莲。</div>
+<<divider>>
+<<link "去河边捞银鳞鱼" "hu_jade_fish">>
+<<set $flags.got_silver_fish = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "去后山采七叶莲" "hu_jade_herb">>
+<<set $flags.got_qiye_lotus = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "让赵铁牛帮你找赤灵芝" "hu_jade_combine">>
+<<set $flags.got_red_lingzhi = true>>
+<<set $rel_zhao += 3>>
+<</link>>
+
+
+:: hu_jade_fish
+<div class="narrate">你来到河边——银鳞鱼只在深水区出现。你脱了外衣下水——河水冰冷刺骨。在水底摸索了很久——终于抓到了一条巴掌大的银色小鱼。鱼鳞在阳光下闪闪发光。</div>
+<<divider>>
+<<link "回去" "hu_jade_combine">><</link>>
+
+
+:: hu_jade_herb
+<div class="narrate">后山的悬崖上——七叶莲长在一块突出的岩石上。你需要沿着窄窄的石壁攀爬过去。风很大——吹得你几乎站不稳。但你咬牙坚持——终于采到了那株七叶莲。七片叶子呈莲花状排列，散发着淡淡的药香。</div>
+<<divider>>
+<<link "回去" "hu_jade_combine">><</link>>
+
+
+:: hu_jade_combine
+<div class="narrate">你带着药引回到药铺。胡青娘在铜炉前忙碌了整整两个时辰。最后——她端出一碗深绿色的药汤。给那个暗星阁的人灌了下去。</div>
+<<divider>>
+<<set $flags.hu_jade_complete = true>>
+<<set $rel_hu += 10>>
+<div class="narrate">半个时辰后——那个人的脸色开始恢复。他睁开眼睛——看到了胡青娘和你。他说了一句话：谢谢你。然后他说了一个关键信息——暗星阁下一次进攻的时间。后天。黑无极将亲自带队。胡青娘看着你——然后从暗格里取出了那块碧绿色的玉牌。递给了你。她说：你值得信任。这块玉牌——交给你保管。</div>
+<<divider>>
+<<set $flags.got_hu_jade = true>>
+<<set $wits += 5>>
+<<link "回到大堂" "chapter2_hub">><</link>>
+
+
+:: bai_jade_quest
+<div class="narrate">白云生坐在客栈二楼的走廊上——面前摊着几张纸。他今天又没喝酒。他说：我需要你帮我破解一个暗号。这是三年前我在客栈一张桌子的暗格里发现的。他递给你一张泛黄的纸条。上面写着一串奇怪的符号。</div>
+<<divider>>
+<<set $flags.bai_jade_started = true>>
+<<link "研究暗号（检定：才智>=7）" "bai_jade_solve">>
+<<set $flags.solved_cipher = true>>
+<<set $flags.failed_cipher = true>>
+<<set $wits += 3>>
+<</link>>
+<<link "去找胡青娘帮忙——她可能见过类似的暗号" "bai_jade_hu_help">>
+<<set $flags.asked_hu_cipher = true>>
+<<set $rel_hu += 2>>
+<</link>>
+<<link "去问沈孤雁" "bai_jade_shen_help">>
+<<set $flags.asked_shen_cipher = true>>
+<<set $rel_shen += 2>>
+<</link>>
+
+
+:: bai_jade_solve
+<div class="narrate">你盯着那些符号——渐渐地，一个规律浮现出来。这是白太傅独创的密码——用诗句的首字对应数字。破解后的内容是：玉在玉佩中。雁在玉佩上。真相在第三只雁的眼睛里。白云生听完——沉默了很久。然后他从怀里掏出了一块玉佩。白太傅的遗物。他翻到背面——第三只雁的眼睛处——有一个极小的凹槽。他用指甲一按——咔哒。玉佩从中间裂开——里面藏着一块薄如蝉翼的玉牌。上面刻着一只展翅的大雁。</div>
+<<divider>>
+<<set $flags.got_bai_jade = true>>
+<<set $rel_bai += 10>>
+<<set $wits += 5>>
+<<link "回到大堂" "chapter2_hub">><</link>>
+
+
+:: bai_jade_hu_help
+<div class="narrate">胡青娘看了看暗号——然后摇摇头：这是白太傅独创的密码，我破不了。但她补充了一句：白太傅生前喜欢用诗句的首字做暗号。你去告诉白云生。</div>
+<<divider>>
+<<link "回去告诉白云生" "bai_jade_solve">><</link>>
+
+
+:: bai_jade_shen_help
+<div class="narrate">沈孤雁看了看暗号——沉默了一会儿。他说：白太傅是天机阁的朋友。他用的密码——我只知道他喜欢用诗句。其余的——你自己想。</div>
+<<divider>>
+<<link "回去继续研究" "bai_jade_solve">><</link>>
+
+
+:: shen_jade_quest
+<div class="narrate">沈孤雁说：我的玉牌藏在一个密室里。密室的入口在客栈的某个地方——但只有在天亮之前找到才算通过考验。你需要在限定的线索中找到入口。第一个线索：水往低处流。</div>
+<<divider>>
+<<set $flags.shen_jade_started = true>>
+<<link "去后院的水井看看" "shen_jade_well">>
+<<set $flags.checked_well = true>>
+<<set $wits += 2>>
+<</link>>
+<<link "去地下室看看" "shen_jade_well">>
+<<set $wits += 1>>
+<</link>>
+
+
+:: shen_jade_well
+<div class="narrate">你在后院的水井旁发现了第二个线索——井沿上刻着一行小字：雁过留声，水过留痕。你往井里看——水面下有一个暗格。你伸手进去摸索——摸到了一个铜管。铜管里有一张纸条：大堂第三根柱子，敲三下。</div>
+<<divider>>
+<<link "去大堂" "shen_jade_pillar">><</link>>
+
+
+:: shen_jade_pillar
+<div class="narrate">大堂第三根柱子——你敲了三下。咔哒——柱子底部弹开了一个暗门。暗门后面是一段狭窄的阶梯——向下延伸。你走下去——进入了密室。密室不大——四面墙壁上刻满了文字。是历代守护者的笔记。密室中央的石台上——放着沈孤雁的玉牌。以及一封信。信上写着：给找到这里的人。</div>
+<<divider>>
+<<set $flags.got_shen_jade = true>>
+<<set $flags.found_shen_secret_room = true>>
+<<set $rel_shen += 10>>
+<<set $wits += 5>>
+<<link "回到大堂" "chapter2_hub">><</link>>
+
+
+:: zhao_weapon_help
+<div class="narrate">你帮赵铁牛修武器——他在为所有人准备防身兵器。他给你打了一把短剑——说：防身用。你值得信任。</div>
+<<divider>>
+<<set $rel_zhao += 5>>
+<<set $sword += 2>>
+<<set $flags.got_zhao_sword = true>>
+<<link "继续" "chapter2_hub">><</link>>
+
+
+:: sun_confront
+<div class="narrate">你在河边找到了老孙头。他还在钓鱼——鱼竿上依然没有鱼线。你直接问他：你在守什么？他沉默了很久。然后说：我在守一个承诺。二十年前我犯了一个大错——我欠了一笔还不清的债。我在这里等待赎罪的机会。</div>
+<<divider>>
+<<set $flags.sun_confronted = true>>
+<<set $rel_old += 3>>
+<<set $wits += 3>>
+<<link "继续" "chapter2_hub">><</link>>
+
+
+:: li_morning_intel
+<div class="narrate">李婶说：最新消息。暗星阁增援已到——至少又来了五人。黑无极计划后天发动总攻。目标：拿到三块玉牌，打开石室。</div>
+<<divider>>
+<<set $wits += 3>>
+<<set $flags.know_final_attack = true>>
+<<link "继续" "chapter2_hub">><</link>>
+
+
+:: liu_private_talk
+<div class="narrate">柳如烟在后院等你。她说：我收到了锦衣卫的密令——他们也要天机卷。但我已经决定——不执行那个命令。天机卷应该由守护者决定命运。我现在站在沈孤雁这边。</div>
+<<divider>>
+<<set $rel_liu += 10>>
+<<set $flags.liu_switched_sides = true>>
+<<set $flags.liu_private_talk_done = true>>
+<<link "继续" "chapter2_hub">><</link>>
+
+
+:: tunnel_explore
+<div class="narrate">你打开后院锁着的小门——果然是地下通道的入口。通道很窄——只容一人通过。墙壁上刻着路标——指向落雁峰。通道里阴冷潮湿——但走了一段时间后你看到了出口的光。</div>
+<<divider>>
+<<set $flags.explored_tunnel = true>>
+<<set $flags.tunnel_explored = true>>
+<<set $wits += 3>>
+<<link "返回" "chapter2_hub">><</link>>
+
+
+:: alliance_full
+<div class="narrate">所有人聚集在大堂。沈孤雁说：后天暗星阁就会发动总攻。我们必须在那之前打开石室。三块玉牌——他看了看胡青娘和白云生——缺一不可。问题在于：打开石室之后，天机卷该怎么处理？</div>
+<<divider>>
+<<set $flags.alliance_meeting = true>>
+<<link "交给朝廷" "alliance_result_full">>
+<<set $flags.alliance_court = true>>
+<<set $charm += 2>>
+<</link>>
+<<link "交给沈孤雁继续守护" "alliance_result_full">>
+<<set $flags.alliance_guardian = true>>
+<<set $rel_shen += 5>>
+<</link>>
+<<link "公开天机卷" "alliance_result_full">>
+<<set $flags.alliance_public = true>>
+<<set $wits += 3>>
+<</link>>
+<<link "销毁天机卷" "alliance_result_full">>
+<<set $flags.alliance_destroy = true>>
+<</link>>
+<<link "利用天机卷对付暗星阁" "alliance_result_full">>
+<<set $flags.alliance_weapon = true>>
+<<set $sword += 2>>
+<</link>>
+<<link "由大家投票决定" "alliance_result_full">>
+<<set $flags.alliance_democratic = true>>
+<<set $charm += 3>>
+<</link>>
+
+
+:: alliance_result_full
+<div class="narrate">经过长时间的讨论——所有人达成了一致。不管天机卷最终如何处理——首先必须确保它不落入暗星阁手中。沈孤雁说：明天一早出发。落雁峰。所有人一起去。赵铁牛举起酒碗：同生共死。所有人碰碗。酒是赵铁牛的烧刀子——辣得你眼泪都出来了。但此刻你需要这口辣。</div>
+<<divider>>
+<<set $flags.alliance_formed = true>>
+<<set $flags.alliance_done = true>>
+<<set $charm += 3>>
+<<link "准备出发" "mountain_prepare">><</link>>
+
+
+:: mountain_prepare
+<div class="narrate">出发前的准备。你需要选择装备和同伴。沈孤雁提供了：绳索、火折子、干粮、水壶。赵铁牛提供了一把备用的军用短刀。胡青娘给了两瓶解毒药和一瓶迷魂散。白云生给了你那张暗号纸条——也许石室里还用得上。</div>
+<<divider>>
+<<set $flags.prepared_for_mountain = true>>
+<<link "和沈孤雁同行" "mountain_path_shen">><</link>>
+<<link "和柳如烟同行" "mountain_path_liu">><</link>>
+<<link "和赵铁牛同行" "mountain_path_zhao">><</link>>
