@@ -3,6 +3,8 @@
 
 <<widget "divider">><div class="divider">· · · ✦ · · ·</div><</widget>>
 
+<<widget "loc">><div class="loc-tag">📍 $args[0]</div><</widget>>
+
 <<widget "dialog">><div class="dialog"><span class="speaker" style="color:#c9a050">【$args[0]】</span>「$args[1]」</div><</widget>>
 
 <<widget "ending">><<set _end to $args[0]>><div class="ending-screen"><div class="ending-title">「_end」</div><<if $args.length > 1>><div class="ending-desc">$args[1]</div><</if>><<link "重新开始" "Start">><<run State.reset()>><</link>></div><</widget>>
