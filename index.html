@@ -104,7 +104,7 @@ var LZString=function(){var r=String.fromCharCode,o="ABCDEFGHIJKLMNOPQRSTUVWXYZa
 		<div id="init-lacking"><p>Browser lacks capabilities required to play.</p><p>Upgrade or switch to another browser.</p></div>
 		<div id="init-loading"><div>Loading&hellip;</div></div>
 	</div>
-	<tw-storydata name="江湖夜雨" ifid="61F29899-5C57-4CB2-ABFA-626BEB1674B4" startnode="5" creator="extwee" creator-version="2.3.15" format="SugarCube" format-version="2.37.3" options hidden>
+	<tw-storydata name="江湖夜雨" ifid="61F29899-5C57-4CB2-ABFA-626BEB1674B4" startnode="6" creator="extwee" creator-version="2.3.15" format="SugarCube" format-version="2.37.3" options hidden>
 	<style role="stylesheet" id="twine-user-stylesheet" type="text/twine-css">/* ===== 江湖夜雨 - 古风主题 CSS ===== */
 
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap');
@@ -349,6 +349,14 @@ body {
 	#story {
 		padding: 10px;
 	}
+}
+#status-bar {
+	font-size: 0.85em;
+	color: #8a7a5a;
+	border-bottom: 1px solid #3a3020;
+	padding: 4px 0;
+	margin-bottom: 8px;
+	text-align: center;
 }</tw-passagedata>
 	<tw-passagedata pid="4" name="StoryInit" tags="" >/* Initialize all game variables */
 &lt;&lt;set $sword = 10&gt;&gt;
@@ -387,7 +395,8 @@ body {
 &lt;&lt;run setup.changeRel = function(npc, amt) { var key = &apos;rel_&apos; + npc; State.variables[key] = (State.variables[key] || 0) + amt; }&gt;&gt;
 &lt;&lt;run setup.addHp = function(amt) { State.variables.hp = Math.min(State.variables.maxHp, Math.max(0, State.variables.hp + amt)); }&gt;&gt;
 &lt;&lt;run setup.keyCount = function() { return State.variables.inventory.filter(function(i) { return i.startsWith(&apos;玉牌&apos;); }).length; }&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="5" name="start" tags="" >&lt;&lt;set $chapter = 1&gt;&gt;
+	<tw-passagedata pid="5" name="PassageHeader" tags="" >@@#status-bar;§ 第&lt;&lt;print $chapter&gt;&gt;章 @@| @@♥ &lt;&lt;print $hp&gt;&gt;/&lt;&lt;print $maxHp&gt;&gt;@@ | @@⚔&lt;&lt;print $sword&gt;&gt; 心&lt;&lt;print $wits&gt;&gt; 魅&lt;&lt;print $charm&gt;&gt;@@</tw-passagedata>
+	<tw-passagedata pid="6" name="start" tags="" >&lt;&lt;set $chapter = 1&gt;&gt;
 &lt;&lt;chapter_title &quot;第一章 · 听雨客栈&quot;&gt;&gt;
 
 &lt;div class=&quot;narrate&quot;&gt;大雨倾盆，你策马来到苍龙镇。
@@ -406,7 +415,7 @@ body {
 &lt;&lt;link &quot;注意到黑衣女子的剑——搭话&quot; &quot;talk_liu&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;坐到壁炉旁，和铁匠攀谈&quot; &quot;talk_zhao&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;先观察一会儿，不动声色&quot; &quot;observe&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="6" name="talk_shen" tags="" >&lt;&lt;if not $met_shen&gt;&gt;&lt;&lt;set $rel_shen = 5&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $rel_shen += 3&gt;&gt;&lt;&lt;/if&gt;&gt;
+	<tw-passagedata pid="7" name="talk_shen" tags="" >&lt;&lt;if not $met_shen&gt;&gt;&lt;&lt;set $rel_shen = 5&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $rel_shen += 3&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;set $met_shen = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你走到柜台前。中年男子微微一笑。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;客官辛苦了。这大雨天赶路，想必是从远处来？我叫沈孤雁，这间客栈是我开的。上好的女儿红，要不要来一壶暖暖身子？&quot;&gt;&gt;
@@ -414,7 +423,7 @@ body {
 &lt;&lt;link &quot;「多谢老板，来一壶。我叫……不重要，江湖人。」&quot; &quot;shen_friendly&quot;&gt;&gt;&lt;&lt;set $rel_shen += 3&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「不必了。这镇子最近可有什么异事？」&quot; &quot;shen_probing&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;注意他手上的老茧——那是常年握刀留下的&quot; &quot;shen_observeskill&quot;&gt;&gt;&lt;&lt;set $flags.noticed_shen_skill = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="7" name="shen_friendly" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁为你倒了一杯温热的酒。&lt;/div&gt;
+	<tw-passagedata pid="8" name="shen_friendly" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁为你倒了一杯温热的酒。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;哈哈，爽快人！我最喜欢爽快人。江湖人多故事多，这客栈里啊，什么人都有。你尽管住着，只要不惹事，一切都好说。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他压低声音，眼神闪了一下。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;不过……客官若是无事，天黑之后最好待在房里。这苍龙镇的夜，不太平。&quot;&gt;&gt;
@@ -424,30 +433,30 @@ body {
 &lt;&lt;run setup.addItem(&apos;客栈钥匙&apos;)&gt;&gt;
 &lt;&lt;set $flags.shen_friendly = true&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="8" name="shen_probing" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁的笑容微微一滞，随即恢复如常。&lt;/div&gt;
+	<tw-passagedata pid="9" name="shen_probing" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁的笑容微微一滞，随即恢复如常。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;异事？这小镇能有什么异事。不过是前两天来了几个外乡人，都在打听什么山上的东西。我一个开客栈的，哪里知道那么多。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他顿了顿，目光在你的剑上停留了一瞬。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;客官也是来找东西的？&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「只是路过。」&quot; &quot;shen_deny&quot;&gt;&gt;&lt;&lt;set $rel_shen += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「也许吧。听说这镇子附近有什么稀罕？」&quot; &quot;shen_askmountain&quot;&gt;&gt;&lt;&lt;set $flags.asked_about_mountain = true&gt;&gt;&lt;&lt;set $rel_shen -= 3&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="9" name="shen_observeskill" tags="" >&lt;div class=&quot;narrate&quot;&gt;你不动声色地看了一眼他的手。&lt;span class=&quot;highlight&quot;&gt;虎口有厚茧，指节粗大——这是练刀之人的手。&lt;/span&gt;
+	<tw-passagedata pid="10" name="shen_observeskill" tags="" >&lt;div class=&quot;narrate&quot;&gt;你不动声色地看了一眼他的手。&lt;span class=&quot;highlight&quot;&gt;虎口有厚茧，指节粗大——这是练刀之人的手。&lt;/span&gt;
 而且，他倒酒时手腕的旋转，分明是一招&lt;span class=&quot;highlight&quot;&gt;「拨云手」&lt;/span&gt;——武林中失传已久的擒拿手法。&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;此人绝不简单。他不是一个普通的客栈老板。&lt;/div&gt;
 
 &lt;&lt;link &quot;假装没发现，继续寒暄&quot; &quot;shen_deny&quot;&gt;&gt;&lt;&lt;set $rel_shen += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「沈老板……以前是练家子吧？」&quot; &quot;shen_confront&quot;&gt;&gt;&lt;&lt;set $flags.confronted_shen = true&gt;&gt;&lt;&lt;set $rel_shen -= 5&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="10" name="shen_deny" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁笑了笑，递给你一把铜钥匙。&lt;/div&gt;
+	<tw-passagedata pid="11" name="shen_deny" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁笑了笑，递给你一把铜钥匙。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;路过好啊，路过好。天字三号房，客官请便。&quot;&gt;&gt;
 &lt;&lt;run setup.addItem(&apos;客栈钥匙&apos;)&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="11" name="shen_askmountain" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁的脸色变了变，随即挤出一丝笑容。&lt;/div&gt;
+	<tw-passagedata pid="12" name="shen_askmountain" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁的脸色变了变，随即挤出一丝笑容。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;稀罕？这镇子能有什么稀罕。不过是前两天来了几个外乡人，都在往山上跑。我一个开客栈的，哪里知道那么多。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他放下抹布，语气变得生硬。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;天字三号房。请吧。&quot;&gt;&gt;
 &lt;&lt;run setup.addItem(&apos;客栈钥匙&apos;)&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="12" name="shen_confront" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁的眼神瞬间变得&lt;span class=&quot;danger&quot;&gt;锐利&lt;/span&gt;，但只是一闪而过。&lt;/div&gt;
+	<tw-passagedata pid="13" name="shen_confront" tags="" >&lt;div class=&quot;narrate&quot;&gt;沈孤雁的眼神瞬间变得&lt;span class=&quot;danger&quot;&gt;锐利&lt;/span&gt;，但只是一闪而过。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;……客官好眼力。不错，年轻时在江湖上混过几年。后来厌倦了，就开了这间客栈。往事不提也罢。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他沉默了一会儿，似乎在权衡什么。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;你是个细心的人。这种人在江湖上，要么活得最久，要么死得最快。&quot;&gt;&gt;
@@ -455,7 +464,7 @@ body {
 &lt;&lt;run setup.addItem(&apos;客栈钥匙&apos;)&gt;&gt;
 &lt;&lt;set $flags.shen_respects_you = true&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="13" name="talk_liu" tags="" >&lt;&lt;if not $met_liu&gt;&gt;&lt;&lt;set $rel_liu = -3&gt;&gt;&lt;&lt;/if&gt;&gt;
+	<tw-passagedata pid="14" name="talk_liu" tags="" >&lt;&lt;if not $met_liu&gt;&gt;&lt;&lt;set $rel_liu = -3&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;set $met_liu = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你走到黑衣女子桌旁。她没有抬头，只是手指在剑鞘上轻敲了一下。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……坐。别离我太近。&quot;&gt;&gt;
@@ -465,23 +474,23 @@ body {
 &lt;&lt;link &quot;「好剑。不知女侠何方人士？」&quot; &quot;liu_polite&quot;&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;set $rel_liu += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;假装没看到暗记，聊别的&quot; &quot;liu_hide&quot;&gt;&gt;&lt;&lt;set $flags.knows_liu_identity = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「锦衣卫的人，怎么会出现在这种小地方？」&quot; &quot;liu_expose&quot;&gt;&gt;&lt;&lt;set $flags.exposed_liu = true&gt;&gt;&lt;&lt;set $rel_liu -= 10&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="14" name="liu_polite" tags="" >&lt;div class=&quot;narrate&quot;&gt;她终于抬起眼，打量了你一下。&lt;/div&gt;
+	<tw-passagedata pid="15" name="liu_polite" tags="" >&lt;div class=&quot;narrate&quot;&gt;她终于抬起眼，打量了你一下。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……眼光不错。不过眼光好的人在江湖上往往死得早。你可以叫我柳如烟。其他的，你不需要知道。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她重新低头饮酒，似乎不打算多说什么。但你能感觉到，她对你的敌意没那么强。&lt;/div&gt;
 &lt;&lt;link &quot;不再纠缠，去和其他人交谈&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="15" name="liu_hide" tags="" >&lt;div class=&quot;narrate&quot;&gt;你把目光从剑上移开，随意聊了几句天气和路况。&lt;/div&gt;
+	<tw-passagedata pid="16" name="liu_hide" tags="" >&lt;div class=&quot;narrate&quot;&gt;你把目光从剑上移开，随意聊了几句天气和路况。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……你不像一般的江湖混混。你看我的剑看了三次，但什么都没说。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她嘴角微微上扬——这是你见她以来第一个接近笑容的表情。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;聪明人。我记住了。&quot;&gt;&gt;
 &lt;&lt;set $flags.liu_impressed = true&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="16" name="liu_expose" tags="" >&lt;div class=&quot;narrate&quot;&gt;她的手瞬间握住剑柄，&lt;span class=&quot;danger&quot;&gt;杀气一闪而过&lt;/span&gt;。&lt;/div&gt;
+	<tw-passagedata pid="17" name="liu_expose" tags="" >&lt;div class=&quot;narrate&quot;&gt;她的手瞬间握住剑柄，&lt;span class=&quot;danger&quot;&gt;杀气一闪而过&lt;/span&gt;。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……你的眼睛倒是挺尖。可惜，知道太多的人通常活不长。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;大堂里安静了一瞬。沈孤雁在柜台后微微皱眉。
 她松开了剑，冷冷地转过头去。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;滚。&quot;&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="17" name="talk_zhao" tags="" >&lt;&lt;if not $met_zhao&gt;&gt;&lt;&lt;set $rel_zhao = 8&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $rel_zhao += 3&gt;&gt;&lt;&lt;/if&gt;&gt;
+	<tw-passagedata pid="18" name="talk_zhao" tags="" >&lt;&lt;if not $met_zhao&gt;&gt;&lt;&lt;set $rel_zhao = 8&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $rel_zhao += 3&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;set $met_zhao = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你坐到壁炉旁。壮汉抬头看了你一眼，咧嘴一笑。&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;嘿！又来一个淋成落汤鸡的！老赵我叫赵铁牛，镇上的铁匠。来来来，烤烤火！&quot;&gt;&gt;
@@ -491,20 +500,20 @@ body {
 
 &lt;&lt;link &quot;「赵大哥豪爽！干一杯！」&quot; &quot;zhao_drink&quot;&gt;&gt;&lt;&lt;set $rel_zhao += 5&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;set $flags.zhao_drink_bond = true&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「赵大哥以前当过兵？」&quot; &quot;zhao_military&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="18" name="zhao_drink" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛哈哈大笑，和你碰杯。烈酒入喉，暖意从胃里升起。&lt;/div&gt;
+	<tw-passagedata pid="19" name="zhao_drink" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛哈哈大笑，和你碰杯。烈酒入喉，暖意从胃里升起。&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;痛快！我就喜欢爽快人！告诉你，这镇子虽然小，但最近不太平。前两天有人在山里看见了不干净的东西，还有人说听到怪声。你小心着点。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他凑近了一些，声音低了下来。&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;那个……黑衣女子，别惹她。我看她走路的样子，手上至少有十条人命。还有那个书生，别看他醉醺醺的，他清醒的时候说的话……让你后背发凉。&quot;&gt;&gt;
 &lt;&lt;set $flags.zhao_warned = true&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="19" name="zhao_military" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛的笑容僵了一瞬，随即叹了口气。&lt;/div&gt;
+	<tw-passagedata pid="20" name="zhao_military" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛的笑容僵了一瞬，随即叹了口气。&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;……你眼神不错。是的，以前在边军当过百夫长。打了十年仗，看够了死人。后来……不想再杀人了，就来这里打铁。一锤子下去，好歹打出来的是有用的东西，不是人命。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他沉默了一会儿，然后用力拍了一下你的肩膀。&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;不提了！总之，你要是在镇上遇到麻烦，找老赵我。别的本事没有，力气管够！&quot;&gt;&gt;
 &lt;&lt;set $flags.knows_zhao_past = true&gt;&gt;
 &lt;&lt;set $rel_zhao += 5&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="20" name="observe" tags="" >&lt;div class=&quot;narrate&quot;&gt;你找了个不引人注目的角落坐下，暗中观察。&lt;/div&gt;
+	<tw-passagedata pid="21" name="observe" tags="" >&lt;div class=&quot;narrate&quot;&gt;你找了个不引人注目的角落坐下，暗中观察。&lt;/div&gt;
 
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;柜台后的中年人&lt;/span&gt;——倒酒的动作行云流水，但偶尔会看向窗外，似乎在等什么人。&lt;/div&gt;
 
@@ -519,21 +528,21 @@ body {
 &lt;&lt;link &quot;走向黑衣女子&quot; &quot;talk_liu&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;走向铁匠&quot; &quot;talk_zhao&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;走向书生&quot; &quot;talk_bai&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="21" name="talk_bai" tags="" >&lt;&lt;if not $met_bai&gt;&gt;&lt;&lt;set $rel_bai = 0&gt;&gt;&lt;&lt;/if&gt;&gt;
+	<tw-passagedata pid="22" name="talk_bai" tags="" >&lt;&lt;if not $met_bai&gt;&gt;&lt;&lt;set $rel_bai = 0&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;set $met_bai = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你走到书生桌旁。他趴在桌上，酒坛倒了，酒水淌了一桌。
 但当你靠近时，他的手指微微动了一下。&lt;/div&gt;
 
 &lt;&lt;link &quot;轻轻推他一下：「兄台，醒醒。」&quot; &quot;bai_wake&quot;&gt;&gt;&lt;&lt;set $rel_bai += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;在他耳边低声说：「别装了。」&quot; &quot;bai_callout&quot;&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;set $rel_bai += 5&gt;&gt;&lt;&lt;set $flags.bai_respects = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="22" name="bai_wake" tags="" >&lt;div class=&quot;narrate&quot;&gt;书生慢慢抬起头，醉眼朦胧地看着你。&lt;/div&gt;
+	<tw-passagedata pid="23" name="bai_wake" tags="" >&lt;div class=&quot;narrate&quot;&gt;书生慢慢抬起头，醉眼朦胧地看着你。&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;嗯？……啊，又喝多了。敢问兄台尊姓大名？我……嗝……我叫白云生，一介落第秀才，不足挂齿……&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他打了个酒嗝，眼神浑浊。但你不经意间看到，他的瞳孔&lt;span class=&quot;highlight&quot;&gt;完全没有涣散&lt;/span&gt;——他根本没醉。&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;兄台若是无事……嗝……不如共饮一杯？这年头，能喝到好酒也是一种……嗝……福气……&quot;&gt;&gt;
 
 &lt;&lt;link &quot;陪他喝一杯，慢慢试探&quot; &quot;bai_drink&quot;&gt;&gt;&lt;&lt;set $rel_bai += 3&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;既然他装醉，也不点破，告辞&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="23" name="bai_callout" tags="" >&lt;div class=&quot;narrate&quot;&gt;书生的身体僵了一瞬。然后，他&lt;span class=&quot;highlight&quot;&gt;慢慢坐直&lt;/span&gt;，眼神变得清明锐利。
+	<tw-passagedata pid="24" name="bai_callout" tags="" >&lt;div class=&quot;narrate&quot;&gt;书生的身体僵了一瞬。然后，他&lt;span class=&quot;highlight&quot;&gt;慢慢坐直&lt;/span&gt;，眼神变得清明锐利。
 醉态全消。&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;……有意思。你是第一个看穿我的人。这镇上来来往往几十号人，都被我骗过去了。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他推开放在面前的酒坛，正色看着你。&lt;/div&gt;
@@ -545,19 +554,19 @@ body {
 
 &lt;&lt;link &quot;「为什么不能相信你？」&quot; &quot;bai_why&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;回房休息&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="24" name="bai_why" tags="" >&lt;div class=&quot;narrate&quot;&gt;白云生苦笑了一下。&lt;/div&gt;
+	<tw-passagedata pid="25" name="bai_why" tags="" >&lt;div class=&quot;narrate&quot;&gt;白云生苦笑了一下。&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;因为……我也不知道自己今晚会不会还站在你这一边。这镇上的局势，比你想的复杂得多。每个人都有自己的目的。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他顿了顿。&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;落雁峰上藏着一个秘密——一个值得人为之疯狂的秘密。也值得为之背叛。&quot;&gt;&gt;
 &lt;&lt;set $flags.knows_tianji = true&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="25" name="bai_drink" tags="" >&lt;div class=&quot;narrate&quot;&gt;你坐下来，和他推杯换盏。白云生继续装醉，你也继续装不知道。
+	<tw-passagedata pid="26" name="bai_drink" tags="" >&lt;div class=&quot;narrate&quot;&gt;你坐下来，和他推杯换盏。白云生继续装醉，你也继续装不知道。
 酒过三巡，他忽然低声说了一句：&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;……你身边那个铁匠，不简单。他铁锤里藏着一把刀。军中制式。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;说完，他又恢复了醉态。你不确定他是有意透露还是酒后失言。&lt;/div&gt;
 &lt;&lt;set $flags.bai_told_zhao_secret = true&gt;&gt;
 &lt;&lt;link &quot;继续在客栈里转转&quot; &quot;chapter1_lobby&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="26" name="chapter1_lobby" tags="" >&lt;&lt;loc &quot;听雨客栈 · 大堂&quot;&gt;&gt;
+	<tw-passagedata pid="27" name="chapter1_lobby" tags="" >&lt;&lt;loc &quot;听雨客栈 · 大堂&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;客栈大堂里烛光摇曳，你环顾四周。&lt;/div&gt;
 
 &lt;&lt;if not $met_shen&gt;&gt;
@@ -585,7 +594,7 @@ body {
 &lt;&lt;if $met_shen and $met_liu and $met_zhao and $met_bai&gt;&gt;
 &lt;&lt;link &quot;四处转转，探索客栈&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="27" name="explore_inn" tags="" >&lt;div class=&quot;narrate&quot;&gt;你决定在客栈里四处走走。&lt;/div&gt;
+	<tw-passagedata pid="28" name="explore_inn" tags="" >&lt;div class=&quot;narrate&quot;&gt;你决定在客栈里四处走走。&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;大堂里弥漫着饭菜的香气，灶房的炉火噼啪作响。客栈虽小，五脏俱全——柜台后的墙上挂着一幅褪色的山水画，壁炉里的火烧得正旺。&lt;/div&gt;
 
 &lt;&lt;link &quot;去后厨看看&quot; &quot;explore_kitchen&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
@@ -595,7 +604,7 @@ body {
 &lt;&lt;link &quot;到柜台和沈孤雁再聊聊&quot; &quot;shen2_history&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;link &quot;算了，等开饭吧&quot; &quot;dinner_scene&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="28" name="explore_kitchen" tags="" >&lt;&lt;set $met_xiaolian = true&gt;&gt;
+	<tw-passagedata pid="29" name="explore_kitchen" tags="" >&lt;&lt;set $met_xiaolian = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你推开厨房的木门，一股浓烈的油烟味和辣椒的呛香扑面而来。
 灶台上架着一口大铁锅，里面咕嘟咕嘟地炖着什么。&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;灶台边站着一个年轻姑娘，约莫十八九岁，扎着双丫髻，正手脚麻利地翻炒着锅里的菜。&lt;/div&gt;
@@ -605,14 +614,14 @@ body {
 &lt;&lt;link &quot;「小莲姑娘，那些瓷瓶是做什么的？」&quot; &quot;xiao_lian_ask&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「你手艺真好，跟谁学的？」&quot; &quot;xiao_lian_craft&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;不动声色，记在心里&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;set $flags.noticed_xiao_lian_medicine = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="29" name="xiao_lian_ask" tags="" >&lt;&lt;set $flags.asked_xiao_lian_medicine = true&gt;&gt;&lt;&lt;set $rel_xiaolian += 3&gt;&gt;
+	<tw-passagedata pid="30" name="xiao_lian_ask" tags="" >&lt;&lt;set $flags.asked_xiao_lian_medicine = true&gt;&gt;&lt;&lt;set $rel_xiaolian += 3&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;小莲的动作顿了一下，随即恢复自然。&lt;/div&gt;
 &lt;&lt;dialog &quot;小莲&quot; &quot;哦，这些啊？以前跟着一位大夫学过几年草药，后来大夫去世了，我就来客栈帮忙了。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她说得自然，但你注意到她把那些瓷瓶往里推了推——&lt;span class=&quot;highlight&quot;&gt;下意识的遮挡动作&lt;/span&gt;。&lt;/div&gt;
 
 &lt;&lt;link &quot;「那位大夫……是你的亲人吗？」&quot; &quot;xiao_lian_family&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;点点头，不再追问&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="30" name="xiao_lian_family" tags="" >&lt;&lt;set $flags.knows_xiao_lian_past = true&gt;&gt;&lt;&lt;set $rel_xiaolian += 8&gt;&gt;
+	<tw-passagedata pid="31" name="xiao_lian_family" tags="" >&lt;&lt;set $flags.knows_xiao_lian_past = true&gt;&gt;&lt;&lt;set $rel_xiaolian += 8&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;小莲放下锅铲，沉默了片刻。&lt;/div&gt;
 &lt;&lt;dialog &quot;小莲&quot; &quot;……是师父。她叫秦素琴，是苍龙镇以前的药师。三年前……镇上来了一伙人，说是朝廷的暗探。师父挡在药铺门前不让他们进去，就被……&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她深吸一口气，眼眶微红，但没有哭。&lt;/div&gt;
@@ -620,14 +629,14 @@ body {
 
 &lt;&lt;link &quot;「放心，我会记住你说的。」&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;set $flags.promised_xiao_lian = true&gt;&gt;&lt;&lt;set $rel_xiaolian += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="31" name="xiao_lian_craft" tags="" >&lt;&lt;set $rel_xiaolian += 3&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;
+	<tw-passagedata pid="32" name="xiao_lian_craft" tags="" >&lt;&lt;set $rel_xiaolian += 3&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;
 &lt;&lt;run setup.addItem(&apos;腊肉&apos;)&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;小莲笑了，眼睛弯成月牙。&lt;/div&gt;
 &lt;&lt;dialog &quot;小莲&quot; &quot;跟师父学的！她说啊，做药和做饭其实是一回事——都是把不同的东西配在一起，让它们变成更好的东西。&quot;&gt;&gt;
 &lt;span class=&quot;ok&quot;&gt;获得：腊肉&lt;/span&gt;
 
 &lt;&lt;link &quot;继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="32" name="explore_backyard" tags="" >&lt;&lt;set $flags.explored_backyard = true&gt;&gt;
+	<tw-passagedata pid="33" name="explore_backyard" tags="" >&lt;&lt;set $flags.explored_backyard = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你推开客栈后门，来到后院。雨后的空气清新。
 院子不大，左边是马厩，右边堆着劈好的柴火，正中有一棵老槐树。&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;你走近马厩——另一匹黑毛骏马，马鞍上刻着一个&lt;span class=&quot;highlight&quot;&gt;「暗」&lt;/span&gt;字。
@@ -640,7 +649,7 @@ body {
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;link &quot;继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="33" name="explore_upstairs" tags="" >&lt;&lt;set $flags.knows_liu_identity = true&gt;&gt;&lt;&lt;set $flags.overheard_liu_comm = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;
+	<tw-passagedata pid="34" name="explore_upstairs" tags="" >&lt;&lt;set $flags.knows_liu_identity = true&gt;&gt;&lt;&lt;set $flags.overheard_liu_comm = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你沿着吱呀作响的木楼梯上了二楼。经过天字二号房时，你听到里面传来低低的说话声。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……名单上第三十七人已确认在苍龙镇。父亲的名字……也在上面。如果这份名单被带回去——&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;脚步声向门口移来。你赶紧闪到走廊拐角。
@@ -649,7 +658,7 @@ body {
 
 &lt;&lt;link &quot;回自己的房间整理思绪&quot; &quot;in_room&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;下楼继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="34" name="in_room" tags="" >&lt;div class=&quot;narrate&quot;&gt;你坐在床边，梳理目前得到的信息：&lt;/div&gt;
+	<tw-passagedata pid="35" name="in_room" tags="" >&lt;div class=&quot;narrate&quot;&gt;你坐在床边，梳理目前得到的信息：&lt;/div&gt;
 
 &lt;&lt;if $flags.noticed_shen_skill or $flags.confronted_shen&gt;&gt;· 沈孤雁：前武林高手，可能是前朝遗臣&lt;br&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if $flags.knows_liu_identity&gt;&gt;· 柳如烟：锦衣卫暗探，她父亲在天机卷上&lt;br&gt;&lt;&lt;/if&gt;&gt;
@@ -663,14 +672,14 @@ body {
 
 &lt;&lt;link &quot;下楼吃饭&quot; &quot;dinner_scene&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;再去大堂转转&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="35" name="shen2_history" tags="" >&lt;&lt;set $flags.shen_told_history = true&gt;&gt;&lt;&lt;set $rel_shen += 3&gt;&gt;
+	<tw-passagedata pid="36" name="shen2_history" tags="" >&lt;&lt;set $flags.shen_told_history = true&gt;&gt;&lt;&lt;set $rel_shen += 3&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;沈孤雁微微一笑，目光变得悠远。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;这客栈啊……十五年了。我刚来苍龙镇的时候，这里只是一间破屋。我一个人一砖一瓦地修起来的。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他指了指柜台后面的横梁——上面密密麻麻地刻着划痕。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;每一条划痕代表一个月。你看——一百八十道。十五年，一百八十个月。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="36" name="dinner_scene" tags="" >&lt;&lt;set $chapter = 1&gt;&gt;
+	<tw-passagedata pid="37" name="dinner_scene" tags="" >&lt;&lt;set $chapter = 1&gt;&gt;
 &lt;&lt;chapter_title &quot;暮色晚餐&quot;&gt;&gt;
 
 &lt;div class=&quot;narrate&quot;&gt;天色暗了下来，客栈大堂里点起了油灯和蜡烛。
@@ -689,7 +698,7 @@ body {
 &lt;&lt;link &quot;和赵铁牛碰杯，活跃气氛&quot; &quot;dinner_zhao&quot;&gt;&gt;&lt;&lt;set $rel_zhao += 3&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;试着和柳如烟搭话&quot; &quot;dinner_liu&quot;&gt;&gt;&lt;&lt;set $rel_liu += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;端着酒去找白云生&quot; &quot;dinner_bai&quot;&gt;&gt;&lt;&lt;set $rel_bai += 2&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="37" name="dinner_listen" tags="" >&lt;&lt;set $flags.heard_explosion_discussion = true&gt;&gt;
+	<tw-passagedata pid="38" name="dinner_listen" tags="" >&lt;&lt;set $flags.heard_explosion_discussion = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你低头扒饭，耳朵却竖得像只野兔。&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;沈老板，今天后山那边又有动静了。我打铁的时候听到两声闷响，不像雷，倒像……爆炸。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;可能是猎户在炸石头吧。&quot;&gt;&gt;
@@ -702,7 +711,7 @@ body {
 &lt;&lt;set $flags.dinner_npc_interaction = true&gt;&gt;
 
 &lt;&lt;link &quot;继续吃饭&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="38" name="dinner_zhao" tags="" >&lt;&lt;set $flags.zhao_told_hei_blade = true&gt;&gt;
+	<tw-passagedata pid="39" name="dinner_zhao" tags="" >&lt;&lt;set $flags.zhao_told_hei_blade = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你端起碗走到壁炉旁，和赵铁牛碰了碰杯。&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;嘿！你来得正好！这酒不错——沈老板用后山泉水酿的，窖了三年的黄酒！&quot;&gt;&gt;
 &lt;&lt;divider&gt;&gt;
@@ -712,11 +721,11 @@ body {
 
 &lt;&lt;link &quot;「暗星阁是什么？」&quot; &quot;dinner_zhao_ask&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;先不追问，回到饭桌&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="39" name="dinner_zhao_ask" tags="" >&lt;&lt;set $flags.knows_tianji = true&gt;&gt;&lt;&lt;set $flags.knows_tianji_truth = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="40" name="dinner_zhao_ask" tags="" >&lt;&lt;set $flags.knows_tianji = true&gt;&gt;&lt;&lt;set $flags.knows_tianji_truth = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;暗星阁……是前朝的刺客组织。天机卷是什么——一份名单，一千七百个前朝遗臣的真名和藏身之处。谁拿到它，就掌握了这些人的生死。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;回到饭桌&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="40" name="dinner_liu" tags="" >&lt;div class=&quot;narrate&quot;&gt;你端着碗走到柳如烟桌旁，在她对面坐下。&lt;/div&gt;
+	<tw-passagedata pid="41" name="dinner_liu" tags="" >&lt;div class=&quot;narrate&quot;&gt;你端着碗走到柳如烟桌旁，在她对面坐下。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……你胆子不小。别人都不敢靠近我。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她面前已经空了两个酒壶。脸色微红，眼神比白天柔和了些。&lt;/div&gt;
 
@@ -729,19 +738,19 @@ body {
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;你一个人闯江湖？&quot;&gt;&gt;
 &lt;&lt;link &quot;「习惯了。」&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="41" name="dinner_liu_truth" tags="" >&lt;&lt;set $flags.liu_revealed_truth = true&gt;&gt;&lt;&lt;set $rel_liu += 8&gt;&gt;
+	<tw-passagedata pid="42" name="dinner_liu_truth" tags="" >&lt;&lt;set $flags.liu_revealed_truth = true&gt;&gt;&lt;&lt;set $rel_liu += 8&gt;&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;真相？好。我奉命来找一样东西——天机卷。名单上有我父亲的名字。我父亲十五年前是前朝武将，改了名字藏了起来。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;讽刺吧？女儿替朝廷做事，父亲是朝廷要抓的人。如果把天机卷带回去，我父亲就完了。如果不带——我自己也完了。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「还有第三条路——销毁天机卷。」&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;set $flags.suggested_destroy = true&gt;&gt;&lt;&lt;set $rel_liu += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「我会帮你想办法的。」&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;set $flags.promised_liu = true&gt;&gt;&lt;&lt;set $rel_liu += 5&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="42" name="dinner_liu_drink" tags="" >&lt;&lt;set $flags.liu_drink_bond = true&gt;&gt;
+	<tw-passagedata pid="43" name="dinner_liu_drink" tags="" >&lt;&lt;set $flags.liu_drink_bond = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你没有追问，只是给自己和她各倒了一杯酒。两人默默碰杯。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……三年没和人喝酒了。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她的声音里有一种白天从未听过的柔软。&lt;/div&gt;
 
 &lt;&lt;link &quot;回到饭桌&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="43" name="dinner_bai" tags="" >&lt;&lt;set $flags.bai_revealed_past = true&gt;&gt;&lt;&lt;set $rel_bai += 5&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="44" name="dinner_bai" tags="" >&lt;&lt;set $flags.bai_revealed_past = true&gt;&gt;&lt;&lt;set $rel_bai += 5&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你端着酒坐到白云生对面。&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;来陪我喝酒？还是来套我的话？&quot;&gt;&gt;
 &lt;&lt;divider&gt;&gt;
@@ -750,13 +759,13 @@ body {
 
 &lt;&lt;link &quot;「你不是废物。你只是选了一条更难的路。」&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;set $rel_bai += 8&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;set $flags.bai_encouraged = true&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;回到饭桌&quot; &quot;dinner_after&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="44" name="dinner_after" tags="" >&lt;div class=&quot;narrate&quot;&gt;晚饭渐渐结束。大堂重新安静下来，只剩下壁炉中柴火的噼啪声和窗外渐起的风声。天色已经完全暗了。&lt;/div&gt;
+	<tw-passagedata pid="45" name="dinner_after" tags="" >&lt;div class=&quot;narrate&quot;&gt;晚饭渐渐结束。大堂重新安静下来，只剩下壁炉中柴火的噼啪声和窗外渐起的风声。天色已经完全暗了。&lt;/div&gt;
 &lt;&lt;divider&gt;&gt;
 
 &lt;&lt;link &quot;和大家再聊聊（第二轮对话）&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;回房休息，等夜深&quot; &quot;go_to_room&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;趁天还没全黑，出去走走&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="45" name="round2_hub" tags="" >&lt;div class=&quot;narrate&quot;&gt;晚饭后的客栈大堂变得安静了些。壁炉的火光将每个人的影子拉得很长。
+	<tw-passagedata pid="46" name="round2_hub" tags="" >&lt;div class=&quot;narrate&quot;&gt;晚饭后的客栈大堂变得安静了些。壁炉的火光将每个人的影子拉得很长。
 你还有时间再找人说说话。&lt;/div&gt;
 
 &lt;&lt;if $met_shen&gt;&gt;
@@ -773,7 +782,7 @@ body {
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;link &quot;够了，回房休息&quot; &quot;go_to_room&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;出去走走&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="46" name="talk_shen_2" tags="" >&lt;&lt;if $flags.noticed_shen_skill or $flags.confronted_shen or $flags.shen_respects_you&gt;&gt;
+	<tw-passagedata pid="47" name="talk_shen_2" tags="" >&lt;&lt;if $flags.noticed_shen_skill or $flags.confronted_shen or $flags.shen_respects_you&gt;&gt;
 &lt;&lt;set $flags.shen_revealed = true&gt;&gt;&lt;&lt;set $rel_shen += 10&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;沈孤雁的笔停了。他站起身，确认没有其他人在附近，从暗格里取出一枚铜印——&lt;span class=&quot;highlight&quot;&gt;禁卫副统领&lt;/span&gt;。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;我本名沈承风，前朝禁卫军副统领。天机卷被分成三份藏起来，密码钥匙分别交给了三个最信任的人。&quot;&gt;&gt;
@@ -788,7 +797,7 @@ body {
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;又来找我？坐吧。&quot;&gt;&gt;
 &lt;&lt;link &quot;继续&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="47" name="talk_liu_2" tags="" >&lt;&lt;if $flags.liu_revealed_truth or $flags.overheard_liu_comm&gt;&gt;
+	<tw-passagedata pid="48" name="talk_liu_2" tags="" >&lt;&lt;if $flags.liu_revealed_truth or $flags.overheard_liu_comm&gt;&gt;
 &lt;&lt;set $flags.liu_deep_truth = true&gt;&gt;&lt;&lt;set $rel_liu += 10&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;柳如烟的手指停住了。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……我父亲在岭南一个渔村，化名「周三」。母亲三年前病死了。我之所以能活到今天——就是因为我告诉自己，我必须活着保护他。&quot;&gt;&gt;
@@ -802,7 +811,7 @@ body {
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;选择？你以为锦衣卫是你自己选的？十二岁那年，他们抓住了我和母亲。「你替我们做事，他就不用死。」那年我十二岁。&quot;&gt;&gt;
 &lt;&lt;link &quot;继续&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="48" name="talk_zhao_2" tags="" >&lt;&lt;if $flags.knows_zhao_past&gt;&gt;
+	<tw-passagedata pid="49" name="talk_zhao_2" tags="" >&lt;&lt;if $flags.knows_zhao_past&gt;&gt;
 &lt;&lt;set $flags.zhao_full_past = true&gt;&gt;&lt;&lt;set $rel_zhao += 10&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;最后一仗……北疆乌兰关。三百人守关，对面两千骑兵。打了三天三夜。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;最后活下来的，七个人。我最好的兄弟张二狗临死前说：「老赵，我老婆怀着孩子……你替我去看看……」&quot;&gt;&gt;
@@ -815,11 +824,11 @@ body {
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;我看人的眼神对。你看我的时候，是正眼看的。不躲不闪，不卑不亢。这种人——要么是真君子，要么是大奸。我赌你是前者。&quot;&gt;&gt;
 &lt;&lt;link &quot;继续&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="49" name="talk_bai_2" tags="" >&lt;&lt;set $flags.knows_tianji_treasure = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;set $rel_bai += 5&gt;&gt;
+	<tw-passagedata pid="50" name="talk_bai_2" tags="" >&lt;&lt;set $flags.knows_tianji_treasure = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;set $rel_bai += 5&gt;&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;天机卷上不只是名字。在卷轴的最后一段，用暗文写着另一段信息——&lt;span class=&quot;highlight&quot;&gt;前朝覆灭时运出了一批财宝，藏匿地点就在天机卷里。&lt;/span&gt;&quot;&gt;&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;如果加上那批财宝——价值连城——想要那份卷轴的人会多出十倍。为了钱，什么人都可能来。&quot;&gt;&gt;
 &lt;&lt;link &quot;继续&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="50" name="evening_explore" tags="" >&lt;&lt;loc &quot;苍龙镇 · 街道&quot;&gt;&gt;
+	<tw-passagedata pid="51" name="evening_explore" tags="" >&lt;&lt;loc &quot;苍龙镇 · 街道&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你推门走出客栈。苍龙镇的街道在暮色中显得格外安静。沿街的店铺大多已经打烊。&lt;/div&gt;
 
 &lt;&lt;link &quot;胡青娘的药铺（还亮着灯）&quot; &quot;visit_pharmacy&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
@@ -828,27 +837,27 @@ body {
 &lt;&lt;link &quot;河边&quot; &quot;visit_riverside&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;祠堂&quot; &quot;visit_hall&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;回客栈&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="51" name="visit_pharmacy" tags="" >&lt;&lt;set $met_hu = true&gt;&gt;&lt;&lt;set $flags.met_hu_qingniang = true&gt;&gt;
+	<tw-passagedata pid="52" name="visit_pharmacy" tags="" >&lt;&lt;set $met_hu = true&gt;&gt;&lt;&lt;set $flags.met_hu_qingniang = true&gt;&gt;
 &lt;&lt;if not $rel_hu&gt;&gt;&lt;&lt;set $rel_hu = 0&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你推开药铺的门。柜台后面站着一个三十来岁的女子，面容清秀但眼神极为锐利。&lt;/div&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;哦？客栈来的？坐吧，要买药还是问话？提醒你——在我这里，买药便宜，问话贵。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「听说你的药铺不只是卖药的。」&quot; &quot;pharmacy_info&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「随便看看。」&quot; &quot;pharmacy_look&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="52" name="pharmacy_info" tags="" >&lt;&lt;set $flags.knows_hu_info_broker = true&gt;&gt;
+	<tw-passagedata pid="53" name="pharmacy_info" tags="" >&lt;&lt;set $flags.knows_hu_info_broker = true&gt;&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;是的，我做的是信息的买卖。等价交换——你给我一条有用的消息，我给你一条。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「你知道这镇上有哪些人在找天机卷？」&quot; &quot;pharmacy_tianji&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「我暂时没有消息跟你换。」&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="53" name="pharmacy_tianji" tags="" >&lt;&lt;set $flags.knows_deaths = true&gt;&gt;&lt;&lt;set $flags.knows_tianji = true&gt;&gt;&lt;&lt;set $rel_hu += 3&gt;&gt;
+	<tw-passagedata pid="54" name="pharmacy_tianji" tags="" >&lt;&lt;set $flags.knows_deaths = true&gt;&gt;&lt;&lt;set $flags.knows_tianji = true&gt;&gt;&lt;&lt;set $rel_hu += 3&gt;&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;至少三拨人在找：朝廷的暗探——你客栈里那位柳姑娘；杀手组织暗星阁的残部，头目叫黑无极；第三拨……是你自己。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;三天前镇东的李裁缝死了，「失足落井」。两天前河边老孙头的渔船翻了。你不觉得太巧了吗？&quot;&gt;&gt;
 &lt;&lt;link &quot;继续探索&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="54" name="pharmacy_look" tags="" >&lt;&lt;set $flags.saw_hu_hidden_drawer = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="55" name="pharmacy_look" tags="" >&lt;&lt;set $flags.saw_hu_hidden_drawer = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你注意到药柜最下面一排的抽屉没有标签，而且比其他抽屉新。其中一个抽屉没有完全关紧，里面放着几封信件和一块玉牌的边缘。&lt;/div&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;看够了？那些是私人物品。请自重。&quot;&gt;&gt;
 &lt;&lt;link &quot;离开药铺&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="55" name="visit_teahouse" tags="" >&lt;&lt;set $met_lishen = true&gt;&gt;&lt;&lt;set $flags.met_li_shen = true&gt;&gt;
+	<tw-passagedata pid="56" name="visit_teahouse" tags="" >&lt;&lt;set $met_lishen = true&gt;&gt;&lt;&lt;set $flags.met_li_shen = true&gt;&gt;
 &lt;&lt;dialog &quot;李婶&quot; &quot;哎呀，又来一个生面孔！来来来，坐坐坐！我这里的碧螺春是全镇最好的！&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她给你倒了茶，嘴巴一刻不停。&lt;/div&gt;
 &lt;&lt;dialog &quot;李婶&quot; &quot;前两天李裁缝死了——说是落井了，但我不信！他以前在京城做翰林院的官！一个翰林能不会躲井？&quot;&gt;&gt;
@@ -856,7 +865,7 @@ body {
 &lt;&lt;dialog &quot;李婶&quot; &quot;&lt;span class=&quot;highlight&quot;&gt;小心那个铁匠。&lt;/span&gt;不是说他坏，而是他知道的比你想象的多。&lt;span class=&quot;danger&quot;&gt;最近镇子外面来了几个黑衣人。晚上不要出门。&lt;/span&gt;&quot;&gt;&gt;
 &lt;&lt;set $flags.li_shen_info = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
 &lt;&lt;link &quot;继续探索&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="56" name="visit_blacksmith" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛的铁匠铺在镇子西头。炉火还没完全熄灭。但赵铁牛不在。铺子后面有一扇木门，虚掩着。里面是一个小院子，角落有一扇&lt;span class=&quot;highlight&quot;&gt;地窖的门&lt;/span&gt;，锁是开的。&lt;/div&gt;
+	<tw-passagedata pid="57" name="visit_blacksmith" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛的铁匠铺在镇子西头。炉火还没完全熄灭。但赵铁牛不在。铺子后面有一扇木门，虚掩着。里面是一个小院子，角落有一扇&lt;span class=&quot;highlight&quot;&gt;地窖的门&lt;/span&gt;，锁是开的。&lt;/div&gt;
 
 &lt;&lt;if $wits &gt;= 12&gt;&gt;
 &lt;&lt;link &quot;进去看看&quot; &quot;blacksmith_cellar&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
@@ -865,43 +874,43 @@ body {
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;link &quot;等人回来&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;set $rel_zhao += 3&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;离开&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="57" name="blacksmith_cellar" tags="" >&lt;&lt;set $flags.found_zhao_cellar = true&gt;&gt;&lt;&lt;set $flags.knows_zhao_real_name = true&gt;&gt;
+	<tw-passagedata pid="58" name="blacksmith_cellar" tags="" >&lt;&lt;set $flags.found_zhao_cellar = true&gt;&gt;&lt;&lt;set $flags.knows_zhao_real_name = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;地窖左边墙上挂着&lt;span class=&quot;highlight&quot;&gt;前朝禁卫军的军旗&lt;/span&gt;。下面是四十七个木牌——一份名册。&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;danger&quot;&gt;赵铁牛站在地窖门口。&lt;/span&gt;&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;……你看到了。四十七个兄弟。活着的加上我还有十一个。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「赵大哥——赵承志——我不会告诉任何人。」&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;set $flags.promised_zhao_secret = true&gt;&gt;&lt;&lt;set $rel_zhao += 15&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;run setup.addItem(&quot;赵铁牛的旧刀&quot;)&gt;&gt;&lt;&lt;set $sword += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「为什么把这些藏在地窖里？」&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;set $rel_zhao += 5&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="58" name="visit_riverside" tags="" >&lt;&lt;set $met_oldsun = true&gt;&gt;&lt;&lt;set $flags.met_old_sun = true&gt;&gt;
+	<tw-passagedata pid="59" name="visit_riverside" tags="" >&lt;&lt;set $met_oldsun = true&gt;&gt;&lt;&lt;set $flags.met_old_sun = true&gt;&gt;
 &lt;&lt;if not $rel_oldsun&gt;&gt;&lt;&lt;set $rel_oldsun = 0&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;河边渡口的石阶上，坐着一个花白头发的老人，约莫六十来岁，脸上一道旧伤疤。他不是在钓鱼——他在看着水面发呆。&lt;/div&gt;
 &lt;&lt;dialog &quot;老孙头&quot; &quot;……年轻人，这么晚了还出来晃？&quot;&gt;&gt;
 
 &lt;&lt;link &quot;坐下来，陪他一起看水&quot; &quot;riverside_sit&quot;&gt;&gt;&lt;&lt;set $rel_oldsun += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;看了一眼就离开&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="59" name="riverside_sit" tags="" >&lt;&lt;set $flags.old_sun_records = true&gt;&gt;&lt;&lt;set $rel_oldsun += 3&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="60" name="riverside_sit" tags="" >&lt;&lt;set $flags.old_sun_records = true&gt;&gt;&lt;&lt;set $rel_oldsun += 3&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
 &lt;&lt;dialog &quot;老孙头&quot; &quot;你猜我为什么守在这里？&lt;span class=&quot;highlight&quot;&gt;渡口&lt;/span&gt;。所有进出苍龙镇的人，都要经过这个渡口。最近半个月，有十二个外乡人进了苍龙镇。四个从朝廷方向来，两个从杀手出没的方向来。&quot;&gt;&gt;
 &lt;&lt;link &quot;继续探索&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="60" name="visit_hall" tags="" >&lt;&lt;set $flags.visited_hall = true&gt;&gt;
+	<tw-passagedata pid="61" name="visit_hall" tags="" >&lt;&lt;set $flags.visited_hall = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;苍龙镇的祠堂。供桌后面挂着一幅画像——&lt;span class=&quot;highlight&quot;&gt;前朝苍龙镇守备 陈伯庸之像&lt;/span&gt;。&lt;/div&gt;
 
 &lt;&lt;link &quot;查看偏殿&quot; &quot;hall_side&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;掀开布帘看看&quot; &quot;hall_hidden&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;查看牌位&quot; &quot;hall_tablets&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;离开祠堂&quot; &quot;evening_explore&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="61" name="hall_side" tags="" >&lt;&lt;set $flags.found_hall_poem = true&gt;&gt;&lt;&lt;set $flags.knows_three_keys = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;
+	<tw-passagedata pid="62" name="hall_side" tags="" >&lt;&lt;set $flags.found_hall_poem = true&gt;&gt;&lt;&lt;set $flags.knows_three_keys = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;墙上挂着一首诗：
 &lt;span class=&quot;highlight&quot;&gt;「雁过长空影自寒，故人坟前草已斑。一卷天机藏万象，三枚玉钥启重关。」&lt;/span&gt;
 落款：&lt;span class=&quot;highlight&quot;&gt;清婉 林氏 绝笔&lt;/span&gt;。
 「一卷天机藏万象，三枚玉钥启重关」——天机卷、三把钥匙。&lt;/div&gt;
 &lt;&lt;link &quot;继续查看&quot; &quot;visit_hall&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="62" name="hall_hidden" tags="" >&lt;&lt;set $flags.found_hall_passage = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="63" name="hall_hidden" tags="" >&lt;&lt;set $flags.found_hall_passage = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;石门上有一个圆形的凹槽，被分成三个扇形区域——正好对应三块&lt;span class=&quot;highlight&quot;&gt;玉牌&lt;/span&gt;。这就是通往地下密道的入口。&lt;/div&gt;
 &lt;&lt;link &quot;继续查看&quot; &quot;visit_hall&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="63" name="hall_tablets" tags="" >&lt;&lt;set $flags.found_fake_tablets = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;
+	<tw-passagedata pid="64" name="hall_tablets" tags="" >&lt;&lt;set $flags.found_fake_tablets = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;其中几个牌位木料更新——是后来加上去的。「林清婉之灵位」……这些是&lt;span class=&quot;highlight&quot;&gt;活人的灵位&lt;/span&gt;——被立了牌位但人还没死，是一种「假死」的仪式。对应的人都在用假名活着。&lt;/div&gt;
 &lt;&lt;link &quot;继续查看&quot; &quot;visit_hall&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="64" name="go_to_room" tags="" >&lt;div class=&quot;narrate&quot;&gt;你回到天字三号房，和衣躺在床上。枕头下面是你的剑——手一伸就能碰到。&lt;/div&gt;
+	<tw-passagedata pid="65" name="go_to_room" tags="" >&lt;div class=&quot;narrate&quot;&gt;你回到天字三号房，和衣躺在床上。枕头下面是你的剑——手一伸就能碰到。&lt;/div&gt;
 
 &lt;&lt;if $flags.knows_tianji&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;天机卷——一千七百个名字。近万人的生死。每个人对它的打算都不同。&lt;span class=&quot;danger&quot;&gt;而你想怎么做？&lt;/span&gt;&lt;/div&gt;
@@ -912,7 +921,7 @@ body {
 &lt;div class=&quot;narrate&quot;&gt;你的眼皮越来越重……不知过了多久——&lt;/div&gt;
 
 &lt;&lt;link &quot;……&quot; &quot;night_falls&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="65" name="night_falls" tags="" >&lt;&lt;set $chapter = 2&gt;&gt;
+	<tw-passagedata pid="66" name="night_falls" tags="" >&lt;&lt;set $chapter = 2&gt;&gt;
 &lt;&lt;chapter_title &quot;第二章 · 暗夜惊变&quot;&gt;&gt;
 
 &lt;div class=&quot;narrate&quot;&gt;你回到房间，和衣而卧。窗外雨声渐小。&lt;/div&gt;
@@ -940,7 +949,7 @@ body {
 &lt;&lt;link &quot;拔剑开门，冲出去&quot; &quot;night_rush&quot;&gt;&gt;&lt;&lt;set $sword += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;悄悄从窗户翻出去&quot; &quot;night_window&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;屏息静听，等待时机&quot; &quot;night_wait&quot;&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="66" name="night_rush" tags="" >&lt;div class=&quot;narrate&quot;&gt;你推开门——走廊里，一个&lt;span class=&quot;danger&quot;&gt;黑衣蒙面人&lt;/span&gt;正手持短刀，抵着&lt;span class=&quot;highlight&quot;&gt;胡青娘&lt;/span&gt;的脖子。&lt;/div&gt;
+	<tw-passagedata pid="67" name="night_rush" tags="" >&lt;div class=&quot;narrate&quot;&gt;你推开门——走廊里，一个&lt;span class=&quot;danger&quot;&gt;黑衣蒙面人&lt;/span&gt;正手持短刀，抵着&lt;span class=&quot;highlight&quot;&gt;胡青娘&lt;/span&gt;的脖子。&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;楼下传来更多的打斗声。整个客栈都乱了起来。&lt;/div&gt;
 
 &lt;&lt;if $sword &gt;= 12&gt;&gt;
@@ -954,7 +963,7 @@ body {
 &lt;&lt;else&gt;&gt;
 &lt;div class=&quot;choice-disabled&quot;&gt;需要物品：酒坛&lt;/div&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="67" name="night_window" tags="" >&lt;&lt;set $flags.saw_shen_fight = true&gt;&gt;
+	<tw-passagedata pid="68" name="night_window" tags="" >&lt;&lt;set $flags.saw_shen_fight = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你无声地翻出窗户。雨已经停了，月光照亮了院子。
 
 ——三个&lt;span class=&quot;danger&quot;&gt;黑衣人&lt;/span&gt;正在翻胡青娘的药铺
@@ -965,7 +974,7 @@ body {
 &lt;&lt;link &quot;去帮赵铁牛&quot; &quot;help_zhao&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;去药铺救胡青娘&quot; &quot;help_hu&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;去找柳如烟&quot; &quot;find_liu&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="68" name="night_wait" tags="" >&lt;&lt;set $flags.overheard_assassins = true&gt;&gt;
+	<tw-passagedata pid="69" name="night_wait" tags="" >&lt;&lt;set $flags.overheard_assassins = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你贴着门板，屏住呼吸。
 
 门外传来低语：
@@ -973,34 +982,34 @@ body {
 
 &lt;&lt;link &quot;跟踪蒙面人&quot; &quot;follow_assassin&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;从窗户翻到后院&quot; &quot;night_window&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="69" name="fight_assassin" tags="" >&lt;&lt;set $flags.saved_hu_combat = true&gt;&gt;&lt;&lt;set $rel_hei += 5&gt;&gt;&lt;&lt;set $sword += 2&gt;&gt;&lt;&lt;set $rel_hu = 15&gt;&gt;&lt;&lt;run setup.addItem(&apos;蒙面短刀&apos;)&gt;&gt;
+	<tw-passagedata pid="70" name="fight_assassin" tags="" >&lt;&lt;set $flags.saved_hu_combat = true&gt;&gt;&lt;&lt;set $rel_hei += 5&gt;&gt;&lt;&lt;set $sword += 2&gt;&gt;&lt;&lt;set $rel_hu = 15&gt;&gt;&lt;&lt;run setup.addItem(&apos;蒙面短刀&apos;)&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你的剑快如闪电——&lt;span class=&quot;success&quot;&gt;一剑刺中蒙面人的手腕！&lt;/span&gt;
 短刀落地，胡青娘趁机挣脱。&lt;/div&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;……好剑法。你是谁？&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「你又是谁？」&quot; &quot;confront_hei&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;继续攻击&quot; &quot;attack_hei&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="70" name="negotiate_assassin" tags="" >&lt;&lt;set $flags.met_hei_wuji = true&gt;&gt;
+	<tw-passagedata pid="71" name="negotiate_assassin" tags="" >&lt;&lt;set $flags.met_hei_wuji = true&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;我要什么，与你无关。识相的话，回房去。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;胡青娘趁机低声对你说：&lt;/div&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;他叫黑无极……是江湖上有名的杀手。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「放了她，我给你你想要的信息。」&quot; &quot;deal_hei&quot;&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;趁他分神，突袭！&quot; &quot;sneak_attack&quot;&gt;&gt;&lt;&lt;set $sword += 1&gt;&gt;&lt;&lt;set $hp -= 20&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="71" name="throw_item" tags="" >&lt;&lt;set $rel_hei -= 10&gt;&gt;
+	<tw-passagedata pid="72" name="throw_item" tags="" >&lt;&lt;set $rel_hei -= 10&gt;&gt;
 &lt;&lt;run setup.removeItem(&apos;酒坛&apos;)&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你抄起酒坛砸向蒙面人！&lt;span class=&quot;success&quot;&gt;正中后脑！&lt;/span&gt;&lt;/div&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;……你！好，很好。记住——我会回来找你的。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="72" name="help_zhao" tags="" >&lt;&lt;set $rel_zhao += 10&gt;&gt;&lt;&lt;set $flags.fought_with_zhao = true&gt;&gt;&lt;&lt;set $sword += 1&gt;&gt;
+	<tw-passagedata pid="73" name="help_zhao" tags="" >&lt;&lt;set $rel_zhao += 10&gt;&gt;&lt;&lt;set $flags.fought_with_zhao = true&gt;&gt;&lt;&lt;set $sword += 1&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你冲向赵铁牛！他正以一敌二，身上已多了几道伤口。&lt;/div&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;兄弟！来了！左边那个交给你！&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;success&quot;&gt;你们合力击退了两个黑衣人！&lt;/span&gt;赵铁牛的铁锤锤头脱落，露出里面一把&lt;span class=&quot;highlight&quot;&gt;精钢短刀&lt;/span&gt;。&lt;/div&gt;
 
 &lt;&lt;link &quot;「赵大哥，你到底什么来头？」&quot; &quot;zhao_truth&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「先去药铺救胡青娘！」&quot; &quot;help_hu&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="73" name="zhao_truth" tags="" >&lt;&lt;set $flags.zhao_knows_location = true&gt;&gt;&lt;&lt;set $flags.knows_three_keys = true&gt;&gt;
+	<tw-passagedata pid="74" name="zhao_truth" tags="" >&lt;&lt;set $flags.zhao_knows_location = true&gt;&gt;&lt;&lt;set $flags.knows_three_keys = true&gt;&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;……瞒不住了。我以前不只是一个百夫长。我是前朝禁卫军的人。天机卷，我知道它在哪里。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;天机卷上记着一千七百个名字。三年前，朝廷从一条漏出的线索里抓到了十七个人。其中有一个是我兄弟。一家三口，满门抄斩。&quot;&gt;&gt;
 &lt;&lt;divider&gt;&gt;
@@ -1008,11 +1017,11 @@ body {
 
 &lt;&lt;link &quot;「你为什么告诉我？」&quot; &quot;zhao_why&quot;&gt;&gt;&lt;&lt;set $rel_zhao += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「那我们现在就去找他们。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="74" name="zhao_why" tags="" >&lt;&lt;set $rel_zhao += 5&gt;&gt;
+	<tw-passagedata pid="75" name="zhao_why" tags="" >&lt;&lt;set $rel_zhao += 5&gt;&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;因为今晚之后，不管天机卷落在谁手里，这镇上都留不住了。你是我在这镇上信得过的人。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="75" name="help_hu" tags="" >&lt;&lt;if not $rel_hu&gt;&gt;&lt;&lt;set $rel_hu = 0&gt;&gt;&lt;&lt;/if&gt;&gt;
+	<tw-passagedata pid="76" name="help_hu" tags="" >&lt;&lt;if not $rel_hu&gt;&gt;&lt;&lt;set $rel_hu = 0&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你冲进药铺。三个黑衣人正在逼问胡青娘。&lt;/div&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;……要杀便杀。想从我嘴里套话？做梦。&quot;&gt;&gt;
 
@@ -1022,7 +1031,7 @@ body {
 &lt;div class=&quot;choice-disabled&quot;&gt;剑术检定：需要剑术≥11&lt;/div&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;link &quot;踢翻药柜制造混乱&quot; &quot;hu_rescued&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="76" name="hu_rescued" tags="" >&lt;&lt;set $rel_hu += 15&gt;&gt;&lt;&lt;set $flags.saved_hu = true&gt;&gt;
+	<tw-passagedata pid="77" name="hu_rescued" tags="" >&lt;&lt;set $rel_hu += 15&gt;&gt;&lt;&lt;set $flags.saved_hu = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;success&quot;&gt;黑衣人被你击退！&lt;/span&gt;&lt;/div&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;……你救了我。我叫胡青娘，药铺是我开的，但我真正做的是——情报买卖。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她从柜台暗格里取出一块&lt;span class=&quot;highlight&quot;&gt;玉牌&lt;/span&gt;。&lt;/div&gt;
@@ -1034,54 +1043,54 @@ body {
 
 &lt;&lt;link &quot;「为什么要我凑齐？」&quot; &quot;hu_why&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="77" name="hu_why" tags="" >&lt;&lt;set $flags.knows_tianji_truth = true&gt;&gt;
+	<tw-passagedata pid="78" name="hu_why" tags="" >&lt;&lt;set $flags.knows_tianji_truth = true&gt;&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;天机卷上有一千七百个名字。每一个名字背后都是一个家庭。这份卷轴握着近万人的生死。如果落入朝廷手里——一夜之间，四百余家，血流成河。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="78" name="find_liu" tags="" >&lt;div class=&quot;narrate&quot;&gt;你在客栈屋顶上找到了柳如烟。月光下，她的身影如一尊冰雕。&lt;/div&gt;
+	<tw-passagedata pid="79" name="find_liu" tags="" >&lt;div class=&quot;narrate&quot;&gt;你在客栈屋顶上找到了柳如烟。月光下，她的身影如一尊冰雕。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;你倒是沉得住气。黑无极是朝廷通缉的杀手。他也在找天机卷。如果他先找到……你不会想知道后果。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「你呢？你不也在找天机卷？」&quot; &quot;liu_truth&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「和你合作，有什么好处？」&quot; &quot;liu_deal&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="79" name="liu_truth" tags="" >&lt;&lt;set $flags.liu_father_on_list = true&gt;&gt;&lt;&lt;set $rel_liu += 10&gt;&gt;
+	<tw-passagedata pid="80" name="liu_truth" tags="" >&lt;&lt;set $flags.liu_father_on_list = true&gt;&gt;&lt;&lt;set $rel_liu += 10&gt;&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……我是锦衣卫的人。我奉命来取天机卷。但名单上有我父亲的名字。如果你帮我拿到天机卷，我可以毁掉它。然后告诉朝廷，天机卷已经不存在了。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「好，我信你。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.liu_alliance = true&gt;&gt;&lt;&lt;set $rel_liu += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「我需要想想。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="80" name="liu_deal" tags="" >&lt;&lt;set $flags.knows_poisoned = true&gt;&gt;
+	<tw-passagedata pid="81" name="liu_deal" tags="" >&lt;&lt;set $flags.knows_poisoned = true&gt;&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;直接谈利益，我喜欢。帮你拿到天机卷，你给我——五百两白银。还有……我可以告诉你，谁在你的酒里下了药。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你心头一惊——&lt;span class=&quot;danger&quot;&gt;下药？&lt;/span&gt;&lt;/div&gt;
 
 &lt;&lt;link &quot;「谁下的药？」&quot; &quot;liu_who_poison&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;先不追究&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="81" name="liu_who_poison" tags="" >&lt;&lt;set $flags.knows_shen_poison = true&gt;&gt;
+	<tw-passagedata pid="82" name="liu_who_poison" tags="" >&lt;&lt;set $flags.knows_shen_poison = true&gt;&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;沈孤雁。他在每个人的酒里都加了「迷魂散」。不多，只是让人反应变慢。他以为这样今晚发生什么事，没人能及时反应。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="82" name="confront_hei" tags="" >&lt;&lt;set $flags.met_hei_wuji = true&gt;&gt;
+	<tw-passagedata pid="83" name="confront_hei" tags="" >&lt;&lt;set $flags.met_hei_wuji = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;黑无极摘下面罩，露出一张满是伤疤的脸。&lt;/div&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;我是黑无极。受人之托来找天机卷。你的剑法不错。考虑一下——三千两黄金。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「我不为钱卖命。」&quot; &quot;hei_refuse&quot;&gt;&gt;&lt;&lt;set $rel_hei -= 5&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「三千两？说来听听。」&quot; &quot;hei_listen&quot;&gt;&gt;&lt;&lt;set $flags.heard_hei_deal = true&gt;&gt;&lt;&lt;set $rel_hei += 5&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="83" name="attack_hei" tags="" >&lt;&lt;set $flags.attacked_hei = true&gt;&gt;
+	<tw-passagedata pid="84" name="attack_hei" tags="" >&lt;&lt;set $flags.attacked_hei = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你趁他说话时出手！&lt;span class=&quot;success&quot;&gt;剑光一闪，划破他的袖子！&lt;/span&gt;
 但黑无极反应极快，退后三丈。&lt;/div&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;偷袭？下次不会给你第二次机会。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他消失在黑暗中。&lt;/div&gt;
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="84" name="deal_hei" tags="" >&lt;&lt;set $flags.hei_open_to_deal = true&gt;&gt;&lt;&lt;set $flags.knows_three_keys = true&gt;&gt;
+	<tw-passagedata pid="85" name="deal_hei" tags="" >&lt;&lt;set $flags.hei_open_to_deal = true&gt;&gt;&lt;&lt;set $flags.knows_three_keys = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;黑无极出乎意料地松开了胡青娘。&lt;/div&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;天机卷的入口需要三块玉牌。分别在一个药铺女人、一个书生、和这个客栈老板手里。你如果能拿到任何一块——拿来找我。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;天亮之后我找不到你——这个镇上的人，一个不留。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;danger&quot;&gt;天亮之前。&lt;/span&gt;&lt;/div&gt;
 
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="85" name="sneak_attack" tags="" >&lt;&lt;set $hp -= 20&gt;&gt;
+	<tw-passagedata pid="86" name="sneak_attack" tags="" >&lt;&lt;set $hp -= 20&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你突然出手！划伤了黑无极肩膀。但他反手一掌拍在你胸口——&lt;span class=&quot;danger&quot;&gt;你被震退！-20HP&lt;/span&gt;&lt;/div&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;……有两下子。我们还会再见的。&quot;&gt;&gt;
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="86" name="follow_assassin" tags="" >&lt;&lt;set $flags.followed_assassins = true&gt;&gt;&lt;&lt;set $flags.bai_night_encounter = true&gt;&gt;
+	<tw-passagedata pid="87" name="follow_assassin" tags="" >&lt;&lt;set $flags.followed_assassins = true&gt;&gt;&lt;&lt;set $flags.bai_night_encounter = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你悄悄跟上蒙面人。他走到后院和另外两人交谈：「钥匙分成了三块，分别在药铺女人、老板、和那个书生手里。」&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;danger&quot;&gt;一只手搭上了你的肩膀。&lt;/span&gt;
 白云生站在你身后。&lt;/div&gt;
@@ -1089,31 +1098,31 @@ body {
 
 &lt;&lt;link &quot;「你都听到了？」&quot; &quot;bai_night&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;回到大堂&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="87" name="bai_night" tags="" >&lt;&lt;dialog &quot;白云生&quot; &quot;三块钥匙。我手里有一块。我不会轻易交出——除非你告诉我，你想用天机卷做什么。&quot;&gt;&gt;
+	<tw-passagedata pid="88" name="bai_night" tags="" >&lt;&lt;dialog &quot;白云生&quot; &quot;三块钥匙。我手里有一块。我不会轻易交出——除非你告诉我，你想用天机卷做什么。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「保护名单上的人。」&quot; &quot;bai_give_key&quot;&gt;&gt;&lt;&lt;set $flags.bai_trust = true&gt;&gt;&lt;&lt;set $rel_bai += 10&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「销毁它。这种东西不该存在。」&quot; &quot;bai_give_key&quot;&gt;&gt;&lt;&lt;set $rel_bai += 5&gt;&gt;&lt;&lt;set $flags.wants_destroy = true&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「还没想好。」&quot; &quot;bai_hesitate&quot;&gt;&gt;&lt;&lt;set $rel_bai += 3&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="88" name="bai_give_key" tags="" >&lt;&lt;run setup.addItem(&apos;玉牌·书&apos;)&gt;&gt;
+	<tw-passagedata pid="89" name="bai_give_key" tags="" >&lt;&lt;run setup.addItem(&apos;玉牌·书&apos;)&gt;&gt;
 &lt;&lt;set $flags.bai_key = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;白云生从怀里掏出一块&lt;span class=&quot;highlight&quot;&gt;玉牌&lt;/span&gt;。&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;这是我三年前在落雁峰上找到的。我一直在等一个值得托付的人。&quot;&gt;&gt;
 &lt;span class=&quot;ok&quot;&gt;获得：玉牌·书&lt;/span&gt;
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="89" name="bai_hesitate" tags="" >&lt;&lt;set $flags.bai_following = true&gt;&gt;
+	<tw-passagedata pid="90" name="bai_hesitate" tags="" >&lt;&lt;set $flags.bai_following = true&gt;&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;坦诚。至少你没有骗我。钥匙我暂时不给。但我会跟着你。&quot;&gt;&gt;
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="90" name="hei_refuse" tags="" >&lt;&lt;set $flags.knows_hei_org = true&gt;&gt;
+	<tw-passagedata pid="91" name="hei_refuse" tags="" >&lt;&lt;set $flags.knows_hei_org = true&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;不为钱？正义在江湖上，值不了一文钱。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;他转身离去。你注意到他左肩上有一个纹身——&lt;span class=&quot;highlight&quot;&gt;倒悬的七星图案&lt;/span&gt;。暗星阁的标志。&lt;/div&gt;
 &lt;&lt;link &quot;继续行动&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="91" name="hei_listen" tags="" >&lt;&lt;set $flags.knows_hei_truth = true&gt;&gt;
+	<tw-passagedata pid="92" name="hei_listen" tags="" >&lt;&lt;set $flags.knows_hei_truth = true&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;我的委托人是暗星阁。天机卷上记录着我们所有成员的身份。如果泄露——三百多条人命。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;所以——你愿意帮我吗？不为了钱，为了……救人。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「救人……好，我帮你。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hei_alliance = true&gt;&gt;&lt;&lt;set $rel_hei += 15&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「我需要更多时间考虑。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="92" name="chapter2_hub" tags="" >&lt;&lt;set $chapter = 2&gt;&gt;
+	<tw-passagedata pid="93" name="chapter2_hub" tags="" >&lt;&lt;set $chapter = 2&gt;&gt;
 &lt;&lt;chapter_title &quot;第二章 · 抉择时刻&quot;&gt;&gt;
 
 &lt;div class=&quot;narrate&quot;&gt;夜色深沉。客栈内外一片狼藉，但战斗暂时平息。
@@ -1156,7 +1165,7 @@ body {
 &lt;&lt;elseif _keys &gt;= 1&gt;&gt;
 &lt;&lt;link &quot;前往落雁峰（只有&lt;&lt;print _keys&gt;&gt;块玉牌，可能不够）&quot; &quot;mountain_approach&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="93" name="get_hu_key" tags="" >&lt;&lt;if $flags.saved_hu&gt;&gt;
+	<tw-passagedata pid="94" name="get_hu_key" tags="" >&lt;&lt;if $flags.saved_hu&gt;&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;好吧——我欠你一条命，这是玉牌。但我有个条件。天机卷上……有我哥哥的名字。答应我——不要让任何人知道他的下落。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「我答应你。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_hu = true&gt;&gt;&lt;&lt;run setup.addItem(&apos;玉牌·药&apos;)&gt;&gt;&lt;&lt;set $rel_hu += 10&gt;&gt;&lt;&lt;set $flags.hu_key = true&gt;&gt;&lt;&lt;/link&gt;&gt;
@@ -1170,16 +1179,16 @@ body {
 &lt;&lt;link &quot;返回&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="94" name="hu_zhao_trade" tags="" >&lt;&lt;run setup.addItem(&apos;旧刀&apos;)&gt;&gt;
+	<tw-passagedata pid="95" name="hu_zhao_trade" tags="" >&lt;&lt;run setup.addItem(&apos;旧刀&apos;)&gt;&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;那把刀……确实不是我的。是胡青娘丈夫的。你拿去吧。&quot;&gt;&gt;
 &lt;span class=&quot;ok&quot;&gt;获得：旧刀&lt;/span&gt;
 &lt;&lt;link &quot;把刀还给胡青娘&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;run setup.removeItem(&apos;旧刀&apos;)&gt;&gt;&lt;&lt;run setup.addItem(&apos;玉牌·药&apos;)&gt;&gt;&lt;&lt;set $rel_hu += 15&gt;&gt;&lt;&lt;set $flags.hu_key = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="95" name="get_bai_key" tags="" >&lt;&lt;dialog &quot;白云生&quot; &quot;你来要钥匙？先回答我——你想用天机卷做什么？&quot;&gt;&gt;
+	<tw-passagedata pid="96" name="get_bai_key" tags="" >&lt;&lt;dialog &quot;白云生&quot; &quot;你来要钥匙？先回答我——你想用天机卷做什么？&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「保护名单上的人。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;run setup.addItem(&apos;玉牌·书&apos;)&gt;&gt;&lt;&lt;set $flags.bai_key = true&gt;&gt;&lt;&lt;set $rel_bai += 8&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「交给最值得信任的人。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;run setup.addItem(&apos;玉牌·书&apos;)&gt;&gt;&lt;&lt;set $flags.bai_key = true&gt;&gt;&lt;&lt;set $rel_bai += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「利用它，掌控局势。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $rel_bai -= 10&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="96" name="get_shen_key" tags="" >&lt;&lt;if $flags.shen_respects_you or $rel_shen &gt; 15&gt;&gt;
+	<tw-passagedata pid="97" name="get_shen_key" tags="" >&lt;&lt;if $flags.shen_respects_you or $rel_shen &gt; 15&gt;&gt;
 &lt;&lt;run setup.addItem(&apos;玉牌·沈&apos;)&gt;&gt;&lt;&lt;set $flags.shen_key = true&gt;&gt;&lt;&lt;set $rel_shen += 10&gt;&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;你来了。我一直在等你。这是我守了十五年的东西。拿去。但你必须答应我——天机卷不能落入朝廷手中。&quot;&gt;&gt;
 &lt;span class=&quot;ok&quot;&gt;获得：玉牌·沈&lt;/span&gt;
@@ -1189,22 +1198,22 @@ body {
 &lt;&lt;link &quot;「沈老板，我知道你不简单。那把弯刀，是前朝禁卫军的制式佩刀。」&quot; &quot;shen_push&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;返回&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="97" name="shen_push" tags="" >&lt;&lt;run setup.addItem(&apos;玉牌·沈&apos;)&gt;&gt;&lt;&lt;set $flags.shen_key = true&gt;&gt;
+	<tw-passagedata pid="98" name="shen_push" tags="" >&lt;&lt;run setup.addItem(&apos;玉牌·沈&apos;)&gt;&gt;&lt;&lt;set $flags.shen_key = true&gt;&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;……好吧。你是第二个看穿我的人。拿去。但如果你让天机卷落入朝廷手中，我会亲手杀了你。&quot;&gt;&gt;
 &lt;span class=&quot;ok&quot;&gt;获得：玉牌·沈&lt;/span&gt;
 &lt;&lt;link &quot;继续&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="98" name="ally_liu" tags="" >&lt;&lt;dialog &quot;柳如烟&quot; &quot;想通了？&quot;&gt;&gt;
+	<tw-passagedata pid="99" name="ally_liu" tags="" >&lt;&lt;dialog &quot;柳如烟&quot; &quot;想通了？&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「我帮你拿到天机卷，你销毁它。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.liu_alliance = true&gt;&gt;&lt;&lt;set $rel_liu += 10&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「我只是想了解你的立场。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="99" name="ally_hei" tags="" >&lt;&lt;set $flags.hei_alliance = true&gt;&gt;
+	<tw-passagedata pid="100" name="ally_hei" tags="" >&lt;&lt;set $flags.hei_alliance = true&gt;&gt;
 &lt;&lt;if $flags.knows_hei_truth&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;你来了。你找到几块钥匙了？&quot;&gt;&gt;
 &lt;&lt;else&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;……又见面了。改主意了？&quot;&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;link &quot;继续&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="100" name="mountain_approach" tags="" >&lt;&lt;set $chapter = 3&gt;&gt;
+	<tw-passagedata pid="101" name="mountain_approach" tags="" >&lt;&lt;set $chapter = 3&gt;&gt;
 &lt;&lt;chapter_title &quot;第三章 · 落雁峰&quot;&gt;&gt;
 
 &lt;div class=&quot;narrate&quot;&gt;你趁着夜色，向落雁峰出发。半个时辰后，你来到了山腰的一处平台。
@@ -1237,7 +1246,7 @@ body {
 
 &lt;&lt;link &quot;立刻嵌入玉牌，打开石门&quot; &quot;open_door&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;先藏起来，看看是谁来了&quot; &quot;mountain_hide&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="101" name="open_door" tags="" >&lt;&lt;set _keys = $inventory.filter(function(i){return i.startsWith(&apos;玉牌&apos;)}).length&gt;&gt;
+	<tw-passagedata pid="102" name="open_door" tags="" >&lt;&lt;set _keys = $inventory.filter(function(i){return i.startsWith(&apos;玉牌&apos;)}).length&gt;&gt;
 &lt;&lt;if _keys &gt;= 2&gt;&gt;
 &lt;&lt;set $flags.door_opened = true&gt;&gt;
 &lt;&lt;if _keys === 3&gt;&gt;
@@ -1265,7 +1274,7 @@ body {
 不行，必须找到更多玉牌。&lt;/div&gt;
 &lt;&lt;link &quot;返回镇上&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="102" name="mountain_hide" tags="" >&lt;&lt;set $flags.all_gathered = true&gt;&gt;
+	<tw-passagedata pid="103" name="mountain_hide" tags="" >&lt;&lt;set $flags.all_gathered = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你闪身躲在一块巨石后面。
 
 月光下，几拨人先后到达——
@@ -1276,7 +1285,7 @@ body {
 
 &lt;&lt;link &quot;走出来，以玉牌为筹码谈判&quot; &quot;open_door&quot;&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;趁他们争吵，偷偷嵌入玉牌打开石门&quot; &quot;open_door&quot;&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;set $flags.sneak_opened = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="103" name="final_chamber" tags="" >&lt;&lt;set $chapter = 4&gt;&gt;
+	<tw-passagedata pid="104" name="final_chamber" tags="" >&lt;&lt;set $chapter = 4&gt;&gt;
 &lt;&lt;chapter_title &quot;终章 · 天机&quot;&gt;&gt;
 
 &lt;div class=&quot;narrate&quot;&gt;甬道尽头，是一个巨大的石室。
@@ -1305,7 +1314,7 @@ body {
 &lt;&lt;link &quot;拿起天机卷，交给黑无极&quot; &quot;ending_hei&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;拿起天机卷，据为己有&quot; &quot;ending_self&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;不碰卷轴——看向铜镜&quot; &quot;ending_mirror&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="104" name="ending_destroy" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，撕成两半。
+	<tw-passagedata pid="105" name="ending_destroy" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，撕成两半。
 
 &lt;span class=&quot;danger&quot;&gt;「住手！」&lt;/span&gt;黑无极暴怒，拔刀冲向你！
 但赵铁牛挡在你面前，铁锤横扫。沈孤雁也动了——他截住了黑无极的手下。
@@ -1333,7 +1342,7 @@ body {
 你翻身上马，向远方驶去。身后，是新的一天。&lt;/div&gt;
 
 &lt;&lt;ending &quot;烈火焚卷&quot; &quot;天机已焚，江湖依旧。你选择了让秘密随风消散。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="105" name="ending_shen" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，走向沈孤雁。他的双手微微颤抖，接过卷轴。&lt;/div&gt;
+	<tw-passagedata pid="106" name="ending_shen" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，走向沈孤雁。他的双手微微颤抖，接过卷轴。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;……十五年了。我终于可以……保护他们了。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;从今天起，苍龙镇就是这些人的庇护所。任何人想找他们——先过我这关。&quot;&gt;&gt;
 &lt;&lt;divider&gt;&gt;
@@ -1354,7 +1363,7 @@ body {
 而你——成为他们中的一员。江湖路远，但有伙伴同行，便不觉孤独。&lt;/div&gt;
 
 &lt;&lt;ending &quot;听雨守夜&quot; &quot;你将天机卷托付给了最值得信赖的人。苍龙镇成为新的庇护所。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="106" name="ending_liu" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，递给柳如烟。她的手指触碰到卷轴的一瞬，身体僵住了。&lt;/div&gt;
+	<tw-passagedata pid="107" name="ending_liu" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，递给柳如烟。她的手指触碰到卷轴的一瞬，身体僵住了。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……你信任我？&quot;&gt;&gt;
 &lt;&lt;divider&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她打开卷轴，快速浏览了一遍。然后——
@@ -1369,7 +1378,7 @@ body {
 你再也没有见过柳如烟。但江湖上开始流传一个新名字——「无名剑姬」，一个专门帮助被追杀之人的神秘女侠。&lt;/div&gt;
 
 &lt;&lt;ending &quot;无名剑姬&quot; &quot;天机化灰，旧人消逝。但一个新的传说正在开始。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="107" name="ending_hei" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，走向黑无极。所有人的目光都钉在你身上。&lt;/div&gt;
+	<tw-passagedata pid="108" name="ending_hei" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，走向黑无极。所有人的目光都钉在你身上。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;你……！&quot;&gt;&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;……为什么？&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;黑无极接过卷轴，仔细查看了一遍。然后他做了一件出乎所有人意料的事——
@@ -1384,7 +1393,7 @@ body {
 &lt;div class=&quot;narrate&quot;&gt;你看着他的背影消失在晨曦中。有时候，最正确的选择不是最好的选择，而是最必要的选择。&lt;/div&gt;
 
 &lt;&lt;ending &quot;旧怨了结&quot; &quot;你用信任弥合了二十年的裂痕。江湖恩怨，终有一了。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="108" name="ending_self" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，收入怀中。所有人的表情都变了。&lt;/div&gt;
+	<tw-passagedata pid="109" name="ending_self" tags="" >&lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，收入怀中。所有人的表情都变了。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;年轻人……你确定要这样做？&quot;&gt;&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;天机卷上的名字……你知道那意味着什么吗？&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;danger&quot;&gt;黑无极的手已经按在了刀柄上。&lt;/span&gt;&lt;/div&gt;
@@ -1400,7 +1409,7 @@ body {
 江湖路远。而你，已经无法回头。&lt;/div&gt;
 
 &lt;&lt;ending &quot;持卷者&quot; &quot;你选择了权力——和随之而来的一切代价。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="109" name="ending_mirror" tags="" >&lt;div class=&quot;narrate&quot;&gt;你没有碰卷轴。你的目光被铜镜吸引——镜面上映出的不是你的脸。而是一行字：
+	<tw-passagedata pid="110" name="ending_mirror" tags="" >&lt;div class=&quot;narrate&quot;&gt;你没有碰卷轴。你的目光被铜镜吸引——镜面上映出的不是你的脸。而是一行字：
 
 &lt;span class=&quot;highlight&quot;&gt;「天机不可泄，知者自当知。
 卷中无秘密，秘密在人心。」&lt;/span&gt;&lt;/div&gt;
@@ -1434,7 +1443,7 @@ body {
 &lt;span class=&quot;highlight&quot;&gt;江湖路远，后会有期。&lt;/span&gt;&lt;/div&gt;
 
 &lt;&lt;ending &quot;天机在心&quot; &quot;真正的天机，不在卷轴上，而在人心之中。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="110" name="shen_personal_quest" tags="" >&lt;&lt;set $flags.shen_daughter_quest = true&gt;&gt;
+	<tw-passagedata pid="111" name="shen_personal_quest" tags="" >&lt;&lt;set $flags.shen_daughter_quest = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;沈孤雁把你叫到柜台后面。他的表情前所未有的凝重。&lt;/div&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;我有一件事需要你帮忙。我的女儿……她被朝廷掳走了。五年前，她才十三岁。他们把她带走了，作为要挟我的筹码。&quot;&gt;&gt;
 &lt;&lt;divider&gt;&gt;
@@ -1444,7 +1453,7 @@ body {
 &lt;&lt;link &quot;「我帮你救女儿。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_shen_daughter = true&gt;&gt;&lt;&lt;set $rel_shen += 15&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;run setup.addItem(&apos;织造坊地图&apos;)&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「天机卷的事了结之后——我一定帮你。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.shen_daughter_later = true&gt;&gt;&lt;&lt;set $rel_shen += 5&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「这超出了我的能力范围。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $rel_shen -= 5&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="111" name="liu_personal_quest" tags="" >&lt;&lt;set $flags.liu_father_quest = true&gt;&gt;
+	<tw-passagedata pid="112" name="liu_personal_quest" tags="" >&lt;&lt;set $flags.liu_father_quest = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;柳如烟在屋顶上等你。&lt;/div&gt;
 &lt;&lt;dialog &quot;柳如烟&quot; &quot;我父亲……在岭南一个叫青竹村的地方，化名周三，以打鱼为生。我已经三年没见过他了。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她从袖中取出一块小小的玉佩——平安扣，上面刻着一个「周」字。&lt;/div&gt;
@@ -1453,31 +1462,31 @@ body {
 &lt;&lt;link &quot;「我帮你送玉佩。不需要交换。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_liu_father = true&gt;&gt;&lt;&lt;set $rel_liu += 15&gt;&gt;&lt;&lt;run setup.addItem(&apos;柳如烟的平安扣&apos;)&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「信息我也要，玉佩我也帮你送。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_liu_father = true&gt;&gt;&lt;&lt;set $rel_liu += 10&gt;&gt;&lt;&lt;run setup.addItem(&apos;柳如烟的平安扣&apos;)&gt;&gt;&lt;&lt;set $flags.knows_jinyi_deploy = true&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「我得先忙天机卷的事。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="112" name="zhao_personal_quest" tags="" >&lt;&lt;set $flags.zhao_traitor_quest = true&gt;&gt;
+	<tw-passagedata pid="113" name="zhao_personal_quest" tags="" >&lt;&lt;set $flags.zhao_traitor_quest = true&gt;&gt;
 &lt;&lt;dialog &quot;赵铁牛&quot; &quot;我需要你帮我找一个人。刘半仙，真名刘永年。他是我们小队的军师。三年前有一场伏击——我们的位置被人泄露了。我花了三年调查——&lt;span class=&quot;danger&quot;&gt;我们中间有叛徒&lt;/span&gt;。很可能就是他。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「我帮你查。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_zhao_traitor = true&gt;&gt;&lt;&lt;set $rel_zhao += 12&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「你确定他是叛徒？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="113" name="hu_personal_quest" tags="" >&lt;&lt;set $flags.hu_mole_quest = true&gt;&gt;&lt;&lt;set $rel_hu += 5&gt;&gt;
+	<tw-passagedata pid="114" name="hu_personal_quest" tags="" >&lt;&lt;set $flags.hu_mole_quest = true&gt;&gt;&lt;&lt;set $rel_hu += 5&gt;&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;我的情报网被渗透了。渗透我的人，很可能是我最信任的线人——「青鸢」。她是我十年前救回来的孤儿，我教她一切，把她当亲妹妹。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;胡青娘&quot; &quot;帮我找到证据。如果是青鸢——我会亲手处理。如果不是——我欠她一个天大的道歉。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「我会找到真相的。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_hu_mole = true&gt;&gt;&lt;&lt;set $rel_hu += 10&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「如果真是青鸢呢？你下得了手吗？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hu_resolute = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="114" name="bai_personal_quest" tags="" >&lt;&lt;set $flags.bai_family_quest = true&gt;&gt;&lt;&lt;set $rel_bai += 8&gt;&gt;
+	<tw-passagedata pid="115" name="bai_personal_quest" tags="" >&lt;&lt;set $flags.bai_family_quest = true&gt;&gt;&lt;&lt;set $rel_bai += 8&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;白云生从衣襟内侧取出一块旧丝帕：&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;「吾孙承渊：白家满门忠烈，不悔不怨。唯愿你替白家做最后一件事——找到天机卷，让天下人知道真相。」——白太傅 绝笔&lt;/span&gt;&lt;/div&gt;
 &lt;&lt;dialog &quot;白云生&quot; &quot;我爷爷在朝代更替那天自焚了。他的遗愿是让我找到天机卷——不是为了宝藏——是为了让天下人知道，前朝有那么多人，他们只是&lt;span class=&quot;highlight&quot;&gt;不想忘记自己是谁的人&lt;/span&gt;。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「我帮你完成白太傅的遗愿。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.promised_bai_family = true&gt;&gt;&lt;&lt;set $rel_bai += 12&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「天机卷不只是遗愿——它关乎上万人的命。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="115" name="hei_personal_quest" tags="" >&lt;&lt;set $flags.hei_revenge_conflict = true&gt;&gt;&lt;&lt;set $rel_hei += 8&gt;&gt;
+	<tw-passagedata pid="116" name="hei_personal_quest" tags="" >&lt;&lt;set $flags.hei_revenge_conflict = true&gt;&gt;&lt;&lt;set $rel_hei += 8&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;二十年前，沈孤雁奉命清剿暗星阁。那一夜，他杀了我师父。我那年十五岁，亲眼看着。&quot;&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;但是三年前，我查到了真相——清剿暗星阁的命令不是他下的。而且他在执行命令的时候，&lt;span class=&quot;highlight&quot;&gt;偷偷放走了七个孩子&lt;/span&gt;。我是那七个之一。他放走了我。&quot;&gt;&gt;
 
 &lt;&lt;link &quot;「所以你来找他——是为了报仇，还是为了道谢？」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hei_conflicted = true&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「放下仇恨吧。你有更重要的事。」&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $flags.hei_let_go = true&gt;&gt;&lt;&lt;set $rel_hei += 10&gt;&gt;&lt;&lt;set $flags.hei_redemption = true&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="116" name="alliance_negotiation" tags="" >&lt;&lt;set $flags.alliance_proposed = true&gt;&gt;
+	<tw-passagedata pid="117" name="alliance_negotiation" tags="" >&lt;&lt;set $flags.alliance_proposed = true&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你站在客栈院子里，月光如洗。今晚所有活着的人都在这里。
 
 你深吸一口气：&lt;/div&gt;
@@ -1486,7 +1495,7 @@ body {
 &lt;&lt;link &quot;「我来分配任务。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;set $flags.alliance_leader = true&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「你们自己选。我确保每个人都信守承诺。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $charm += 2&gt;&gt;&lt;&lt;set $flags.alliance_broker = true&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「谁跟我去落雁峰，谁留下——自愿。」&quot; &quot;alliance_result&quot;&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;set $flags.alliance_voluntary = true&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="117" name="alliance_result" tags="" >&lt;&lt;set _allies = []&gt;&gt;
+	<tw-passagedata pid="118" name="alliance_result" tags="" >&lt;&lt;set _allies = []&gt;&gt;
 &lt;&lt;if $rel_shen &gt; 10 or $flags.shen_alliance&gt;&gt;&lt;&lt;set _allies.push(&apos;沈孤雁&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if $rel_liu &gt; 5 or $flags.liu_alliance&gt;&gt;&lt;&lt;set _allies.push(&apos;柳如烟&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
 &lt;&lt;if $rel_zhao &gt; 5&gt;&gt;&lt;&lt;set _allies.push(&apos;赵铁牛&apos;)&gt;&gt;&lt;&lt;/if&gt;&gt;
@@ -1502,7 +1511,7 @@ body {
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;highlight&quot;&gt;天快亮了。&lt;/span&gt;必须——现在——出发。&lt;/div&gt;
 
 &lt;&lt;link &quot;出发前往落雁峰&quot; &quot;mountain_approach&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="118" name="ending_perfect" tags="" >&lt;div class=&quot;narrate&quot;&gt;所有人一起走进了石室。这是你见过的最奇怪的组合——一个前朝遗臣、一个锦衣卫暗探、一个老兵铁匠、一个落魄书生、一个情报贩子、一个杀手——和一个无名剑客。&lt;/div&gt;
+	<tw-passagedata pid="119" name="ending_perfect" tags="" >&lt;div class=&quot;narrate&quot;&gt;所有人一起走进了石室。这是你见过的最奇怪的组合——一个前朝遗臣、一个锦衣卫暗探、一个老兵铁匠、一个落魄书生、一个情报贩子、一个杀手——和一个无名剑客。&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;你拿起天机卷，展开它。一千七百个名字像活了过来。
 你没有撕碎它，也没有交给任何人。你把它重新卷好，放回石台上。然后——将三块玉牌分别嵌入了隐藏机关里。&lt;/div&gt;
 &lt;&lt;divider&gt;&gt;
@@ -1514,20 +1523,20 @@ body {
 &lt;div class=&quot;narrate&quot;&gt;日出东方。没有人说话。但每个人都笑了。
 &lt;span class=&quot;highlight&quot;&gt;「江湖夜雨十年灯，一剑天涯万重山。天机已封人事了，各赴前程莫相忘。」&lt;/span&gt;&lt;/div&gt;
 &lt;&lt;ending &quot;天机封存·众人归途&quot; &quot;最好的结局不是完美无缺，而是每个人都找到了自己的路。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="119" name="ending_lonely" tags="" >&lt;div class=&quot;narrate&quot;&gt;你独自一人来到落雁峰。没有盟友，没有后援。
+	<tw-passagedata pid="120" name="ending_lonely" tags="" >&lt;div class=&quot;narrate&quot;&gt;你独自一人来到落雁峰。没有盟友，没有后援。
 你杀了一个，伤了两个，自己也挨了三刀。但你还是打开了石门。&lt;/div&gt;
 &lt;div class=&quot;narrate&quot;&gt;你拿起卷轴。没有人帮你分担这个重量。没有可以商量的人。
 &lt;span class=&quot;danger&quot;&gt;没有人陪伴的路上，每一个选择都格外沉重。&lt;/span&gt;&lt;/div&gt;
 &lt;&lt;ending &quot;独行者&quot; &quot;没有人陪伴的路上，每一个选择都格外沉重。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="120" name="ending_tragedy" tags="" >&lt;div class=&quot;narrate&quot;&gt;你的选择激怒了黑无极。他没有说话。只是一刀。
+	<tw-passagedata pid="121" name="ending_tragedy" tags="" >&lt;div class=&quot;narrate&quot;&gt;你的选择激怒了黑无极。他没有说话。只是一刀。
 一刀——赵铁牛的铁锤碎裂。一刀——沈孤雁的弯刀折断。一刀——白云生倒在了血泊中。
 他的刀法快到你根本看不清。&lt;/div&gt;
 &lt;&lt;divider&gt;&gt;
 &lt;&lt;dialog &quot;黑无极&quot; &quot;……我给过你机会。你选了最蠢的那条路。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;苍龙镇的那一夜，后来被称为——&lt;span class=&quot;danger&quot;&gt;「血雨夜」&lt;/span&gt;。天机卷——从此再也没有人见过。&lt;/div&gt;
 &lt;&lt;ending &quot;血雨夜&quot; &quot;有些选择一旦做错，就没有回头路。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="121" name="events_tow" tags="" ></tw-passagedata>
-	<tw-passagedata pid="122" name="sword_check_1" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛递给你一把木剑。&quot;来——跟我过两招。&quot;他举起木锤朝你肩膀横扫过来。&lt;/div&gt;
+	<tw-passagedata pid="122" name="events_tow" tags="" ></tw-passagedata>
+	<tw-passagedata pid="123" name="sword_check_1" tags="" >&lt;div class=&quot;narrate&quot;&gt;赵铁牛递给你一把木剑。&quot;来——跟我过两招。&quot;他举起木锤朝你肩膀横扫过来。&lt;/div&gt;
 
 &lt;&lt;if $sword &gt;= 10&gt;&gt;
 &lt;&lt;link &quot;格挡！&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $sword += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
@@ -1538,7 +1547,7 @@ body {
 &lt;&lt;link &quot;闪避！&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;
 &lt;&lt;link &quot;被砸中了&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;set $hp -= 10&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="123" name="wits_check_1" tags="" >&lt;div class=&quot;narrate&quot;&gt;你仔细整理目前的所有线索，试图拼凑出完整的图景。&lt;/div&gt;
+	<tw-passagedata pid="124" name="wits_check_1" tags="" >&lt;div class=&quot;narrate&quot;&gt;你仔细整理目前的所有线索，试图拼凑出完整的图景。&lt;/div&gt;
 
 &lt;&lt;if $wits &gt;= 13&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;&lt;span class=&quot;success&quot;&gt;你的心机足够敏锐。&lt;/span&gt;
@@ -1549,7 +1558,7 @@ body {
 &lt;&lt;/if&gt;&gt;
 
 &lt;&lt;link &quot;继续&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="124" name="night_street_east" tags="" >&lt;&lt;loc &quot;苍龙镇 · 东街&quot;&gt;&gt;
+	<tw-passagedata pid="125" name="night_street_east" tags="" >&lt;&lt;loc &quot;苍龙镇 · 东街&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你趁着夜色来到镇东。街上空无一人，只有远处传来几声犬吠。
 你经过一间紧闭的裁缝铺——这就是李裁缝的店。门上贴着一张白纸，写着「暂停营业」。&lt;/div&gt;
 
@@ -1560,18 +1569,18 @@ body {
 
 &lt;&lt;link &quot;继续调查&quot; &quot;night_street_west&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;返回客栈&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="125" name="night_street_west" tags="" >&lt;&lt;loc &quot;苍龙镇 · 西街&quot;&gt;&gt;
+	<tw-passagedata pid="126" name="night_street_west" tags="" >&lt;&lt;loc &quot;苍龙镇 · 西街&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你来到镇西。铁匠铺的炉火已经熄灭了。
 你注意到铺子旁边的小巷里，有一串&lt;span class=&quot;highlight&quot;&gt;新鲜脚印&lt;/span&gt;——不止一个人的。脚印方向——朝后山。&lt;/div&gt;
 
 &lt;&lt;link &quot;跟踪脚印&quot; &quot;night_follow_tracks&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;返回客栈&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="126" name="night_follow_tracks" tags="" >&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="127" name="night_follow_tracks" tags="" >&lt;&lt;set $wits += 1&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你沿着脚印走了约半里路。脚印在一处岔路口消失了——不，是分散了。一组往山上，一组往河边。
 你决定不继续深入——独自一人在夜色中追踪太危险了。&lt;/div&gt;
 
 &lt;&lt;link &quot;返回客栈&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="127" name="night_eavesdrop_1" tags="" >&lt;&lt;set $wits += 1&gt;&gt;
+	<tw-passagedata pid="128" name="night_eavesdrop_1" tags="" >&lt;&lt;set $wits += 1&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你悄悄靠近客栈一楼的后窗。里面传来低沉的对话：
 
 「……三块玉牌已经确认了位置。」「药铺那个女人嘴硬。」「没关系，黑无极大人有办法。」
@@ -1579,7 +1588,7 @@ body {
 然后是沉默。&lt;/div&gt;
 
 &lt;&lt;link &quot;继续&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="128" name="widgets" tags="widget" >&lt;&lt;widget &quot;chapter_title&quot;&gt;&gt;&lt;span class=&quot;chapter-title&quot;&gt;$args[0]&lt;/span&gt;&lt;&lt;/widget&gt;&gt;
+	<tw-passagedata pid="129" name="widgets" tags="widget" >&lt;&lt;widget &quot;chapter_title&quot;&gt;&gt;&lt;span class=&quot;chapter-title&quot;&gt;$args[0]&lt;/span&gt;&lt;&lt;/widget&gt;&gt;
 
 &lt;&lt;widget &quot;divider&quot;&gt;&gt;&lt;div class=&quot;divider&quot;&gt;· · · ✦ · · ·&lt;/div&gt;&lt;&lt;/widget&gt;&gt;
 

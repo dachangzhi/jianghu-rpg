@@ -258,6 +258,14 @@ body {
 		padding: 10px;
 	}
 }
+#status-bar {
+	font-size: 0.85em;
+	color: #8a7a5a;
+	border-bottom: 1px solid #3a3020;
+	padding: 4px 0;
+	margin-bottom: 8px;
+	text-align: center;
+}
 
 :: StoryInit
 /* Initialize all game variables */
@@ -297,3 +305,6 @@ body {
 <<run setup.changeRel = function(npc, amt) { var key = 'rel_' + npc; State.variables[key] = (State.variables[key] || 0) + amt; }>>
 <<run setup.addHp = function(amt) { State.variables.hp = Math.min(State.variables.maxHp, Math.max(0, State.variables.hp + amt)); }>>
 <<run setup.keyCount = function() { return State.variables.inventory.filter(function(i) { return i.startsWith('玉牌'); }).length; }>>
+
+:: PassageHeader
+@@#status-bar;§ 第<<print $chapter>>章 @@| @@♥ <<print $hp>>/<<print $maxHp>>@@ | @@⚔<<print $sword>> 心<<print $wits>> 魅<<print $charm>>@@
