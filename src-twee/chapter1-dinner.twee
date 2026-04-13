@@ -238,7 +238,9 @@
 <<else>>
 <<set $rel_shen += 3>>
 <<dialog "沈孤雁" "又来找我？坐吧。">>
-<<link "继续" "round2_hub">><</link>>
+<<link "「沈老板，这客栈开了多久了？」" "round2_hub">><<set $wits += 1>><</link>>
+<<link "「听说苍龙镇以前不叫这个名字？」" "round2_hub">><<set $wits += 2>><</link>>
+<<link "「没什么，就是想喝杯茶。」" "round2_hub">><<set $charm += 1>><</link>>
 <</if>>
 
 :: talk_liu_2

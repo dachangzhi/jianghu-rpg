@@ -795,7 +795,9 @@ body {
 &lt;&lt;else&gt;&gt;
 &lt;&lt;set $rel_shen += 3&gt;&gt;
 &lt;&lt;dialog &quot;沈孤雁&quot; &quot;又来找我？坐吧。&quot;&gt;&gt;
-&lt;&lt;link &quot;继续&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「沈老板，这客栈开了多久了？」&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「听说苍龙镇以前不叫这个名字？」&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;set $wits += 2&gt;&gt;&lt;&lt;/link&gt;&gt;
+&lt;&lt;link &quot;「没什么，就是想喝杯茶。」&quot; &quot;round2_hub&quot;&gt;&gt;&lt;&lt;set $charm += 1&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;/if&gt;&gt;</tw-passagedata>
 	<tw-passagedata pid="48" name="talk_liu_2" tags="" >&lt;&lt;if $flags.liu_revealed_truth or $flags.overheard_liu_comm&gt;&gt;
 &lt;&lt;set $flags.liu_deep_truth = true&gt;&gt;&lt;&lt;set $rel_liu += 10&gt;&gt;
