@@ -1,9 +1,9 @@
-:: StoryFooter
+:: widgets [widget]
 <<widget "chapter_title">><span class="chapter-title">$args[0]</span><</widget>>
 
 <<widget "narrate">><div class="narrate">$args[0]</div><</widget>>
 
-<<widget "dialog">><div class="dialog"><span class="speaker" style="color:$args[2]||'#c9a050'">【$args[0]】</span>「$args[1]」</div><</widget>>
+<<widget "dialog">><div class="dialog"><span class="speaker" style="color:#c9a050">【$args[0]】</span>「$args[1]」</div><</widget>>
 
 <<widget "divider">><div class="divider">· · · ✦ · · ·</div><</widget>>
 
@@ -16,9 +16,3 @@
 </div><</nobr>><</widget>>
 
 <<widget "ending">><<set $endingReached to $args[0]>><div class="ending-screen"><div class="ending-title">「$args[0]」</div><div class="ending-desc">$args[1]</div><<link "重新开始" "Start">><<run State.reset()>><</link>></div><</widget>>
-
-<<widget "check_sword">><<if $sword >= $args[0]>><<set $sword += 1>><<else>><<set $hp = Math.max(0, $hp - 15)>><</if>><</widget>>
-
-<<widget "give_item">><<run $inventory.pushUnique($args[0])>><span class="ok">获得：$args[0]</span><</widget>>
-
-<<widget "remove_item">><<run $inventory.delete($args[0])>><</widget>>

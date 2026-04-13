@@ -1704,11 +1704,11 @@ body {
 然后是沉默。&lt;/div&gt;
 
 &lt;&lt;link &quot;继续&quot; &quot;chapter2_hub&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="128" name="StoryFooter" tags="" >&lt;&lt;widget &quot;chapter_title&quot;&gt;&gt;&lt;span class=&quot;chapter-title&quot;&gt;$args[0]&lt;/span&gt;&lt;&lt;/widget&gt;&gt;
+	<tw-passagedata pid="128" name="widgets" tags="widget" >&lt;&lt;widget &quot;chapter_title&quot;&gt;&gt;&lt;span class=&quot;chapter-title&quot;&gt;$args[0]&lt;/span&gt;&lt;&lt;/widget&gt;&gt;
 
 &lt;&lt;widget &quot;narrate&quot;&gt;&gt;&lt;div class=&quot;narrate&quot;&gt;$args[0]&lt;/div&gt;&lt;&lt;/widget&gt;&gt;
 
-&lt;&lt;widget &quot;dialog&quot;&gt;&gt;&lt;div class=&quot;dialog&quot;&gt;&lt;span class=&quot;speaker&quot; style=&quot;color:$args[2]||&apos;#c9a050&apos;&quot;&gt;【$args[0]】&lt;/span&gt;「$args[1]」&lt;/div&gt;&lt;&lt;/widget&gt;&gt;
+&lt;&lt;widget &quot;dialog&quot;&gt;&gt;&lt;div class=&quot;dialog&quot;&gt;&lt;span class=&quot;speaker&quot; style=&quot;color:#c9a050&quot;&gt;【$args[0]】&lt;/span&gt;「$args[1]」&lt;/div&gt;&lt;&lt;/widget&gt;&gt;
 
 &lt;&lt;widget &quot;divider&quot;&gt;&gt;&lt;div class=&quot;divider&quot;&gt;· · · ✦ · · ·&lt;/div&gt;&lt;&lt;/widget&gt;&gt;
 
@@ -1720,13 +1720,7 @@ body {
 &lt;span&gt;⚔ &lt;&lt;print $sword&gt;&gt; · 心 &lt;&lt;print $wits&gt;&gt; · 魅 &lt;&lt;print $charm&gt;&gt;&lt;/span&gt;\
 &lt;/div&gt;&lt;&lt;/nobr&gt;&gt;&lt;&lt;/widget&gt;&gt;
 
-&lt;&lt;widget &quot;ending&quot;&gt;&gt;&lt;&lt;set $endingReached to $args[0]&gt;&gt;&lt;div class=&quot;ending-screen&quot;&gt;&lt;div class=&quot;ending-title&quot;&gt;「$args[0]」&lt;/div&gt;&lt;div class=&quot;ending-desc&quot;&gt;$args[1]&lt;/div&gt;&lt;&lt;link &quot;重新开始&quot; &quot;Start&quot;&gt;&gt;&lt;&lt;run State.reset()&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/div&gt;&lt;&lt;/widget&gt;&gt;
-
-&lt;&lt;widget &quot;check_sword&quot;&gt;&gt;&lt;&lt;if $sword &gt;= $args[0]&gt;&gt;&lt;&lt;set $sword += 1&gt;&gt;&lt;&lt;else&gt;&gt;&lt;&lt;set $hp = Math.max(0, $hp - 15)&gt;&gt;&lt;&lt;/if&gt;&gt;&lt;&lt;/widget&gt;&gt;
-
-&lt;&lt;widget &quot;give_item&quot;&gt;&gt;&lt;&lt;run $inventory.pushUnique($args[0])&gt;&gt;&lt;span class=&quot;ok&quot;&gt;获得：$args[0]&lt;/span&gt;&lt;&lt;/widget&gt;&gt;
-
-&lt;&lt;widget &quot;remove_item&quot;&gt;&gt;&lt;&lt;run $inventory.delete($args[0])&gt;&gt;&lt;&lt;/widget&gt;&gt;</tw-passagedata>
+&lt;&lt;widget &quot;ending&quot;&gt;&gt;&lt;&lt;set $endingReached to $args[0]&gt;&gt;&lt;div class=&quot;ending-screen&quot;&gt;&lt;div class=&quot;ending-title&quot;&gt;「$args[0]」&lt;/div&gt;&lt;div class=&quot;ending-desc&quot;&gt;$args[1]&lt;/div&gt;&lt;&lt;link &quot;重新开始&quot; &quot;Start&quot;&gt;&gt;&lt;&lt;run State.reset()&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;/div&gt;&lt;&lt;/widget&gt;&gt;</tw-passagedata>
 </tw-storydata>
 	<script id="script-sugarcube" type="text/javascript">
 	/*! SugarCube JS */
