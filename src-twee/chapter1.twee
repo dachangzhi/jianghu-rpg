@@ -1292,18 +1292,29 @@
 
 :: dinner_after
 <div class="narrate">
-晚饭渐渐结束。小莲收拾了碗碟，赵铁牛打着饱嗝回到壁炉旁，沈孤雁开始擦拭柜台。
-
-大堂重新安静下来，只剩下壁炉中柴火的噼啪声和窗外渐起的风声。
-
-天色已经完全暗了。'</div>
+晚饭渐渐结束。小莲收拾了碗碟，赵铁牛打着饱嗝回到壁炉旁，沈孤雁开始擦拭柜台。</div>
+<div class="narrate">大堂重新安静下来，只剩下壁炉中柴火的噼啪声和窗外渐起的风声。</div>
+<div class="narrate">天色已经完全暗了。</div>
 <<divider>>
+<<link "再找人说说话" "round2_hub">><</link>>
+<<link "回房休息" "evening_rest">><</link>>
 
 :: round2_hub
-<<loc "inn_lobby">>
-<div class="narrate">
-晚饭后的客栈大堂变得安静了些。壁炉的火光将每个人的影子拉得很长。
-你还有时间再找人说说话。'</div>
+<<loc "听雨客栈 · 大堂">>
+<div class="narrate">晚饭后的客栈大堂变得安静了些。壁炉的火光将每个人的影子拉得很长。
+你还有时间再找人说说话。</div>
+<<link "走向柜台" "talk_shen_2">><</link>>
+<<link "走向黑衣女子" "talk_liu_2">><</link>>
+<<link "走向铁匠" "talk_zhao_2">><</link>>
+<<link "走向书生" "talk_bai_2">><</link>>
+<<link "回房休息" "evening_rest">><</link>>
+
+:: evening_rest
+<<loc "听雨客栈 · 天字三号房">>
+<div class="narrate">你回到房间，关上门。窗外的风声越来越大，雨点开始敲打窗棂。</div>
+<div class="narrate">你躺在床上，听着雨声，渐渐有了睡意……</div>
+<<divider>>
+<<link "入睡" "night_raid">><<set $chapter to 2>><</link>>
 
 :: talk_shen_2
 <div class="narrate">
