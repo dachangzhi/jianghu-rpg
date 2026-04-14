@@ -1913,23 +1913,6 @@
 <<link "回大堂——确认其他方向的安全" "tavern_defense_aftermath">><</link>>
 
 
-:: mountain_ambush
-<div class="narrate">你沿着蜿蜒的山路往上走。两旁是密集的竹林，竹叶在风中沙沙作响——遮住了大部分声音。
-
-这使得你直到最后一刻才发现不对劲。
-
-路面上有新鲜的脚印——至少十个人的脚印，重叠在一起。他们不久前刚经过这里，而且人数比你预想的多得多。
-
-你停下了脚步。手按在剑柄上。
-
-然后你听到了——不是脚步声，而是弓弦拉动的声音。</div>
-<<set $flags.mountain_ambush = true>>
-<<divider>>
-<<link "翻滚到路边的岩石后面！" "mtn_dodge_arrow">><</link>>
-<<link "拔剑拨箭！（剑术≥15）" "mtn_deflect_arrow">><</link>>
-<<link "大喊「我投降！」" "mtn_surrender">><</link>>
-
-
 :: mtn_dodge_arrow
 <div class="narrate">你扑向路边——一支箭擦着你的耳朵飞过，钉在了你刚才站的位置旁边的竹子上。箭尾还在嗡嗡震颤。
 

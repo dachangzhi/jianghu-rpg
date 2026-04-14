@@ -539,55 +539,6 @@
 <<link "「救人……好，我帮你。」" "chapter2_hub">><<set $rel_hei_wuji += 15>><<set $flags.hei_alliance = true>><</link>>
 <<link "「我需要更多时间考虑。」" "chapter2_hub">><</link>>
 
-:: chapter2_hub
-<<chapter_title "第二章 · 抉择时刻">>
-<div class="narrate">夜色深沉。客栈内外一片狼藉，但战斗暂时平息。
-你站在院子中央，月光如水。</div>
-<<divider>>
-<<if not $flags.knows_three_keys and not $flags.hu_key and not $flags.bai_key>>
-<div class="narrate">刚才的混战中，你注意到一些不对劲的地方——所有人都在争夺某种<span class="highlight">信物</span>。</div>
-<div class="narrate">一个垂死的黑衣人倒在你脚边，嘴里含混不清地念叨着：「……三块玉牌……山洞……沈老板……药铺……书生……」</div>
-<div class="narrate"><span class="highlight">三块玉牌</span>。看起来，这是打开天机卷藏匿之处的钥匙。分别在沈孤雁、胡青娘、和白云生手中。</div>
-<<set $flags.knows_three_keys = true>>
-<<elseif not $flags.knows_three_keys and ($flags.hu_key or $flags.bai_key)>>
-<div class="narrate">根据已经获得的线索，你拼凑出了全貌——天机卷藏在落雁峰的山洞里，需要<span class="highlight">三块玉牌</span>才能打开。分别在沈孤雁、胡青娘、和白云生手中。</div>
-<<set $flags.knows_three_keys = true>>
-<</if>>
-<div class="narrate">
-现在，你必须做出选择。
-天机卷就在落雁峰上——近万人的生死，就在你手中。</div>
-
-<<if not setup.hasItem('玉牌·药')>>
-<<link "去找胡青娘获取玉牌" "get_hu_key">><</link>>
-<</if>>
-<<if not setup.hasItem('玉牌·书') and not $flags.bai_following>>
-<<link "去找白云生获取玉牌" "get_bai_key">><</link>>
-<</if>>
-<<if not setup.hasItem('玉牌·沈') and not $flags.shen_key>>
-<<link "去找沈孤雁获取玉牌" "get_shen_key">><</link>>
-<</if>>
-<<if not $flags.liu_alliance and $rel_liu_ruyin != null>>
-<<link "和柳如烟结盟" "ally_liu">><</link>>
-<</if>>
-<<if $flags.hei_open_to_deal or $flags.hei_alliance>>
-<<link "和黑无极合作" "ally_hei">><</link>>
-<</if>>
-<<if setup.keyCount() >= 2>>
-<<link "🗡️ 前往落雁峰！" "mountain_approach">><</link>>
-<<elseif setup.keyCount() >= 1>>
-<<link "前往落雁峰（玉牌可能不够）" "mountain_approach">><</link>>
-<</if>>
-<div class="narrate">刚才的混战中，你注意到一些不对劲的地方——所有人都在争夺某种<span class="highlight">信物</span>。</div>
-<div class="narrate">一个垂死的黑衣人倒在你脚边，嘴里含混不清地念叨着：
-「……三块玉牌……山洞……沈老板……药铺……书生……」</div>
-<div class="narrate"><span class="highlight">三块玉牌</span>。看起来，这是打开天机卷藏匿之处的钥匙。
-分别在沈孤雁、胡青娘、和白云生手中。</div>
-<<set $flags.knows_three_keys = true>>
-<</if>>
-<div class="narrate">
-现在，你必须做出选择。
-天机卷就在落雁峰上——近万人的生死，就在你手中。</div>
-
 :: get_hu_key
 <div class="narrate">
 你来到药铺。胡青娘正在整理被打翻的药材。</div>
@@ -1007,23 +958,6 @@
 <<if $flags.explored_kitchen or $flags.explored_backyard or $flags.explored_upstairs>>
 <<link "回大堂" "lobby_free">><</link>>
 <</if>>
-
-:: explore_backyard
-<<loc "听雨客栈 · 后院">>
-<div class="narrate">你推开后门，来到客栈的后院。院子里种着几棵歪脖子枣树，树下摆着几口大水缸。院墙不高，外面就是镇子的小巷。</div>
-<div class="narrate">院角堆着些劈好的柴火，柴堆旁边有一个石磨，上面落了层薄灰——很久没用了。你注意到柴堆后面有一道小门，门上挂着一把生锈的铜锁。</div>
-<<set $flags.explored_backyard = true>>
-<<set $wits += 1>>
-<<link "回大堂" "explore_inn">><</link>>
-
-:: explore_upstairs
-<<loc "听雨客栈 · 二楼">>
-<div class="narrate">你沿着狭窄的木楼梯上到二楼。走廊两侧是客房，门都关着。地板踩上去吱呀作响。你数了数——一共六间房，其中一间门上挂着「天字三号」的木牌，那是你的房间。</div>
-<div class="narrate">走廊尽头的墙上挂着一幅字——「听雨」二字，笔力遒劲。落款处被人用刀刮掉了。</div>
-<<set $flags.explored_upstairs = true>>
-<<set $wits += 1>>
-<<set $rel_shen += 1>>
-<<link "回大堂" "explore_inn">><</link>>
 
 :: explore_kitchen
 <<set $flags.explored_kitchen = true>>
