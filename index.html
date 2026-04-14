@@ -1112,18 +1112,10 @@ body {
 &lt;&lt;divider&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;你可以去这些地方看看：&lt;/div&gt;
 
-&lt;&lt;if not $flags.explored_kitchen&gt;&gt;
 &lt;&lt;link &quot;去厨房看看&quot; &quot;explore_kitchen&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if not $flags.explored_backyard&gt;&gt;
 &lt;&lt;link &quot;去后院转转&quot; &quot;explore_backyard&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if not $flags.explored_upstairs&gt;&gt;
 &lt;&lt;link &quot;上楼看看&quot; &quot;explore_upstairs&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;if $flags.explored_kitchen or $flags.explored_backyard or $flags.explored_upstairs&gt;&gt;
-&lt;&lt;link &quot;回大堂&quot; &quot;lobby_free&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;/if&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="explore_kitchen" tags="" position="850,850" size="100,100">&lt;&lt;set $flags.explored_kitchen = true&gt;&gt;
+&lt;&lt;link &quot;回大堂&quot; &quot;lobby_free&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata><tw-passagedata pid="67" name="explore_kitchen" tags="" position="850,850" size="100,100">&lt;&lt;set $flags.explored_kitchen = true&gt;&gt;
 &lt;&lt;loc &quot;inn_kitchen&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;
 你推开厨房的木门，一股浓烈的油烟味和辣椒的呛香扑面而来。

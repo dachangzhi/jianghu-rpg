@@ -946,18 +946,10 @@
 <<divider>>
 <div class="narrate">你可以去这些地方看看：</div>
 
-<<if not $flags.explored_kitchen>>
 <<link "去厨房看看" "explore_kitchen">><</link>>
-<</if>>
-<<if not $flags.explored_backyard>>
 <<link "去后院转转" "explore_backyard">><</link>>
-<</if>>
-<<if not $flags.explored_upstairs>>
 <<link "上楼看看" "explore_upstairs">><</link>>
-<</if>>
-<<if $flags.explored_kitchen or $flags.explored_backyard or $flags.explored_upstairs>>
 <<link "回大堂" "lobby_free">><</link>>
-<</if>>
 
 :: explore_kitchen
 <<set $flags.explored_kitchen = true>>
