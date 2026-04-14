@@ -160,8 +160,11 @@
 
 :: talk_bai
 <<set $met_bai = true>>
-<<set $rel_bai += 5>>
-<<set $flags.bai_respects = true>>
+<div class="narrate">你走到书生桌旁。他趴在桌上，酒坛倒了，酒水淌了一桌。
+但当你靠近时，他的手指微微动了一下。</div>
+
+<<link "轻轻推他一下：「兄台，醒醒。」" "bai_wake">><<set $rel_bai += 2>><</link>>
+<<link "在他耳边低声说：「别装了。」" "bai_callout">><<set $wits += 2>><<set $rel_bai += 5>><<set $flags.bai_respects = true>><</link>>
 
 :: bai_wake
 <div class="narrate">
