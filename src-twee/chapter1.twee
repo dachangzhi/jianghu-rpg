@@ -1306,7 +1306,7 @@
 <<link "走向柜台" "talk_shen_2">><</link>>
 <<link "走向黑衣女子" "talk_liu_2">><</link>>
 <<link "走向铁匠" "talk_zhao_2">><</link>>
-<<link "走向书生" "talk_bai_2">><</link>>
+<link "走向白云生" "talk_bai_2">><</link>>
 <<link "回房休息" "evening_rest">><</link>>
 
 :: evening_rest
@@ -1501,6 +1501,10 @@
 
 他正对着一杯酒出神，听到你过来，微微笑了。'</div>
 <<dialog "白云生" "月色不错。在苍龙镇能看到这么干净的月亮，难得。">>
+
+<<link "「你怎么会来苍龙镇？」" "bai2_why_not_go">><</link>>
+<<link "「你知道天机卷的事吗？」" "bai2_tianji">><<set $wits += 1>><</link>>
+<<link "陪他喝一杯" "round2_hub">><<set $rel_bai += 3>><<set $charm += 1>><</link>>
 
 :: bai2_why_not_go
 <div class="narrate">
