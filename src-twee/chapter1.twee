@@ -989,14 +989,36 @@
 <<ending "天机在心" "真正的天机，不在卷轴上，而在人心之中。">>
 
 :: explore_inn
-<<loc "inn_lobby">>
-<div class="narrate">你决定在客栈里四处走走，趁天色尚早多了解一些这个奇怪的地方。
-
-大堂里弥漫着饭菜的香气，灶房的炉火噼啪作响。客栈虽小，五脏俱全——柜台后的墙上挂着一幅褪色的山水画，壁炉里的火烧得正旺，将整个大堂烘得暖融融的。'</div>
+<<loc "听雨客栈 · 大堂">>
+<div class="narrate">你决定在客栈里四处走走，趁天色尚早多了解一些这个奇怪的地方。</div>
+<div class="narrate">大堂里弥漫着饭菜的香气，灶房的炉火噼啪作响。客栈虽小，五脏俱全——柜台后的墙上挂着一幅褪色的山水画，壁炉里的火烧得正旺，将整个大堂烘得暖融融的。</div>
 <<divider>>
-<div class="narrate">你可以去这些地方看看：'</div>
+<div class="narrate">你可以去这些地方看看：</div>
+
+<<if not $flags.explored_kitchen>><<link "去厨房看看" "explore_kitchen">><</link>><</if>>
+<<if not $flags.explored_backyard>><<link "去后院转转" "explore_backyard">><</link>><</if>>
+<<if not $flags.explored_upstairs>><<link "上楼看看" "explore_upstairs">><</link>><</if>>
+<<link "回大堂" "lobby_free">><</link>>
+
+:: explore_backyard
+<<loc "听雨客栈 · 后院">>
+<div class="narrate">你推开后门，来到客栈的后院。院子里种着几棵歪脖子枣树，树下摆着几口大水缸。院墙不高，外面就是镇子的小巷。</div>
+<div class="narrate">院角堆着些劈好的柴火，柴堆旁边有一个石磨，上面落了层薄灰——很久没用了。你注意到柴堆后面有一道小门，门上挂着一把生锈的铜锁。</div>
+<<set $flags.explored_backyard = true>>
+<<set $wits += 1>>
+<<link "回大堂" "explore_inn">><</link>>
+
+:: explore_upstairs
+<<loc "听雨客栈 · 二楼">>
+<div class="narrate">你沿着狭窄的木楼梯上到二楼。走廊两侧是客房，门都关着。地板踩上去吱呀作响。你数了数——一共六间房，其中一间门上挂着「天字三号」的木牌，那是你的房间。</div>
+<div class="narrate">走廊尽头的墙上挂着一幅字——「听雨」二字，笔力遒劲。落款处被人用刀刮掉了。</div>
+<<set $flags.explored_upstairs = true>>
+<<set $wits += 1>>
+<<set $rel_shen += 1>>
+<<link "回大堂" "explore_inn">><</link>>
 
 :: explore_kitchen
+<<set $flags.explored_kitchen = true>>
 <<loc "inn_kitchen">>
 <div class="narrate">
 你推开厨房的木门，一股浓烈的油烟味和辣椒的呛香扑面而来。

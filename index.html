@@ -1254,13 +1254,31 @@ body {
 
 &lt;span class=&quot;highlight&quot;&gt;江湖路远，后会有期。&lt;/span&gt;&lt;/div&gt;
 &lt;&lt;ending &quot;天机在心&quot; &quot;真正的天机，不在卷轴上，而在人心之中。&quot;&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="72" name="explore_inn" tags="" >&lt;&lt;loc &quot;inn_lobby&quot;&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;你决定在客栈里四处走走，趁天色尚早多了解一些这个奇怪的地方。
-
-大堂里弥漫着饭菜的香气，灶房的炉火噼啪作响。客栈虽小，五脏俱全——柜台后的墙上挂着一幅褪色的山水画，壁炉里的火烧得正旺，将整个大堂烘得暖融融的。&apos;&lt;/div&gt;
+	<tw-passagedata pid="72" name="explore_inn" tags="" >&lt;&lt;loc &quot;听雨客栈 · 大堂&quot;&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;你决定在客栈里四处走走，趁天色尚早多了解一些这个奇怪的地方。&lt;/div&gt;
+&lt;div class=&quot;narrate&quot;&gt;大堂里弥漫着饭菜的香气，灶房的炉火噼啪作响。客栈虽小，五脏俱全——柜台后的墙上挂着一幅褪色的山水画，壁炉里的火烧得正旺，将整个大堂烘得暖融融的。&lt;/div&gt;
 &lt;&lt;divider&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;你可以去这些地方看看：&apos;&lt;/div&gt;</tw-passagedata>
-	<tw-passagedata pid="73" name="explore_kitchen" tags="" >&lt;&lt;loc &quot;inn_kitchen&quot;&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;你可以去这些地方看看：&lt;/div&gt;
+
+&lt;&lt;if not $flags.explored_kitchen&gt;&gt;&lt;&lt;link &quot;去厨房看看&quot; &quot;explore_kitchen&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if not $flags.explored_backyard&gt;&gt;&lt;&lt;link &quot;去后院转转&quot; &quot;explore_backyard&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;if not $flags.explored_upstairs&gt;&gt;&lt;&lt;link &quot;上楼看看&quot; &quot;explore_upstairs&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;&lt;&lt;/if&gt;&gt;
+&lt;&lt;link &quot;回大堂&quot; &quot;lobby_free&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="73" name="explore_backyard" tags="" >&lt;&lt;loc &quot;听雨客栈 · 后院&quot;&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;你推开后门，来到客栈的后院。院子里种着几棵歪脖子枣树，树下摆着几口大水缸。院墙不高，外面就是镇子的小巷。&lt;/div&gt;
+&lt;div class=&quot;narrate&quot;&gt;院角堆着些劈好的柴火，柴堆旁边有一个石磨，上面落了层薄灰——很久没用了。你注意到柴堆后面有一道小门，门上挂着一把生锈的铜锁。&lt;/div&gt;
+&lt;&lt;set $flags.explored_backyard = true&gt;&gt;
+&lt;&lt;set $wits += 1&gt;&gt;
+&lt;&lt;link &quot;回大堂&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="74" name="explore_upstairs" tags="" >&lt;&lt;loc &quot;听雨客栈 · 二楼&quot;&gt;&gt;
+&lt;div class=&quot;narrate&quot;&gt;你沿着狭窄的木楼梯上到二楼。走廊两侧是客房，门都关着。地板踩上去吱呀作响。你数了数——一共六间房，其中一间门上挂着「天字三号」的木牌，那是你的房间。&lt;/div&gt;
+&lt;div class=&quot;narrate&quot;&gt;走廊尽头的墙上挂着一幅字——「听雨」二字，笔力遒劲。落款处被人用刀刮掉了。&lt;/div&gt;
+&lt;&lt;set $flags.explored_upstairs = true&gt;&gt;
+&lt;&lt;set $wits += 1&gt;&gt;
+&lt;&lt;set $rel_shen += 1&gt;&gt;
+&lt;&lt;link &quot;回大堂&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
+	<tw-passagedata pid="75" name="explore_kitchen" tags="" >&lt;&lt;set $flags.explored_kitchen = true&gt;&gt;
+&lt;&lt;loc &quot;inn_kitchen&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;
 你推开厨房的木门，一股浓烈的油烟味和辣椒的呛香扑面而来。
 灶台上架着一口大铁锅，里面咕嘟咕嘟地炖着什么，热气升腾。
@@ -1278,7 +1296,7 @@ body {
 &lt;&lt;link &quot;「小莲姑娘，那些瓷瓶是做什么的？」&quot; &quot;xiao_lian_ask&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;「你手艺真好，跟谁学的？」&quot; &quot;xiao_lian_craft&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;不动声色，记在心里&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;set $flags.noticed_xiao_lian_medicine = true&gt;&gt;&lt;&lt;set $wits += 1&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="74" name="xiao_lian_ask" tags="" >&lt;div class=&quot;narrate&quot;&gt;
+	<tw-passagedata pid="76" name="xiao_lian_ask" tags="" >&lt;div class=&quot;narrate&quot;&gt;
 小莲的动作顿了一下，随即恢复自然。&apos;&lt;/div&gt;
 &lt;&lt;dialog &quot;小莲&quot; &quot;哦，这些啊？以前跟着一位大夫学过几年草药，后来大夫去世了，我就来客栈帮忙了。沈老板说我做的药膳好，让我平时也备着些常用药，客人有个头疼脑热的能应付。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她说得自然，但你注意到她把那些瓷瓶往里推了推——&lt;span class=&quot;highlight&quot;&gt;下意识的遮挡动作&lt;/span&gt;。
@@ -1288,7 +1306,7 @@ body {
 &lt;&lt;set $rel_xiao_lian += 3&gt;&gt;
 &lt;&lt;link &quot;「那位大夫……是你的亲人吗？」&quot; &quot;xiao_lian_family&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;点点头，不再追问&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="75" name="xiao_lian_family" tags="" >&lt;div class=&quot;narrate&quot;&gt;
+	<tw-passagedata pid="77" name="xiao_lian_family" tags="" >&lt;div class=&quot;narrate&quot;&gt;
 小莲放下锅铲，沉默了片刻。&apos;&lt;/div&gt;
 &lt;&lt;dialog &quot;小莲&quot; &quot;……是师父。她叫秦素琴，是苍龙镇以前的药师。三年前……镇上来了一伙人，说是朝廷的暗探。师父挡在药铺门前不让他们进去，就被……被他们……&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她深吸一口气，眼眶微红，但没有哭。&apos;&lt;/div&gt;
@@ -1300,7 +1318,7 @@ body {
 &lt;&lt;set $rel_xiao_lian += 8&gt;&gt;
 &lt;&lt;link &quot;「放心，我会记住你说的。」&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;set $rel_xiao_lian += 5&gt;&gt;&lt;&lt;set $flags.promised_xiao_lian = true&gt;&gt;&lt;&lt;/link&gt;&gt;
 &lt;&lt;link &quot;继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="76" name="xiao_lian_craft" tags="" >&lt;div class=&quot;narrate&quot;&gt;
+	<tw-passagedata pid="78" name="xiao_lian_craft" tags="" >&lt;div class=&quot;narrate&quot;&gt;
 小莲笑了，眼睛弯成月牙。&apos;&lt;/div&gt;
 &lt;&lt;dialog &quot;小莲&quot; &quot;跟师父学的！她是苍龙镇最好的药师，不光会做药，做饭也一绝。她说啊，做药和做饭其实是一回事——都是把不同的东西配在一起，让它们变成更好的东西。&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;她给你夹了一块刚出锅的腊肉，用碟子递过来。&apos;&lt;/div&gt;
@@ -1312,72 +1330,6 @@ body {
 &lt;&lt;set $rel_xiao_lian += 3&gt;&gt;
 &lt;&lt;set $charm += 1&gt;&gt;
 &lt;&lt;link &quot;继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="77" name="explore_backyard" tags="" >&lt;&lt;loc &quot;inn_backyard&quot;&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;
-你推开客栈后门，来到后院。
-
-雨后的空气清新得像被水洗过，泥土的腥甜味混着远处传来的烧柴烟味。
-院子不大，左边是马厩，右边堆着劈好的柴火，正中有一棵老槐树，树干粗得两人合抱。
-
-树下放着一张石桌、两个石凳。石桌上刻着棋盘的格线，但棋子已经不知去向。&apos;&lt;/div&gt;
-&lt;&lt;divider&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;你走近马厩——里面只有两匹马，其中一匹是你的。
-另一匹是黑毛骏马，马鞍上刻着一个&lt;span class=&quot;highlight&quot;&gt;「暗」&lt;/span&gt;字。
-
-这匹马身形矫健，肌肉线条分明，一看就是上等战马。它的眼神警惕，你靠近时轻轻打了个响鼻。
-
-&lt;span class=&quot;danger&quot;&gt;暗&lt;/span&gt;……暗星阁？还是巧合？&apos;&lt;/div&gt;
-&lt;&lt;if not $flags.met_hei_wuji&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;
-你还没见过这匹马的主人。但能骑这种战马的人，绝非等闲之辈。&apos;&lt;/div&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;set $flags.explored_backyard = true&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;
-你回到石桌旁，注意到石桌边缘刻着一行小字，被苔藓半遮半掩：
-
-&lt;span class=&quot;highlight&quot;&gt;&quot;十五月圆时，孤雁归故里。&quot;&lt;/span&gt;&apos;&lt;/div&gt;
-&lt;&lt;if $wits &gt;= 12&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;
-你的心思转了转——「孤雁」？沈孤雁的名字里就有「孤雁」二字。&lt;span class=&quot;highlight&quot;&gt;每月十五，他会去某个地方&lt;/span&gt;。
-
-今天是……初七。离十五还有八天。&apos;&lt;/div&gt;
-&lt;&lt;set $flags.found_shen_routine = true&gt;&gt;
-&lt;&lt;set $wits += 1&gt;&gt;
-&lt;&lt;/if&gt;&gt;
-&lt;&lt;link &quot;继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
-	<tw-passagedata pid="78" name="explore_upstairs" tags="" >&lt;&lt;loc &quot;inn_room&quot;&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;
-你沿着吱呀作响的木楼梯上了二楼。
-
-走廊狭窄，两侧各三间房，木板地在脚步下微微晃动。
-你的房间是天字三号，在最里面。
-
-经过天字二号房时，你听到里面传来低低的说话声。
-你放轻脚步，贴近门板——&apos;&lt;/div&gt;
-&lt;&lt;divider&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;是&lt;span class=&quot;highlight&quot;&gt;柳如烟&lt;/span&gt;的声音，压得很低，像是在跟谁说话。
-
-「……名单上第三十七人已确认在苍龙镇。父亲的名字……也在上面。如果这份名单被带回去——」
-
-她停顿了一下。
-
-「我明白。但……如果我抗命，他们会对付的不只是我。你们手里还有多少人？」
-
-沉默。似乎在听对方说些什么。
-
-「好。我知道了。三天之内，一定有结果。」&apos;&lt;/div&gt;
-&lt;&lt;divider&gt;&gt;
-&lt;div class=&quot;narrate&quot;&gt;脚步声向门口移来。你赶紧闪到走廊拐角。&apos;&lt;/div&gt;
-&lt;div class=&quot;narrate&quot;&gt;门开了一条缝，你看到柳如烟对着一块&lt;span class=&quot;highlight&quot;&gt;小巧的铜牌&lt;/span&gt;说了句「熄」，铜牌上的微光就消失了。
-
-&lt;span class=&quot;highlight&quot;&gt;传讯铜牌&lt;/span&gt;——朝廷锦衣卫的高级通讯工具，百户以上才有资格使用。
-
-她的身份、她的任务、她父亲的秘密——全都在刚才那段对话里了。&apos;&lt;/div&gt;
-&lt;&lt;set $flags.overheard_liu_comm = true&gt;&gt;
-&lt;&lt;set $flags.knows_liu_identity = true&gt;&gt;
-&lt;&lt;set $wits += 2&gt;&gt;
-&lt;&lt;link &quot;回自己的房间整理一下思绪&quot; &quot;in_room&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;
-&lt;&lt;link &quot;下楼继续探索&quot; &quot;explore_inn&quot;&gt;&gt;&lt;&lt;/link&gt;&gt;</tw-passagedata>
 	<tw-passagedata pid="79" name="in_room" tags="" >&lt;&lt;loc &quot;inn_room&quot;&gt;&gt;
 &lt;div class=&quot;narrate&quot;&gt;
 你推开天字三号的门。
