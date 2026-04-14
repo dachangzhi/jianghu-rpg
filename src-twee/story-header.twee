@@ -233,13 +233,13 @@ body {
 }
 
 /* Scrollbar styling */
-::-webkit-scrollbar {
+*::-webkit-scrollbar {
 	width: 4px;
 }
-::-webkit-scrollbar-track {
+*::-webkit-scrollbar-track {
 	background: var(--bg-dark);
 }
-::-webkit-scrollbar-thumb {
+*::-webkit-scrollbar-thumb {
 	background: var(--gold-dim);
 	border-radius: 2px;
 }
