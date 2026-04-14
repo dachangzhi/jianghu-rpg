@@ -1,71 +1,76 @@
 :: lobby_free
 <<if $chapter === 1>>
-<<if not $rel_shen_guyan>>
+<<if not $met_shen>>
 <<link "走向柜台，和老板交谈" "talk_shen">><</link>>
 <</if>>
-<<if not $rel_liu_ruyin>>
+<<if not $met_liu>>
 <<link "走向黑衣女子" "talk_liu">><</link>>
 <</if>>
-<<if not $rel_zhao_tieniu>>
+<<if not $met_zhao>>
 <<link "走向铁匠" "talk_zhao">><</link>>
 <</if>>
-<<if not $rel_bai_yunsheng>>
+<<if not $met_bai>>
 <<link "走向醉倒的书生" "talk_bai">><</link>>
 <</if>>
-<<if $rel_shen_guyan and $rel_liu_ruyin and $rel_zhao_tieniu and $rel_bai_yunsheng>>
+<<if $met_shen and $met_liu and $met_zhao and $met_bai>>
 <<link "天色渐暗，入座晚膳" "dinner_scene">><</link>>
+<<else>>
+<<if $met_shen or $met_liu or $met_zhao or $met_bai>>
 <<link "四处转转，探索客栈" "explore_inn">><</link>>
 <</if>>
-<<if $rel_shen_guyan and $rel_liu_ruyin and $rel_zhao_tieniu and $rel_bai_yunsheng>>
-<<elseif $rel_shen_guyan and $rel_liu_ruyin and $rel_zhao_tieniu>>
-<<link "等晚饭吃" "dinner_scene">><</link>>
 <</if>>
+
 <<elseif $chapter === 2>>
 <div class="narrate">夜色深沉，客栈内一片混乱。你需要决定下一步行动。</div>
 <<loc "听雨客栈 · 夜">>
 <<link "调查案发现场" "night_rush">><</link>>
 <<link "去镇上探索" "night_town_hub">><</link>>
-<<if $rel_zhao_tieniu gte 10>>
+<<if $rel_zhao >= 10>>
 <<link "和赵铁牛谈谈他发现的事" "zhao_weapon_help">><</link>>
 <</if>>
-<<if $rel_liu_ruyin gte 0>>
+<<if $rel_liu >= 0>>
 <<link "找柳如烟了解真相" "liu_private_talk">><</link>>
 <</if>>
 <<link "深夜外出调查" "night_street_east">><</link>>
 <<link "夜间偷听" "night_eavesdrop_1">><</link>>
+<<if $flags.hei_encountered>>
 <<link "追踪黑无极" "combat_hei_encounter">><</link>>
-<<link "整理线索，商议对策（进入调查阶段）" "chapter2_hub">><<set $chapter = 3>><</link>>
+<</if>>
+<<link "整理线索，商议对策（进入调查阶段）" "chapter2_hub">><<set $chapter to 3>><</link>>
+
 <<elseif $chapter === 3>>
 <div class="narrate">黎明将至。你需要收集所有线索，决定最终行动。</div>
 <<loc "听雨客栈 · 黎明">>
-<<if not setup.hasItem("玉牌·药")>>
+<<if not $flags.got_hu_jade>>
 <<link "寻找玉牌（胡青娘）" "hu_jade_quest">><</link>>
 <</if>>
-<<if not setup.hasItem("玉牌·书")>>
+<<if not $flags.got_bai_jade>>
 <<link "寻找玉牌（白云生）" "bai_jade_quest">><</link>>
 <</if>>
-<<if not setup.hasItem("玉牌·沈")>>
+<<if not $flags.got_shen_jade>>
 <<link "寻找玉牌（沈孤雁）" "shen_jade_quest">><</link>>
 <</if>>
 <<link "与柳如烟结盟" "ally_liu">><</link>>
 <<link "全联盟协商" "alliance_full">><</link>>
+<<if $flags.hei_encountered>>
 <<link "和黑无极谈谈他的目的" "hei_personal_quest">><</link>>
-<<link "仔细分析所有线索" "chapter2_hub">><</link>>
-<<if setup.keyCount() gte 2>>
-<<link "启程前往落雁峰" "mountain_prepare">><<set $chapter = 4>><</link>>
 <</if>>
+<<if setup.keyCount() >= 2>>
+<<link "启程前往落雁峰" "mountain_prepare">><<set $chapter to 4>><</link>>
+<</if>>
+
 <<elseif $chapter === 4>>
 <div class="narrate">山路崎岖，前方就是落雁峰。</div>
 <<loc "落雁峰 · 山路">>
 <<link "继续前进" "mountain_path_encounter">><</link>>
 <<link "走小路" "mountain_fork">><</link>>
-<<if $rel_shen_guyan gte 10>>
+<<if $rel_shen >= 10>>
 <<link "和沈孤雁商议路线" "mountain_path_shen">><</link>>
 <</if>>
-<<if $rel_liu_ruyin gte 0>>
+<<if $rel_liu >= 0>>
 <<link "和柳如烟讨论战术" "mountain_path_liu">><</link>>
 <</if>>
-<<if $rel_zhao_tieniu gte 10>>
+<<if $rel_zhao >= 10>>
 <<link "让赵铁牛探路" "mountain_path_zhao">><</link>>
 <</if>>
 <</if>>
