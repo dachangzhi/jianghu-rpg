@@ -244,9 +244,10 @@ body {
 	border-radius: 2px;
 }
 
-/* UI bar - hide default */
+/* UI bar */
 #ui-bar {
-	display: none;
+	background: #0a0808;
+	border-right: 1px solid #3a3020;
 }
 
 /* Mobile optimization */
