@@ -119,6 +119,12 @@
 
 :: talk_zhao
 <<set $met_zhao = true>>
+<<set $rel_zhao += 8>>
+<div class="narrate">你坐到壁炉旁。壮汉抬头看了你一眼，咧嘴一笑。</div>
+<<dialog "???" "嘿！又来一个淋成落汤鸡的！老赵我叫赵铁牛，镇上的铁匠。来来来，烤烤火！">>
+<div class="narrate">他把自己的酒推到你面前。</div>
+<<dialog "赵铁牛" "你是练剑的吧？我一看就知道——手上有剑茧。实话说，这镇上这几天来了不少怪人，都是那种……一看就不简单的。不像我这粗人，打铁为生。哈哈！">>
+<div class="narrate">赵铁牛虽然大大咧咧，但你注意到他的<span class='highlight'>前臂有刀伤的旧疤</span>，而且他坐姿端正，分明受过军旅训练。</div>
 <<link "「赵大哥豪爽！干一杯！」" "zhao_drink">><<set $rel_zhao += 5>><<set $flags.zhao_drink_bond = true>><<set $charm += 1>><</link>>
 <<link "「赵大哥以前当过兵？」" "zhao_military">><<set $wits += 1>><</link>>
 
